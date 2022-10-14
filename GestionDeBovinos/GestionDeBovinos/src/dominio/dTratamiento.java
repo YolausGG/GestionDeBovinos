@@ -1,0 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dominio;
+
+import clases.Tratamiento;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Godoy
+ */
+public class dTratamiento {
+    
+    public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento){
+        
+        return persistencia.pTratamiento.altaTratamientoFechaInicio(pTratamiento);
+    }
+    public static boolean altaTratamiento(Tratamiento pTratamiento){
+        
+        return persistencia.pTratamiento.altaTratamiento(pTratamiento);
+    }
+
+    public static boolean bajaTratamiento(int idTratamiento){
+        
+        return persistencia.pTratamiento.bajaTratamiento(idTratamiento);
+    }
+
+    public static boolean modificarTratamiento(Tratamiento pTratamiento){
+
+        return persistencia.pTratamiento.modificarTratamiento(pTratamiento);
+    }
+
+    public static Tratamiento buscarTratamiento(int idTratamiento){
+
+        return persistencia.pTratamiento.buscarTratamiento(idTratamiento);
+    }
+
+    public static ArrayList<Tratamiento> listarTratamientos(){
+
+        return persistencia.pTratamiento.listarTratamientos();
+    }
+    public static ArrayList<Tratamiento> listarTratamientosActivos(){
+
+        return persistencia.pTratamiento.listarTratamientosActivos();
+    }
+    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino){
+
+        return persistencia.pTratamiento.listarTratamientosBovino(idBovino);
+    }
+        
+}

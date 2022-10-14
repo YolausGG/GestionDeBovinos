@@ -1,0 +1,62 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dominio;
+
+import clases.EstadoBovino;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Godoy
+ */
+public class dEstadoBovino {
+    
+    public static boolean altaEstadoBovinoFechaInicio(EstadoBovino pEstadoBovino){
+        
+        return persistencia.pEstadoBovino.altaEstadoBovinoFechaInicio(pEstadoBovino);
+    }
+     
+    public static boolean altaEstadoBovino(EstadoBovino pEstadoBovino){
+        
+        return persistencia.pEstadoBovino.altaEstadoBovino(pEstadoBovino);
+    }
+    
+    public static boolean bajaEstadoBovino(EstadoBovino pEstadoBovino){
+        
+        return persistencia.pEstadoBovino.bajaEstadoBovino(pEstadoBovino);
+    }
+     
+    public static boolean deleteEstadoBovino(EstadoBovino pEstadoBovino){
+        
+        return persistencia.pEstadoBovino.deleteEstadoBovino(pEstadoBovino);
+    } 
+
+    public static boolean modificarEstadoBovino(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo){
+        
+        return persistencia.pEstadoBovino.modificarEstadoBovino(pEstadoBovinoNuevo, pEstadoBovinoViejo);
+    }
+    
+    public static EstadoBovino buscarEstadoBovino(EstadoBovino pEstadoBovino){
+        
+        return persistencia.pEstadoBovino.buscarEstadoBovino(pEstadoBovino);
+    }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovino(){
+
+        return persistencia.pEstadoBovino.listarEstadosBovino();
+    }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoPorBovino(int idBovino){
+        
+        return persistencia.pEstadoBovino.listarEstadosBovinoPorBovino(idBovino);
+    }
+     
+    public static ArrayList<EstadoBovino> listarEstadosBovinoPorEstado(int idEstadoDelBovino){
+        
+        return persistencia.pEstadoBovino.listarEstadosBovinoPorEstado(idEstadoDelBovino);
+    }
+    
+    
+}
