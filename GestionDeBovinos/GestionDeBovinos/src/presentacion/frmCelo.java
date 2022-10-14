@@ -192,15 +192,12 @@ public class frmCelo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
      
-    
-    
     public void limpiarCajas() {
 
         txtCaravanaHembra.setText(null);
         cboCausa.setSelectedIndex(0);
         jDateFechaCelo.setDate(null);
-        txaDetalle.setText(null);
-        
+        txaDetalle.setText(null);  
     }
     
     private boolean validarCampos(){
@@ -218,7 +215,6 @@ public class frmCelo extends javax.swing.JFrame {
         }
     }
     
-
     public void actualizarTabla() {
         jTableCelos.setDefaultRenderer(Object.class, new BotonesTabla());
 
