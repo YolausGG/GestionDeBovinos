@@ -151,8 +151,9 @@ public class frmBajaLogica extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Baja Lógica Exitosa");
                 frmBovino.caravana = "";
                 
-                frmBovino.frmBovino1 = null;
+                
                 frmBovino.frmBovino1.dispose();
+                frmBovino.frmBovino1 = null;
                 
                 frmBovino formularioBovino = new frmBovino();
                 formularioBovino.setVisible(true);

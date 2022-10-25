@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmTratamiento.java</file>
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmFechaFinalizacionTratamiento.java</file>
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmEstadoDelBovino.java</file>
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarTratamiento.java</file>
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/dominio/dControladora.java</file>
             <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/clases/EstadoDelBovino.java</file>
+=======
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmApareable.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/dominio/dControladora.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmTacto.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/persistencia/pBovino.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmInseminacion.java</file>
+>>>>>>> 3761509 (Evento Futuro)
         </group>
     </open-files>
 </project-private>

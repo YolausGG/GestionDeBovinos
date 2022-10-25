@@ -40,9 +40,9 @@ public class dInseminacion {
         return pInseminacion.listarInseminaciones();
     }
     
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravanaHembra){
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravana){
 
-        return pInseminacion.listarInseminacionesPorCaravana(pCaravanaHembra);
+        return pInseminacion.listarInseminacionesPorCaravana(pCaravana);
     }
     
     

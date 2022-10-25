@@ -36,7 +36,8 @@ public class pEventoFuturo {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_EVENTOFUTURO);
             statement.setInt(1, pEventoFuturo.getHembra().getIdBovino());
             statement.setString(2, pEventoFuturo.getTipo());
-            statement.setDate(3, (java.sql.Date) pEventoFuturo.getFechaPrevista());
+            java.sql.Date sqlDate = new java.sql.Date(pEventoFuturo.getFechaPrevista().getTime());
+            statement.setDate(3, sqlDate);
 
             int retorno = statement.executeUpdate();
 
@@ -70,7 +71,8 @@ public class pEventoFuturo {
 
             statement.setInt(1, pEventoFuturo.getHembra().getIdBovino());
             statement.setString(2, pEventoFuturo.getTipo());
-            statement.setDate(3, (java.sql.Date) pEventoFuturo.getFechaPrevista());
+            java.sql.Date sqlDate = new java.sql.Date(pEventoFuturo.getFechaPrevista().getTime());
+            statement.setDate(3, sqlDate);
             statement.setInt(4, idEventoFuturo);
 
             int retorno = statement.executeUpdate();

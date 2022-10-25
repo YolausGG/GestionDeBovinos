@@ -1,6 +1,8 @@
 package persistencia;
 
+import clases.Bovino;
 import clases.Hembra;
+import clases.Macho;
 import clases.Raza;
 
 import java.sql.PreparedStatement;
@@ -123,6 +125,25 @@ public class pHembra {
             return null;
         }
     }
+    
+    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra) {
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_HEMBRA_CARAVANA);
+            statement.setString(1, pCaravanaHembra);
+
+            ResultSet resultado = statement.executeQuery();
+            Hembra hembra = null;
+            if (resultado.next()) {
+                hembra = getHembraCompletaFromResultSet(resultado);
+            }
+            return hembra;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static Hembra buscarHembraPorId(int idHembra) {
 
@@ -171,6 +192,36 @@ public class pHembra {
         Raza raza = pRaza.buscarRaza(idRaza);
 
         Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, raza);
+
+        return hembra;
+    }
+    
+    private static Hembra getHembraCompletaFromResultSet(ResultSet resultado) throws SQLException {
+
+        int idBovino = resultado.getInt("IDBOVINO");
+        String caravanaBovino = resultado.getString("CARAVANABOVINO");
+        Date fechaNacimiento = (java.util.Date) resultado.getDate("FECHANACIMIENTO");
+
+        int idRaza = resultado.getInt("IDRAZA");
+        Raza raza = pRaza.buscarRaza(idRaza);
+
+        ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
+        
+        Macho padre = null;
+        Hembra madre = null;
+        
+        if(padres.size() > 0){
+            
+            for (Bovino p : padres) {
+                if(p.getClass().getSimpleName().toString().equals("Macho")){
+                    padre =(Macho) p;
+                }else{
+                    madre = (Hembra) p;
+                }
+            }
+        }
+        
+        Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, raza, madre, padre);
 
         return hembra;
     }

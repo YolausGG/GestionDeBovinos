@@ -1,5 +1,7 @@
 package persistencia;
 
+import clases.Bovino;
+import clases.Hembra;
 import clases.Macho;
 import clases.Raza;
 
@@ -70,6 +72,26 @@ public class pMacho {
         }
     }
     
+    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho){
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_MACHO_CARAVANA);
+            statement.setString(1, pCaravanaMacho);
+
+            ResultSet resultado = statement.executeQuery();
+            Macho macho = null;
+            if(resultado.next()){
+                macho = getMachoCompletoFromResultSet(resultado);
+            }
+            return macho;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
     public static Macho buscarMachoPorId(int idMacho){
 
         try {
@@ -110,7 +132,7 @@ public class pMacho {
     public static ArrayList<Macho> buscarMachosCaravanaLIKE(String pCaravana) {
         
         String consulta = "SELECT *"
-            + " FROM BOVINO B INNER JOIN MACHO M ON B.IDBOVINO= M.IDMACHO"
+            + " FROM BOVINO B INNER JOIN MACHO M ON B.IDBOVINO = M.IDMACHO"
             + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%' AND B.BAJALOGICA = 0 ";
         
         ArrayList<Macho> listaMachos = new ArrayList<>();
@@ -197,6 +219,38 @@ public class pMacho {
 
         
         Macho macho = new Macho (idBovino, caravanaBovino, fechaNacimiento, raza, tipo);
+
+        return macho;
+    }
+    
+    private static Macho getMachoCompletoFromResultSet(ResultSet resultado) throws SQLException {
+
+        int idBovino = resultado.getInt("IDBOVINO");
+        String caravanaBovino = resultado.getString("CARAVANABOVINO");
+        Date fechaNacimiento = (java.util.Date)resultado.getDate("FECHANACIMIENTO");
+
+        int idRaza = resultado.getInt("IDRAZA");
+        Raza raza = pRaza.buscarRaza(idRaza);
+
+        String tipo = resultado.getString("TIPO");
+
+        ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
+        
+        Macho padre = null;
+        Hembra madre = null;
+        
+        if(padres.size() > 0){
+            
+            for (Bovino p : padres) {
+                if(p.getClass().getSimpleName().toString().equals("Macho")){
+                    padre =(Macho) p;
+                }else{
+                    madre = (Hembra) p;
+                }
+            }
+        }
+        
+        Macho macho = new Macho (idBovino, caravanaBovino, fechaNacimiento, raza, tipo, madre, padre);
 
         return macho;
     }

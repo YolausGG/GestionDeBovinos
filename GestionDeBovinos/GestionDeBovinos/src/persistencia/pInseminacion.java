@@ -26,7 +26,7 @@ public class pInseminacion {
     private static final String DELETE_INSEMINACION = "DELETE FROM INSEMINACION WHERE IDINSEMINACION = ?";
     private static final String UPDATE_INSEMINACION = "UPDATE INSEMINACION SET IDMACHO = ? WHERE IDINSEMINACION = ?";
     private static final String BUSCAR_INSEMINACION = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, I.IDMACHO"+
-            " FROM INSEMINACION I INNER JOIN EVENTOSDESANIDAD E ON I.IDINSEMINACION = E.IDEVENTODESANIDA WHERE I.IDINSEMINACION = ? ";
+            " FROM INSEMINACION I INNER JOIN EVENTOSDESANIDAD E ON I.IDINSEMINACION = E.IDEVENTODESANIDAD WHERE I.IDINSEMINACION = ? ";
     private static final String LISTAR_INSEMINACIONES = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, I.IDMACHO"+
             " FROM INSEMINACION I INNER JOIN EVENTOSDESANIDAD E ON I.IDINSEMINACION = E.IDEVENTODESANIDAD";
     private static final String LISTAR_INSEMINACIONES_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, I.IDMACHO"+
@@ -37,7 +37,7 @@ public class pInseminacion {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_INSEMINACION);
             statement.setInt(1, pInseminacion.getIdEventoDeSanidad());
-            statement.setString(2, pInseminacion.getMacho().getCaravanaBovino());
+            statement.setInt(2, pInseminacion.getMacho().getIdBovino());
 
             int retorno = statement.executeUpdate();
 
@@ -128,13 +128,13 @@ public class pInseminacion {
         }
     }
     
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravanaBovino){
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravana){
 
         ArrayList<Inseminacion> listaInseminaciones = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_INSEMINACIONES_CARAVANA);
            
-            Bovino bovino = pBovino.buscarBovinoCaravana(pCaravanaBovino);
+            Bovino bovino = pBovino.buscarBovinoCaravana(pCaravana);
             statement.setInt(1, bovino.getIdBovino());
             statement.setInt(2, bovino.getIdBovino());
             

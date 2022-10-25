@@ -104,18 +104,16 @@ public class frmBuscarHembra extends javax.swing.JFrame {
 
         DefaultTableModel model = new DefaultTableModel();
 
-        ArrayList<Bovino> listaBovino = dControladora.listarBovinos();
+        ArrayList<Hembra> listaHembras = dControladora.listarHembras();
 
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
 
-        for (Bovino b : listaBovino) {
+        for (Hembra h : listaHembras) {
 
-            if (b.getClass().getSimpleName().toString().equals("Hembra")) {
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo()});
+            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo()});
 
-            }
         }
         jTableHembras.setModel(model);
         
@@ -156,13 +154,37 @@ public class frmBuscarHembra extends javax.swing.JFrame {
                 this.dispose();
                 
                 switch (frm) {
+                    case "frmProduccion":
+                        frmProduccion formularioProduccion = new frmProduccion();
+                        formularioProduccion.setVisible(true);
+                        break;
                     case "frmCelo":
                         frmCelo formularioCelo = new frmCelo();
                         formularioCelo.setVisible(true);
                         break;
-                    case "frmProduccion":
-                        frmProduccion formularioProduccion = new frmProduccion();
-                        formularioProduccion.setVisible(true);
+                    case "frmAborto":
+                        frmAborto formularioAborto = new frmAborto();
+                        formularioAborto.setVisible(true);
+                        break;
+                    case "frmParto":
+                        frmParto formularioParto = new frmParto();
+                        formularioParto.setVisible(true);
+                        break;
+                    case "frmSecado":
+                        frmSecado formularioSecado = new frmSecado();
+                        formularioSecado.setVisible(true);
+                        break;
+                    case "frmTacto":
+                        frmTacto formularioTacto = new frmTacto();
+                        formularioTacto.setVisible(true);
+                        break;
+                    case "frmInseminacion":
+                        frmInseminacion formularioInseminacion = new frmInseminacion();
+                        formularioInseminacion.setVisible(true);
+                        break;
+                    case "frmEventoFuturo":
+                        frmEventoFuturo formularioEventoFuturo = new frmEventoFuturo();
+                        formularioEventoFuturo.setVisible(true);
                         break;
                     case "frmModificarProduccion":
                         frmModificarProduccion.caravana = caravana;
@@ -174,15 +196,43 @@ public class frmBuscarHembra extends javax.swing.JFrame {
                         frmModificarCelo formularioModificarCelo = new frmModificarCelo();
                         formularioModificarCelo.setVisible(true);                        
                         break;
+                    case "frmModificarAborto":
+                        frmModificarAborto.caravana = caravana;
+                        frmModificarAborto formularioModificarAborto = new frmModificarAborto();
+                        formularioModificarAborto.setVisible(true);                        
+                        break;
+                    case "frmModificarSecado":
+                        frmModificarSecado.caravana = caravana;
+                        frmModificarSecado formularioModificarSecado = new frmModificarSecado();
+                        formularioModificarSecado.setVisible(true);
+                        break;       
+                    case "frmModificarParto":
+                        frmModificarParto.caravana = caravana;
+                        frmModificarParto formularioModificarParto = new frmModificarParto();
+                        formularioModificarParto.setVisible(true);
+                        break;
+                    case "frmModificarTacto":
+                        frmModificarTacto.caravana = caravana;
+                        frmModificarTacto formularioModificarTacto = new frmModificarTacto();
+                        formularioModificarTacto.setVisible(true);
+                        break;
+                    case "frmModificarInseminacion":
+                        frmModificarInseminacion.caravanaHembra = caravana;
+                        frmModificarInseminacion formularioModificarInseminacion = new frmModificarInseminacion();
+                        formularioModificarInseminacion.setVisible(true);
+                        break;
+                    case "frmModificarEventoFuturo":
+                        frmModificarEventoFuturo.caravana = caravana;
+                        frmModificarEventoFuturo formularioModificarEventoFuturo = new frmModificarEventoFuturo();
+                        formularioModificarEventoFuturo.setVisible(true);
+                        break; 
                     default:
                         throw new AssertionError();
                 }
                 
-                
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono la Hembra");
             }
-
         }
     }//GEN-LAST:event_jTableHembrasMouseClicked
 

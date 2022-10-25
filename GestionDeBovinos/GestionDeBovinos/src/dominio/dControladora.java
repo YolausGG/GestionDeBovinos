@@ -125,7 +125,6 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Devolver Listas">
     /*public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
         return listaEventosDeSanidad;
@@ -158,7 +157,6 @@ public class dControladora {
     }
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Evento Futuro">
     public static boolean altaEventoFuturo(EventoFuturo pEventoFuturo) {
 
@@ -288,7 +286,6 @@ public class dControladora {
     }
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Aborto">
     public static boolean altaAborto(Aborto pAborto) {
 
@@ -379,9 +376,9 @@ public class dControladora {
         return dInseminacion.listarInseminaciones();
     }
 
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravanaHembra) {
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravana) {
 
-        return dInseminacion.listarInseminacionesPorCaravana(pCaravanaHembra);
+        return dInseminacion.listarInseminacionesPorCaravana(pCaravana);
     }
     // </editor-fold>
 
@@ -665,6 +662,11 @@ public class dControladora {
         return dBovino.buscarBovinoCaravana(pCaravanaBovino);
     }
 
+    public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
+
+        return dBovino.buscarBovinoCaravanaCompleto(pCaravanaBovino);
+    }
+
     public static Bovino buscarBovinoId(int idBovino) {
 
         return dBovino.buscarBovinoId(idBovino);
@@ -676,7 +678,6 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Macho">
     public static boolean altaMacho(Macho pMacho) {
 
@@ -846,7 +847,6 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Tratamiento">
     public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
 
@@ -895,4 +895,41 @@ public class dControladora {
 
     // <editor-fold defaultstate="collapsed" desc="Copia">
     // </editor-fold>
+<<<<<<< HEAD
+=======
+    public static ArrayList<Bovino> noApareables(int contador, Bovino bovino, ArrayList<Bovino> noApareables) {
+
+        ArrayList<Bovino> bovinosFinal = new ArrayList();
+
+        if (!enLista(bovino, noApareables)) {
+            noApareables.add(bovino);
+        }
+        if (contador > 3 || bovino.getPadre() == null && bovino.getMadre() == null) {
+            return noApareables;
+        } else {
+            if (bovino.getPadre() != null && contador < 4) {
+                Bovino padre = buscarBovinoCaravanaCompleto(bovino.getPadre().getCaravanaBovino());
+                bovinosFinal = noApareables(++contador, padre, noApareables);
+            }
+
+            if (bovino.getMadre() != null && contador < 4) {
+                Bovino madre = buscarBovinoCaravanaCompleto(bovino.getMadre().getCaravanaBovino());
+                bovinosFinal = noApareables(++contador, madre, noApareables);
+            }
+        }
+        return bovinosFinal;
+
+    }
+
+    public static boolean enLista(Bovino pBovino, ArrayList<Bovino> noApareables) {
+
+        for (Bovino noApareable : noApareables) {
+
+            if (noApareable.getCaravanaBovino().equals(pBovino.getCaravanaBovino())) {
+                return true;
+            }
+        }
+        return false;
+    }
+>>>>>>> 3761509 (Evento Futuro)
 }

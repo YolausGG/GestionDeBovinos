@@ -1,6 +1,8 @@
 package persistencia;
 
 import clases.Bovino;
+import clases.Hembra;
+import clases.Macho;
 import clases.Raza;
 
 import java.sql.PreparedStatement;
@@ -136,6 +138,27 @@ public class pBovino {
             return null;
         }
     }
+    
+    public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_BOVINO_CARAVANA);
+            statement.setString(1, pCaravanaBovino);
+
+            ResultSet resultado = statement.executeQuery();
+            Bovino bovino = null;
+            if (resultado.next()) {
+                bovino = getBovinoCompletoFromResultSet(resultado);
+            }
+            return bovino;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
 
     public static Bovino buscarBovinoId(int idBovino) {
 
@@ -215,5 +238,35 @@ public class pBovino {
         return bovino;
     }
     
+    private static Bovino getBovinoCompletoFromResultSet(ResultSet resultado) throws SQLException {
+
+        int idBovino = resultado.getInt("IDBOVINO");
+        String caravanaBovino = resultado.getString("CARAVANABOVINO");
+        Date fechaNacimiento = (java.util.Date) resultado.getDate("FECHANACIMIENTO");
+
+        int idRaza = resultado.getInt("IDRAZA");
+        Raza raza = pRaza.buscarRaza(idRaza);
+        
+        ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
+        
+        Macho padre = null;
+        Hembra madre = null;
+        
+        if(padres.size() > 0){
+            
+            for (Bovino p : padres) {
+                if(p.getClass().getSimpleName().toString().equals("Macho")){
+                    padre =(Macho) p;
+                }else{
+                    madre = (Hembra) p;
+                }
+            }
+        }
+        
+
+        Bovino bovino = new Bovino(idBovino, caravanaBovino, fechaNacimiento, raza, madre, padre);
+
+        return bovino;
+    }
 
 }

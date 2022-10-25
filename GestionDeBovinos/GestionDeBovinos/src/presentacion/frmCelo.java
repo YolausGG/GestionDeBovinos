@@ -43,7 +43,6 @@ public class frmCelo extends javax.swing.JFrame {
        
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
         this.setTitle("CELO");
-        actualizarTabla();
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
         insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
@@ -52,6 +51,13 @@ public class frmCelo extends javax.swing.JFrame {
         lblRCausa.setVisible(false);
         lblRFechaCelo.setVisible(false);
         lblRHembra.setVisible(false);
+        
+        if(txtCaravanaHembra.getText().isEmpty()){
+            actualizarTabla();
+        }
+        else{
+            actualizarTablaHembra();
+        }
         
     }
 
@@ -111,7 +117,7 @@ public class frmCelo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableCelos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 660, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 680, 230));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -166,6 +172,12 @@ public class frmCelo extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txaDetalle);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 270, 90));
+
+        txtCaravanaHembra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCaravanaHembraKeyReleased(evt);
+            }
+        });
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
         btnBuscarBovino.setText("Buscar");
@@ -176,13 +188,13 @@ public class frmCelo extends javax.swing.JFrame {
         });
         jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 380));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 680, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +215,7 @@ public class frmCelo extends javax.swing.JFrame {
     private boolean validarCampos(){
         int contador = 0;
         
-        if(txtCaravanaHembra.getText() == null){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
+        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
         if(cboCausa.getSelectedIndex() < 1){ lblRCausa.setVisible(true); contador++; }else { lblRCausa.setVisible(false);}
         if(jDateFechaCelo.getDate() == null){ lblRFechaCelo.setVisible(true); contador++; }else { lblRFechaCelo.setVisible(false);}
         
@@ -219,7 +231,7 @@ public class frmCelo extends javax.swing.JFrame {
         jTableCelos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        ArrayList<Celo> listaceloss = dControladora.listarCelos();
+        ArrayList<Celo> listaCelos = dControladora.listarCelos();
 
         model.addColumn("id Celo");
         model.addColumn("Caravana Hembra");
@@ -229,7 +241,31 @@ public class frmCelo extends javax.swing.JFrame {
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
         
-        for (Celo c : listaceloss) {
+        for (Celo c : listaCelos) {
+
+            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),c.getFecha(),c.getDetalle(), c.getCausa(), modificar, eliminar});
+        }
+
+        jTableCelos.setModel(model);
+        jTableCelos.setRowHeight(35);
+    }
+    
+    public void actualizarTablaHembra() {
+        jTableCelos.setDefaultRenderer(Object.class, new BotonesTabla());
+
+        DefaultTableModel model = new DefaultTableModel();
+        
+        ArrayList<Celo> listaCelos = dControladora.listarCelosPorCaravana(txtCaravanaHembra.getText());
+
+        model.addColumn("id Celo");
+        model.addColumn("Caravana Hembra");
+        model.addColumn("Fecha");
+        model.addColumn("Detalle");
+        model.addColumn("Causa");
+        model.addColumn("Modificar ");
+        model.addColumn("Eliminar ");
+        
+        for (Celo c : listaCelos) {
 
             model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),c.getFecha(),c.getDetalle(), c.getCausa(), modificar, eliminar});
         }
@@ -304,7 +340,7 @@ public class frmCelo extends javax.swing.JFrame {
                         this.dispose();
                         
                         frmModificarCelo modificarCelo = new frmModificarCelo();
-                        modificarCelo.setVisible(true); // Abre el formulario de Modificar la Enfermedad
+                        modificarCelo.setVisible(true);
                         
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se selecciono el Celo a modificar");
@@ -367,6 +403,12 @@ public class frmCelo extends javax.swing.JFrame {
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
+
+    private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            actualizarTabla();
+        }
+    }//GEN-LAST:event_txtCaravanaHembraKeyReleased
 
     /**
      * @param args the command line arguments

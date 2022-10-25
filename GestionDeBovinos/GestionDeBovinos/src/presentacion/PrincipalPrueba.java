@@ -21,6 +21,8 @@ public class PrincipalPrueba {
 
         System.out.println(fechaDate);
 
+        
+        
         //Hembra hembra1 = new Hembra(1,"2030",fechaDate,holando);
 
        // Produccion produccion1 = new Produccion(10.20,8.2,4.2,2.3,200300,fechaDate,hembra1);

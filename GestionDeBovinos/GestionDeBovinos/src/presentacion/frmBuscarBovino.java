@@ -19,8 +19,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmBuscarBovino extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     public static String frmBuscar;
 
+=======
+    public static String frm;
+    
+>>>>>>> 3761509 (Evento Futuro)
     public frmBuscarBovino() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
@@ -235,6 +240,7 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                 caravana = jTableBovinos.getValueAt(fila, 0).toString();
 
                 this.dispose();
+<<<<<<< HEAD
 
                 switch (frmBuscar) {
                     case "frmPadeceEnfermedad":
@@ -254,11 +260,25 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                         frmModificarEstadoConBovino.caravana = caravana;
                         frmModificarEstadoConBovino formularioModificarEstadoConBovino = new frmModificarEstadoConBovino();
                         formularioModificarEstadoConBovino.setVisible(true);
+=======
+                
+                switch (frm) {
+                    case "frmApareable":
+                        frmApareable formularioApareable = new frmApareable();
+                        formularioApareable.setVisible(true);
+                        break;
+                    case "frmPadeceEnfermedad":
+                        frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
+                        padeceEnfermedad.setVisible(true);
+>>>>>>> 3761509 (Evento Futuro)
                         break;
                     default:
                         throw new AssertionError();
                 }
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 3761509 (Evento Futuro)
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino");
