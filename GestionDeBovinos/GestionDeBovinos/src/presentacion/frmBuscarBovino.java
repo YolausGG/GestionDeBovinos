@@ -12,20 +12,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author nico_
  */
 public class frmBuscarBovino extends javax.swing.JFrame {
 
-<<<<<<< HEAD
-    public static String frmBuscar;
-
-=======
     public static String frm;
-    
->>>>>>> 3761509 (Evento Futuro)
+
     public frmBuscarBovino() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
@@ -240,9 +234,8 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                 caravana = jTableBovinos.getValueAt(fila, 0).toString();
 
                 this.dispose();
-<<<<<<< HEAD
 
-                switch (frmBuscar) {
+                switch (frm) {
                     case "frmPadeceEnfermedad":
                         frmPadeceEnfermedad formularioPadeceEnfermedad = new frmPadeceEnfermedad();
                         formularioPadeceEnfermedad.setVisible(true);
@@ -252,7 +245,7 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                         frmModificarPadeceEnfermedad formularioModificarPadeceEnfermedad = new frmModificarPadeceEnfermedad();
                         formularioModificarPadeceEnfermedad.setVisible(true);
                         break;
-                        case "frmEstadoConBovino":
+                    case "frmEstadoConBovino":
                         frmEstadoConBovino formularioEstadoConBovino = new frmEstadoConBovino();
                         formularioEstadoConBovino.setVisible(true);
                         break;
@@ -260,25 +253,13 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                         frmModificarEstadoConBovino.caravana = caravana;
                         frmModificarEstadoConBovino formularioModificarEstadoConBovino = new frmModificarEstadoConBovino();
                         formularioModificarEstadoConBovino.setVisible(true);
-=======
-                
-                switch (frm) {
                     case "frmApareable":
                         frmApareable formularioApareable = new frmApareable();
                         formularioApareable.setVisible(true);
                         break;
-                    case "frmPadeceEnfermedad":
-                        frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
-                        padeceEnfermedad.setVisible(true);
->>>>>>> 3761509 (Evento Futuro)
-                        break;
                     default:
                         throw new AssertionError();
                 }
-<<<<<<< HEAD
-                
-=======
->>>>>>> 3761509 (Evento Futuro)
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino");

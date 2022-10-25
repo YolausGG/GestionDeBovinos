@@ -274,7 +274,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
 
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
         frmBuscarBovino buscarBovino = new frmBuscarBovino();
-        frmBuscarBovino.frmBuscar = "frmModificarPadeceEnfermedad";
+        frmBuscarBovino.frm = "frmModificarPadeceEnfermedad";
         buscarBovino.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

@@ -895,8 +895,7 @@ public class dControladora {
 
     // <editor-fold defaultstate="collapsed" desc="Copia">
     // </editor-fold>
-<<<<<<< HEAD
-=======
+
     public static ArrayList<Bovino> noApareables(int contador, Bovino bovino, ArrayList<Bovino> noApareables) {
 
         ArrayList<Bovino> bovinosFinal = new ArrayList();
@@ -931,5 +930,4 @@ public class dControladora {
         }
         return false;
     }
->>>>>>> 3761509 (Evento Futuro)
 }
