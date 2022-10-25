@@ -70,5 +70,9 @@ public class EstadoBovino {
         this.idBovino = idBovino;
         this.fechaInicio = fechaInicio;        
     }
+    
+    public EstadoBovino() {
+               
+    }
         
 }

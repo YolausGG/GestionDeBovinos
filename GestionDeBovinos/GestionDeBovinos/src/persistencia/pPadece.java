@@ -17,12 +17,14 @@ public class pPadece {
     private static final String DELETE_PADECE = "DELETE FROM PADECE WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ? ";
     private static final String BAJA_PADECE = "UPDATE PADECE SET FECHAFINALIZACION = CURDATE() " +
             " WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
+    private static final String UPDATE_PADECE_FECHAINICIO = "UPDATE PADECE SET IDENFERMEDAD = ?, IDBOVINO = ?, FECHAINICIO = ? " +
+            " WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String UPDATE_PADECE = "UPDATE PADECE SET IDENFERMEDAD = ?, IDBOVINO = ?, FECHAINICIO = ?, FECHAFINALIZACION = ? " +
-            " WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";    
+            " WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";      
     private static final String BUSCAR_PADECE = "SELECT * FROM PADECE WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String LISTAR_CONTAGIOS = "SELECT * FROM PADECE";
     private static final String LISTAR_CONTAGIOS_ACTIVOS = "SELECT * FROM PADECE "+
-            " WHERE FECHAINICIO <= CURDATE() AND FECHAFINALIZACION >= CURDATE()";
+            " WHERE FECHAINICIO <= CURDATE() AND FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL";
     private static final String LISTAR_CONTAGIOS_BOVINO = "SELECT * FROM PADECE "+
             " WHERE IDBOVINO = ?";
     private static final String LISTAR_CONTAGIOS_ENFERMEDAD = "SELECT * FROM PADECE "+
@@ -102,11 +104,14 @@ public class pPadece {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_PADECE);
             statement.setInt(1, pPadeceNuevo.getIdEnfermedad());
             statement.setInt(2, pPadeceNuevo.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pPadeceNuevo.getFechaInicio());
-            statement.setDate(4, (java.sql.Date) pPadeceNuevo.getFechaFinalizacion());
+            java.sql.Date sqlDate = new java.sql.Date(pPadeceNuevo.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
+            java.sql.Date sqlDateF = new java.sql.Date(pPadeceNuevo.getFechaFinalizacion().getTime());
+            statement.setDate(4, sqlDateF);
             statement.setInt(5, pPadeceViejo.getIdEnfermedad());
             statement.setInt(6, pPadeceViejo.getIdBovino());
-            statement.setDate(7, (java.sql.Date) pPadeceViejo.getFechaInicio());
+            java.sql.Date sqlDateFI = new java.sql.Date(pPadeceViejo.getFechaInicio().getTime());
+            statement.setDate(7, sqlDateFI);
 
             int retorno = statement.executeUpdate();
             return retorno>0;
@@ -115,7 +120,28 @@ public class pPadece {
             e.printStackTrace();
             return false;
         }
-    }
+    }  
+    
+     public static boolean modificarPadeceFechaInicio(Padece pPadeceNuevo, Padece pPadeceViejo){
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_PADECE_FECHAINICIO);
+            statement.setInt(1, pPadeceNuevo.getIdEnfermedad());
+            statement.setInt(2, pPadeceNuevo.getIdBovino());
+            java.sql.Date sqlDate = new java.sql.Date(pPadeceNuevo.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);            
+            statement.setInt(4, pPadeceViejo.getIdEnfermedad());
+            statement.setInt(5, pPadeceViejo.getIdBovino());
+            java.sql.Date sqlDateFI = new java.sql.Date(pPadeceViejo.getFechaInicio().getTime());
+            statement.setDate(6, sqlDateFI);
+
+            int retorno = statement.executeUpdate();
+            return retorno>0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }  
 
     public static Padece buscarPadece(Padece pPadece){
 

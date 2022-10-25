@@ -20,14 +20,15 @@ public class EstadoDelBovino {
 
     @Override
     public String toString() {
-        return "EstadoDelBovino{" +
-                "idEstadoDelBovino=" + idEstadoDelBovino +
-                ", estado='" + estado + '\'' +
-                '}';
+        return  estado ;
     }
 
     public EstadoDelBovino(int idEstadoDelBovino, String estado) {
         this.idEstadoDelBovino = idEstadoDelBovino;
+        this.estado = estado;
+    }
+    
+    public EstadoDelBovino(String estado) {        
         this.estado = estado;
     }
         

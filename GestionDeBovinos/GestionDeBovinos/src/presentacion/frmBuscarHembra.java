@@ -19,9 +19,7 @@ import javax.swing.table.TableRowSorter;
  */
 
 public class frmBuscarHembra extends javax.swing.JFrame {
-
-
-    TableRowSorter trs;
+    
     
     public static String frm;
 
@@ -71,11 +69,6 @@ public class frmBuscarHembra extends javax.swing.JFrame {
             jTableHembras.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     jTableHembrasMouseClicked(evt);
-                }
-            });
-            jTableHembras.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyReleased(java.awt.event.KeyEvent evt) {
-                    jTableHembrasKeyReleased(evt);
                 }
             });
             jScrollPane1.setViewportView(jTableHembras);
@@ -197,10 +190,6 @@ public class frmBuscarHembra extends javax.swing.JFrame {
 
         buscarHembra(txtBuscarCaravana.getText());
     }//GEN-LAST:event_txtBuscarCaravanaKeyReleased
-
-    private void jTableHembrasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableHembrasKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTableHembrasKeyReleased
 
 
     /**

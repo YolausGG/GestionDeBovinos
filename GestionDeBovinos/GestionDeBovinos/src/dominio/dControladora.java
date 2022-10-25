@@ -25,7 +25,6 @@ import clases.Tratamiento;
 import java.util.ArrayList;
 import persistencia.pParentesco;
 
-
 public class dControladora {
 
     //private static ArrayList<Bovino> listaBovinos = new ArrayList<>();
@@ -131,7 +130,6 @@ public class dControladora {
     /*public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
         return listaEventosDeSanidad;
     }*/
-
     public static ArrayList<Enfermedad> listarEnfermedads() {
         return listaEnfermedades;
     }
@@ -149,11 +147,11 @@ public class dControladora {
             listaBovinos.add(hembra);
         }
         return listaBovinos;
-    }   
-
-    public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
-        return listaEstadosDelBovino;
     }
+
+   /* public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
+        return listaEstadosDelBovino;
+    }*/
 
     public static ArrayList<Raza> listarRazas() {
         return listaRazas;
@@ -194,44 +192,43 @@ public class dControladora {
     // </editor-fold>
 
     //Todos los Eventos de Sanidad
-    
     // <editor-fold defaultstate="collapsed" desc="EventoDeSanidad">
-    public static boolean altaEventoDeSanidad(EventoDeSanidad pEventoDeSanidad){
-        
+    public static boolean altaEventoDeSanidad(EventoDeSanidad pEventoDeSanidad) {
+
         return dEventoDeSanidad.altaEventoDeSanidad(pEventoDeSanidad);
     }
 
-    public static boolean bajaEventoDeSanidad(int idEventoDeSanidad){
-        
+    public static boolean bajaEventoDeSanidad(int idEventoDeSanidad) {
+
         return dEventoDeSanidad.bajaEventoDeSanidad(idEventoDeSanidad);
     }
 
-    public static boolean modificarEventoDeSanidad(int idEventoDesanidad, EventoDeSanidad pEventoDeSanidad){
+    public static boolean modificarEventoDeSanidad(int idEventoDesanidad, EventoDeSanidad pEventoDeSanidad) {
 
         return dEventoDeSanidad.modificarEventoDeSanidad(idEventoDesanidad, pEventoDeSanidad);
     }
 
-    public static EventoDeSanidad buscarEventoDeSanidadId(int idEventoDeSanidad){
+    public static EventoDeSanidad buscarEventoDeSanidadId(int idEventoDeSanidad) {
 
         return dEventoDeSanidad.buscarEventoDeSanidadId(idEventoDeSanidad);
     }
-    
-    public static EventoDeSanidad buscarEventoDeSanidadUltimo(){
+
+    public static EventoDeSanidad buscarEventoDeSanidadUltimo() {
 
         return dEventoDeSanidad.buscarEventoDeSanidadUltimo();
     }
 
-    public static ArrayList<EventoDeSanidad> listarEventosDeSanidad(){
+    public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
 
         return dEventoDeSanidad.listarEventosDeSanidad();
     }
-    
-    public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravana(String pCaravanaHembra) {
 
         return dEventoDeSanidad.listarEventosDeSanidadPorCaravana(pCaravanaHembra);
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Enfermedad">  
     public static boolean altaEnfermedad(Enfermedad pEnfermedad) {
 
@@ -283,6 +280,11 @@ public class dControladora {
     public static EstadoDelBovino buscarEstadoDelBovino(int idEstadoDelBovino) {
 
         return dEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
+    }
+    
+    public static ArrayList<EstadoDelBovino> listarEstadoDelBovino() {
+
+        return dEstadoDelBovino.listarEstadosDelBovino();
     }
 
     // </editor-fold> 
@@ -480,7 +482,6 @@ public class dControladora {
     // </editor-fold>
 
     //Relaciones
-    
     // <editor-fold defaultstate="collapsed" desc="Padece">
     public static boolean altaPadeceFechaInicio(Padece pPadece) {
 
@@ -507,6 +508,11 @@ public class dControladora {
         return dPadece.modificarPadece(pPadeceNuevo, pPadeceViejo);
     }
 
+    public static boolean modificarPadeceFechaInicio(Padece pPadeceNuevo, Padece pPadeceViejo) {
+
+        return dPadece.modificarPadeceFechaInicio(pPadeceNuevo, pPadeceViejo);
+    }
+
     public static Padece buscarPadece(Padece pPadece) {
 
         return persistencia.pPadece.buscarPadece(pPadece);
@@ -519,7 +525,7 @@ public class dControladora {
 
     public static ArrayList<Padece> listarContagiosActivos() {
 
-        return dPadece.listarContagios();
+        return dPadece.listarContagiosActivos();
     }
 
     public static ArrayList<Padece> listarContagiosPorBovino(int idBovino) {
@@ -557,6 +563,11 @@ public class dControladora {
     public static boolean modificarEstadoBovino(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo) {
 
         return dEstadoBovino.modificarEstadoBovino(pEstadoBovinoNuevo, pEstadoBovinoViejo);
+    }
+    
+    public static boolean modificarEstadoBovinoFechaInicio(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo) {
+
+        return dEstadoBovino.modificarEstadoBovinoFechaInicio(pEstadoBovinoNuevo, pEstadoBovinoViejo);
     }
 
     public static EstadoBovino buscarEstadoBovino(EstadoBovino pEstadoBovino) {
@@ -622,9 +633,7 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     //Bovinos
-    
     // <editor-fold defaultstate="collapsed" desc="Bovino">
     public static boolean altaBovino(Bovino pBovino) {
 
@@ -635,14 +644,14 @@ public class dControladora {
 
         return dBovino.bajaBovino(idBovino);
     }
-    
-    public static boolean bajaRealBovino(int idBovino){
-        
+
+    public static boolean bajaRealBovino(int idBovino) {
+
         return dBovino.bajaRealBovino(idBovino);
     }
-    
-    public static boolean altaLogicaBovino(int idBovino){
-        
+
+    public static boolean altaLogicaBovino(int idBovino) {
+
         return dBovino.altaLogicaBovino(idBovino);
     }
 
@@ -660,7 +669,7 @@ public class dControladora {
 
         return dBovino.buscarBovinoId(idBovino);
     }
-    
+
     public static ArrayList<Bovino> buscarBovinoCaravanaLIKE(String pCaravana) {
 
         return dBovino.buscarBovinoCaravanaLIKE(pCaravana);
@@ -698,8 +707,8 @@ public class dControladora {
 
         return dMacho.buscarUltimoMacho();
     }
-    
-     public static ArrayList<Macho> buscarMachosCaravanaLIKE(String pCaravana) {
+
+    public static ArrayList<Macho> buscarMachosCaravanaLIKE(String pCaravana) {
 
         return dMacho.buscarMachosCaravanaLIKE(pCaravana);
     }
@@ -738,7 +747,7 @@ public class dControladora {
 
         return dHembra.buscarUltimaHembra();
     }
-    
+
     public static ArrayList<Hembra> buscarHembrasCaravanaLIKE(String pCaravana) {
 
         return dHembra.buscarHembrasCaravanaLIKE(pCaravana);
@@ -749,58 +758,57 @@ public class dControladora {
         return dHembra.listarHembras();
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Pedigree">
-    public static boolean altaPedigree(Pedigree pPedigree){
-        
+    public static boolean altaPedigree(Pedigree pPedigree) {
+
         return dPedigree.altaPedigree(pPedigree);
     }
-    
-    public static boolean bajaPedigree(int idBovino){
-        
+
+    public static boolean bajaPedigree(int idBovino) {
+
         return dPedigree.bajaPedigree(idBovino);
     }
 
-    public static boolean modificarPedigree(Pedigree pPedigree){
+    public static boolean modificarPedigree(Pedigree pPedigree) {
 
         return dPedigree.modificarPedigree(pPedigree);
     }
-    
-    public static Pedigree buscarPedigreeIdBovino(int idBovino){
+
+    public static Pedigree buscarPedigreeIdBovino(int idBovino) {
 
         return dPedigree.buscarPedigreeIdBovino(idBovino);
     }
-    
-    public static Pedigree buscarPedigreeNumeroPedigree(String numeroPedigree){
+
+    public static Pedigree buscarPedigreeNumeroPedigree(String numeroPedigree) {
 
         return dPedigree.buscarPedigreeNumeroPedigree(numeroPedigree);
     }
 
-    public static ArrayList<Pedigree> listarPedigrees(){
+    public static ArrayList<Pedigree> listarPedigrees() {
 
         return dPedigree.listarPedigrees();
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="BajaLogicaBovino">
-    public static boolean altaBajaLogicaBovino(BajaLogicaBovino pBajaLogicaBovino){
-        
+    public static boolean altaBajaLogicaBovino(BajaLogicaBovino pBajaLogicaBovino) {
+
         return dBajaLogicaBovino.altaBajaLogicaBovino(pBajaLogicaBovino);
     }
 
-    public static BajaLogicaBovino buscarBajaLogicaBovino(int idBajaLogicaBovino){
+    public static BajaLogicaBovino buscarBajaLogicaBovino(int idBajaLogicaBovino) {
 
         return dBajaLogicaBovino.buscarBajaLogicaBovino(idBajaLogicaBovino);
     }
 
-    public static ArrayList<BajaLogicaBovino> listarBajasLogicaBovinos(){
+    public static ArrayList<BajaLogicaBovino> listarBajasLogicaBovinos() {
 
         return dBajaLogicaBovino.listarBajasLogicaBovinos();
     }
     // </editor-fold>
-    
-    //Demas
 
+    //Demas
     // <editor-fold defaultstate="collapsed" desc="Produccion">
     public static boolean altaProduccion(Produccion pProduccion) {
 
@@ -826,8 +834,8 @@ public class dControladora {
 
         return dProduccion.buscarProduccionHembra(idHembra);
     }
-    
-     public static ArrayList<Produccion> listarProducciones() {
+
+    public static ArrayList<Produccion> listarProducciones() {
 
         return dProduccion.listarProducciones();
     }
@@ -859,6 +867,11 @@ public class dControladora {
 
         return dTratamiento.modificarTratamiento(pTratamiento);
     }
+    
+     public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
+
+        return dTratamiento.modificarTratamientoFechaInicio(pTratamiento);
+    }
 
     public static Tratamiento buscarTratamiento(int idTratamiento) {
 
@@ -869,21 +882,17 @@ public class dControladora {
 
         return dTratamiento.listarTratamientosActivos();
     }
-    
-     public static ArrayList<Tratamiento> listarTratamientos() {
+
+    public static ArrayList<Tratamiento> listarTratamientos() {
         return dTratamiento.listarTratamientos();
-    }   
-    
+    }
+
     public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino) {
 
         return dTratamiento.listarTratamientosBovino(idBovino);
     }
     // </editor-fold>
-    
-    
-
 
     // <editor-fold defaultstate="collapsed" desc="Copia">
     // </editor-fold>
-
 }

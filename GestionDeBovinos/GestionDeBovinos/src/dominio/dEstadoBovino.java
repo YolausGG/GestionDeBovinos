@@ -38,6 +38,11 @@ public class dEstadoBovino {
         return persistencia.pEstadoBovino.modificarEstadoBovino(pEstadoBovinoNuevo, pEstadoBovinoViejo);
     }
     
+    public static boolean modificarEstadoBovinoFechaInicio(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo){
+        
+        return persistencia.pEstadoBovino.modificarEstadoBovinoFechaInicio(pEstadoBovinoNuevo, pEstadoBovinoViejo);
+    }
+    
     public static EstadoBovino buscarEstadoBovino(EstadoBovino pEstadoBovino){
         
         return persistencia.pEstadoBovino.buscarEstadoBovino(pEstadoBovino);

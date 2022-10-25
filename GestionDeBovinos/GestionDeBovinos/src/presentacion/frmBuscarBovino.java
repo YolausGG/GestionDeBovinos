@@ -8,12 +8,9 @@ import clases.Bovino;
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 
 /**
@@ -21,6 +18,8 @@ import javax.swing.table.TableRowSorter;
  * @author nico_
  */
 public class frmBuscarBovino extends javax.swing.JFrame {
+
+    public static String frmBuscar;
 
     public frmBuscarBovino() {
         initComponents();
@@ -236,8 +235,30 @@ public class frmBuscarBovino extends javax.swing.JFrame {
                 caravana = jTableBovinos.getValueAt(fila, 0).toString();
 
                 this.dispose();
-                frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
-                padeceEnfermedad.setVisible(true); // Abre el formulario de Padece Enfermedad
+
+                switch (frmBuscar) {
+                    case "frmPadeceEnfermedad":
+                        frmPadeceEnfermedad formularioPadeceEnfermedad = new frmPadeceEnfermedad();
+                        formularioPadeceEnfermedad.setVisible(true);
+                        break;
+                    case "frmModificarPadeceEnfermedad":
+                        frmModificarPadeceEnfermedad.caravana = caravana;
+                        frmModificarPadeceEnfermedad formularioModificarPadeceEnfermedad = new frmModificarPadeceEnfermedad();
+                        formularioModificarPadeceEnfermedad.setVisible(true);
+                        break;
+                        case "frmEstadoConBovino":
+                        frmEstadoConBovino formularioEstadoConBovino = new frmEstadoConBovino();
+                        formularioEstadoConBovino.setVisible(true);
+                        break;
+                    case "frmModificarEstadoConBovino":
+                        frmModificarEstadoConBovino.caravana = caravana;
+                        frmModificarEstadoConBovino formularioModificarEstadoConBovino = new frmModificarEstadoConBovino();
+                        formularioModificarEstadoConBovino.setVisible(true);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino");

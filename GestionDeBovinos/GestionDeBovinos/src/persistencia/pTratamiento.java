@@ -12,63 +12,68 @@ import java.util.ArrayList;
 
 public class pTratamiento {
 
-    private static final String INSERT_TRATAMIENTO_FECHA_INICIO = "INSERT INTO TRATAMIENTO (IDBOVINO, IDENFERMEDAD, DETALLE, FECHAINICIO) " +
-            " VALUES ( ?, ?, ?, ? )";
-    private static final String INSERT_TRATAMIENTO = "INSERT INTO TRATAMIENTO (IDBOVINO, IDENFERMEDAD, DETALLE, FECHAINICIO, FECHAFINALIZACION) " +
-            " VALUES ( ?, ?, ?, ?, ? )";
+    private static final String INSERT_TRATAMIENTO_FECHA_INICIO = "INSERT INTO TRATAMIENTO (IDBOVINO, IDENFERMEDAD, DETALLE, FECHAINICIO) "
+            + " VALUES ( ?, ?, ?, ? )";
+    private static final String INSERT_TRATAMIENTO = "INSERT INTO TRATAMIENTO (IDBOVINO, IDENFERMEDAD, DETALLE, FECHAINICIO, FECHAFINALIZACION) "
+            + " VALUES ( ?, ?, ?, ?, ? )";
     private static final String DELETE_TRATAMIENTO = "DELETE FROM TRATAMIENTO WHERE IDTRATAMIENTO = ?";
-    private static final String UPDATE_TRATAMIENTO = "UPDATE TRATAMIENTO SET IDBOVINO = ?, IDENFERMEDAD = ?, DETALLE = ?, FECHAINICIO = ? FECHAFINALIZACION = ? "+
-            " WHERE IDTRATAMIENTO = ? ";
+    private static final String UPDATE_TRATAMIENTO = "UPDATE TRATAMIENTO SET IDBOVINO = ?, IDENFERMEDAD = ?, DETALLE = ?, FECHAINICIO = ?, FECHAFINALIZACION = ? "
+            + " WHERE IDTRATAMIENTO = ? ";
+    private static final String UPDATE_TRATAMIENTO_FECHAINICIO = "UPDATE TRATAMIENTO SET IDBOVINO = ?, IDENFERMEDAD = ?, DETALLE = ?, FECHAINICIO = ? "
+            + " WHERE IDTRATAMIENTO = ? ";
     private static final String BUSCAR_TRATAMIENTO = "SELECT * FROM TRATAMIENTO WHERE IDTRATAMIENTO = ? ";
     private static final String LISTAR_TRATAMIENTOS = "SELECT * FROM TRATAMIENTO";
     private static final String LISTAR_TRATAMIENTOS_BOVINO = "SELECT * FROM TRATAMIENTO WHERE IDBOVINO = ?";
-    private static final String LISTAR_TRATAMIENTOS_ACTIVOS = "SELECT * FROM TRATAMINETO " +
-            "WHERE FECHAINICIO <= CURDATE() AND FECHAFINALIZACION >= CURDATE()";
+    private static final String LISTAR_TRATAMIENTOS_ACTIVOS = "SELECT * FROM TRATAMINETO "
+            + "WHERE FECHAINICIO <= CURDATE() AND FECHAFINALIZACION >= CURDATE()";
 
-    public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento){
+    public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_TRATAMIENTO_FECHA_INICIO);
             statement.setInt(1, pTratamiento.getBovino().getIdBovino());
             statement.setInt(2, pTratamiento.getEnfermedad().getIdEnfermedad());
             statement.setString(3, pTratamiento.getDetalle());
-            statement.setDate(4, (java.sql.Date)pTratamiento.getFechaInicio());
+            java.sql.Date sqlDate = new java.sql.Date(pTratamiento.getFechaInicio().getTime());
+            statement.setDate(4, sqlDate);
 
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean altaTratamiento(Tratamiento pTratamiento){
+
+    public static boolean altaTratamiento(Tratamiento pTratamiento) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_TRATAMIENTO);
             statement.setInt(1, pTratamiento.getBovino().getIdBovino());
             statement.setInt(2, pTratamiento.getEnfermedad().getIdEnfermedad());
             statement.setString(3, pTratamiento.getDetalle());
-            statement.setDate(4, (java.sql.Date)pTratamiento.getFechaInicio());
-            statement.setDate(5, (java.sql.Date)pTratamiento.getFechaFinalizacion());
+            java.sql.Date sqlDate = new java.sql.Date(pTratamiento.getFechaInicio().getTime());
+            statement.setDate(4, sqlDate);
+            java.sql.Date sqlDateFinT = new java.sql.Date(pTratamiento.getFechaFinalizacion().getTime());
+            statement.setDate(5, sqlDateFinT);
 
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean bajaTratamiento(int idTratamiento){
+
+    public static boolean bajaTratamiento(int idTratamiento) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_TRATAMIENTO);
             statement.setInt(1, idTratamiento);
 
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,19 +81,41 @@ public class pTratamiento {
         }
     }
 
-    public static boolean modificarTratamiento(Tratamiento pTratamiento){
+    public static boolean modificarTratamiento(Tratamiento pTratamiento) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_TRATAMIENTO);
             statement.setInt(1, pTratamiento.getBovino().getIdBovino());
             statement.setInt(2, pTratamiento.getEnfermedad().getIdEnfermedad());
             statement.setString(3, pTratamiento.getDetalle());
-            statement.setDate(4, (java.sql.Date)pTratamiento.getFechaInicio());
-            statement.setDate(5, (java.sql.Date)pTratamiento.getFechaFinalizacion());
+            java.sql.Date sqlDate = new java.sql.Date(pTratamiento.getFechaInicio().getTime());
+            statement.setDate(4, sqlDate);
+             java.sql.Date sqlDateFF = new java.sql.Date(pTratamiento.getFechaFinalizacion().getTime());
+            statement.setDate(5, sqlDateFF);
             statement.setInt(6, pTratamiento.getIdTratamiento());
 
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_TRATAMIENTO_FECHAINICIO);
+            statement.setInt(1, pTratamiento.getBovino().getIdBovino());
+            statement.setInt(2, pTratamiento.getEnfermedad().getIdEnfermedad());
+            statement.setString(3, pTratamiento.getDetalle());
+            java.sql.Date sqlDate = new java.sql.Date(pTratamiento.getFechaInicio().getTime());
+            statement.setDate(4, sqlDate);            
+            statement.setInt(5, pTratamiento.getIdTratamiento());
+
+            int retorno = statement.executeUpdate();
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,7 +123,7 @@ public class pTratamiento {
         }
     }
 
-    public static Tratamiento buscarTratamiento(int idTratamiento){
+    public static Tratamiento buscarTratamiento(int idTratamiento) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_TRATAMIENTO);
@@ -104,7 +131,7 @@ public class pTratamiento {
 
             ResultSet resultado = statement.executeQuery();
             Tratamiento tratamiento = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 tratamiento = getTratamientoFromResultSet(resultado);
             }
             return tratamiento;
@@ -115,7 +142,7 @@ public class pTratamiento {
         }
     }
 
-    public static ArrayList<Tratamiento> listarTratamientos(){
+    public static ArrayList<Tratamiento> listarTratamientos() {
 
         ArrayList<Tratamiento> listaTratamientos = new ArrayList<>();
         try {
@@ -123,20 +150,19 @@ public class pTratamiento {
             ResultSet resultado = statement.executeQuery();
             Tratamiento tratamiento;
 
-
             while (resultado.next()) {
                 tratamiento = getTratamientoFromResultSet(resultado);
                 listaTratamientos.add(tratamiento);
             }
             return listaTratamientos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    public static ArrayList<Tratamiento> listarTratamientosActivos(){
+
+    public static ArrayList<Tratamiento> listarTratamientosActivos() {
 
         ArrayList<Tratamiento> listaTratamientos = new ArrayList<>();
         try {
@@ -144,20 +170,19 @@ public class pTratamiento {
             ResultSet resultado = statement.executeQuery();
             Tratamiento tratamiento;
 
-
             while (resultado.next()) {
                 tratamiento = getTratamientoFromResultSet(resultado);
                 listaTratamientos.add(tratamiento);
             }
             return listaTratamientos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino){
+
+    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino) {
 
         ArrayList<Tratamiento> listaTratamientos = new ArrayList<>();
         try {
@@ -172,7 +197,7 @@ public class pTratamiento {
             }
             return listaTratamientos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -180,6 +205,7 @@ public class pTratamiento {
 
     private static Tratamiento getTratamientoFromResultSet(ResultSet resultado) throws SQLException {
 
+        int idTratamiento = resultado.getInt("IDTRATAMIENTO");
         int idBovino = resultado.getInt("IDBOVINO");
         Bovino bovino = pBovino.buscarBovinoId(idBovino);
 
@@ -190,9 +216,8 @@ public class pTratamiento {
         Date fechaInicio = resultado.getDate("FECHAINICIO");
         Date fechaFinalizacion = resultado.getDate("FECHAFINALIZACION");
 
-
-        Tratamiento tratamiento = new Tratamiento (bovino, enfermedad, detalle, fechaInicio, fechaFinalizacion);
+        Tratamiento tratamiento = new Tratamiento(idTratamiento,bovino, enfermedad, detalle, fechaInicio, fechaFinalizacion);
         return tratamiento;
     }
-    
+
 }

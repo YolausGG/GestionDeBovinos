@@ -104,7 +104,7 @@ public class pEstadoDelBovino {
     private static EstadoDelBovino getEstadoDelBovinoFromResultSet(ResultSet resultado) throws SQLException {
 
         int idEstadoDelBovino = resultado.getInt("IDESTADODELBOVINO");
-        String tipo = resultado.getString("TIPO");
+        String tipo = resultado.getString("ESTADO");
 
         EstadoDelBovino estadoDelBovino = new EstadoDelBovino (idEstadoDelBovino, tipo);
         return estadoDelBovino;

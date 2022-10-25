@@ -74,5 +74,7 @@ public class Padece {
         this.fechaInicio = fechaInicio;
         
     }
-     
+     public Padece() {      
+        
+    }
 }

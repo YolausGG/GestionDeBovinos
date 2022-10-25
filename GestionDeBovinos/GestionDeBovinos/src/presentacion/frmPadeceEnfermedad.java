@@ -7,7 +7,6 @@ package presentacion;
 import clases.BotonesTabla;
 import clases.Bovino;
 import clases.Enfermedad;
-import clases.Hembra;
 import clases.Padece;
 import dominio.dControladora;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.pEnfermedad;
-
 
 /**
  *
@@ -27,6 +25,10 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
     JButton finalizar = new JButton("Finalizar");
+
+    public static frmPadeceEnfermedad frmPadeceEnfermedad1 = null;
+
+    public static Padece padece = new Padece();
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
@@ -235,7 +237,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
 
         model.addColumn("Caravana");
         model.addColumn("");
-        model.addColumn("Enfermedad");        
+        model.addColumn("Enfermedad");
         model.addColumn("Fecha Inicio");
         model.addColumn("Fecha Finalización");
         model.addColumn("Finalizar Enfermedad ");
@@ -247,9 +249,9 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(),enfermedad.getIdEnfermedad(),enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion(), finalizar, modificar, eliminar});
+            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion(), finalizar, modificar, eliminar});
         }
-        
+
         jTablePadeceEnfermedad.setModel(model);
         jTablePadeceEnfermedad.setRowHeight(25);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMaxWidth(0);
@@ -280,7 +282,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         for (Padece p : listaContagiosB) {
 
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
-            model.addRow(new Object[]{bovino.getCaravanaBovino(),enfermedad.getIdEnfermedad(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion(), finalizar, modificar, eliminar});
+            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion(), finalizar, modificar, eliminar});
         }
 
         jTablePadeceEnfermedad.setModel(model);
@@ -301,9 +303,8 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
 
     }
 
-    public static String Caravana = "";
-    public static int idEnfermedad = 0;
-    public static Date fechaInicio = null;
+    public static String caravana = "";
+    public static String enfermedad = "";
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
         columna = jTablePadeceEnfermedad.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -321,11 +322,17 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
                     if (fila != -1) {
                         limpiarCajas();
 
-                       // idProduccion = (int) jTablePadeceEnfermedad.getValueAt(fila, 0);
+                        caravana = this.jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
+                        Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
+                        padece.setIdBovino(bovino.getIdBovino());
+                        padece.setIdEnfermedad(Integer.parseInt(this.jTablePadeceEnfermedad.getValueAt(fila, 1).toString()));
+                        enfermedad = this.jTablePadeceEnfermedad.getValueAt(fila, 2).toString();
+                        padece.setFechaInicio((Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3));
+                        padece.setFechaFinalizacion((Date)this.jTablePadeceEnfermedad.getValueAt(fila, 4)); 
 
                         this.dispose();
-                        frmModificarProduccion modificarProduccion = new frmModificarProduccion();
-                        modificarProduccion.setVisible(true); // Abre el formulario de Modificar la Enfermedad
+                        frmModificarPadeceEnfermedad modificarPadeceEnfermedad = new frmModificarPadeceEnfermedad();
+                        modificarPadeceEnfermedad.setVisible(true); // Abre el formulario de Modificar la Enfermedad
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
@@ -333,11 +340,11 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
                 }
                 if (botones.getName().equals("btnEliminar")) {
                     int fila = jTablePadeceEnfermedad.getSelectedRow();
-                     
+
                     String caravana = this.jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
                     int idEnfermedad = Integer.parseInt(this.jTablePadeceEnfermedad.getValueAt(fila, 1).toString());
-                    Date fechaInicio = (Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3);                  
-                    
+                    Date fechaInicio = (Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3);
+
                     Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
                     Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaInicio);
@@ -372,28 +379,19 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
 
                 }
                 if (botones.getName().equals("btnFinalizar")) {
-                    
-                    try {
+                    int fila = jTablePadeceEnfermedad.getSelectedRow();
 
-                        //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                        int opcion = JOptionPane.showConfirmDialog(null, "Desea Ingresar la Fecha de Finalización de la Enfermedad?", "Fecha Finalización Enfermedad", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    caravana = this.jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
+                    Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
+                    padece.setIdBovino(bovino.getIdBovino());
+                    padece.setIdEnfermedad(Integer.parseInt(this.jTablePadeceEnfermedad.getValueAt(fila, 1).toString()));
+                    enfermedad = this.jTablePadeceEnfermedad.getValueAt(fila, 2).toString();
+                    padece.setFechaInicio((Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3));
 
-                        if (opcion == 0) {
+                    frmFechaFinalizacionEnfermedad frmFechaF = new frmFechaFinalizacionEnfermedad();
+                    frmFechaF.setVisible(true);
 
-                            frmFechaFinalizacionEnfermedad frmFechaF = new frmFechaFinalizacionEnfermedad();
-                            frmFechaF.setVisible(true);
-
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "No se Ingreso Fecha de Finalización");
-                        }
-
-                    } catch (Exception e) {
-                        throw e;
-                    }
-
-                   
-
+                    frmPadeceEnfermedad1 = this;
                 }
             }
         }
@@ -406,18 +404,18 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
             String caravana = txtCaravanaBovino.getText();
             Date fechaInicioE = jDateFechaInicioE.getDate();
             Date fechaFinalizacionE = jDateFechaFinalizacionE.getDate();
-            Enfermedad enfermedad = (Enfermedad) cboEnfermedad.getSelectedItem();
+            Enfermedad enfermedad1 = (Enfermedad) cboEnfermedad.getSelectedItem();
 
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
-            Padece padece = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE);
+            Padece padece = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE);
 
-            Padece padeceFechaF = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
+            Padece padeceFechaF = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
 
             try {
                 if (jDateFechaFinalizacionE.getDate() == null) {
 
-                    boolean resultado = dominio.dPadece.altaPadeceFechaInicio(padece);
+                    boolean resultado = dControladora.altaPadeceFechaInicio(padece);
 
                     if (resultado) {
 
@@ -429,7 +427,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Bovino Enfermo");
                     }
                 } else {
-                    boolean resultado = dominio.dPadece.altaPadece(padeceFechaF);
+                    boolean resultado = dControladora.altaPadece(padeceFechaF);
 
                     if (resultado) {
 
@@ -454,7 +452,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
 
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
         frmBuscarBovino buscarBovino = new frmBuscarBovino();
-
+        frmBuscarBovino.frmBuscar = "frmPadeceEnfermedad";
         buscarBovino.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

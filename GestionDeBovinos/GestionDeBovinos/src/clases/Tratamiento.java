@@ -81,5 +81,18 @@ public class Tratamiento {
         this.fechaFinalizacion = fechaFinalizacion;
     }
     
+    public Tratamiento(Bovino bovino, Enfermedad enfermedad, String detalle, Date fechaInicio) {
+        this.bovino = bovino;
+        this.enfermedad = enfermedad;
+        this.detalle = detalle;
+        this.fechaInicio = fechaInicio;
+        
+    }
+    
+    public Tratamiento() {
+        
+        
+    }
+    
     
 }

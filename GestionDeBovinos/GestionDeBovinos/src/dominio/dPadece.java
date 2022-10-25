@@ -37,7 +37,12 @@ public class dPadece {
     public static boolean modificarPadece(Padece pPadeceNuevo, Padece pPadeceViejo){
         
         return persistencia.pPadece.modificarPadece(pPadeceNuevo, pPadeceViejo);
-    }
+    } 
+    
+    public static boolean modificarPadeceFechaInicio(Padece pPadeceNuevo, Padece pPadeceViejo){
+        
+        return persistencia.pPadece.modificarPadeceFechaInicio(pPadeceNuevo, pPadeceViejo);
+    }  
 
     public static Padece buscarPadece(Padece pPadece){
 
@@ -51,7 +56,7 @@ public class dPadece {
     
     public static ArrayList<Padece> listarContagiosActivos(){
         
-        return persistencia.pPadece.listarContagios();
+        return persistencia.pPadece.listarContagiosActivos();
     }
     
     public static ArrayList<Padece> listarContagiosPorBovino(int idBovino){

@@ -68,7 +68,6 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableHembrasMouseClicked"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableHembrasKeyReleased"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTableHembras = new javax.swing.JTable(){&#xa;public boolean isCellEditable(int row, int column){&#xa;return false;&#xa;}};"/>

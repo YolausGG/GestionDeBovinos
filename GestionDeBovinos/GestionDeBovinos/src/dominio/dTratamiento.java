@@ -31,6 +31,11 @@ public class dTratamiento {
 
         return persistencia.pTratamiento.modificarTratamiento(pTratamiento);
     }
+    
+    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento){
+
+        return persistencia.pTratamiento.modificarTratamientoFechaInicio(pTratamiento);
+    }
 
     public static Tratamiento buscarTratamiento(int idTratamiento){
 

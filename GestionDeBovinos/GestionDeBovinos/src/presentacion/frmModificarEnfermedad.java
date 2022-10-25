@@ -4,10 +4,7 @@
  */
 package presentacion;
 
-import clases.BotonesTabla;
-import clases.Enfermedad;
-import java.util.ArrayList;
-import javax.swing.JButton;
+
 import javax.swing.JOptionPane;
 
 

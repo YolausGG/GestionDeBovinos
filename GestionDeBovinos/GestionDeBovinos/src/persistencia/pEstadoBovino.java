@@ -27,6 +27,8 @@ public class pEstadoBovino {
             " WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String UPDATE_ESTADOBOVINO= "UPDATE ESTADOBOVINO SET IDESTADODELBOVINO = ?, IDBOVINO = ?, FECHAINICIO = ?, FECHAFINALIZACION = ? " +
             " WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
+    private static final String UPDATE_ESTADOBOVINO_FECHAINICIO= "UPDATE ESTADOBOVINO SET IDESTADODELBOVINO = ?, IDBOVINO = ?, FECHAINICIO = ? " +
+            " WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String BUSCAR_ESTADOBOVINO = "SELECT * FROM ESTADOBOVINO WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String LISTAR_ESTADOBOVINO = "SELECT * FROM ESTADOBOVINO";
     private static final String LISTAR_ESTADOBOVINO_BOVINO = "SELECT * FROM ESTADOBOVINO "+
@@ -39,7 +41,8 @@ public class pEstadoBovino {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_ESTADOBOVINO_FECHA_INICIO);
             statement.setInt(1, pEstadoBovino.getIdEstadoDelBovino());
             statement.setInt(2, pEstadoBovino.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pEstadoBovino.getFechaInicio());
+            java.sql.Date sqlDate = new java.sql.Date(pEstadoBovino.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
 
             int retorno = statement.executeUpdate();
 
@@ -56,8 +59,10 @@ public class pEstadoBovino {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_ESTADOBOVINO);
             statement.setInt(1, pEstadoBovino.getIdEstadoDelBovino());
             statement.setInt(2, pEstadoBovino.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pEstadoBovino.getFechaInicio());
-            statement.setDate(4, (java.sql.Date) pEstadoBovino.getFechaFinalizacion());
+            java.sql.Date sqlDate = new java.sql.Date(pEstadoBovino.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
+            java.sql.Date sqlDateFF = new java.sql.Date(pEstadoBovino.getFechaFinalizacion().getTime());
+            statement.setDate(4, sqlDateFF);
             int retorno = statement.executeUpdate();
 
             return retorno>0;
@@ -89,7 +94,8 @@ public class pEstadoBovino {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_ESTADOBOVINO);
             statement.setInt(1, pEstadoBovino.getIdEstadoDelBovino() );
             statement.setInt(2, pEstadoBovino.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pEstadoBovino.getFechaInicio());
+            java.sql.Date sqlDate = new java.sql.Date(pEstadoBovino.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
 
             int retorno = statement.executeUpdate();
             return retorno>0;
@@ -105,11 +111,35 @@ public class pEstadoBovino {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_ESTADOBOVINO);
             statement.setInt(1, pEstadoBovinoNuevo.getIdEstadoDelBovino());
             statement.setInt(2, pEstadoBovinoNuevo.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pEstadoBovinoNuevo.getFechaInicio());
-            statement.setDate(4, (java.sql.Date) pEstadoBovinoNuevo.getFechaFinalizacion());
+            java.sql.Date sqlDate = new java.sql.Date(pEstadoBovinoNuevo.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
+            java.sql.Date sqlDateF = new java.sql.Date(pEstadoBovinoNuevo.getFechaFinalizacion().getTime());
+            statement.setDate(4, sqlDateF);
             statement.setInt(5, pEstadoBovinoViejo.getIdEstadoDelBovino());
             statement.setInt(6, pEstadoBovinoViejo.getIdBovino());
-            statement.setDate(7, (java.sql.Date) pEstadoBovinoViejo.getFechaInicio());
+            java.sql.Date sqlDateI = new java.sql.Date(pEstadoBovinoViejo.getFechaInicio().getTime());
+            statement.setDate(7, sqlDateI);
+
+            int retorno = statement.executeUpdate();
+            return retorno>0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+     public static boolean modificarEstadoBovinoFechaInicio(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo){
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_ESTADOBOVINO_FECHAINICIO);
+            statement.setInt(1, pEstadoBovinoNuevo.getIdEstadoDelBovino());
+            statement.setInt(2, pEstadoBovinoNuevo.getIdBovino());
+            java.sql.Date sqlDate = new java.sql.Date(pEstadoBovinoNuevo.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);            
+            statement.setInt(4, pEstadoBovinoViejo.getIdEstadoDelBovino());
+            statement.setInt(5, pEstadoBovinoViejo.getIdBovino());
+            java.sql.Date sqlDateI = new java.sql.Date(pEstadoBovinoViejo.getFechaInicio().getTime());
+            statement.setDate(6, sqlDateI);
 
             int retorno = statement.executeUpdate();
             return retorno>0;
@@ -211,8 +241,8 @@ public class pEstadoBovino {
 
         int idEstadoDelBovino = resultado.getInt("IDESTADODELBOVINO");
         int idBovino = resultado.getInt("IDBOVINO");
-        Date fechaInicio = (java.util.Date)resultado.getDate("FECHAINCIO");
-        Date fechaFinalizacion = (java.util.Date)resultado.getDate("FECHAINCIO");
+        Date fechaInicio = (java.util.Date)resultado.getDate("FECHAINICIO");
+        Date fechaFinalizacion = (java.util.Date)resultado.getDate("FECHAFINALIZACION");
         
 
         EstadoBovino estadoBovino = new EstadoBovino (idEstadoDelBovino, idBovino, fechaInicio, fechaFinalizacion);
