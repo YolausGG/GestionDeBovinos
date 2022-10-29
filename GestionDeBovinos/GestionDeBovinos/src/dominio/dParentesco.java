@@ -54,5 +54,9 @@ public class dParentesco {
         
         return persistencia.pParentesco.buscarPadres(pIdBovino);
     }
-        
+    
+    public static ArrayList<Bovino> buscarHijos(int pIdBovino) {
+
+        return persistencia.pParentesco.buscarHijos(pIdBovino);
+    }
 }

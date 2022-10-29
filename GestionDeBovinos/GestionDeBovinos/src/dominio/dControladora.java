@@ -148,10 +148,9 @@ public class dControladora {
         return listaBovinos;
     }
 
-   /* public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
+    /* public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
         return listaEstadosDelBovino;
     }*/
-
     public static ArrayList<Raza> listarRazas() {
         return listaRazas;
     }
@@ -279,7 +278,7 @@ public class dControladora {
 
         return dEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
     }
-    
+
     public static ArrayList<EstadoDelBovino> listarEstadoDelBovino() {
 
         return dEstadoDelBovino.listarEstadosDelBovino();
@@ -561,7 +560,7 @@ public class dControladora {
 
         return dEstadoBovino.modificarEstadoBovino(pEstadoBovinoNuevo, pEstadoBovinoViejo);
     }
-    
+
     public static boolean modificarEstadoBovinoFechaInicio(EstadoBovino pEstadoBovinoNuevo, EstadoBovino pEstadoBovinoViejo) {
 
         return dEstadoBovino.modificarEstadoBovinoFechaInicio(pEstadoBovinoNuevo, pEstadoBovinoViejo);
@@ -627,6 +626,11 @@ public class dControladora {
     public static ArrayList<Bovino> buscarPadres(int pIdBovino) {
 
         return dParentesco.buscarPadres(pIdBovino);
+    }
+
+    public static ArrayList<Bovino> buscarHijos(int pIdBovino) {
+
+        return dParentesco.buscarHijos(pIdBovino);
     }
 
     // </editor-fold>
@@ -867,8 +871,8 @@ public class dControladora {
 
         return dTratamiento.modificarTratamiento(pTratamiento);
     }
-    
-     public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
+
+    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
 
         return dTratamiento.modificarTratamientoFechaInicio(pTratamiento);
     }
@@ -895,36 +899,96 @@ public class dControladora {
 
     // <editor-fold defaultstate="collapsed" desc="Copia">
     // </editor-fold>
+    
+    
+    
+    public static ArrayList<Bovino> parentescos_Hermanos_Sobrinos_SobrinoNieto(int contador, Bovino bovino, ArrayList<Bovino> hijos) {
 
-    public static ArrayList<Bovino> noApareables(int contador, Bovino bovino, ArrayList<Bovino> noApareables) {
+        System.out.println(contador);
+        if (!enLista(bovino, hijos)) {
+            hijos.add(bovino);
+        }
+
+        ArrayList<Bovino> bovinosHijos = buscarHijos(bovino.getIdBovino());
+
+        if (contador >= 3 || bovinosHijos.size() < 1) {
+            return hijos;
+        } else {
+
+            for (Bovino bovinoHijo : bovinosHijos) {
+                
+                if (enLista(bovinoHijo, parentescos_Hermanos_Sobrinos_SobrinoNieto(contador+1,bovinoHijo,hijos))) {
+                    
+                }
+            }
+        }
+        return hijos;
+
+    }
+
+    public static ArrayList<Bovino> arbolGenealogico(int contador, Bovino bovino, ArrayList<Bovino> arbolGenealogico) {
 
         ArrayList<Bovino> bovinosFinal = new ArrayList();
 
-        if (!enLista(bovino, noApareables)) {
-            noApareables.add(bovino);
+        if (!enLista(bovino, arbolGenealogico)) {
+            arbolGenealogico.add(bovino);
         }
-        if (contador > 3 || bovino.getPadre() == null && bovino.getMadre() == null) {
-            return noApareables;
+        if (contador >= 3 || bovino.getPadre() == null && bovino.getMadre() == null) {
+            return arbolGenealogico;
         } else {
-            if (bovino.getPadre() != null && contador < 4) {
+            if (bovino.getPadre() != null && contador <= 3) {
                 Bovino padre = buscarBovinoCaravanaCompleto(bovino.getPadre().getCaravanaBovino());
-                bovinosFinal = noApareables(++contador, padre, noApareables);
+                bovinosFinal = arbolGenealogico(contador + 1, padre, arbolGenealogico);
             }
 
-            if (bovino.getMadre() != null && contador < 4) {
+            if (bovino.getMadre() != null && contador <= 3) {
                 Bovino madre = buscarBovinoCaravanaCompleto(bovino.getMadre().getCaravanaBovino());
-                bovinosFinal = noApareables(++contador, madre, noApareables);
+                bovinosFinal = arbolGenealogico(contador + 1, madre, arbolGenealogico);
+            }
+        }
+        return bovinosFinal;
+
+    }
+    
+    public static ArrayList<Bovino> noApareables(int contador, Bovino bovino, ArrayList<Bovino> noApareables) {
+
+        ArrayList<Bovino> bovinosFinal = new ArrayList<Bovino>();
+
+        if (!enLista(bovino, noApareables)) {
+            
+            int contadorHijos = contador*-1;
+            ArrayList<Bovino> hijos = parentescos_Hermanos_Sobrinos_SobrinoNieto(contadorHijos, bovino, new ArrayList<Bovino>());
+            if(hijos.size() > 0){
+                for (Bovino hijo : hijos) {
+                    if(!enLista(hijo, noApareables)){
+                        noApareables.add(hijo);
+                    }
+                }
+                
+            }
+        }
+        if (contador >= 3 || bovino.getPadre() == null && bovino.getMadre() == null) {
+            return noApareables;
+        } else {
+            if (bovino.getPadre() != null && contador <= 3) {
+                Bovino padre = buscarBovinoCaravanaCompleto(bovino.getPadre().getCaravanaBovino());
+                bovinosFinal = noApareables(contador + 1, padre, noApareables);
+            }
+
+            if (bovino.getMadre() != null && contador <= 3) {
+                Bovino madre = buscarBovinoCaravanaCompleto(bovino.getMadre().getCaravanaBovino());
+                bovinosFinal = noApareables(contador + 1, madre, noApareables);
             }
         }
         return bovinosFinal;
 
     }
 
-    public static boolean enLista(Bovino pBovino, ArrayList<Bovino> noApareables) {
+    public static boolean enLista(Bovino pBovino, ArrayList<Bovino> enLista) {
 
-        for (Bovino noApareable : noApareables) {
+        for (Bovino bovino : enLista) {
 
-            if (noApareable.getCaravanaBovino().equals(pBovino.getCaravanaBovino())) {
+            if (bovino.getCaravanaBovino().equals(pBovino.getCaravanaBovino())) {
                 return true;
             }
         }

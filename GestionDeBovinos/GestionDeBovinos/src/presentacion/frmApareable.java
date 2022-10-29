@@ -36,7 +36,7 @@ public class frmApareable extends javax.swing.JFrame {
     public frmApareable() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
-        this.setTitle("APAREABLES");
+        this.setTitle("LISTADO DE BOVINOS BUENOS PARA REPRODUCIR");
 
         lblRCaravana.setVisible(false);
         txtCaravana.setText(frmBuscarBovino.caravana);
@@ -92,13 +92,13 @@ public class frmApareable extends javax.swing.JFrame {
 
             jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 730, 260));
 
-            btnAgregar.setText("Agregar");
+            btnAgregar.setText("Listar");
             btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnAgregarMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+            jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 90, 30));
 
             lblRCaravana.setText("Requerido");
             jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 90, 30));
@@ -161,21 +161,21 @@ public class frmApareable extends javax.swing.JFrame {
     }
 
     public void actualizarTabla() {
-        
+
         jTableBovinos.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(txtCaravana.getText());
 
-        ArrayList<Bovino> bovinosVacia = new ArrayList<>();
-
-        ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, bovinosVacia);
+        //ArrayList<Bovino> arbolGenealogico = dControladora.arbolGenealogico(0, bovino, new ArrayList<Bovino>());
 
         ArrayList<Bovino> listaBovinos = dControladora.listarBovinos();
-        
-        //ArrayList<Bovino> listaBovinosFinal = dControladora.listarBovinos();
+                
+        ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, new ArrayList<Bovino>());
 
-        for (Bovino bovino1 : noApareables) {
+       // ArrayList<Bovino> listaBovinosHijos = dControladora.parentescos_Hermanos_Sobrinos_SobrinoNieto(0, bovino, new ArrayList<Bovino>());
+
+         for (Bovino bovino1 : noApareables) {
 
             for (Bovino bovino2 : listaBovinos) {
 
@@ -186,7 +186,6 @@ public class frmApareable extends javax.swing.JFrame {
 
             }
         }
-
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
@@ -259,7 +258,7 @@ public class frmApareable extends javax.swing.JFrame {
 
         if (!txtCaravana.getText().isEmpty()) {
             actualizarTabla();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
@@ -268,8 +267,8 @@ public class frmApareable extends javax.swing.JFrame {
 
         if (!txtCaravana.getText().isEmpty()) {
             actualizarTabla();
-        }else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_txtCaravanaKeyReleased
 

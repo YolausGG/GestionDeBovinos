@@ -14,14 +14,14 @@ public class PrincipalPrueba {
     public static void main(String[] args) throws ParseException {
         Raza holando = new Raza(1,"Holando");
         ArrayList<EstadoDelBovino> estadoDelBovinos = new ArrayList<>();
-        String fechaS = "21/06/2021";
+        String fechaS = "2021/06/21";
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
         Date fechaDate = formato.parse(fechaS);
 
         System.out.println(fechaDate);
 
-        
+        System.out.println(formato.format(fechaDate));
         
         //Hembra hembra1 = new Hembra(1,"2030",fechaDate,holando);
 

@@ -19,6 +19,7 @@ public class pParentesco {
     private static final String DELETE_PARENTESCO = "DELETE FROM PARENTESCO WHERE IDBOVINO = ? AND IDBOVINOPADRE = ?";
     private static final String DELETE_PARENTESCOS = "DELETE FROM PARENTESCO WHERE IDBOVINOPADRE = ?";
     private static final String BUSCAR_PARENTESCOS = "SELECT * FROM PARENTESCO WHERE IDBOVINO = ?";
+    private static final String BUSCAR_PARENTESCOS_HIJOS = "SELECT * FROM PARENTESCO WHERE IDBOVINOPADRE = ?";
     private static final String BUSCAR_PARENTESCO = "SELECT * FROM PARENTESCO WHERE IDBOVINO = ? AND IDBOVINOPADRE = ?";
     private static final String BUSCAR_PARENTESCO_MADRE = "SELECT * FROM PARENTESCO WHERE IDBOVINO = ? AND TIPOPARENTESCO = 'MADRE'";
     private static final String BUSCAR_PARENTESCO_PADRE = "SELECT * FROM PARENTESCO WHERE IDBOVINO = ? AND TIPOPARENTESCO = 'PADRE'";
@@ -166,6 +167,29 @@ public class pParentesco {
                     Hembra madre = pHembra.buscarHembraPorId(resultado.getInt("IDBOVINOPADRE"));
                     listaBovinos.add(madre);
                 }
+            }
+            return listaBovinos;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<Bovino> buscarHijos(int pIdBovino) {
+
+        ArrayList<Bovino> listaBovinos = new ArrayList<>();
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareCall(BUSCAR_PARENTESCOS_HIJOS);
+            statement.setInt(1, pIdBovino);
+
+            ResultSet resultado = statement.executeQuery();
+
+            while (resultado.next()) {
+
+                Bovino bovino = pBovino.buscarBovinoId(resultado.getInt("IDBOVINO"));
+                listaBovinos.add(bovino);
+
             }
             return listaBovinos;
 
