@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class pTratamiento {
 
     private static final String INSERT_TRATAMIENTO_FECHA_INICIO = "INSERT INTO TRATAMIENTO (IDBOVINO, IDENFERMEDAD, FECHAINICIOCONTAGIO, DETALLE, FECHAINICIO) "

@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Macho extends Bovino {
 
+    
     private String tipo;
 
     public String getTipo() {

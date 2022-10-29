@@ -6,7 +6,6 @@ package presentacion;
 
 import persistencia.pLogin;
 
-
 /**
  *
  * @author nico_

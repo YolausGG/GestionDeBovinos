@@ -8,7 +8,6 @@ import clases.BotonesTabla;
 import clases.Bovino;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
-import clases.Padece;
 import dominio.dControladora;
 import java.util.ArrayList;
 import java.util.Date;

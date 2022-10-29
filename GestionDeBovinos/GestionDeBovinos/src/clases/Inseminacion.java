@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Inseminacion extends EventoDeSanidad{
 
+    
     private Macho macho;
 
     public Macho getMacho() {

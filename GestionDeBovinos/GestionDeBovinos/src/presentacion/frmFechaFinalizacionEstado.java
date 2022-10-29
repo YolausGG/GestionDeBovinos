@@ -7,7 +7,6 @@ package presentacion;
 
 import clases.Bovino;
 import clases.EstadoBovino;
-import clases.Padece;
 import dominio.dControladora;
 import java.text.SimpleDateFormat;
 import java.util.Date;

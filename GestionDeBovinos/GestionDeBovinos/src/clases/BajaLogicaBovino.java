@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class BajaLogicaBovino {
     
+    
     private int idBajaBovino;
     private Bovino bovino;
     private Date fechaBaja;

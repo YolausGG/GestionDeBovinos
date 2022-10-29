@@ -3,6 +3,7 @@ package dominio;
 import clases.EstadoDelBovino;
 import persistencia.pEstadoDelBovino;
 
+
 import java.util.ArrayList;
 
 public class dEstadoDelBovino {

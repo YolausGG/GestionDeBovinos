@@ -2,6 +2,7 @@ package clases;
 
 import java.util.Date;
 
+
 public class Tratamiento {
 
     private int idTratamiento;

@@ -2,6 +2,7 @@ package clases;
 
 public class Enfermedad {
 
+    
     private int idEnfermedad;
     private String nombre;
 

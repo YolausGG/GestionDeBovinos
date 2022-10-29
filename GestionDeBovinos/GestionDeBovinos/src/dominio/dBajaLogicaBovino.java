@@ -7,6 +7,7 @@ package dominio;
 import clases.BajaLogicaBovino;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Godoy

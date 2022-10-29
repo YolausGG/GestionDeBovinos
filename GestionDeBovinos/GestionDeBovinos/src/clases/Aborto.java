@@ -22,4 +22,5 @@ public class Aborto extends EventoDeSanidad{
         this.causa = causa;
     }
 
+    
 }

@@ -4,20 +4,12 @@
  */
 package presentacion;
 
-import clases.BotonesTabla;
 import clases.Celo;
-import clases.Enfermedad;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
-import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.text.*;
-import java.awt.print.*;
 import java.util.Date;
-import javax.swing.JTable;
 
 /**
  *

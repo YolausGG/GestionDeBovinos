@@ -1,5 +1,6 @@
 package dominio;
 
+
 import clases.Enfermedad;
 import persistencia.pEnfermedad;
 

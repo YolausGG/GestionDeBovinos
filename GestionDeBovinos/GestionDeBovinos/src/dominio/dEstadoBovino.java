@@ -4,6 +4,7 @@
  */
 package dominio;
 
+
 import clases.EstadoBovino;
 import java.util.ArrayList;
 

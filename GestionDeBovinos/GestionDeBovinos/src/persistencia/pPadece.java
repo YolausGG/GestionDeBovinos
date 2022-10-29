@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class pPadece {
 
     private static final String INSERT_PADECE_FECHA_INICIO = " INSERT INTO PADECE (IDENFERMEDAD, IDBOVINO, FECHAINICIO ) " +

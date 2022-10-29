@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class pEstadoDelBovino {
 
     private static final String INSERT_ESTADODELBOVINO = "INSERT INTO ESTADODELBOVINO ( ESTADO ) " +

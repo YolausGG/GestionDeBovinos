@@ -20,13 +20,10 @@ public class PrincipalPrueba {
         Date fechaDate = formato.parse(fechaS);
 
         System.out.println(fechaDate);
-<<<<<<< HEAD
+
 
         System.out.println(formato.format(fechaDate));
-=======
-        System.out.println(formato.format(fechaDate));
-        
->>>>>>> 51605f1 (frmTratamientoconPadece)
+
         
         //Hembra hembra1 = new Hembra(1,"2030",fechaDate,holando);
 

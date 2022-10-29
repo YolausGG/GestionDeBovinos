@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Celo extends EventoDeSanidad{
 
+    
     private String causa;
 
     public String getCausa() {

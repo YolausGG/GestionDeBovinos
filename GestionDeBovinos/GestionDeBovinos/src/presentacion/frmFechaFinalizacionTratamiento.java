@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import clases.Bovino;
 import clases.Enfermedad;
 import clases.Padece;
@@ -13,6 +12,7 @@ import dominio.dControladora;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+
 
 /**
  *

@@ -4,15 +4,12 @@
  */
 package presentacion;
 
-import clases.BotonesTabla;
+
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
-import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 /**

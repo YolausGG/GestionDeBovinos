@@ -4,7 +4,6 @@
  */
 package dominio;
 
-
 import clases.Aborto;
 import java.util.ArrayList;
 import persistencia.pAborto;

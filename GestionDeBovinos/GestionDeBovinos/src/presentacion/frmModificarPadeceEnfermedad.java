@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import clases.Bovino;
 import clases.Enfermedad;
 import clases.Padece;

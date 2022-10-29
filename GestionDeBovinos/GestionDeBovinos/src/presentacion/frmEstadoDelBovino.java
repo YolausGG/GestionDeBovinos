@@ -5,7 +5,6 @@
 package presentacion;
 
 import clases.BotonesTabla;
-import clases.Enfermedad;
 import clases.EstadoDelBovino;
 import dominio.dControladora;
 import java.util.ArrayList;

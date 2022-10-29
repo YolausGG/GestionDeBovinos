@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class pEnfermedad {
 
     private static final String INSERT_ENFERMEDAD = " INSERT INTO ENFERMEDAD ( NOMBRE ) " +

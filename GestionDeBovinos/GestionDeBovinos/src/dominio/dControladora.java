@@ -1,5 +1,6 @@
 package dominio;
 
+
 import clases.Aborto;
 import clases.BajaLogicaBovino;
 import clases.Raza;
@@ -23,7 +24,6 @@ import clases.Tacto;
 import clases.Tratamiento;
 
 import java.util.ArrayList;
-import persistencia.pParentesco;
 
 public class dControladora {
 
@@ -878,16 +878,14 @@ public class dControladora {
         return dTratamiento.modificarTratamiento(pTratamiento);
     }
 
-<<<<<<< HEAD
-    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
-=======
+
     public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento) {
 
         return dTratamiento.modificarTratamientoFechaFin(pTratamiento);
     }
     
      public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
->>>>>>> 51605f1 (frmTratamientoconPadece)
+
 
         return dTratamiento.modificarTratamientoFechaInicio(pTratamiento);
     }
@@ -919,7 +917,7 @@ public class dControladora {
     
     public static ArrayList<Bovino> parentescos_Hermanos_Sobrinos_SobrinoNieto(int contador, Bovino bovino, ArrayList<Bovino> hijos) {
 
-        System.out.println(contador);
+        
         if (!enLista(bovino, hijos)) {
             hijos.add(bovino);
         }

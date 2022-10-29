@@ -6,15 +6,12 @@ package presentacion;
 
 
 import clases.Bovino;
-import clases.Enfermedad;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
-import clases.Padece;
 import dominio.dControladora;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import persistencia.pEnfermedad;
 import persistencia.pEstadoDelBovino;
 
 /**

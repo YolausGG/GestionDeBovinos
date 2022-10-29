@@ -6,17 +6,11 @@ package presentacion;
 
 import clases.BotonesTabla;
 import clases.Bovino;
-import clases.Hembra;
-import clases.Macho;
-import clases.Pedigree;
-import clases.Raza;
 import dominio.dControladora;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import persistencia.pRaza;
 
 /**
  *

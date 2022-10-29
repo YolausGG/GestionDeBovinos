@@ -9,6 +9,7 @@ import clases.Parentesco;
 import java.util.ArrayList;
 import persistencia.pParentesco;
 
+
 /**
  *
  * @author Godoy

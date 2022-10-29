@@ -7,6 +7,7 @@ package dominio;
 import clases.Tratamiento;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Godoy

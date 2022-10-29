@@ -4,13 +4,11 @@
  */
 package presentacion;
 
-import clases.Bovino;
 import clases.Hembra;
 import dominio.dControladora;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 
 /**

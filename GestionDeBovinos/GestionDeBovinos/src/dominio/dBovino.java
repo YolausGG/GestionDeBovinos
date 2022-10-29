@@ -4,6 +4,7 @@ import clases.Bovino;
 import java.util.ArrayList;
 import persistencia.pBovino;
 
+
 public class dBovino {
 
     public static boolean altaBovino(Bovino pBovino){

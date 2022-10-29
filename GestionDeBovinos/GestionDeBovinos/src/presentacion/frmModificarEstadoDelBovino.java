@@ -4,15 +4,9 @@
  */
 package presentacion;
 
-import clases.BotonesTabla;
 import clases.EstadoDelBovino;
 import dominio.dControladora;
-import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import java.text.*;
-import javax.swing.JTable;
 
 /**
  *

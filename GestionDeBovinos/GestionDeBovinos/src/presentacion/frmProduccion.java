@@ -5,11 +5,8 @@
 package presentacion;
 
 import clases.BotonesTabla;
-import clases.Bovino;
 import clases.Hembra;
-import clases.Macho;
 import clases.Produccion;
-import clases.Raza;
 import dominio.dControladora;
 import java.util.ArrayList;
 import java.util.Date;

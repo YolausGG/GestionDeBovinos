@@ -7,6 +7,7 @@ package dominio;
 import clases.EventoDeSanidad;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Godoy

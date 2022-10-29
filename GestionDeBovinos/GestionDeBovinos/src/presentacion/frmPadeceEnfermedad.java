@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.pEnfermedad;
 
+
 /**
  *
  * @author nico_

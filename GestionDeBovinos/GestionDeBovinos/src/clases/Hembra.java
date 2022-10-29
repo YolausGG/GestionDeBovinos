@@ -3,6 +3,7 @@ package clases;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class Hembra extends Bovino {
 
     public Hembra(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, ArrayList<EstadoDelBovino> estadosDelBovino) {
