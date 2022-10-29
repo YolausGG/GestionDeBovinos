@@ -6,6 +6,7 @@ package presentacion;
 
 import clases.BotonesTabla;
 import clases.Enfermedad;
+import clases.ExportarExcel;
 import dominio.dControladora;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.awt.print.*;
+import java.io.IOException;
 import javax.swing.JTable;
 
 /**
@@ -63,6 +65,7 @@ public class frmEnfermedad extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAltaEnfermedad = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +120,14 @@ public class frmEnfermedad extends javax.swing.JFrame {
         });
         jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
+        btnExportar.setText("Excel");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportarMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 360, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,35 +169,6 @@ public class frmEnfermedad extends javax.swing.JFrame {
         jTableEnfermedad.setModel(model);
         jTableEnfermedad.setRowHeight(40);
     }
-
-    private void btnAltaEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaEnfermedadMouseClicked
-
-        String nombre = txtNombreEnfermedad.getText();
-
-        clases.Enfermedad enfermedad = new clases.Enfermedad(nombre);
-
-        try {
-                      
-            
-            if(txtNombreEnfermedad.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe Ingresar el Nombre de la Enfermedad");
-            }
-            else{
-                boolean resultado = dominio.dEnfermedad.altaEnfermedad(enfermedad);
-            if (resultado) {
-
-                JOptionPane.showMessageDialog(null, "Enfermedad Ingresada Correctamente");
-                actualizarTabla();
-                limpiarCajas(); // Limpiamos Caja de Texto
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: No se pudo agregar la Enfermedad");
-            }
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-    }//GEN-LAST:event_btnAltaEnfermedadMouseClicked
     
     public static String nombreEnfermedad = "";
     public static int idEnfermedad = 0;
@@ -256,18 +238,57 @@ public class frmEnfermedad extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTableEnfermedadMouseClicked
 
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+         ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableEnfermedad);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
     private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-       
+
         MessageFormat header = new MessageFormat("Reporte ");
         MessageFormat footer = new MessageFormat("Page {0, number, integer}");
-        
+
         try {
             jTableEnfermedad.print(JTable.PrintMode.NORMAL, header, footer);
         } catch (java.awt.print.PrinterException e) {
             System.err.format("No se pudo Imprimir", e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnAltaEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaEnfermedadMouseClicked
+
+        String nombre = txtNombreEnfermedad.getText();
+
+        clases.Enfermedad enfermedad = new clases.Enfermedad(nombre);
+
+        try {
+
+            if(txtNombreEnfermedad.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe Ingresar el Nombre de la Enfermedad");
+            }
+            else{
+                boolean resultado = dominio.dEnfermedad.altaEnfermedad(enfermedad);
+                if (resultado) {
+
+                    JOptionPane.showMessageDialog(null, "Enfermedad Ingresada Correctamente");
+                    actualizarTabla();
+                    limpiarCajas(); // Limpiamos Caja de Texto
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar la Enfermedad");
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }//GEN-LAST:event_btnAltaEnfermedadMouseClicked
 
     /**
      * @param args the command line arguments
@@ -306,6 +327,7 @@ public class frmEnfermedad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaEnfermedad;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

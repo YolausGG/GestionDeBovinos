@@ -5,8 +5,7 @@ import java.util.Date;
 public class Tratamiento {
 
     private int idTratamiento;
-    private Bovino bovino;
-    private Enfermedad enfermedad;
+    private Padece padece;
     private String detalle;
     private Date fechaInicio;
     private Date fechaFinalizacion;
@@ -16,22 +15,16 @@ public class Tratamiento {
     }
     public void setIdTratamiento(int idTratamiento) {
         this.idTratamiento = idTratamiento;
+    }   
+
+    public Padece getPadece() {
+        return padece;
     }
 
-    public Bovino getBovino() {
-        return bovino;
-    }
-    public void setBovino(Bovino bovino) {
-        this.bovino = bovino;
-    }
-
-    public Enfermedad getEnfermedad() {
-        return enfermedad;
-    }
-    public void setEnfermedad(Enfermedad enfermedad) {
-        this.enfermedad = enfermedad;
-    }
-
+    public void setPadece(Padece padece) {
+        this.padece = padece;
+    }   
+    
     public String getDetalle() {
         return detalle;
     }
@@ -57,33 +50,36 @@ public class Tratamiento {
     public String toString() {
         return "Tratamiento{" +
                 "idTratamiento=" + idTratamiento +
-                ", bovino=" + bovino +
-                ", enfermedad=" + enfermedad +
+                ", padece=" + padece +                
                 ", detalle='" + detalle + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFinalizacion=" + fechaFinalizacion +
                 '}';
     }
 
-    public Tratamiento(int idTratamiento, Bovino bovino, Enfermedad enfermedad, String detalle, Date fechaInicio, Date fechaFinalizacion) {
+    public Tratamiento(int idTratamiento, Padece padece , String detalle, Date fechaInicio, Date fechaFinalizacion) {
         this.idTratamiento = idTratamiento;
-        this.bovino = bovino;
-        this.enfermedad = enfermedad;
+        this.padece = padece;
         this.detalle = detalle;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
     }
-    public Tratamiento(Bovino bovino, Enfermedad enfermedad, String detalle, Date fechaInicio, Date fechaFinalizacion) {
-        this.bovino = bovino;
-        this.enfermedad = enfermedad;
+    public Tratamiento(int idTratamiento, Padece padece , String detalle, Date fechaInicio) {
+        this.idTratamiento = idTratamiento;
+        this.padece = padece;
+        this.detalle = detalle;
+        this.fechaInicio = fechaInicio;
+        
+    }
+    public Tratamiento(Padece padece, String detalle, Date fechaInicio, Date fechaFinalizacion) {
+        this.padece = padece;
         this.detalle = detalle;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
     }
     
-    public Tratamiento(Bovino bovino, Enfermedad enfermedad, String detalle, Date fechaInicio) {
-        this.bovino = bovino;
-        this.enfermedad = enfermedad;
+    public Tratamiento(Padece padece, String detalle, Date fechaInicio) {
+        this.padece = padece;
         this.detalle = detalle;
         this.fechaInicio = fechaInicio;
         

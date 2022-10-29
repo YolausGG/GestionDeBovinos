@@ -246,6 +246,11 @@ public class dControladora {
 
         return dEnfermedad.buscarEnfermedad(idEnfermedad);
     }
+    
+     public static Enfermedad buscarEnfermedadNombre(String pNombre) {
+
+        return dEnfermedad.buscarEnfermedadNombre(pNombre);
+    }
 
     public static Enfermedad buscarUltimaEnfermedad() {
 
@@ -851,6 +856,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Tratamiento">
     public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
 
@@ -866,13 +872,22 @@ public class dControladora {
 
         return dTratamiento.bajaTratamiento(idTratamiento);
     }
-
+    
     public static boolean modificarTratamiento(Tratamiento pTratamiento) {
 
         return dTratamiento.modificarTratamiento(pTratamiento);
     }
 
+<<<<<<< HEAD
     public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
+=======
+    public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento) {
+
+        return dTratamiento.modificarTratamientoFechaFin(pTratamiento);
+    }
+    
+     public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
+>>>>>>> 51605f1 (frmTratamientoconPadece)
 
         return dTratamiento.modificarTratamientoFechaInicio(pTratamiento);
     }

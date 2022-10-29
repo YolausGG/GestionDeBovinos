@@ -26,10 +26,15 @@ public class dTratamiento {
         
         return persistencia.pTratamiento.bajaTratamiento(idTratamiento);
     }
-
+    
     public static boolean modificarTratamiento(Tratamiento pTratamiento){
 
         return persistencia.pTratamiento.modificarTratamiento(pTratamiento);
+    }
+
+    public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento){
+
+        return persistencia.pTratamiento.modificarTratamientoFechaFin(pTratamiento);
     }
     
     public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento){

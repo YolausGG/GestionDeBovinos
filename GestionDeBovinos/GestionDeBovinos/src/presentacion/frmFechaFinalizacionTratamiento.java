@@ -5,6 +5,9 @@
 package presentacion;
 
 
+import clases.Bovino;
+import clases.Enfermedad;
+import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
 import java.text.SimpleDateFormat;
@@ -25,9 +28,11 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
 
         int idTratamiento = frmTratamiento.idTratamiento;
         Tratamiento tratamiento = dControladora.buscarTratamiento(idTratamiento);
+        Bovino bovino = dControladora.buscarBovinoId(tratamiento.getPadece().getIdBovino());
+        Enfermedad enfermedad = dControladora.buscarEnfermedad(tratamiento.getPadece().getIdEnfermedad());
 
-        lblCaravana.setText(tratamiento.getBovino().getCaravanaBovino());
-        lblEnfermedadT.setText(tratamiento.getEnfermedad().getNombre());
+        lblCaravana.setText(bovino.getCaravanaBovino());
+        lblEnfermedadT.setText(enfermedad.getNombre());
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String fechaDate = formato.format(tratamiento.getFechaInicio());
         lblFechaInicioT.setText(fechaDate);
@@ -169,15 +174,17 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
         if (validarCampos()) {
 
             int idTratamiento = frmTratamiento.idTratamiento;
-            Tratamiento tratamiento = dControladora.buscarTratamiento(idTratamiento);
+            Tratamiento t = dControladora.buscarTratamiento(idTratamiento);
+            
+            Padece padece = new Padece(t.getPadece().getIdEnfermedad(), t.getPadece().getIdBovino(), t.getPadece().getFechaInicio(), t.getPadece().getFechaFinalizacion());
 
             Date fechaF = jDateFechaFinalizacionT.getDate();
 
-            Tratamiento tratamientoNuevo = new Tratamiento(tratamiento.getIdTratamiento(),tratamiento.getBovino(), tratamiento.getEnfermedad(), tratamiento.getDetalle(), tratamiento.getFechaInicio(), fechaF);
+            Tratamiento tratamientoNuevo = new Tratamiento(t.getIdTratamiento(),padece, t.getDetalle(), t.getFechaInicio(), fechaF);
 
             try {
                 
-                 boolean resultado = dControladora.modificarTratamiento(tratamientoNuevo);
+                 boolean resultado = dControladora.modificarTratamientoFechaFin(tratamientoNuevo);
                 if (resultado) {
 
                     JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");

@@ -14,6 +14,7 @@ public class pEnfermedad {
     private static final String DELETE_ENFERMEDAD = " DELETE FROM ENFERMEDAD WHERE IDENFERMEDAD = ?";
     private static final String UPDATE_ENFERMEDAD = "UPDATE ENFERMEDAD SET NOMBRE = ?  WHERE IDENFERMEDAD = ?";
     private static final String BUSCAR_ENFERMEDAD = "SELECT * FROM ENFERMEDAD WHERE IDENFERMEDAD = ? ";
+    private static final String BUSCAR_ENFERMEDAD_NOMBRE = "SELECT * FROM ENFERMEDAD WHERE NOMBRE = ? ";
     private static final String BUSCAR_ENFERMEDAD_ULTIMO = "SELECT * FROM ENFERMEDAD "+
             " ORDER BY IDENFERMEDAD DESC "+
             " LIMIT 1";
@@ -71,6 +72,25 @@ public class pEnfermedad {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_ENFERMEDAD);
             statement.setInt(1, idEnfermedad);
+
+            ResultSet resultado = statement.executeQuery();
+            Enfermedad enfermedad = null;
+            if(resultado.next()){
+                enfermedad = getEnfermedadFromResultSet(resultado);
+            }
+            return enfermedad;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static Enfermedad buscarEnfermedadNombre(String pNombre){
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_ENFERMEDAD_NOMBRE);
+            statement.setString(1, pNombre);
 
             ResultSet resultado = statement.executeQuery();
             Enfermedad enfermedad = null;

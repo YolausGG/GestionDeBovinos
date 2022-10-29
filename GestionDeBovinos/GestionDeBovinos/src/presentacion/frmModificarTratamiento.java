@@ -10,9 +10,12 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,12 +37,26 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         jDateFechaFinalizacionT.setDate(tratamiento.getFechaFinalizacion());
         jTextAreaDetalle.setText(tratamiento.getDetalle());
 
-        lblCaravana.setText(tratamiento.getBovino().getCaravanaBovino());
-        lblEnfermedad.setText(tratamiento.getEnfermedad().getNombre());
-        
-        
-        //lblFechaInicioE.setText();
-        //lblFechaFinE.setText(frmTratamiento.fechaFinE);
+        Bovino bovino = dControladora.buscarBovinoId(tratamiento.getPadece().getIdBovino());
+        Enfermedad enfermedad = dControladora.buscarEnfermedad(tratamiento.getPadece().getIdEnfermedad());
+
+        Padece p = new Padece(tratamiento.getPadece().getIdEnfermedad(), tratamiento.getPadece().getIdBovino(), tratamiento.getPadece().getFechaInicio());
+        Padece padece = dControladora.buscarPadece(p);
+
+        lblCaravana.setText(bovino.getCaravanaBovino());
+        lblEnfermedad.setText(enfermedad.getNombre());
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaInicioE = formato.format(padece.getFechaInicio());
+        lblFechaInicioE.setText(fechaInicioE);
+        Date fechaFinE = padece.getFechaFinalizacion();
+
+        if (fechaFinE == null) {
+            lblFechaFinE.setText("SIN FECHA FINALIZACIÓN");
+        } else {
+            String fechaFin = formato.format(fechaFinE);
+            lblFechaFinE.setText(fechaFin);
+        }
 
         actualizarTablaContagiosActivos();
 
@@ -271,21 +288,37 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablePadeceEnfermedadMouseClicked
 
     private void btnModificarTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTratamientoMouseClicked
-
+       
         if (validarCampos()) {
 
             int fila = jTablePadeceEnfermedad.getSelectedRow();
-            
+
             String caravana = lblCaravana.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
-            int idEnfermedad = (int) jTablePadeceEnfermedad.getValueAt(fila, 1);
-            Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
+            
+            
+            Enfermedad enfermedad = dControladora.buscarEnfermedadNombre(lblEnfermedad.getText());
+            int idEnfermedad = enfermedad.getIdEnfermedad();           
+            
+            String fecha = lblFechaInicioE.getText();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaPadece = null;
+            
+            try {           
+                fechaPadece = formato.parse(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(frmModificarTratamiento.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+            
+            Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaPadece);
+
             String detalle = jTextAreaDetalle.getText();
             Date fechaInicioT = jDateFechaInicioT.getDate();
             Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
-
-            Tratamiento tratamiento = new Tratamiento(bovino, enfermedad, detalle, fechaInicioT);
-            Tratamiento tratamientoFechaF = new Tratamiento(bovino, enfermedad, detalle, fechaInicioT, fechaFinalizacionT);
+            
+            int idTratamiento = frmTratamiento.idTratamiento;
+            Tratamiento tratamiento = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT);
+            Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT, fechaFinalizacionT);
 
             try {
 
@@ -295,9 +328,9 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
                     if (resultado) {
 
                         JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
-                       
+
                         limpiarCajas(); // Limpiamos Caja de Texto
-                        
+
                         this.dispose();
                         frmTratamiento tratamiento1 = new frmTratamiento();
                         tratamiento1.setVisible(true);
@@ -311,15 +344,15 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
                     if (resultado) {
 
                         JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
-                        
+
                         limpiarCajas(); // Limpiamos Caja de Texto
-                        
+
                         this.dispose();
                         frmTratamiento tratamiento1 = new frmTratamiento();
                         tratamiento1.setVisible(true);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Tratamiento al Bovino Enfermo");
+                        JOptionPane.showMessageDialog(null, "Error: 111No se pudo Modificar el Tratamiento al Bovino Enfermo");
                     }
                 }
 
@@ -335,7 +368,7 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])  {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

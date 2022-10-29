@@ -71,7 +71,6 @@ public class frmTratamiento extends javax.swing.JFrame {
         jTextAreaDetalle = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePadeceEnfermedad = new javax.swing.JTable();
-        btnBuscarBovino = new javax.swing.JButton();
         btnAltaTratamiento = new javax.swing.JButton();
         jDateFechaFinalizacionT = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -158,14 +157,6 @@ public class frmTratamiento extends javax.swing.JFrame {
                 jScrollPane1.setViewportView(jTablePadeceEnfermedad);
 
                 jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 450, 170));
-
-                btnBuscarBovino.setText("Buscar");
-                btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        btnBuscarBovinoMouseClicked(evt);
-                    }
-                });
-                jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
 
                 btnAltaTratamiento.setText("Ingresar");
                 btnAltaTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,9 +249,9 @@ public class frmTratamiento extends javax.swing.JFrame {
         ArrayList<Tratamiento> listaTratamientos = dControladora.listarTratamientos();
 
         model.addColumn("ID Tratamiento");
-        model.addColumn("Caravana");
-        
+        model.addColumn("Caravana");        
         model.addColumn("Enfermedad");
+        model.addColumn("");
         model.addColumn("Fecha Inicio");
         model.addColumn("Fecha Finalización");
         model.addColumn("Detalle");
@@ -269,12 +260,18 @@ public class frmTratamiento extends javax.swing.JFrame {
         model.addColumn("Eliminar ");
 
         for (Tratamiento t : listaTratamientos) {
-
-            model.addRow(new Object[]{t.getIdTratamiento(), t.getBovino().getCaravanaBovino(), t.getEnfermedad().getNombre(), t.getFechaInicio(), t.getFechaFinalizacion(), t.getDetalle(), finalizar, modificar, eliminar});
+            
+            Bovino bovino = dControladora.buscarBovinoId(t.getPadece().getIdBovino());
+            Enfermedad enfermedad = dControladora.buscarEnfermedad(t.getPadece().getIdEnfermedad());
+            
+            model.addRow(new Object[]{t.getIdTratamiento(), bovino.getCaravanaBovino(), enfermedad.getNombre(), t.getPadece().getFechaInicio(), t.getFechaInicio(), t.getFechaFinalizacion(), t.getDetalle(), finalizar, modificar, eliminar});
         }
 
         jTableTratamiento.setModel(model);
         jTableTratamiento.setRowHeight(25);
+        jTableTratamiento.getColumnModel().getColumn(3).setMaxWidth(0);
+        jTableTratamiento.getColumnModel().getColumn(3).setMinWidth(0);
+        jTableTratamiento.getColumnModel().getColumn(3).setPreferredWidth(0);
     }
 
     public void actualizarTablaContagiosActivos() {
@@ -347,13 +344,17 @@ public class frmTratamiento extends javax.swing.JFrame {
                 Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
                 int idEnfermedad = (int) jTablePadeceEnfermedad.getValueAt(fila, 1);
                 Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
+                Date fechaInicioContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 3);
+                Date fechaFinContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 4);
+                
+                Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaInicioContagio, fechaFinContagio);
 
                 String detalle = jTextAreaDetalle.getText();
                 Date fechaInicioT = jDateFechaInicioT.getDate();
                 Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
 
-                Tratamiento tratamiento = new Tratamiento(bovino, enfermedad, detalle, fechaInicioT);
-                Tratamiento tratamientoFechaF = new Tratamiento(bovino, enfermedad, detalle, fechaInicioT, fechaFinalizacionT);
+                Tratamiento tratamiento = new Tratamiento(padece, detalle, fechaInicioT);
+                Tratamiento tratamientoFechaF = new Tratamiento(padece, detalle, fechaInicioT, fechaFinalizacionT);
 
                 try {
 
@@ -395,17 +396,8 @@ public class frmTratamiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaTratamientoMouseClicked
-
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarBovino buscarBovino = new frmBuscarBovino();
-
-        buscarBovino.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
    
-    public static String fechaIncioE = "";
-    public static String fechaFinE = "";
+    
     private void jTableTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTratamientoMouseClicked
 
         columna = jTableTratamiento.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -425,9 +417,7 @@ public class frmTratamiento extends javax.swing.JFrame {
                         
                         idTratamiento = (int) jTableTratamiento.getValueAt(fila, 0);
                         
-                        fechaIncioE = lblFechaInicioE.getText();
-                        fechaFinE = lblFechaFinE.getText();
-
+                        
                         this.dispose();
                         frmModificarTratamiento modificarTratamiento = new frmModificarTratamiento();
                         modificarTratamiento.setVisible(true); // Abre el formulario de Modificar la Enfermedad
@@ -539,7 +529,6 @@ public class frmTratamiento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaTratamiento;
-    private javax.swing.JButton btnBuscarBovino;
     private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionT;
     private com.toedter.calendar.JDateChooser jDateFechaInicioT;

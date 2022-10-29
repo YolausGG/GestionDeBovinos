@@ -27,6 +27,11 @@ public class dEnfermedad {
         return pEnfermedad.buscarEnfermedad(idEnfermedad);
     }
     
+     public static Enfermedad buscarEnfermedadNombre(String pNombre){
+
+        return pEnfermedad.buscarEnfermedadNombre(pNombre);
+    }
+    
     public static Enfermedad buscarUltimaEnfermedad(){
 
         return pEnfermedad.buscarUltimaEnfermedad();
