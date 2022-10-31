@@ -312,6 +312,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmEventoFuturo";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
@@ -337,6 +338,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
                         this.dispose();
 
                         frmModificarEventoFuturo modificarEventoFuturo = new frmModificarEventoFuturo();
+                        frmInicio.jDkPEscritorio.add(modificarEventoFuturo);
                         modificarEventoFuturo.setVisible(true);
 
                     } else {

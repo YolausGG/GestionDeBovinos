@@ -201,6 +201,7 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
                         this.caravanaMacho = null;
                         this.dispose();
                         frmInseminacion formularioInseminacion = new frmInseminacion();
+                        frmInicio.jDkPEscritorio.add(formularioInseminacion);
                         formularioInseminacion.setVisible(true);
                     }
                     else{
@@ -226,6 +227,7 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarInseminacion";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarHembraMouseClicked
@@ -234,6 +236,7 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
 
         frmBuscarMacho buscarMacho = new frmBuscarMacho();
         frmBuscarMacho.frm = "frmModificarInseminacion";
+        frmInicio.jDkPEscritorio.add(buscarMacho);
         buscarMacho.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarMachoMouseClicked

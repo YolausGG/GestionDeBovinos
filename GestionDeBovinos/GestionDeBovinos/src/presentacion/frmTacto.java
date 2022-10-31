@@ -316,6 +316,7 @@ public class frmTacto extends javax.swing.JInternalFrame {
                         this.dispose();
 
                         frmModificarTacto modificarTacto = new frmModificarTacto();
+                        frmInicio.jDkPEscritorio.add(modificarTacto);
                         modificarTacto.setVisible(true);
 
                     } else {
@@ -455,6 +456,7 @@ public class frmTacto extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmTacto";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

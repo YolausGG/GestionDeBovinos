@@ -200,6 +200,7 @@ public class frmModificarSecado extends javax.swing.JInternalFrame {
                         this.caravana = null;
                         this.dispose();
                         frmSecado formularioSecado = new frmSecado();
+                        frmInicio.jDkPEscritorio.add(formularioSecado);
                         formularioSecado.setVisible(true);
                     } else {
                         this.caravana = null;
@@ -222,6 +223,7 @@ public class frmModificarSecado extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarSecado";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

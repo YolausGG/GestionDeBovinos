@@ -330,6 +330,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmCelo";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
@@ -355,6 +356,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
                         this.dispose();
 
                         frmModificarCelo modificarCelo = new frmModificarCelo();
+                        frmInicio.jDkPEscritorio.add(modificarCelo);
                         modificarCelo.setVisible(true);
 
                     } else {

@@ -187,6 +187,7 @@ public class frmModificarCelo extends javax.swing.JInternalFrame {
                         this.caravana = null;
                         this.dispose();
                         frmCelo formularioCelo = new frmCelo();
+                        frmInicio.jDkPEscritorio.add(formularioCelo);
                         formularioCelo.setVisible(true);
                     }
                     else{
@@ -210,6 +211,7 @@ public class frmModificarCelo extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarCelo";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

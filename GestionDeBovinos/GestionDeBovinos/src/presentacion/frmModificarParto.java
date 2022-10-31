@@ -199,6 +199,7 @@ public class frmModificarParto extends javax.swing.JInternalFrame {
                         this.caravana = null;
                         this.dispose();
                         frmParto formularioParto = new frmParto();
+                        frmInicio.jDkPEscritorio.add(formularioParto);
                         formularioParto.setVisible(true);
                     } else {
                         this.caravana = null;
@@ -221,6 +222,7 @@ public class frmModificarParto extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarParto";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

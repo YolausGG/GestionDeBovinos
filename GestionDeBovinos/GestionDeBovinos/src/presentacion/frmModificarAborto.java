@@ -191,6 +191,7 @@ public class frmModificarAborto extends javax.swing.JInternalFrame {
                         this.caravana = null;
                         this.dispose();
                         frmAborto formularioAborto = new frmAborto();
+                        frmInicio.jDkPEscritorio.add(formularioAborto);
                         formularioAborto.setVisible(true);
                     }
                     else{
@@ -214,6 +215,7 @@ public class frmModificarAborto extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarAborto";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

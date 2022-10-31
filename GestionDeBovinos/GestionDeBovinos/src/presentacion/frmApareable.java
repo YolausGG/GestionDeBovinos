@@ -212,6 +212,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
                         sexo = jTableBovinos.getValueAt(fila, 3).toString();
                         this.dispose();
                         frmModificarBovino modificarBovino = new frmModificarBovino();
+                        frmInicio.jDkPEscritorio.add(modificarBovino);
                         modificarBovino.setVisible(true); // Abre el formulario de Modificar la Enfermedad
 
                     } else {
@@ -227,6 +228,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
                         frmApareable.caravana = caravana;
 
                         frmBajaLogica formularioBajaLogica = new frmBajaLogica();
+                        frmInicio.jDkPEscritorio.add(formularioBajaLogica);
                         formularioBajaLogica.setVisible(true);
 
                         frmBovino1 = this;
@@ -263,6 +265,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
         frmBuscarBovino buscarBovino = new frmBuscarBovino();
         frmBuscarBovino.frm = "frmApareable";
+        frmInicio.jDkPEscritorio.add(buscarBovino);
         buscarBovino.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

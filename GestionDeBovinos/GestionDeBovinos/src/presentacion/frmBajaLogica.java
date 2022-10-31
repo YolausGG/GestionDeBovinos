@@ -143,6 +143,7 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
                 frmBovino.frmBovino1 = null;
 
                 frmBovino formularioBovino = new frmBovino();
+                frmInicio.jDkPEscritorio.add(formularioBovino);
                 formularioBovino.setVisible(true);
                 this.dispose();
             }
@@ -152,6 +153,7 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
                 frmBovino.caravana = "";
 
                 frmBovino formularioBovino = new frmBovino();
+                frmInicio.jDkPEscritorio.add(formularioBovino);
                 formularioBovino.actualizarTabla();
                 this.dispose();
             }

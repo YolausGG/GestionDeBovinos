@@ -332,6 +332,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmSecado";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
@@ -357,6 +358,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
                         this.dispose();
 
                         frmModificarSecado modificarSecado = new frmModificarSecado();
+                        frmInicio.jDkPEscritorio.add(modificarSecado);
                         modificarSecado.setVisible(true);
 
                     } else {

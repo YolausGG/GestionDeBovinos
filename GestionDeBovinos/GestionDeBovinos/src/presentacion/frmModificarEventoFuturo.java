@@ -14,10 +14,10 @@ import java.util.Date;
 public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
-            
+
     public frmModificarEventoFuturo() {
         initComponents();
-        
+
         //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
         this.setTitle("MODIFICAR EVENTOFUTURO");
 
@@ -155,7 +155,7 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     private void btnModificarEventoFuturoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEventoFuturoMouseClicked
 
         if (validarCampos()) {
@@ -177,7 +177,9 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
                     this.caravana = null;
                     this.dispose();
                     frmEventoFuturo formularioEventoFuturo = new frmEventoFuturo();
+                    frmInicio.jDkPEscritorio.add(formularioEventoFuturo);
                     formularioEventoFuturo.setVisible(true);
+
                 } else {
                     this.caravana = null;
                     JOptionPane.showMessageDialog(null, "Evento Futuro No Modificado Correctamente");
@@ -195,6 +197,7 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarEventoFuturo";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

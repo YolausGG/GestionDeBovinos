@@ -201,6 +201,7 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
                         this.caravana = null;
                         this.dispose();
                         frmTacto formularioTacto = new frmTacto();
+                        frmInicio.jDkPEscritorio.add(formularioTacto);
                         formularioTacto.setVisible(true);
                     }
                     else{
@@ -224,6 +225,7 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
 
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmModificarTacto";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked

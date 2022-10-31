@@ -377,6 +377,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
     private void btnBuscarHembraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarHembraMouseClicked
         frmBuscarHembra buscarHembra = new frmBuscarHembra();
         frmBuscarHembra.frm = "frmInseminacion";
+        frmInicio.jDkPEscritorio.add(buscarHembra);
         buscarHembra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarHembraMouseClicked
@@ -402,6 +403,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
                         this.dispose();
 
                         frmModificarInseminacion modificarInseminacion = new frmModificarInseminacion();
+                        frmInicio.jDkPEscritorio.add(modificarInseminacion);
                         modificarInseminacion.setVisible(true);
 
                     } else {
