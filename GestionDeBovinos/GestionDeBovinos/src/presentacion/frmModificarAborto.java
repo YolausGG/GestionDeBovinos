@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -8,22 +8,18 @@ import clases.Aborto;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
-/**
- *
- * @author nico_
- */
-
-public class frmModificarAborto extends javax.swing.JFrame {
+public class frmModificarAborto extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
     
     public frmModificarAborto() {
         initComponents();
-       
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
         this.setTitle("MODIFICAR ABORTO");
         
         lblRCausa.setVisible(false);
@@ -53,7 +49,6 @@ public class frmModificarAborto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,10 +64,6 @@ public class frmModificarAborto extends javax.swing.JFrame {
         txtCaravanaHembra = new javax.swing.JTextField();
         btnModificarAborto = new javax.swing.JButton();
         btnBuscarBovino = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,24 +120,26 @@ public class frmModificarAborto extends javax.swing.JFrame {
         });
         jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 380));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     
+
     public void limpiarCajas() {
 
         txtCaravanaHembra.setText(null);
@@ -171,11 +164,10 @@ public class frmModificarAborto extends javax.swing.JFrame {
         }
     }
     
-    
     private void btnModificarAbortoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarAbortoMouseClicked
-        
+
         if(validarCampos()){
-            
+
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
@@ -194,7 +186,7 @@ public class frmModificarAborto extends javax.swing.JFrame {
                     Aborto aborto = new Aborto(fechaAborto, detalle, hembra, causa);
 
                     if(dControladora.modificarAborto(frmAborto.idAborto, aborto)){
-                        
+
                         JOptionPane.showMessageDialog(null, "Aborto Modificado Correctamente");
                         this.caravana = null;
                         this.dispose();
@@ -226,47 +218,6 @@ public class frmModificarAborto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarAborto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarAborto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarAborto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarAborto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarAborto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
@@ -277,7 +228,6 @@ public class frmModificarAborto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Label lblRCausa;
