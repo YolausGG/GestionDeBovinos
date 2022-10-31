@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -10,6 +10,7 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nico_
  */
-public class frmTratamiento extends javax.swing.JFrame {
+public class frmTratamiento extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
@@ -31,10 +32,14 @@ public class frmTratamiento extends javax.swing.JFrame {
     public static frmTratamiento frmTratamiento1 = null;
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
-
+    
+    /**
+     * Creates new form frmTratamiento1
+     */
     public frmTratamiento() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+         
         this.setTitle("TRATAMIENTO ENFERMEDAD");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
@@ -43,8 +48,6 @@ public class frmTratamiento extends javax.swing.JFrame {
 
         actualizarTabla();
         actualizarTablaContagiosActivos();
-
-        
     }
 
     /**
@@ -56,7 +59,6 @@ public class frmTratamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableTratamiento = new javax.swing.JTable();
@@ -81,7 +83,9 @@ public class frmTratamiento extends javax.swing.JFrame {
         lblFechaFinE = new javax.swing.JLabel();
         lblFechaInicioE = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -232,7 +236,7 @@ public class frmTratamiento extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         jDateFechaInicioT.setDate(null);
@@ -240,7 +244,7 @@ public class frmTratamiento extends javax.swing.JFrame {
         jTextAreaDetalle.setText(null);
 
     }
-
+    
     public void actualizarTabla() {
         jTableTratamiento.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
@@ -272,7 +276,7 @@ public class frmTratamiento extends javax.swing.JFrame {
         jTableTratamiento.getColumnModel().getColumn(3).setMinWidth(0);
         jTableTratamiento.getColumnModel().getColumn(3).setPreferredWidth(0);
     }
-
+    
     public void actualizarTablaContagiosActivos() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -300,6 +304,85 @@ public class frmTratamiento extends javax.swing.JFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
+        
+    private void jTableTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTratamientoMouseClicked
+
+        columna = jTableTratamiento.getColumnModel().getColumnIndexAtX(evt.getX());
+        row = evt.getY() / jTableTratamiento.getRowHeight();
+        if (columna <= jTableTratamiento.getColumnCount() && columna >= 0 && row <= jTableTratamiento.getRowCount() && row >= 0) {
+            Object objeto = jTableTratamiento.getValueAt(row, columna);
+            if (objeto instanceof JButton) {
+                ((JButton) objeto).doClick();
+                JButton botones = (JButton) objeto;
+
+                if (botones.getName().equals("btnModificar")) {
+
+                    int fila = jTableTratamiento.getSelectedRow();
+
+                    if (fila != -1) {
+                        limpiarCajas();
+
+                        idTratamiento = (int) jTableTratamiento.getValueAt(fila, 0);
+
+                        this.dispose();
+                        frmModificarTratamiento modificarTratamiento = new frmModificarTratamiento();
+                        frmInicio.jDkPEscritorio.add(modificarTratamiento);
+                        modificarTratamiento.setVisible(true); // Abre el formulario de Modificar la Enfermedad
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
+                    }
+                }
+                if (botones.getName().equals("btnEliminar")) {
+                    int fila = jTableTratamiento.getSelectedRow();
+
+                    int idTratamiento = (int)this.jTableTratamiento.getValueAt(fila, 0);
+
+                    try {
+
+                        //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
+                        int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Tratamiento del Bovino?", "Eliminar Tratamiento del Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                        if (opcion == 0) {
+
+                            boolean resultado = dControladora.bajaTratamiento(idTratamiento);
+
+                            if (resultado) {
+
+                                JOptionPane.showMessageDialog(null, "Se Elimino correctamente el Tratamiento del Bovino");
+                                actualizarTabla();
+                                limpiarCajas(); // Limpiamos Caja de Texto
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error: No se pudo Eliminar el Tratamiento");
+                            }
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "El Tratamiento del Bovino no se Elimino");
+                        }
+
+                    } catch (Exception e) {
+                        throw e;
+                    }
+
+                }
+                if (botones.getName().equals("btnFinalizar")) {
+
+                    int fila = jTableTratamiento.getSelectedRow();
+
+                    idTratamiento = (int) jTableTratamiento.getValueAt(fila, 0);
+
+                    frmFechaFinalizacionTratamiento frmFechaFT = new frmFechaFinalizacionTratamiento();
+                    frmInicio.jDkPEscritorio.add(frmFechaFT);
+                    frmFechaFT.setVisible(true);
+
+                    frmTratamiento1 = this;
+
+                }
+            }
+        }
+    }//GEN-LAST:event_jTableTratamientoMouseClicked
 
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
@@ -329,7 +412,6 @@ public class frmTratamiento extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
         }
-
     }//GEN-LAST:event_jTablePadeceEnfermedadMouseClicked
 
     private void btnAltaTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaTratamientoMouseClicked
@@ -345,7 +427,7 @@ public class frmTratamiento extends javax.swing.JFrame {
                 Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
                 Date fechaInicioContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 3);
                 Date fechaFinContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 4);
-                
+
                 Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaInicioContagio, fechaFinContagio);
 
                 String detalle = jTextAreaDetalle.getText();
@@ -395,140 +477,10 @@ public class frmTratamiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaTratamientoMouseClicked
-   
-    
-    private void jTableTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTratamientoMouseClicked
 
-        columna = jTableTratamiento.getColumnModel().getColumnIndexAtX(evt.getX());
-        row = evt.getY() / jTableTratamiento.getRowHeight();
-        if (columna <= jTableTratamiento.getColumnCount() && columna >= 0 && row <= jTableTratamiento.getRowCount() && row >= 0) {
-            Object objeto = jTableTratamiento.getValueAt(row, columna);
-            if (objeto instanceof JButton) {
-                ((JButton) objeto).doClick();
-                JButton botones = (JButton) objeto;
-
-                if (botones.getName().equals("btnModificar")) {
-
-                    int fila = jTableTratamiento.getSelectedRow();
-
-                    if (fila != -1) {
-                        limpiarCajas();
-                        
-                        idTratamiento = (int) jTableTratamiento.getValueAt(fila, 0);
-                        
-                        
-                        this.dispose();
-                        frmModificarTratamiento modificarTratamiento = new frmModificarTratamiento();
-                        modificarTratamiento.setVisible(true); // Abre el formulario de Modificar la Enfermedad
-                         
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
-                    }
-                }
-                if (botones.getName().equals("btnEliminar")) {
-                    int fila = jTableTratamiento.getSelectedRow();
-
-                    int idTratamiento = (int)this.jTableTratamiento.getValueAt(fila, 0);
-                    
-                    try {
-
-                        //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                        int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Tratamiento del Bovino?", "Eliminar Tratamiento del Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-                        if (opcion == 0) {
-
-                            boolean resultado = dControladora.bajaTratamiento(idTratamiento);
-
-                            if (resultado) {
-
-                                JOptionPane.showMessageDialog(null, "Se Elimino correctamente el Tratamiento del Bovino");
-                                actualizarTabla();
-                                limpiarCajas(); // Limpiamos Caja de Texto
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Error: No se pudo Eliminar el Tratamiento");
-                            }
-
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "El Tratamiento del Bovino no se Elimino");
-                        }
-
-                    } catch (Exception e) {
-                        throw e;
-                    }
-
-                }
-                if (botones.getName().equals("btnFinalizar")) {
-                    
-                    int fila = jTableTratamiento.getSelectedRow();
-                    
-                    idTratamiento = (int) jTableTratamiento.getValueAt(fila, 0);
-
-                    frmFechaFinalizacionTratamiento frmFechaFT = new frmFechaFinalizacionTratamiento();
-                    frmFechaFT.setVisible(true);
-
-                    frmTratamiento1 = this;
-                     
-                }
-            }
-        }
-    }//GEN-LAST:event_jTableTratamientoMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmTratamiento().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaTratamiento;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionT;
     private com.toedter.calendar.JDateChooser jDateFechaInicioT;
     private javax.swing.JLabel jLabel1;

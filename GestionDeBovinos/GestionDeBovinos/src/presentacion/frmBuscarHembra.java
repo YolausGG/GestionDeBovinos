@@ -1,32 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
 import clases.Hembra;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author nico_
  */
+public class frmBuscarHembra extends javax.swing.JInternalFrame {
 
-public class frmBuscarHembra extends javax.swing.JFrame {
-    
-    
     public static String frm;
 
+    /**
+     * Creates new form frmBuscarHembra1
+     */
     public frmBuscarHembra() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+
         this.setTitle("BUSCAR HEMBRAS");
         actualizarTabla();
-
     }
 
     /**
@@ -38,14 +38,15 @@ public class frmBuscarHembra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHembras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtBuscarCaravana = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,11 +89,13 @@ public class frmBuscarHembra extends javax.swing.JFrame {
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
             );
 
             pack();
@@ -114,7 +117,7 @@ public class frmBuscarHembra extends javax.swing.JFrame {
 
         }
         jTableHembras.setModel(model);
-        
+
     }
 
     public void buscarHembra(String pCaravana) {
@@ -128,9 +131,9 @@ public class frmBuscarHembra extends javax.swing.JFrame {
         model.addColumn("Raza");
 
         for (Hembra h : listaHembra) {
-            
+
             model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo()});
-           
+
         }
 
         jTableHembras.setModel(model);
@@ -138,7 +141,6 @@ public class frmBuscarHembra extends javax.swing.JFrame {
     }
 
     public static String caravana = "";
-
     private void jTableHembrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHembrasMouseClicked
 
         if (evt.getClickCount() == 2) {
@@ -150,84 +152,100 @@ public class frmBuscarHembra extends javax.swing.JFrame {
                 caravana = jTableHembras.getValueAt(fila, 0).toString();
 
                 this.dispose();
-                
+
                 switch (frm) {
                     case "frmProduccion":
                         frmProduccion formularioProduccion = new frmProduccion();
+                        frmInicio.jDkPEscritorio.add(formularioProduccion);
                         formularioProduccion.setVisible(true);
                         break;
                     case "frmCelo":
                         frmCelo formularioCelo = new frmCelo();
+                        frmInicio.jDkPEscritorio.add(formularioCelo);
                         formularioCelo.setVisible(true);
                         break;
                     case "frmAborto":
                         frmAborto formularioAborto = new frmAborto();
+                        frmInicio.jDkPEscritorio.add(formularioAborto);
                         formularioAborto.setVisible(true);
                         break;
                     case "frmParto":
                         frmParto formularioParto = new frmParto();
+                        frmInicio.jDkPEscritorio.add(formularioParto);
                         formularioParto.setVisible(true);
                         break;
                     case "frmSecado":
                         frmSecado formularioSecado = new frmSecado();
+                        frmInicio.jDkPEscritorio.add(formularioSecado);
                         formularioSecado.setVisible(true);
                         break;
                     case "frmTacto":
                         frmTacto formularioTacto = new frmTacto();
+                        frmInicio.jDkPEscritorio.add(formularioTacto);
                         formularioTacto.setVisible(true);
                         break;
                     case "frmInseminacion":
                         frmInseminacion formularioInseminacion = new frmInseminacion();
+                        frmInicio.jDkPEscritorio.add(formularioInseminacion);
                         formularioInseminacion.setVisible(true);
                         break;
                     case "frmEventoFuturo":
                         frmEventoFuturo formularioEventoFuturo = new frmEventoFuturo();
+                        frmInicio.jDkPEscritorio.add(formularioEventoFuturo);
                         formularioEventoFuturo.setVisible(true);
                         break;
                     case "frmModificarProduccion":
                         frmModificarProduccion.caravana = caravana;
                         frmModificarProduccion formularioModificarProduccion = new frmModificarProduccion();
+                        frmInicio.jDkPEscritorio.add(formularioModificarProduccion);
                         formularioModificarProduccion.setVisible(true);
-                        break;    
+                        break;
                     case "frmModificarCelo":
                         frmModificarCelo.caravana = caravana;
                         frmModificarCelo formularioModificarCelo = new frmModificarCelo();
-                        formularioModificarCelo.setVisible(true);                        
+                        frmInicio.jDkPEscritorio.add(formularioModificarCelo);
+                        formularioModificarCelo.setVisible(true);
                         break;
                     case "frmModificarAborto":
                         frmModificarAborto.caravana = caravana;
                         frmModificarAborto formularioModificarAborto = new frmModificarAborto();
-                        formularioModificarAborto.setVisible(true);                        
+                        frmInicio.jDkPEscritorio.add(formularioModificarAborto);
+                        formularioModificarAborto.setVisible(true);
                         break;
                     case "frmModificarSecado":
                         frmModificarSecado.caravana = caravana;
                         frmModificarSecado formularioModificarSecado = new frmModificarSecado();
+                        frmInicio.jDkPEscritorio.add(formularioModificarSecado);
                         formularioModificarSecado.setVisible(true);
-                        break;       
+                        break;
                     case "frmModificarParto":
                         frmModificarParto.caravana = caravana;
                         frmModificarParto formularioModificarParto = new frmModificarParto();
+                        frmInicio.jDkPEscritorio.add(formularioModificarParto);
                         formularioModificarParto.setVisible(true);
                         break;
                     case "frmModificarTacto":
                         frmModificarTacto.caravana = caravana;
                         frmModificarTacto formularioModificarTacto = new frmModificarTacto();
+                        frmInicio.jDkPEscritorio.add(formularioModificarTacto);
                         formularioModificarTacto.setVisible(true);
                         break;
                     case "frmModificarInseminacion":
                         frmModificarInseminacion.caravanaHembra = caravana;
                         frmModificarInseminacion formularioModificarInseminacion = new frmModificarInseminacion();
+                        frmInicio.jDkPEscritorio.add(formularioModificarInseminacion);
                         formularioModificarInseminacion.setVisible(true);
                         break;
                     case "frmModificarEventoFuturo":
                         frmModificarEventoFuturo.caravana = caravana;
                         frmModificarEventoFuturo formularioModificarEventoFuturo = new frmModificarEventoFuturo();
+                        frmInicio.jDkPEscritorio.add(formularioModificarEventoFuturo);
                         formularioModificarEventoFuturo.setVisible(true);
-                        break; 
+                        break;
                     default:
                         throw new AssertionError();
                 }
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono la Hembra");
             }
@@ -240,51 +258,7 @@ public class frmBuscarHembra extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarCaravanaKeyReleased
 
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarHembra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarHembra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarHembra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarHembra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBuscarHembra().setVisible(true);
-
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup grupoBotones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,12 +1,12 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
-
 import clases.Macho;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,17 +15,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nico_
  */
+public class frmBuscarMacho extends javax.swing.JInternalFrame {
 
-public class frmBuscarMacho extends javax.swing.JFrame {
-
-    public static String frm;
-
+     public static String frm;
+     
+    /**
+     * Creates new form frmBuscarMacho1
+     */
     public frmBuscarMacho() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+         
         this.setTitle("BUSCAR MACHOS");
         actualizarTabla();
-
     }
 
     /**
@@ -37,14 +38,15 @@ public class frmBuscarMacho extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMachos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtBuscarCaravana = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,11 +94,15 @@ public class frmBuscarMacho extends javax.swing.JFrame {
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
             );
 
             pack();
@@ -121,8 +127,8 @@ public class frmBuscarMacho extends javax.swing.JFrame {
         jTableMachos.setModel(model);
         
     }
-
-    public void buscarMacho(String pCaravana) {
+    
+     public void buscarMacho(String pCaravana) {
 
         DefaultTableModel model = new DefaultTableModel();
 
@@ -142,9 +148,8 @@ public class frmBuscarMacho extends javax.swing.JFrame {
         jTableMachos.setModel(model);
 
     }
-
-    public static String caravana = "";
-
+     
+    public static String caravana = ""; 
     private void jTableMachosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMachosMouseClicked
 
         if (evt.getClickCount() == 2) {
@@ -156,90 +161,40 @@ public class frmBuscarMacho extends javax.swing.JFrame {
                 caravana = jTableMachos.getValueAt(fila, 0).toString();
 
                 this.dispose();
-                
+
                 switch (frm) {
                     case "frmInseminacion":
-                        frmInseminacion formularioInseminacion = new frmInseminacion();
-                        formularioInseminacion.setVisible(true);
-                        break;
-                     case "frmModificarInseminacion":
-                        frmModificarInseminacion.caravanaMacho = caravana;
-                        frmModificarInseminacion formularioModificarInseminacion = new frmModificarInseminacion();
-                        formularioModificarInseminacion.setVisible(true);
-                        break;  
+                    frmInseminacion formularioInseminacion = new frmInseminacion();
+                    frmInicio.jDkPEscritorio.add(formularioInseminacion);
+                    formularioInseminacion.setVisible(true);
+                    break;
+                    case "frmModificarInseminacion":
+                    frmModificarInseminacion.caravanaMacho = caravana;
+                    frmModificarInseminacion formularioModificarInseminacion = new frmModificarInseminacion();
+                    frmInicio.jDkPEscritorio.add(formularioModificarInseminacion);
+                    formularioModificarInseminacion.setVisible(true);
+                    break;
                     default:
-                        throw new AssertionError();
+                    throw new AssertionError();
                 }
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Error: No se selecciono el Macho");
             }
         }
     }//GEN-LAST:event_jTableMachosMouseClicked
 
+    private void jTableMachosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMachosKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableMachosKeyReleased
+
     private void txtBuscarCaravanaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCaravanaKeyReleased
 
         buscarMacho(txtBuscarCaravana.getText());
     }//GEN-LAST:event_txtBuscarCaravanaKeyReleased
 
-    private void jTableMachosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMachosKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTableMachosKeyReleased
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarMacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarMacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarMacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarMacho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBuscarMacho().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup grupoBotones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

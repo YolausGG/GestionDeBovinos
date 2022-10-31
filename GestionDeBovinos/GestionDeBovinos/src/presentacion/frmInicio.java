@@ -37,7 +37,7 @@ public class frmInicio extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jDesktopPane2 = new javax.swing.JDesktopPane();
+        jDkPEscritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,14 +101,14 @@ public class frmInicio extends javax.swing.JFrame {
         MenuPlegable.add(jLabel6);
         jLabel6.setBounds(0, 200, 220, 50);
 
-        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
-        jDesktopPane2.setLayout(jDesktopPane2Layout);
-        jDesktopPane2Layout.setHorizontalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDkPEscritorioLayout = new javax.swing.GroupLayout(jDkPEscritorio);
+        jDkPEscritorio.setLayout(jDkPEscritorioLayout);
+        jDkPEscritorioLayout.setHorizontalGroup(
+            jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 512, Short.MAX_VALUE)
         );
-        jDesktopPane2Layout.setVerticalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDkPEscritorioLayout.setVerticalGroup(
+            jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -119,12 +119,12 @@ public class frmInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(MenuPlegable, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane2))
+                .addComponent(jDkPEscritorio))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jDesktopPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addComponent(jDkPEscritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -135,8 +135,8 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        frmPrueba prueba = new frmPrueba();
-        jDesktopPane2.add(prueba);
+        frmEstadoConBovino prueba = new frmEstadoConBovino();
+        jDkPEscritorio.add(prueba);
         prueba.setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -177,7 +177,7 @@ public class frmInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPlegable;
-    private javax.swing.JDesktopPane jDesktopPane2;
+    public static javax.swing.JDesktopPane jDkPEscritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

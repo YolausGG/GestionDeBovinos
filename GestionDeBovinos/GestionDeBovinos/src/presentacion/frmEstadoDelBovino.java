@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -18,8 +18,7 @@ import javax.swing.JTable;
  *
  * @author nico_
  */
-
-public class frmEstadoDelBovino extends javax.swing.JFrame {
+public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); 
     JButton eliminar = new JButton("Eliminar");
@@ -27,16 +26,18 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
     
     public static int idEstado = 0;
-
+    
+    /**
+     * Creates new form frmEstadoDelBovino1
+     */
     public frmEstadoDelBovino() {
         initComponents();
-       
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        
         this.setTitle("ESTADOS");
         actualizarTabla();        
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
-        
+        eliminar.setName("btnEliminar");
     }
 
     /**
@@ -57,7 +58,9 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
         btnAltaEstado = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,22 +119,26 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     
+
     public void limpiarCajas() {
 
         txtNombreDelEstado.setText(null);
 
     }
-
+    
     public void actualizarTabla() {
         jTableEstado.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -151,41 +158,11 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
         jTableEstado.setModel(model);
         jTableEstado.setRowHeight(25);
     }
-
-    private void btnAltaEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaEstadoMouseClicked
-
-        String nombre = txtNombreDelEstado.getText();
-
-        EstadoDelBovino estado = new EstadoDelBovino(nombre);
-
-        try {
-                      
-            
-            if(txtNombreDelEstado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe Ingresar el Estado Nuevo");
-            }
-            else{
-                boolean resultado = dControladora.altaEstadoDelBovino(estado);
-            if (resultado) {
-
-                JOptionPane.showMessageDialog(null, "Estado Ingresado Correctamente");
-                actualizarTabla();
-                limpiarCajas(); // Limpiamos Caja de Texto
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Estado");
-            }
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-    }//GEN-LAST:event_btnAltaEstadoMouseClicked
     
     public static String nombreEnfermedad = "";
     public static int idEnfermedad = 0;
-    
     private void jTableEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEstadoMouseClicked
-        
+
         columna = jTableEstado.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / jTableEstado.getRowHeight();
         if (columna <= jTableEstado.getColumnCount() && columna >= 0 && row <= jTableEstado.getRowCount() && row >= 0) {
@@ -200,13 +177,14 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
 
                     if (fila != -1) {
                         limpiarCajas();
-                        
+
                         idEstado = (int) jTableEstado.getValueAt(fila, 0);
-                                              
+
                         this.dispose();
                         frmModificarEstadoDelBovino modificarEstadoDelBovino = new frmModificarEstadoDelBovino();
+                        frmInicio.jDkPEscritorio.add(modificarEstadoDelBovino);
                         modificarEstadoDelBovino.setVisible(true); // Abre el formulario de Modificar la Enfermedad
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se selecciono la Enfermedad a modificar");
                     }
@@ -246,57 +224,49 @@ public class frmEstadoDelBovino extends javax.swing.JFrame {
                 }
             }
         }
-
     }//GEN-LAST:event_jTableEstadoMouseClicked
 
+    private void btnAltaEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaEstadoMouseClicked
+
+        String nombre = txtNombreDelEstado.getText();
+
+        EstadoDelBovino estado = new EstadoDelBovino(nombre);
+
+        try {
+
+            if(txtNombreDelEstado.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe Ingresar el Estado Nuevo");
+            }
+            else{
+                boolean resultado = dControladora.altaEstadoDelBovino(estado);
+                if (resultado) {
+
+                    JOptionPane.showMessageDialog(null, "Estado Ingresado Correctamente");
+                    actualizarTabla();
+                    limpiarCajas(); // Limpiamos Caja de Texto
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Estado");
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }//GEN-LAST:event_btnAltaEstadoMouseClicked
+
     private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-       
+
         MessageFormat header = new MessageFormat("Reporte ");
         MessageFormat footer = new MessageFormat("Page {0, number, integer}");
-        
+
         try {
             jTableEstado.print(JTable.PrintMode.NORMAL, header, footer);
         } catch (java.awt.print.PrinterException e) {
             System.err.format("No se pudo Imprimir", e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnImprimirMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoDelBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoDelBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoDelBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoDelBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmEstadoDelBovino().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaEstado;

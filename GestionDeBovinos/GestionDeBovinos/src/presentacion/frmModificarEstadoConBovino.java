@@ -1,9 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
-
 
 import clases.Bovino;
 import clases.EstadoBovino;
@@ -13,18 +12,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import persistencia.pEstadoDelBovino;
+import static presentacion.frmModificarEstadoConBovino.caravana;
 
 /**
  *
  * @author nico_
  */
-public class frmModificarEstadoConBovino extends javax.swing.JFrame {
+public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
-
+    
+    /**
+     * Creates new form frmModificarEstadoConBovino1
+     */
     public frmModificarEstadoConBovino() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        
         this.setTitle("MODIFICAR ESTADO DEL BOVINO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
@@ -49,7 +53,6 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
         
         cboModificarEstado.getModel().setSelectedItem(estadoDelBovino);
         cboModificarEstado.setSelectedItem(estadoDelBovino);
-        
     }
 
     /**
@@ -61,7 +64,6 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,7 +80,9 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
         cboModificarEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,7 +194,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         txtModificarCaravanaBovino.setText(null);
@@ -199,7 +203,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
         cboModificarEstado.setSelectedIndex(0);
 
     }
-
+    
     private void llenarComboEstado() {
 
         ArrayList<EstadoDelBovino> listaEstados = pEstadoDelBovino.listarEstadosDelBovino();
@@ -210,19 +214,31 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
         }
 
     }
+    
+    private void txtModificarCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModificarCaravanaBovinoKeyReleased
+
+    }//GEN-LAST:event_txtModificarCaravanaBovinoKeyReleased
+
+    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
+        frmBuscarBovino buscarBovino = new frmBuscarBovino();
+        frmBuscarBovino.frm = "frmModificarEstadoConBovino";
+        frmInicio.jDkPEscritorio.add(buscarBovino);
+        buscarBovino.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
     private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
 
         if (validarCampos()) {
-            
+
             EstadoBovino estadoBovino = frmEstadoConBovino.estadoBovino;
-            
+
             String caravanaVieja = frmEstadoConBovino.caravana;
             Bovino bovinoViejo = dControladora.buscarBovinoCaravana(caravanaVieja);
             Date fechaIEVieja = estadoBovino.getFechaInicio();
             Date fechaFEVieja = estadoBovino.getFechaFinalizacion();
             EstadoDelBovino estadoViejo = dControladora.buscarEstadoDelBovino(estadoBovino.getIdEstadoDelBovino());
-            
+
             String caravana = txtModificarCaravanaBovino.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
             Date fechaIE = jDateModificarFechaIE.getDate();
@@ -231,10 +247,10 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
 
             EstadoBovino estadoBovinoViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(),bovinoViejo.getIdBovino(), fechaIEVieja);
             EstadoBovino estadoFechaInicio = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(),bovino.getIdBovino(), fechaIE);
-            
+
             EstadoBovino estadoBViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(),bovinoViejo.getIdBovino(), fechaIEVieja,fechaFEVieja);
             EstadoBovino estadoBovinoCompleto = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(),bovino.getIdBovino(), fechaIE, fechaFE);
-            
+
             try {
                 if (jDateModificarFechaFE.getDate() == null) {
                     boolean resultado = dControladora.modificarEstadoBovinoFechaInicio(estadoFechaInicio, estadoBovinoViejo);
@@ -246,6 +262,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
 
                         this.dispose();
                         frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
+                        frmInicio.jDkPEscritorio.add(estadoConBovino);
                         estadoConBovino.setVisible(true);
 
                     } else {
@@ -260,6 +277,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
 
                         this.dispose();
                         frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
+                        frmInicio.jDkPEscritorio.add(estadoConBovino);
                         estadoConBovino.setVisible(true);
 
                     } else {
@@ -273,92 +291,13 @@ public class frmModificarEstadoConBovino extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
 
-
     }//GEN-LAST:event_btnModificarMouseClicked
 
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarBovino buscarBovino = new frmBuscarBovino();
-        frmBuscarBovino.frm = "frmModificarEstadoConBovino";
-        buscarBovino.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
-    private void txtModificarCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModificarCaravanaBovinoKeyReleased
-
-    }//GEN-LAST:event_txtModificarCaravanaBovinoKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarEstadoConBovino().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<Object> cboModificarEstado;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateModificarFechaFE;
     private com.toedter.calendar.JDateChooser jDateModificarFechaIE;
     private javax.swing.JLabel jLabel2;

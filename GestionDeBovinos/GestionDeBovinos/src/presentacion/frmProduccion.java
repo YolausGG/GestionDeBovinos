@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -8,6 +8,7 @@ import clases.BotonesTabla;
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -18,16 +19,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nico_
  */
-public class frmProduccion extends javax.swing.JFrame {
+public class frmProduccion extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    /**
+     * Creates new form frmProduccion1
+     */
     public frmProduccion() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+         
         this.setTitle("PRODUCCION DE LECHE MENSUAL");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
@@ -47,7 +52,6 @@ public class frmProduccion extends javax.swing.JFrame {
         } else {
             actualizarTablaHembra();
         }
-
     }
 
     /**
@@ -59,7 +63,6 @@ public class frmProduccion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProduccionHembra = new javax.swing.JTable();
@@ -87,7 +90,9 @@ public class frmProduccion extends javax.swing.JFrame {
         lblRPrimeraProduccion = new javax.swing.JLabel();
         lblRFechaProduccion = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -148,8 +153,6 @@ public class frmProduccion extends javax.swing.JFrame {
             jLabel3.setText("Grasas:");
             jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 160, -1));
             jPanel1.add(txtPrimeraProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 100, 30));
-            txtPrimeraProduccion.getAccessibleContext().setAccessibleName("");
-            txtPrimeraProduccion.getAccessibleContext().setAccessibleDescription("Lts.");
 
             jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel5.setText("Primera Produccion (lts):");
@@ -214,8 +217,7 @@ public class frmProduccion extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(16, 16, 16))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +246,7 @@ public class frmProduccion extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         txtCaravanaHembra.setText(null);
@@ -257,7 +259,7 @@ public class frmProduccion extends javax.swing.JFrame {
         txtCelulasSomaticas.setText(null);
 
     }
-
+    
     public void actualizarTabla() {
         jTableProduccionHembra.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
@@ -289,7 +291,7 @@ public class frmProduccion extends javax.swing.JFrame {
         jTableProduccionHembra.setModel(model);
         jTableProduccionHembra.setRowHeight(25);
     }
-
+    
     public void actualizarTablaHembra() {
 
         jTableProduccionHembra.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -321,7 +323,7 @@ public class frmProduccion extends javax.swing.JFrame {
         jTableProduccionHembra.setModel(model);
         jTableProduccionHembra.setRowHeight(25);
     }
-
+    
     public static int idProduccion = 0;
     private void jTableProduccionHembraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProduccionHembraMouseClicked
 
@@ -344,6 +346,7 @@ public class frmProduccion extends javax.swing.JFrame {
 
                         this.dispose();
                         frmModificarProduccion modificarProduccion = new frmModificarProduccion();
+                        frmInicio.jDkPEscritorio.add(modificarProduccion);
                         modificarProduccion.setVisible(true); // Abre el formulario de Modificar la Enfermedad
 
                     } else {
@@ -422,63 +425,25 @@ public class frmProduccion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarProduccionMouseClicked
 
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarHembra buscarHembra = new frmBuscarHembra();
-        frmBuscarHembra.frm = "frmProduccion";
-        buscarHembra.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
     private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
-        
+
         if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
         }
     }//GEN-LAST:event_txtCaravanaHembraKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
+        frmBuscarHembra buscarHembra = new frmBuscarHembra();
+        frmBuscarHembra.frm = "frmProduccion";        
+        frmInicio.jDkPEscritorio.add(buscarHembra);
+        buscarHembra.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmProduccion().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnIngresarProduccion;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaProduccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

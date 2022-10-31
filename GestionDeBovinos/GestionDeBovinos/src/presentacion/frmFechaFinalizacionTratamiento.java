@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -13,16 +13,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author nico_
  */
-public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
+public class frmFechaFinalizacionTratamiento extends javax.swing.JInternalFrame {
 
+    /**
+     * Creates new form frmFechaFinalizacionTratamiento1
+     */
     public frmFechaFinalizacionTratamiento() {
         initComponents();
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
         this.setTitle("FECHA FINALIZACIÓN TRATAMIENTO");
         lblRFechaFT.setVisible(false);
 
@@ -36,7 +38,6 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String fechaDate = formato.format(tratamiento.getFechaInicio());
         lblFechaInicioT.setText(fechaDate);
-
     }
 
     /**
@@ -48,7 +49,6 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jDateFechaFinalizacionT = new com.toedter.calendar.JDateChooser();
@@ -63,8 +63,9 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         lblRFechaFT = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,11 +135,15 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -161,21 +166,20 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         jDateFechaFinalizacionT.setDate(null);
 
     }
-
-
+    
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
 
         if (validarCampos()) {
 
             int idTratamiento = frmTratamiento.idTratamiento;
             Tratamiento t = dControladora.buscarTratamiento(idTratamiento);
-            
+
             Padece padece = new Padece(t.getPadece().getIdEnfermedad(), t.getPadece().getIdBovino(), t.getPadece().getFechaInicio(), t.getPadece().getFechaFinalizacion());
 
             Date fechaF = jDateFechaFinalizacionT.getDate();
@@ -183,8 +187,8 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
             Tratamiento tratamientoNuevo = new Tratamiento(t.getIdTratamiento(),padece, t.getDetalle(), t.getFechaInicio(), fechaF);
 
             try {
-                
-                 boolean resultado = dControladora.modificarTratamientoFechaFin(tratamientoNuevo);
+
+                boolean resultado = dControladora.modificarTratamientoFechaFin(tratamientoNuevo);
                 if (resultado) {
 
                     JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
@@ -193,6 +197,7 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
                     frmTratamiento.frmTratamiento1 = null;
 
                     frmTratamiento fTratamiento = new frmTratamiento();
+                    frmInicio.jDkPEscritorio.add(fTratamiento);
                     fTratamiento.setVisible(true);
                     this.dispose();
 
@@ -210,85 +215,17 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
-
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        
+
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmFechaFinalizacionTratamiento().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionT;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

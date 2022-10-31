@@ -1,9 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
-
 
 import clases.Bovino;
 import clases.EstadoBovino;
@@ -12,16 +11,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author nico_
  */
-public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
+public class frmFechaFinalizacionEstado extends javax.swing.JInternalFrame {
 
+    /**
+     * Creates new form frmFechaFinalizacionEstado1
+     */
     public frmFechaFinalizacionEstado() {
         initComponents();
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
         this.setTitle("FECHA FINALIZACIÓN ESTADO");
         lblRFechaF.setVisible(false);
 
@@ -44,7 +45,6 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jDateFechaFinalizacionE = new com.toedter.calendar.JDateChooser();
@@ -59,8 +59,9 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         lblRFechaF = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -99,17 +100,17 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
         lblFechaInicioE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblFechaInicioE.setForeground(new java.awt.Color(0, 0, 0));
         lblFechaInicioE.setText("...");
-        jPanel2.add(lblFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 100, 20));
+        jPanel2.add(lblFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 190, 20));
 
         lblCaravana.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblCaravana.setForeground(new java.awt.Color(0, 0, 0));
         lblCaravana.setText("...");
-        jPanel2.add(lblCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, 20));
+        jPanel2.add(lblCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 180, 20));
 
         lblEstado.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(0, 0, 0));
         lblEstado.setText("...");
-        jPanel2.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 80, 20));
+        jPanel2.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 200, 20));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,11 +131,11 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,22 +158,21 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         jDateFechaFinalizacionE.setDate(null);
 
     }
-
-
+    
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
 
         if (validarCampos()) {
-            
+
             EstadoBovino estado = frmEstadoConBovino.estadoBovino;
-                 
-            Date fechaF = jDateFechaFinalizacionE.getDate(); 
-            
+
+            Date fechaF = jDateFechaFinalizacionE.getDate();
+
             EstadoBovino estadoViejo = new EstadoBovino(estado.getIdEstadoDelBovino(),estado.getIdBovino(),estado.getFechaInicio());
             EstadoBovino estadoNuevo = new EstadoBovino(estado.getIdEstadoDelBovino(),estado.getIdBovino(),estado.getFechaInicio(), fechaF);
 
@@ -181,22 +181,21 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
                 if (dControladora.modificarEstadoBovino(estadoNuevo, estadoViejo)) {
 
                     JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
-                    
-                    
+
                     frmEstadoConBovino.frmEstadoConBovino1.dispose();
                     frmEstadoConBovino.frmEstadoConBovino1 = null;
-                    
+
                     frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
+                    frmInicio.jDkPEscritorio.add(fEstadoConBovino);
                     fEstadoConBovino.setVisible(true);
                     this.dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
-                  
-                    
-                   frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
-                   fEstadoConBovino.actualizarTabla();
-                   this.dispose();
+
+                    frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
+                    fEstadoConBovino.actualizarTabla();
+                    this.dispose();
                 }
 
             } catch (Exception e) {
@@ -205,7 +204,6 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
-
     }//GEN-LAST:event_btnConfirmarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -213,77 +211,10 @@ public class frmFechaFinalizacionEstado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionEstado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionEstado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionEstado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmFechaFinalizacionEstado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmFechaFinalizacionEstado().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionE;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

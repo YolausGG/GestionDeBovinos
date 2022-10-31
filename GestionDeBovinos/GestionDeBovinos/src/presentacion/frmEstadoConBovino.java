@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -9,6 +9,7 @@ import clases.Bovino;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -20,8 +21,8 @@ import persistencia.pEstadoDelBovino;
  *
  * @author nico_
  */
-public class frmEstadoConBovino extends javax.swing.JFrame {
-
+public class frmEstadoConBovino extends javax.swing.JInternalFrame {
+    
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
     JButton finalizar = new JButton("Finalizar");
@@ -32,9 +33,12 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    /**
+     * Creates new form frmEstadoConBovino1
+     */
     public frmEstadoConBovino() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
         this.setTitle("ASIGNAR ESTADO A BOVINO");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
@@ -53,7 +57,6 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         } else {
             actualizarTablaEstadoB();
         }
-
     }
 
     /**
@@ -65,7 +68,6 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEstadoConBovino = new javax.swing.JTable();
@@ -84,7 +86,9 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         cboEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -220,7 +224,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         txtCaravanaBovino.setText(null);
@@ -229,7 +233,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         cboEstado.setSelectedIndex(0);
 
     }
-
+    
     public void actualizarTabla() {
         jTableEstadoConBovino.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
@@ -259,7 +263,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         jTableEstadoConBovino.getColumnModel().getColumn(1).setMinWidth(0);
         jTableEstadoConBovino.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-
+    
     public void actualizarTablaEstadoB() {
 
         jTableEstadoConBovino.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -294,7 +298,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         jTableEstadoConBovino.getColumnModel().getColumn(1).setMinWidth(0);
         jTableEstadoConBovino.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-
+    
     private void llenarComboEstado() {
 
         ArrayList<EstadoDelBovino> listaEstados = pEstadoDelBovino.listarEstadosDelBovino();
@@ -305,7 +309,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         }
 
     }
-
+    
     public static String caravana = "";
     public static String estado = "";
     private void jTableEstadoConBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEstadoConBovinoMouseClicked
@@ -319,7 +323,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
                 JButton botones = (JButton) objeto;
 
                 if (botones.getName().equals("btnModificar")) {
-                    
+
                     int fila = jTableEstadoConBovino.getSelectedRow();
 
                     if (fila != -1) {
@@ -335,6 +339,7 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
 
                         this.dispose();
                         frmModificarEstadoConBovino modificarEstadoConBovino = new frmModificarEstadoConBovino();
+                        frmInicio.jDkPEscritorio.add(modificarEstadoConBovino);
                         modificarEstadoConBovino.setVisible(true); // Abre el formulario de Modificar la Enfermedad
 
                     } else {
@@ -363,12 +368,12 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
 
                             if (resultado) {
 
-                                JOptionPane.showMessageDialog(null, "Se Elimino correctamente el Bovino Enfermo");
+                                JOptionPane.showMessageDialog(null, "Se Elimino correctamente el Estado del Bovino");
                                 actualizarTabla();
                                 limpiarCajas(); // Limpiamos Caja de Texto
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error: No se pudo Eliminar el Bovino Enfermo");
+                                JOptionPane.showMessageDialog(null, "Error: No se pudo Eliminar el Estado del Bovino");
                             }
 
                         } else {
@@ -382,17 +387,18 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
 
                 }
                 if (botones.getName().equals("btnFinalizar")) {
-                    
+
                     int fila = jTableEstadoConBovino.getSelectedRow();
-                    
+
                     caravana = this.jTableEstadoConBovino.getValueAt(fila, 0).toString();
                     Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
                     estadoBovino.setIdBovino(bovino.getIdBovino());
                     estadoBovino.setIdEstadoDelBovino(Integer.parseInt(this.jTableEstadoConBovino.getValueAt(fila, 1).toString()));
                     estado = this.jTableEstadoConBovino.getValueAt(fila, 2).toString();
                     estadoBovino.setFechaInicio((Date) this.jTableEstadoConBovino.getValueAt(fila, 3));
-                    
+
                     frmFechaFinalizacionEstado frmFechaF = new frmFechaFinalizacionEstado();
+                    frmInicio.jDkPEscritorio.add(frmFechaF);
                     frmFechaF.setVisible(true);
 
                     frmEstadoConBovino1 = this;
@@ -400,6 +406,21 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTableEstadoConBovinoMouseClicked
+
+    private void txtCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaBovinoKeyReleased
+        if (txtCaravanaBovino.getText().isEmpty()) {
+            actualizarTabla();
+
+        }
+    }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
+
+    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
+        frmBuscarBovino buscarBovino = new frmBuscarBovino();
+        frmBuscarBovino.frm = "frmEstadoConBovino";
+        frmInicio.jDkPEscritorio.add(buscarBovino);
+        buscarBovino.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
 
@@ -453,76 +474,11 @@ public class frmEstadoConBovino extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarMouseClicked
 
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarBovino buscarBovino = new frmBuscarBovino();
-        frmBuscarBovino.frm = "frmEstadoConBovino";
-        buscarBovino.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
-    private void txtCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaBovinoKeyReleased
-        if (txtCaravanaBovino.getText().isEmpty()) {
-            actualizarTabla();
-
-        }
-    }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmEstadoConBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmEstadoConBovino().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<Object> cboEstado;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionE;
     private com.toedter.calendar.JDateChooser jDateFechaInicioE;
     private javax.swing.JLabel jLabel2;

@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -10,6 +10,7 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,16 +20,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author nico_
  */
-public class frmModificarTratamiento extends javax.swing.JFrame {
+public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
+    /**
+     * Creates new form frmModificarTratamiento1
+     */
     public frmModificarTratamiento() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        
         this.setTitle("MODIFICAR TRATAMIENTO ENFERMEDAD");
 
         lblRFechaInicioT.setVisible(false);
@@ -60,7 +64,6 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         }
 
         actualizarTablaContagiosActivos();
-
     }
 
     /**
@@ -72,7 +75,6 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -95,7 +97,9 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         lblFechaFinE = new javax.swing.JLabel();
         lblFechaInicioE = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -191,14 +195,15 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             pack();
@@ -220,15 +225,15 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
             return false;
         }
     }
-
-    public void limpiarCajas() {
+    
+     public void limpiarCajas() {
 
         jDateFechaInicioT.setDate(null);
         jDateFechaFinalizacionT.setDate(null);
         jTextAreaDetalle.setText(null);
 
     }
-
+     
     public void actualizarTablaContagiosActivos() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -256,7 +261,7 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-
+    
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
         int fila = jTablePadeceEnfermedad.getSelectedRow();
@@ -285,38 +290,36 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
         }
-
     }//GEN-LAST:event_jTablePadeceEnfermedadMouseClicked
 
     private void btnModificarTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTratamientoMouseClicked
-       
+
         if (validarCampos()) {
 
             int fila = jTablePadeceEnfermedad.getSelectedRow();
 
             String caravana = lblCaravana.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
-            
-            
+
             Enfermedad enfermedad = dControladora.buscarEnfermedadNombre(lblEnfermedad.getText());
-            int idEnfermedad = enfermedad.getIdEnfermedad();           
-            
+            int idEnfermedad = enfermedad.getIdEnfermedad();
+
             String fecha = lblFechaInicioE.getText();
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaPadece = null;
-            
-            try {           
+
+            try {
                 fechaPadece = formato.parse(fecha);
             } catch (ParseException ex) {
                 Logger.getLogger(frmModificarTratamiento.class.getName()).log(Level.SEVERE, null, ex);
-            }            
-            
+            }
+
             Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaPadece);
 
             String detalle = jTextAreaDetalle.getText();
             Date fechaInicioT = jDateFechaInicioT.getDate();
             Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
-            
+
             int idTratamiento = frmTratamiento.idTratamiento;
             Tratamiento tratamiento = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT);
             Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT, fechaFinalizacionT);
@@ -334,6 +337,7 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
 
                         this.dispose();
                         frmTratamiento tratamiento1 = new frmTratamiento();
+                        frmInicio.jDkPEscritorio.add(tratamiento1);
                         tratamiento1.setVisible(true);
 
                     } else {
@@ -350,6 +354,7 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
 
                         this.dispose();
                         frmTratamiento tratamiento1 = new frmTratamiento();
+                        frmInicio.jDkPEscritorio.add(tratamiento1);
                         tratamiento1.setVisible(true);
 
                     } else {
@@ -366,76 +371,9 @@ public class frmModificarTratamiento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarTratamientoMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[])  {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarTratamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarTratamiento().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarTratamiento;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionT;
     private com.toedter.calendar.JDateChooser jDateFechaInicioT;
     private javax.swing.JLabel jLabel1;

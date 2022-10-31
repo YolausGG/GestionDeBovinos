@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -16,12 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.pEnfermedad;
 
-
 /**
  *
  * @author nico_
  */
-public class frmPadeceEnfermedad extends javax.swing.JFrame {
+public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
@@ -33,9 +32,12 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    /**
+     * Creates new form frmPadeceEnfermedad1
+     */
     public frmPadeceEnfermedad() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+
         this.setTitle("BOVINO PADECE ENFERMEDAD");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
@@ -53,7 +55,6 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         } else {
             actualizarTablaPadeceB();
         }
-
     }
 
     /**
@@ -65,7 +66,6 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePadeceEnfermedad = new javax.swing.JTable();
@@ -84,7 +84,9 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         cboEnfermedad = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -229,7 +231,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         cboEnfermedad.setSelectedIndex(0);
 
     }
-
+    
     public void actualizarTabla() {
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
@@ -259,7 +261,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-
+    
     public void actualizarTablaPadeceB() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -292,7 +294,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-
+    
     private void llenarComboEnfermedad() {
 
         ArrayList<Enfermedad> listaEnfermedades = pEnfermedad.listarEnfermedades();
@@ -303,7 +305,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         }
 
     }
-
+    
     public static String caravana = "";
     public static String enfermedad = "";
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
@@ -329,10 +331,11 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
                         padece.setIdEnfermedad(Integer.parseInt(this.jTablePadeceEnfermedad.getValueAt(fila, 1).toString()));
                         enfermedad = this.jTablePadeceEnfermedad.getValueAt(fila, 2).toString();
                         padece.setFechaInicio((Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3));
-                        padece.setFechaFinalizacion((Date)this.jTablePadeceEnfermedad.getValueAt(fila, 4)); 
+                        padece.setFechaFinalizacion((Date) this.jTablePadeceEnfermedad.getValueAt(fila, 4));
 
                         this.dispose();
                         frmModificarPadeceEnfermedad modificarPadeceEnfermedad = new frmModificarPadeceEnfermedad();
+                        frmInicio.jDkPEscritorio.add(modificarPadeceEnfermedad);
                         modificarPadeceEnfermedad.setVisible(true); // Abre el formulario de Modificar la Enfermedad
 
                     } else {
@@ -390,6 +393,7 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
                     padece.setFechaInicio((Date) this.jTablePadeceEnfermedad.getValueAt(fila, 3));
 
                     frmFechaFinalizacionEnfermedad frmFechaF = new frmFechaFinalizacionEnfermedad();
+                    frmInicio.jDkPEscritorio.add(frmFechaF);
                     frmFechaF.setVisible(true);
 
                     frmPadeceEnfermedad1 = this;
@@ -397,6 +401,22 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTablePadeceEnfermedadMouseClicked
+
+    private void txtCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaBovinoKeyReleased
+        if (txtCaravanaBovino.getText().isEmpty()) {
+            actualizarTabla();
+
+        }
+    }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
+
+    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
+        frmBuscarBovino buscarBovino = new frmBuscarBovino();
+
+        frmBuscarBovino.frm = "frmPadeceEnfermedad";
+        frmInicio.jDkPEscritorio.add(buscarBovino);
+        buscarBovino.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
 
@@ -448,72 +468,13 @@ public class frmPadeceEnfermedad extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
-
     }//GEN-LAST:event_btnIngresarMouseClicked
 
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarBovino buscarBovino = new frmBuscarBovino();
-
-        frmBuscarBovino.frm = "frmPadeceEnfermedad";
-        buscarBovino.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
-    private void txtCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaBovinoKeyReleased
-        if (txtCaravanaBovino.getText().isEmpty()) {
-            actualizarTabla();
-
-        }
-    }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmPadeceEnfermedad().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<Object> cboEnfermedad;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateFechaFinalizacionE;
     private com.toedter.calendar.JDateChooser jDateFechaInicioE;
     private javax.swing.JLabel jLabel2;

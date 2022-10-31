@@ -1,22 +1,24 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
-
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author nico_
  */
+public class frmModificarEnfermedad extends javax.swing.JInternalFrame {
 
-public class frmModificarEnfermedad extends javax.swing.JFrame {
-
+    /**
+     * Creates new form frmModificarEnfermedad1
+     */
     public frmModificarEnfermedad() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
         this.setTitle("MODIFICAR ENFERMEDAD");
 
         frmEnfermedad nuevo = new frmEnfermedad();
@@ -40,7 +42,9 @@ public class frmModificarEnfermedad extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnModificarEnfermedad = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -66,11 +70,11 @@ public class frmModificarEnfermedad extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,12 +85,11 @@ public class frmModificarEnfermedad extends javax.swing.JFrame {
         txtModificarEnfermedad.setText(null);
 
     }
-
+    
     private void btnModificarEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarEnfermedadMouseClicked
 
-              
         frmEnfermedad nuevo = new frmEnfermedad();
-        
+
         int id = nuevo.idEnfermedad;
         String nombre = txtModificarEnfermedad.getText();
 
@@ -100,6 +103,7 @@ public class frmModificarEnfermedad extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Enfermedad Modificada Correctamente");
                 limpiarCajas(); // Limpiamos Caja de Texto
                 this.dispose();
+                frmInicio.jDkPEscritorio.add(nuevo);
                 nuevo.actualizarTabla();
                 nuevo.setVisible(true);
             } else {
@@ -110,41 +114,6 @@ public class frmModificarEnfermedad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarEnfermedadMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarEnfermedad().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarEnfermedad;

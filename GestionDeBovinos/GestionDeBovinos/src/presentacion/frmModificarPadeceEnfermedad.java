@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -12,18 +12,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import persistencia.pEnfermedad;
+import static presentacion.frmModificarPadeceEnfermedad.caravana;
 
 /**
  *
  * @author nico_
  */
-public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
+public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
 
-    public static String caravana = null;
-
+     public static String caravana = null;
+     
+    /**
+     * Creates new form frmModificarPadeceEnfermedad1
+     */
     public frmModificarPadeceEnfermedad() {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        initComponents();        
+         
         this.setTitle("MODIFICAR BOVINO ENFERMO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
@@ -47,7 +51,6 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         
         cboModificarEnfermedad.getModel().setSelectedItem(enfermedad);
         cboModificarEnfermedad.setSelectedItem(enfermedad);
-        
     }
 
     /**
@@ -59,7 +62,6 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -76,7 +78,9 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         cboModificarEnfermedad = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,12 +92,6 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 160, -1));
         jPanel2.add(jDateModificarFechaIE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 160, 30));
         jPanel2.add(jDateModificarFechaFE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 160, 30));
-
-        txtModificarCaravanaBovino.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtModificarCaravanaBovinoKeyReleased(evt);
-            }
-        });
         jPanel2.add(txtModificarCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 100, 30));
 
         btnBuscarBovino.setText("Buscar");
@@ -146,15 +144,12 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,7 +183,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     public void limpiarCajas() {
 
         txtModificarCaravanaBovino.setText(null);
@@ -197,7 +192,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         cboModificarEnfermedad.setSelectedIndex(0);
 
     }
-
+    
     private void llenarComboEnfermedad() {
 
         ArrayList<Enfermedad> listaEnfermedades = pEnfermedad.listarEnfermedades();
@@ -208,6 +203,14 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
         }
 
     }
+    
+    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
+        frmBuscarBovino buscarBovino = new frmBuscarBovino();
+        frmBuscarBovino.frm = "frmModificarPadeceEnfermedad";
+        frmInicio.jDkPEscritorio.add(buscarBovino);
+        buscarBovino.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
     private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
 
@@ -217,7 +220,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
             Date fechaIEVieja = frmPadeceEnfermedad.padece.getFechaInicio();
             Date fechaFEVieja = frmPadeceEnfermedad.padece.getFechaFinalizacion();
             Enfermedad enfermedadVieja = dControladora.buscarEnfermedad(frmPadeceEnfermedad.padece.getIdEnfermedad());
-            
+
             String caravana = txtModificarCaravanaBovino.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
             Date fechaIE = jDateModificarFechaIE.getDate();
@@ -226,10 +229,10 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
 
             Padece padeceViejo = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja);
             Padece padeceFechaInicio = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE);
-            
+
             Padece padeceCompleta = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE, fechaFE);
             Padece padeceViejoFF = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja,fechaFEVieja);
-            
+
             try {
                 if (jDateModificarFechaFE.getDate() == null) {
                     boolean resultado = dControladora.modificarPadeceFechaInicio(padeceFechaInicio, padeceViejo) ;
@@ -241,6 +244,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
 
                         this.dispose();
                         frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
+                        frmInicio.jDkPEscritorio.add(padeceEnfermedad);
                         padeceEnfermedad.setVisible(true);
 
                     } else {
@@ -255,6 +259,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
 
                         this.dispose();
                         frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
+                        frmInicio.jDkPEscritorio.add(padeceEnfermedad);
                         padeceEnfermedad.setVisible(true);
 
                     } else {
@@ -268,76 +273,13 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
 
-
     }//GEN-LAST:event_btnModificarMouseClicked
 
-    private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
-        frmBuscarBovino buscarBovino = new frmBuscarBovino();
-        frmBuscarBovino.frm = "frmModificarPadeceEnfermedad";
-        buscarBovino.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBuscarBovinoMouseClicked
-
-    private void txtModificarCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModificarCaravanaBovinoKeyReleased
-
-    }//GEN-LAST:event_txtModificarCaravanaBovinoKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarPadeceEnfermedad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarPadeceEnfermedad().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<Object> cboModificarEnfermedad;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateModificarFechaFE;
     private com.toedter.calendar.JDateChooser jDateModificarFechaIE;
     private javax.swing.JLabel jLabel2;

@@ -1,29 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
-
 
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.Date;
 import javax.swing.JOptionPane;
-
+import static presentacion.frmModificarProduccion.caravana;
 
 /**
  *
  * @author nico_
  */
+public class frmModificarProduccion extends javax.swing.JInternalFrame {
 
-public class frmModificarProduccion extends javax.swing.JFrame {
-
-    public static String caravana = null;
-    
+      public static String caravana = null;
+      
+    /**
+     * Creates new form frmModificarProduccion1
+     */
     public frmModificarProduccion() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+         
         this.setTitle("MODIFICAR PRODUCCION DE LECHE MENSUAL");
         lblRCaravanaH.setVisible(false);
         lblRFechaProduccion.setVisible(false);
@@ -46,7 +49,6 @@ public class frmModificarProduccion extends javax.swing.JFrame {
         txtModificarProteinas.setText(produccion.getProteina().toString());
         txtModificarGrasas.setText(produccion.getGrasa().toString());
         txtModificarCS.setText(Integer.toString(produccion.getCelulaSomatica()));
-        
     }
 
     /**
@@ -58,7 +60,6 @@ public class frmModificarProduccion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtModificarSegundaP = new javax.swing.JTextField();
@@ -84,7 +85,9 @@ public class frmModificarProduccion extends javax.swing.JFrame {
         lblRProteinas = new javax.swing.JLabel();
         btnBuscarBovino = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -115,8 +118,6 @@ public class frmModificarProduccion extends javax.swing.JFrame {
         jLabel3.setText("Grasas:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 160, -1));
         jPanel1.add(txtModificarPrimeraP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 100, 30));
-        txtModificarPrimeraP.getAccessibleContext().setAccessibleName("");
-        txtModificarPrimeraP.getAccessibleContext().setAccessibleDescription("Lts.");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Primera Produccion (lts):");
@@ -181,7 +182,7 @@ public class frmModificarProduccion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -228,42 +229,42 @@ public class frmModificarProduccion extends javax.swing.JFrame {
     private void btnModificarProduccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProduccionMouseClicked
 
         if(validarCampos()){
-        Produccion produccion = dControladora.buscarProduccion(frmProduccion.idProduccion);
-                
-        String carvana = txtModificarCaravanaH.getText();
-        Hembra hembra = dControladora.buscarHembraPorCaravana(carvana);
-        Date fecha  = jDateModificarFechaP.getDate();
-        Double primeraP = Double.parseDouble(txtModificarPrimeraP.getText());
-        Double segundaP = Double.parseDouble(txtModificarSegundaP.getText());
-        Double proteinas = Double.parseDouble(txtModificarProteinas.getText());
-        Double grasas = Double.parseDouble(txtModificarGrasas.getText());
-        int celulasSomaticas = Integer.parseInt(txtModificarCS.getText());
+            Produccion produccion = dControladora.buscarProduccion(frmProduccion.idProduccion);
 
-        Produccion produccionNueva = new Produccion(produccion.getIdProduccion(),primeraP,segundaP,produccion.getProduccionTotal(),proteinas,grasas,celulasSomaticas,fecha,hembra);
+            String carvana = txtModificarCaravanaH.getText();
+            Hembra hembra = dControladora.buscarHembraPorCaravana(carvana);
+            Date fecha  = jDateModificarFechaP.getDate();
+            Double primeraP = Double.parseDouble(txtModificarPrimeraP.getText());
+            Double segundaP = Double.parseDouble(txtModificarSegundaP.getText());
+            Double proteinas = Double.parseDouble(txtModificarProteinas.getText());
+            Double grasas = Double.parseDouble(txtModificarGrasas.getText());
+            int celulasSomaticas = Integer.parseInt(txtModificarCS.getText());
 
-        try {
-            
-            if (dControladora.modificarProduccion(produccionNueva)) {
+            Produccion produccionNueva = new Produccion(produccion.getIdProduccion(),primeraP,segundaP,produccion.getProduccionTotal(),proteinas,grasas,celulasSomaticas,fecha,hembra);
 
-                JOptionPane.showMessageDialog(null, "Producción Modificada Correctamente");
-                caravana = null;
-                limpiarCajas(); // Limpiamos Caja de Texto
-                
-                this.dispose();
-                frmProduccion nuevoFormulario = new frmProduccion();
-                nuevoFormulario.setVisible(true);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar la Producción");
+            try {
+
+                if (dControladora.modificarProduccion(produccionNueva)) {
+
+                    JOptionPane.showMessageDialog(null, "Producción Modificada Correctamente");
+                    caravana = null;
+                    limpiarCajas(); // Limpiamos Caja de Texto
+
+                    this.dispose();
+                    frmProduccion nuevoFormulario = new frmProduccion();
+                    nuevoFormulario.setVisible(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar la Producción");
+                }
+            } catch (Exception e) {
+                throw e;
             }
-        } catch (Exception e) {
-            throw e;
-        }
         }
         else{
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
-        
+
     }//GEN-LAST:event_btnModificarProduccionMouseClicked
 
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
@@ -274,61 +275,10 @@ public class frmModificarProduccion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBuscarBovinoMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmModificarProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmModificarProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmModificarProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmModificarProduccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmModificarProduccion().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarBovino;
     private javax.swing.JButton btnModificarProduccion;
-    private javax.swing.ButtonGroup grupoBotones;
     private com.toedter.calendar.JDateChooser jDateModificarFechaP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

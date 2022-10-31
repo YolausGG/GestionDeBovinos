@@ -7,7 +7,7 @@ package persistencia;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import presentacion.frmEnfermedad;
+import presentacion.frmInicio;
 import presentacion.frmLogin;
 
 
@@ -35,7 +35,7 @@ public class pLogin {
                
                if(resultado==1){
                                     
-                   frmEnfermedad Home = new frmEnfermedad();
+                   frmInicio Home = new frmInicio();
                    Home.setVisible(true); // Abre el formulario de la Pagina de Inicio
                    
                                       

@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package presentacion;
 
@@ -22,8 +22,7 @@ import persistencia.pRaza;
  *
  * @author nico_
  */
-
-public class frmBovino extends javax.swing.JFrame {
+public class frmBovino extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
@@ -34,9 +33,13 @@ public class frmBovino extends javax.swing.JFrame {
     
     public static int columna, row; // Metodo para cuando hacemos click en los botones
     
+    /**
+     * Creates new form frmBovino1
+     */
     public frmBovino() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        
         this.setTitle("BOVINOS");
         llenarComboRaza();        
         grupoBotones.add(chkHembra);
@@ -95,7 +98,9 @@ public class frmBovino extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblRTipoMacho = new java.awt.Label();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -231,7 +236,7 @@ public class frmBovino extends javax.swing.JFrame {
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
             );
 
             pack();
@@ -267,7 +272,7 @@ public class frmBovino extends javax.swing.JFrame {
         chkPedigree.setSelected(false);
         txtNumeroPedigree.setText(null);
     }
-
+    
     private void llenarComboRaza() {
 
         ArrayList<Raza> listaRazas = pRaza.buscarRazas();
@@ -299,7 +304,7 @@ public class frmBovino extends javax.swing.JFrame {
         }
 
     }
-
+    
     private void llenarComboMadre() {
 
         ArrayList<Hembra> listaHembras = dControladora.listarHembras();
@@ -318,8 +323,8 @@ public class frmBovino extends javax.swing.JFrame {
         }
 
     }
-
-    public void actualizarTabla() {
+    
+     public void actualizarTabla() {
         jTableBovinos.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
         
@@ -342,9 +347,9 @@ public class frmBovino extends javax.swing.JFrame {
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
     }
-        
+    
     private void jTableBovinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBovinosMouseClicked
-                
+
         columna = jTableBovinos.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / jTableBovinos.getRowHeight();
         if (columna <= jTableBovinos.getColumnCount() && columna >= 0 && row <= jTableBovinos.getRowCount() && row >= 0) {
@@ -359,13 +364,14 @@ public class frmBovino extends javax.swing.JFrame {
 
                     if (fila != -1) {
                         limpiarCajas();
-                        
+
                         caravana = jTableBovinos.getValueAt(fila, 0).toString();
                         sexo = jTableBovinos.getValueAt(fila, 3).toString();
                         this.dispose();
                         frmModificarBovino modificarBovino = new frmModificarBovino();
+                        frmInicio.jDkPEscritorio.add(modificarBovino);
                         modificarBovino.setVisible(true); // Abre el formulario de Modificar la Enfermedad
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
                     }
@@ -373,22 +379,22 @@ public class frmBovino extends javax.swing.JFrame {
                     if (botones.getName().equals("btnEliminar")) {
 
                         int fila = jTableBovinos.getSelectedRow();
-                        
+
                         String caravana = jTableBovinos.getValueAt(fila, 0).toString();
-                        
+
                         frmBovino.caravana = caravana;
-                       
+
                         frmBajaLogica formularioBajaLogica = new frmBajaLogica();
+                        frmInicio.jDkPEscritorio.add(formularioBajaLogica);
                         formularioBajaLogica.setVisible(true);
-                        
+
                         frmBovino1 = this;
-                        
+
                         //this.dispose();
                         //actualizarTabla();
-                        
-                        
-                            //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            //int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Bovino?", "Eliminar Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                        //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
+                        //int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Bovino?", "Eliminar Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                     }
                 }
@@ -396,16 +402,29 @@ public class frmBovino extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableBovinosMouseClicked
 
+    private void chkHembraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkHembraMouseClicked
+
+        lblTipo.setVisible(false);
+        cboTipo.setVisible(false);
+        lblRTipoMacho.setVisible(false);
+    }//GEN-LAST:event_chkHembraMouseClicked
+
+    private void chkMachoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkMachoMouseClicked
+
+        lblTipo.setVisible(true);
+        cboTipo.setVisible(true);
+    }//GEN-LAST:event_chkMachoMouseClicked
+
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
 
         if(validarCampos()){
-            
+
             String caravana = txtCaravana.getText();
             Date fechaNacimiento = jDateFechaNacimiento.getDate();
             Raza raza = (Raza) cboRaza.getSelectedItem();
-            
+
             String numeroPredigree = null;
-            
+
             if(!txtNumeroPedigree.getText().equals("")){
                 numeroPredigree = txtNumeroPedigree.getText();
             }
@@ -425,7 +444,7 @@ public class frmBovino extends javax.swing.JFrame {
 
                 if (chkMacho.isSelected()) {
                     String tipo = cboTipo.getSelectedItem().toString();
-                    
+
                     Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza);
 
                     if(dControladora.altaBovino(bovino)){
@@ -434,9 +453,9 @@ public class frmBovino extends javax.swing.JFrame {
                         Macho macho = new Macho(bovinoRecienIngresado.getIdBovino(), caravana, fechaNacimiento, raza, tipo);
 
                         if(dControladora.altaMacho(macho)){
-                            
+
                             if(chkPedigree.isSelected()){
-                                
+
                                 Pedigree pedigree = new Pedigree(macho, numeroPredigree);
                                 if(dControladora.altaPedigree(pedigree)){
                                     JOptionPane.showMessageDialog(null, "Macho Pedigree Ingresado Correctamente");
@@ -467,9 +486,9 @@ public class frmBovino extends javax.swing.JFrame {
                         Hembra hembra = new Hembra(bovinoRecienIngresado.getIdBovino(), caravana, fechaNacimiento, raza, madre, padre);
 
                         if(dControladora.altaHembra(hembra)){
-                            
+
                             if(chkPedigree.isSelected()){
-                                
+
                                 Pedigree pedigree = new Pedigree(hembra, numeroPredigree);
                                 if(dControladora.altaPedigree(pedigree)){
                                     JOptionPane.showMessageDialog(null, "Hembra Pedigree Ingresada Correctamente");
@@ -503,75 +522,24 @@ public class frmBovino extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
 
-    private void chkHembraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkHembraMouseClicked
+    private void chkPedigreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkPedigreeMouseClicked
 
-        lblTipo.setVisible(false);
-        cboTipo.setVisible(false);
-        lblRTipoMacho.setVisible(false);
-
-    }//GEN-LAST:event_chkHembraMouseClicked
-
-    private void chkMachoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkMachoMouseClicked
-
-        lblTipo.setVisible(true);
-        cboTipo.setVisible(true);
-    }//GEN-LAST:event_chkMachoMouseClicked
+    }//GEN-LAST:event_chkPedigreeMouseClicked
 
     private void chkPedigreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPedigreeActionPerformed
-        
+
         if(chkPedigree.isSelected()){
             lblNumeroPedigree.setVisible(true);
             txtNumeroPedigree.setVisible(true);
         }
-        else{            
+        else{
             lblNumeroPedigree.setVisible(false);
             txtNumeroPedigree.setVisible(false);
             lblRNumeroPedigree.setVisible(false);
         }
-        
+
     }//GEN-LAST:event_chkPedigreeActionPerformed
 
-    private void chkPedigreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkPedigreeMouseClicked
-        
-        
-    }//GEN-LAST:event_chkPedigreeMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBovino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBovino().setVisible(true);
-
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
