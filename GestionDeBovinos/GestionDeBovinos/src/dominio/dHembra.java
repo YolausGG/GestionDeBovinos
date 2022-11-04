@@ -40,6 +40,11 @@ public class dHembra {
         return pHembra.buscarHembraPorCaravana(pCaravanaHembra);
     }
     
+    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra){
+
+        return pHembra.buscarHembraPorCaravanaCompleta(pCaravanaHembra);
+    }
+    
     public static Hembra buscarUltimaHembra(){
         
         return pHembra.buscarUltimaHembra();

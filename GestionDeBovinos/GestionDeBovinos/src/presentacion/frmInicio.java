@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package presentacion;
+<<<<<<< HEAD
+=======
+import desplazable.Desface;
+import java.awt.Dimension;
+
+>>>>>>> 8841143 (fichaBovino Yolaus)
 
 import desplazable.Desface;
 import java.awt.Color;
@@ -16,10 +22,18 @@ public class frmInicio extends javax.swing.JFrame {
     /**
      * Creates new form frmInicio1
      */
+<<<<<<< HEAD
     Desface desplace;
     Color colorInicio, colorSeleccionado;
             
+=======
+    Dimension dimensionInicio = new Dimension(this.getWidth(), this.getHeight());
+    
+    Desface desplace;
+    
+>>>>>>> 8841143 (fichaBovino Yolaus)
     public frmInicio() {
+        
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
         
@@ -27,6 +41,7 @@ public class frmInicio extends javax.swing.JFrame {
         colorSeleccionado = new Color(93,109,126);
 
         this.setTitle("INICIO");
+<<<<<<< HEAD
         desplace = new Desface();
         
         jPanelBovino.setBackground(colorInicio);
@@ -39,6 +54,11 @@ public class frmInicio extends javax.swing.JFrame {
         
         
         
+=======
+         
+        desplace = new Desface();
+        
+>>>>>>> 8841143 (fichaBovino Yolaus)
     }
 
     /**
@@ -260,6 +280,7 @@ public class frmInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
      /*   
         if (MenuPlegable.getX() == 0) {
@@ -362,6 +383,27 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelListados.setBackground(colorSeleccionado);
     }//GEN-LAST:event_lblListadosMousePressed
+=======
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        
+        if (MenuPlegable.getX() == 0) {
+            desplace.desplazarIzquierda(MenuPlegable, MenuPlegable.getX(), -170, 10, 10);
+            
+            jDkPEscritorio.setSize(this.getWidth(), this.getHeight());
+        } else if (MenuPlegable.getX() == -170) {
+            desplace.desplazarDerecha(MenuPlegable, MenuPlegable.getX(), 0, 10, 10);
+            jDkPEscritorio.setSize(this.getWidth(), this.getHeight());
+        }
+        
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        
+        frmBovino prueba = new frmBovino();
+        jDkPEscritorio.add(prueba);
+        prueba.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+>>>>>>> 8841143 (fichaBovino Yolaus)
 
     /**
      * @param args the command line arguments

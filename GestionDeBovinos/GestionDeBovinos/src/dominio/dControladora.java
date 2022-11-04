@@ -24,6 +24,7 @@ import clases.Tacto;
 import clases.Tratamiento;
 
 import java.util.ArrayList;
+import persistencia.pMacho;
 
 public class dControladora {
 
@@ -125,6 +126,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Devolver Listas">
     /*public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
         return listaEventosDeSanidad;
@@ -156,6 +158,7 @@ public class dControladora {
     }
 
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="Evento Futuro">
     public static boolean altaEventoFuturo(EventoFuturo pEventoFuturo) {
 
@@ -290,6 +293,7 @@ public class dControladora {
     }
 
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="Aborto">
     public static boolean altaAborto(Aborto pAborto) {
 
@@ -639,11 +643,17 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     //Bovinos
     // <editor-fold defaultstate="collapsed" desc="Bovino">
     public static boolean altaBovino(Bovino pBovino) {
 
         return dBovino.altaBovino(pBovino);
+    }
+    
+    public static boolean altaBovinoFoto(Bovino pBovino) {
+
+        return dBovino.altaBovinoFoto(pBovino);
     }
 
     public static boolean bajaBovino(int idBovino) {
@@ -664,6 +674,11 @@ public class dControladora {
     public static boolean modificarBovino(Bovino pBovino) {
 
         return dBovino.modificarBovino(pBovino);
+    }
+    
+    public static boolean modificarBovinoFoto(Bovino pBovino) {
+
+        return dBovino.modificarBovinoFoto(pBovino);
     }
 
     public static Bovino buscarBovinoCaravana(String pCaravanaBovino) {
@@ -687,6 +702,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Macho">
     public static boolean altaMacho(Macho pMacho) {
 
@@ -713,6 +729,10 @@ public class dControladora {
         return dMacho.buscarMachoPorCaravana(pCaravanaMacho);
     }
 
+    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho){
+
+        return dMacho.buscarMachoPorCaravanaCompleto(pCaravanaMacho);
+    }
     public static Macho buscarUltimoMacho() {
 
         return dMacho.buscarUltimoMacho();
@@ -753,6 +773,11 @@ public class dControladora {
         return dHembra.buscarHembraPorCaravana(pCaravanaHembra);
     }
 
+    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra){
+
+        return dHembra.buscarHembraPorCaravanaCompleta(pCaravanaHembra);
+    }
+    
     public static Hembra buscarUltimaHembra() {
 
         return dHembra.buscarUltimaHembra();
@@ -912,7 +937,6 @@ public class dControladora {
 
     // <editor-fold defaultstate="collapsed" desc="Copia">
     // </editor-fold>
-    
     
     
     public static ArrayList<Bovino> parentescos_Hermanos_Sobrinos_SobrinoNieto(int contador, Bovino bovino, ArrayList<Bovino> hijos) {
