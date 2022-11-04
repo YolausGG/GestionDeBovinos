@@ -12,9 +12,7 @@ import javax.swing.JOptionPane;
 
 public class frmBajaLogica extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form frmBajaLogica
-     */
+    
     public frmBajaLogica() {
         initComponents();
         
