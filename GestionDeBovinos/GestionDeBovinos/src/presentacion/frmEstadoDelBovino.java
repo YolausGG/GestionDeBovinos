@@ -34,7 +34,7 @@ public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
     public frmEstadoDelBovino() {
         initComponents();
         
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("ESTADOS");
         actualizarTabla();        
         modificar.setName("btnModificar");

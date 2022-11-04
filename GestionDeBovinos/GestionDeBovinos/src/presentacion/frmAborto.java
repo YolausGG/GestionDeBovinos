@@ -9,7 +9,6 @@ import clases.BotonesTabla;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
     public frmAborto() {
         initComponents();
         
-       // setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+       this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("ABORTO");
         actualizarTabla();
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");

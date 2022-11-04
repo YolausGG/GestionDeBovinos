@@ -28,7 +28,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
     public frmModificarEstadoConBovino() {
         initComponents();
         
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR ESTADO DEL BOVINO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);

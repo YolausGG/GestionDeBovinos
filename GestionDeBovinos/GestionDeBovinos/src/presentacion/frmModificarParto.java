@@ -8,7 +8,6 @@ import clases.EventoDeSanidad;
 import clases.Hembra;
 import clases.Parto;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
@@ -19,7 +18,7 @@ public class frmModificarParto extends javax.swing.JInternalFrame {
     public frmModificarParto() {
         initComponents();
 
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR PARTO");
 
         lblRTipo.setVisible(false);

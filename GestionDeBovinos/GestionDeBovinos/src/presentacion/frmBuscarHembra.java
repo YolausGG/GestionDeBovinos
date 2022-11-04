@@ -6,7 +6,6 @@ package presentacion;
 
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +23,8 @@ public class frmBuscarHembra extends javax.swing.JInternalFrame {
      */
     public frmBuscarHembra() {
         initComponents();
-
+        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("BUSCAR HEMBRAS");
         actualizarTabla();
     }

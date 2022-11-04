@@ -28,20 +28,21 @@ public class frmBovino extends javax.swing.JInternalFrame {
     JButton eliminar = new JButton("Eliminar");
     public static String caravana = "";
     public static String sexo = "";
-    
+
     public static frmBovino frmBovino1 = null;
-    
+
     public static int columna, row; // Metodo para cuando hacemos click en los botones
-    
+
     /**
      * Creates new form frmBovino1
      */
     public frmBovino() {
         initComponents();
         
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
+
         this.setTitle("BOVINOS");
-        llenarComboRaza();        
+        llenarComboRaza();
         grupoBotones.add(chkHembra);
         grupoBotones.add(chkMacho);
         lblTipo.setVisible(false);
@@ -242,23 +243,47 @@ public class frmBovino extends javax.swing.JInternalFrame {
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
-    public boolean validarCampos(){
-        
+    public boolean validarCampos() {
+
         int contador = 0;
-        if(txtCaravana.getText().equals("")){ lblRCaravana.setVisible(true); contador++;} else { lblRCaravana.setVisible(false);}
-        if(jDateFechaNacimiento.getDate() == null ){ lblRFechaNacimiento.setVisible(true); contador++;} else { lblRFechaNacimiento.setVisible(false);}
-        if(cboRaza.getSelectedIndex() == 0){ lblRRaza.setVisible(true); contador++;} else { lblRRaza.setVisible(false);}
-        if(cboTipo.getSelectedIndex() == 0 && chkMacho.isSelected()){ lblRTipoMacho.setVisible(true); contador++;} else { lblRTipoMacho.setVisible(false);}
-        if(txtNumeroPedigree.getText().equals("") && chkPedigree.isSelected()){ lblRNumeroPedigree.setVisible(true); contador++;} else { lblRNumeroPedigree.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+        if (txtCaravana.getText().equals("")) {
+            lblRCaravana.setVisible(true);
+            contador++;
+        } else {
+            lblRCaravana.setVisible(false);
         }
-        else{
+        if (jDateFechaNacimiento.getDate() == null) {
+            lblRFechaNacimiento.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaNacimiento.setVisible(false);
+        }
+        if (cboRaza.getSelectedIndex() == 0) {
+            lblRRaza.setVisible(true);
+            contador++;
+        } else {
+            lblRRaza.setVisible(false);
+        }
+        if (cboTipo.getSelectedIndex() == 0 && chkMacho.isSelected()) {
+            lblRTipoMacho.setVisible(true);
+            contador++;
+        } else {
+            lblRTipoMacho.setVisible(false);
+        }
+        if (txtNumeroPedigree.getText().equals("") && chkPedigree.isSelected()) {
+            lblRNumeroPedigree.setVisible(true);
+            contador++;
+        } else {
+            lblRNumeroPedigree.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         txtCaravana.setText(null);
@@ -272,7 +297,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
         chkPedigree.setSelected(false);
         txtNumeroPedigree.setText(null);
     }
-    
+
     private void llenarComboRaza() {
 
         ArrayList<Raza> listaRazas = pRaza.buscarRazas();
@@ -287,16 +312,16 @@ public class frmBovino extends javax.swing.JInternalFrame {
     private void llenarComboPadre() {
 
         ArrayList<Macho> listaMachos = dControladora.listarMachos();
-        
+
         int total = cboPadre.getItemCount();
-        
-        if(cboPadre.getItemCount()>1){
-            for (int i = 0; i < total-1; i++) {
+
+        if (cboPadre.getItemCount() > 1) {
+            for (int i = 0; i < total - 1; i++) {
                 cboPadre.removeItemAt(1);
-            } 
-            
+            }
+
         }
-        
+
         for (Macho macho : listaMachos) {
 
             cboPadre.addItem(macho);
@@ -304,18 +329,18 @@ public class frmBovino extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     private void llenarComboMadre() {
 
         ArrayList<Hembra> listaHembras = dControladora.listarHembras();
-        
+
         int total = cboMadre.getItemCount();
-        
-        if(cboMadre.getItemCount()>1){
-            for (int i = 0; i < total-1; i++) {
+
+        if (cboMadre.getItemCount() > 1) {
+            for (int i = 0; i < total - 1; i++) {
                 cboMadre.removeItemAt(1);
-            } 
-            
+            }
+
         }
 
         for (Hembra hembra : listaHembras) {
@@ -323,13 +348,13 @@ public class frmBovino extends javax.swing.JInternalFrame {
         }
 
     }
-    
-     public void actualizarTabla() {
+
+    public void actualizarTabla() {
         jTableBovinos.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
-        
+
         ArrayList<Bovino> listaBovino = dControladora.listarBovinos();
-        
+
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
@@ -338,16 +363,16 @@ public class frmBovino extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Bovino b : listaBovino) {
-            
+
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
-            
-            model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(),tipo, modificar, eliminar});
+
+            model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, modificar, eliminar});
         }
 
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
     }
-    
+
     private void jTableBovinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBovinosMouseClicked
 
         columna = jTableBovinos.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -392,10 +417,8 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
                         //this.dispose();
                         //actualizarTabla();
-
                         //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
                         //int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Bovino?", "Eliminar Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
                     }
                 }
             }
@@ -417,7 +440,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravana.getText();
             Date fechaNacimiento = jDateFechaNacimiento.getDate();
@@ -425,7 +448,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
             String numeroPredigree = null;
 
-            if(!txtNumeroPedigree.getText().equals("")){
+            if (!txtNumeroPedigree.getText().equals("")) {
                 numeroPredigree = txtNumeroPedigree.getText();
             }
 
@@ -447,30 +470,30 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
                     Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza);
 
-                    if(dControladora.altaBovino(bovino)){
+                    if (dControladora.altaBovino(bovino)) {
 
-                        Bovino bovinoRecienIngresado =  dControladora.buscarBovinoCaravana(caravana);
+                        Bovino bovinoRecienIngresado = dControladora.buscarBovinoCaravana(caravana);
                         Macho macho = new Macho(bovinoRecienIngresado.getIdBovino(), caravana, fechaNacimiento, raza, tipo);
 
-                        if(dControladora.altaMacho(macho)){
+                        if (dControladora.altaMacho(macho)) {
 
-                            if(chkPedigree.isSelected()){
+                            if (chkPedigree.isSelected()) {
 
                                 Pedigree pedigree = new Pedigree(macho, numeroPredigree);
-                                if(dControladora.altaPedigree(pedigree)){
+                                if (dControladora.altaPedigree(pedigree)) {
                                     JOptionPane.showMessageDialog(null, "Macho Pedigree Ingresado Correctamente");
                                     actualizarTabla();
                                     llenarComboPadre();
                                     limpiarCajas(); // Limpiamos Caja de Texto
                                 }
-                            }else{
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Macho Ingresado Correctamente");
 
                                 actualizarTabla();
                                 llenarComboPadre();
                                 limpiarCajas(); // Limpiamos Caja de Texto
                             }
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Macho");
                         }
                     } else {
@@ -480,29 +503,29 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
                     Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza);
 
-                    if(dControladora.altaBovino(bovino)){
+                    if (dControladora.altaBovino(bovino)) {
 
-                        Bovino bovinoRecienIngresado =  dControladora.buscarBovinoCaravana(caravana);
+                        Bovino bovinoRecienIngresado = dControladora.buscarBovinoCaravana(caravana);
                         Hembra hembra = new Hembra(bovinoRecienIngresado.getIdBovino(), caravana, fechaNacimiento, raza, madre, padre);
 
-                        if(dControladora.altaHembra(hembra)){
+                        if (dControladora.altaHembra(hembra)) {
 
-                            if(chkPedigree.isSelected()){
+                            if (chkPedigree.isSelected()) {
 
                                 Pedigree pedigree = new Pedigree(hembra, numeroPredigree);
-                                if(dControladora.altaPedigree(pedigree)){
+                                if (dControladora.altaPedigree(pedigree)) {
                                     JOptionPane.showMessageDialog(null, "Hembra Pedigree Ingresada Correctamente");
                                     actualizarTabla();
                                     llenarComboMadre();
                                     limpiarCajas(); // Limpiamos Caja de Texto
                                 }
-                            }else{
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Hembra Ingresada Correctamente");
                                 actualizarTabla();
                                 llenarComboMadre();
                                 limpiarCajas(); // Limpiamos Caja de Texto
                             }
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Error: No se pudo agregar la Hembra");
                         }
                     } else {
@@ -516,8 +539,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
@@ -528,11 +550,10 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
     private void chkPedigreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPedigreeActionPerformed
 
-        if(chkPedigree.isSelected()){
+        if (chkPedigree.isSelected()) {
             lblNumeroPedigree.setVisible(true);
             txtNumeroPedigree.setVisible(true);
-        }
-        else{
+        } else {
             lblNumeroPedigree.setVisible(false);
             txtNumeroPedigree.setVisible(false);
             lblRNumeroPedigree.setVisible(false);

@@ -11,7 +11,6 @@ import clases.Hembra;
 import clases.Inseminacion;
 import clases.Macho;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -38,7 +37,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
     public frmInseminacion() {
         initComponents();
         
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("INSEMINACIÓN");
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
         insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");

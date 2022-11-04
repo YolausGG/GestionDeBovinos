@@ -8,7 +8,6 @@ import clases.BotonesTabla;
 import clases.EventoFuturo;
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -34,7 +33,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
     public frmEventoFuturo() {
         initComponents();
         
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("EVENTO FUTURO");
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
         insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");

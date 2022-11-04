@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import static java.awt.Frame.MAXIMIZED_BOTH;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +19,7 @@ public class frmModificarEnfermedad extends javax.swing.JInternalFrame {
     public frmModificarEnfermedad() {
         initComponents();
         
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR ENFERMEDAD");
 
         frmEnfermedad nuevo = new frmEnfermedad();

@@ -8,7 +8,6 @@ import clases.EventoDeSanidad;
 import clases.Hembra;
 import clases.Secado;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
@@ -19,7 +18,7 @@ public class frmModificarSecado extends javax.swing.JInternalFrame {
     public frmModificarSecado() {
         initComponents();
 
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR SECADO");
 
         lblRCausa.setVisible(false);

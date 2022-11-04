@@ -25,7 +25,7 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
      */
     public frmBuscarBovino() {
         initComponents();
-
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("BUSCAR BOVINO");
 
         if (chkHembra.isSelected()) {

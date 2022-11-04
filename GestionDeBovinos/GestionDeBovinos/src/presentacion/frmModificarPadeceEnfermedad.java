@@ -28,6 +28,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
     public frmModificarPadeceEnfermedad() {
         initComponents();        
          
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("MODIFICAR BOVINO ENFERMO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);

@@ -10,7 +10,6 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
     public frmTratamiento() {
         initComponents();
         
-         
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("TRATAMIENTO ENFERMEDAD");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");

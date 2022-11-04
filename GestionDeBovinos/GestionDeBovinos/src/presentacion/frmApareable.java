@@ -7,7 +7,6 @@ package presentacion;
 import clases.BotonesTabla;
 import clases.Bovino;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -27,7 +26,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
     public frmApareable() {
         initComponents();
         
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("LISTADO DE BOVINOS BUENOS PARA REPRODUCIR");
 
         lblRCaravana.setVisible(false);

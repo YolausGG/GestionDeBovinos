@@ -8,7 +8,6 @@ import clases.BotonesTabla;
 import clases.Enfermedad;
 import clases.ExportarExcel;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -40,9 +39,13 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
      */
     public frmEnfermedad() {
         initComponents();
-
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("ENFERMEDAD");
         actualizarTabla();
+        
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
         insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
         modificar.setName("btnModificar");
@@ -116,21 +119,23 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        btnImprimir.setText("Imprimir");
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora.png"))); // NOI18N
+        btnImprimir.setBorder(null);
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
-        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 70, 40));
 
-        btnExportar.setText("Excel");
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel.png"))); // NOI18N
+        btnExportar.setBorder(null);
         btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExportarMouseClicked(evt);
             }
         });
-        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 50, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 360, 140));
 

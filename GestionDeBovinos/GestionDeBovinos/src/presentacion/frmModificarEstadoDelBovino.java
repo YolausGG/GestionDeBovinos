@@ -6,7 +6,6 @@ package presentacion;
 
 import clases.EstadoDelBovino;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +20,7 @@ public class frmModificarEstadoDelBovino extends javax.swing.JInternalFrame {
     public frmModificarEstadoDelBovino() {
         initComponents();
         
-       
+       this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR ESTADO");
 
         EstadoDelBovino estado = dControladora.buscarEstadoDelBovino(frmEstadoDelBovino.idEstado);

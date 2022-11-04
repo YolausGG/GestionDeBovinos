@@ -7,7 +7,6 @@ package presentacion;
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import static presentacion.frmModificarProduccion.caravana;
@@ -26,7 +25,7 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
     public frmModificarProduccion() {
         initComponents();
         
-         
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("MODIFICAR PRODUCCION DE LECHE MENSUAL");
         lblRCaravanaH.setVisible(false);
         lblRFechaProduccion.setVisible(false);

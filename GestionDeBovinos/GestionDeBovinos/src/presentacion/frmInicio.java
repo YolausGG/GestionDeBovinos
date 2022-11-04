@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package presentacion;
+
 import desplazable.Desface;
-
-
+import java.awt.Color;
+import java.awt.Dimension;
 /**
  *
  * @author nico_
@@ -13,13 +14,31 @@ import desplazable.Desface;
 public class frmInicio extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmInicio
+     * Creates new form frmInicio1
      */
-     
+    Desface desplace;
+    Color colorInicio, colorSeleccionado;
+            
     public frmInicio() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        
+        colorInicio = new Color(54,67,114);
+        colorSeleccionado = new Color(93,109,126);
+
         this.setTitle("INICIO");
+        desplace = new Desface();
+        
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+        
+        
+        
     }
 
     /**
@@ -32,114 +51,317 @@ public class frmInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         MenuPlegable = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblInicio = new javax.swing.JLabel();
+        jPanelBovino = new javax.swing.JPanel();
+        lblBovino = new javax.swing.JLabel();
+        jPanelListados = new javax.swing.JPanel();
+        lblListados = new javax.swing.JLabel();
+        jPanelEstadoBovino = new javax.swing.JPanel();
+        lblEstadoBovino = new javax.swing.JLabel();
+        jPanelTratamiento = new javax.swing.JPanel();
+        lblTratamiento = new javax.swing.JLabel();
+        jPanelEnfermedad = new javax.swing.JPanel();
+        lblEnfermedad = new javax.swing.JLabel();
+        jPanelSanidad = new javax.swing.JPanel();
+        lblSanidad = new javax.swing.JLabel();
+        jPanelProduccion = new javax.swing.JPanel();
+        lblProduccion = new javax.swing.JLabel();
         jDkPEscritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(62, 67, 76));
 
-        MenuPlegable.setLayout(null);
+        MenuPlegable.setBackground(new java.awt.Color(54, 67, 114));
+        MenuPlegable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel1.setToolTipText("");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuPlegable.add(jLabel1);
-        jLabel1.setBounds(0, 250, 220, 50);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel2.setToolTipText("");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblInicio.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblInicio.setForeground(new java.awt.Color(255, 255, 255));
+        lblInicio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
+        lblInicio.setText("Inicio");
+        lblInicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblInicio.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblInicio.setIconTextGap(15);
+        lblInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lblInicioMouseClicked(evt);
             }
         });
-        MenuPlegable.add(jLabel2);
-        jLabel2.setBounds(0, 0, 220, 50);
+        MenuPlegable.add(lblInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel3.setToolTipText("");
-        jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+        jPanelBovino.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBovino.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblBovino.setForeground(new java.awt.Color(255, 255, 255));
+        lblBovino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vaca.png"))); // NOI18N
+        lblBovino.setText("Bovino");
+        lblBovino.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBovino.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblBovino.setIconTextGap(15);
+        lblBovino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBovinoMousePressed(evt);
             }
         });
-        MenuPlegable.add(jLabel3);
-        jLabel3.setBounds(0, 50, 220, 50);
+        jPanelBovino.add(lblBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel4.setToolTipText("");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuPlegable.add(jLabel4);
-        jLabel4.setBounds(0, 100, 220, 50);
+        MenuPlegable.add(jPanelBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel5.setToolTipText("");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuPlegable.add(jLabel5);
-        jLabel5.setBounds(0, 150, 220, 50);
+        jPanelListados.setLayout(null);
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu2.png"))); // NOI18N
-        jLabel6.setToolTipText("");
-        jLabel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuPlegable.add(jLabel6);
-        jLabel6.setBounds(0, 200, 220, 50);
+        lblListados.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblListados.setForeground(new java.awt.Color(255, 255, 255));
+        lblListados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblListados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados.png"))); // NOI18N
+        lblListados.setText("Listados");
+        lblListados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblListados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblListados.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblListados.setIconTextGap(15);
+        lblListados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblListadosMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblListados);
+        lblListados.setBounds(70, 0, 140, 50);
+
+        MenuPlegable.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 210, 50));
+
+        jPanelEstadoBovino.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblEstadoBovino.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblEstadoBovino.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstadoBovino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEstadoBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Estados.png"))); // NOI18N
+        lblEstadoBovino.setText("Estado Bovino");
+        lblEstadoBovino.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblEstadoBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEstadoBovino.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblEstadoBovino.setIconTextGap(15);
+        lblEstadoBovino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEstadoBovinoMousePressed(evt);
+            }
+        });
+        jPanelEstadoBovino.add(lblEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+
+        MenuPlegable.add(jPanelEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 210, -1));
+
+        jPanelTratamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTratamiento.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTratamiento.setForeground(new java.awt.Color(255, 255, 255));
+        lblTratamiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Tratamiento.png"))); // NOI18N
+        lblTratamiento.setText("Tratamientos");
+        lblTratamiento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblTratamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblTratamiento.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblTratamiento.setIconTextGap(15);
+        lblTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblTratamientoMousePressed(evt);
+            }
+        });
+        jPanelTratamiento.add(lblTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+
+        MenuPlegable.add(jPanelTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 210, -1));
+
+        jPanelEnfermedad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblEnfermedad.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblEnfermedad.setForeground(new java.awt.Color(255, 255, 255));
+        lblEnfermedad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEnfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Enfermedad.png"))); // NOI18N
+        lblEnfermedad.setText("Enfermedades");
+        lblEnfermedad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblEnfermedad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEnfermedad.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblEnfermedad.setIconTextGap(15);
+        lblEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEnfermedadMousePressed(evt);
+            }
+        });
+        jPanelEnfermedad.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 50));
+
+        MenuPlegable.add(jPanelEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 210, -1));
+
+        jPanelSanidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSanidad.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblSanidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblSanidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSanidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Sanidad.png"))); // NOI18N
+        lblSanidad.setText("Sanidad");
+        lblSanidad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblSanidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSanidad.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblSanidad.setIconTextGap(15);
+        lblSanidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblSanidadMousePressed(evt);
+            }
+        });
+        jPanelSanidad.add(lblSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+
+        MenuPlegable.add(jPanelSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 210, -1));
+
+        jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProduccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblProduccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblProduccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Produccion.png"))); // NOI18N
+        lblProduccion.setText("Producción");
+        lblProduccion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProduccion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblProduccion.setIconTextGap(15);
+        lblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblProduccionMousePressed(evt);
+            }
+        });
+        jPanelProduccion.add(lblProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+
+        MenuPlegable.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, -1));
 
         javax.swing.GroupLayout jDkPEscritorioLayout = new javax.swing.GroupLayout(jDkPEscritorio);
         jDkPEscritorio.setLayout(jDkPEscritorioLayout);
         jDkPEscritorioLayout.setHorizontalGroup(
             jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 665, Short.MAX_VALUE)
         );
         jDkPEscritorioLayout.setVerticalGroup(
             jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MenuPlegable, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MenuPlegable, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDkPEscritorio))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-            .addComponent(jDkPEscritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+            .addComponent(jDkPEscritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseClicked
+    private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
+     /*   
+        if (MenuPlegable.getX() == 0) {
+            desplace.desplazarIzquierda(MenuPlegable, MenuPlegable.getX(), -168, 10, 10);
+           
+        } else if (MenuPlegable.getX() == -170) {
+            desplace.desplazarDerecha(MenuPlegable, MenuPlegable.getX(), 0, 10, 10);
+            //jDkPEscritorio.setSize(new Dimension(this.getWidth(), this.getHeight()));
+            //jDkPEscritorio.setSize(this.getWidth(), this.getHeight());
+        }
+        */
+    }//GEN-LAST:event_lblInicioMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        frmEstadoConBovino prueba = new frmEstadoConBovino();
-        jDkPEscritorio.add(prueba);
-        prueba.setVisible(true);
-    }//GEN-LAST:event_jLabel3MouseClicked
+    private void lblBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBovinoMousePressed
+        jPanelBovino.setBackground(colorSeleccionado);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+        
+        frmBovino frmbovino = new frmBovino();
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmbovino);
+        frmbovino.setVisible(true);
+    }//GEN-LAST:event_lblBovinoMousePressed
+
+    private void lblProduccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProduccionMousePressed
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorSeleccionado);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+        
+        frmProduccion frmproduccion = new frmProduccion();
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmproduccion);
+        frmproduccion.setVisible(true);
+    }//GEN-LAST:event_lblProduccionMousePressed
+
+    private void lblSanidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSanidadMousePressed
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorSeleccionado);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+    }//GEN-LAST:event_lblSanidadMousePressed
+
+    private void lblEnfermedadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEnfermedadMousePressed
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorSeleccionado);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+        
+        frmEnfermedad frmenfermedad = new frmEnfermedad();
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmenfermedad);
+        frmenfermedad.setVisible(true);
+    }//GEN-LAST:event_lblEnfermedadMousePressed
+
+    private void lblTratamientoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTratamientoMousePressed
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorSeleccionado);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorInicio);
+        
+        frmTratamiento frmtratamiento = new frmTratamiento();
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmtratamiento);
+        frmtratamiento.setVisible(true);
+    }//GEN-LAST:event_lblTratamientoMousePressed
+
+    private void lblEstadoBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoBovinoMousePressed
+        jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorSeleccionado);
+        jPanelListados.setBackground(colorInicio);
+    }//GEN-LAST:event_lblEstadoBovinoMousePressed
+
+    private void lblListadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListadosMousePressed
+       jPanelBovino.setBackground(colorInicio);
+        jPanelProduccion.setBackground(colorInicio);
+        jPanelSanidad.setBackground(colorInicio);
+        jPanelEnfermedad.setBackground(colorInicio);
+        jPanelTratamiento.setBackground(colorInicio);
+        jPanelEstadoBovino.setBackground(colorInicio);
+        jPanelListados.setBackground(colorSeleccionado);
+    }//GEN-LAST:event_lblListadosMousePressed
 
     /**
      * @param args the command line arguments
@@ -167,6 +389,7 @@ public class frmInicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -179,11 +402,20 @@ public class frmInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPlegable;
     public static javax.swing.JDesktopPane jDkPEscritorio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanelBovino;
+    private javax.swing.JPanel jPanelEnfermedad;
+    private javax.swing.JPanel jPanelEstadoBovino;
+    private javax.swing.JPanel jPanelListados;
+    private javax.swing.JPanel jPanelProduccion;
+    private javax.swing.JPanel jPanelSanidad;
+    private javax.swing.JPanel jPanelTratamiento;
+    private javax.swing.JLabel lblBovino;
+    private javax.swing.JLabel lblEnfermedad;
+    private javax.swing.JLabel lblEstadoBovino;
+    private javax.swing.JLabel lblInicio;
+    private javax.swing.JLabel lblListados;
+    private javax.swing.JLabel lblProduccion;
+    private javax.swing.JLabel lblSanidad;
+    private javax.swing.JLabel lblTratamiento;
     // End of variables declaration//GEN-END:variables
 }

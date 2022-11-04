@@ -8,7 +8,6 @@ import clases.Celo;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
         
@@ -19,7 +18,7 @@ public class frmModificarCelo extends javax.swing.JInternalFrame {
     public frmModificarCelo() {
         initComponents();
         
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR CELO");
         
         lblRCausa.setVisible(false);

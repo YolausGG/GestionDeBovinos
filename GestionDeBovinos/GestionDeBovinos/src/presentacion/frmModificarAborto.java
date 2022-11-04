@@ -8,7 +8,6 @@ import clases.Aborto;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
@@ -19,7 +18,7 @@ public class frmModificarAborto extends javax.swing.JInternalFrame {
     public frmModificarAborto() {
         initComponents();
         
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("MODIFICAR ABORTO");
         
         lblRCausa.setVisible(false);

@@ -38,6 +38,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
     public frmPadeceEnfermedad() {
         initComponents();
 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("BOVINO PADECE ENFERMEDAD");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");

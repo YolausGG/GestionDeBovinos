@@ -10,7 +10,6 @@ import clases.Macho;
 import clases.Pedigree;
 import clases.Raza;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -35,7 +34,7 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
     public frmModificarBovino() {
         initComponents();
         
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR BOVINOS");
         llenarComboRaza();
         grupoBotones.add(chkHembra);

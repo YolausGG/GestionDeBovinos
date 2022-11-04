@@ -8,7 +8,6 @@ import clases.BotonesTabla;
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -32,7 +31,7 @@ public class frmProduccion extends javax.swing.JInternalFrame {
     public frmProduccion() {
         initComponents();
         
-         
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("PRODUCCION DE LECHE MENSUAL");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");

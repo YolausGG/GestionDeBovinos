@@ -9,7 +9,6 @@ import clases.Bovino;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -39,7 +38,7 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
      */
     public frmEstadoConBovino() {
         initComponents();
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("ASIGNAR ESTADO A BOVINO");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");

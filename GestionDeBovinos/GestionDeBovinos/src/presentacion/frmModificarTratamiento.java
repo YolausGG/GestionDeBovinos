@@ -10,7 +10,6 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
     public frmModificarTratamiento() {
         initComponents();
         
-        
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR TRATAMIENTO ENFERMEDAD");
 
         lblRFechaInicioT.setVisible(false);

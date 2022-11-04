@@ -7,7 +7,6 @@ package presentacion;
 import clases.EventoFuturo;
 import clases.Hembra;
 import dominio.dControladora;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
@@ -18,7 +17,7 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
     public frmModificarEventoFuturo() {
         initComponents();
 
-        //setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
         this.setTitle("MODIFICAR EVENTOFUTURO");
 
         lblRTipo.setVisible(false);
