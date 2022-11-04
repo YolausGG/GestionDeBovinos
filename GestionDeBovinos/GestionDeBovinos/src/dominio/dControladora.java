@@ -639,11 +639,18 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     //Bovinos
+    
     // <editor-fold defaultstate="collapsed" desc="Bovino">
     public static boolean altaBovino(Bovino pBovino) {
 
         return dBovino.altaBovino(pBovino);
+    }
+    
+    public static boolean altaBovinoFoto(Bovino pBovino) {
+
+        return dBovino.altaBovinoFoto(pBovino);
     }
 
     public static boolean bajaBovino(int idBovino) {
@@ -666,6 +673,11 @@ public class dControladora {
         return dBovino.modificarBovino(pBovino);
     }
 
+    public static boolean modificarBovinoFoto(Bovino pBovino){
+
+        return dBovino.modificarBovinoFoto(pBovino);
+    }
+    
     public static Bovino buscarBovinoCaravana(String pCaravanaBovino) {
 
         return dBovino.buscarBovinoCaravana(pCaravanaBovino);
@@ -687,6 +699,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Macho">
     public static boolean altaMacho(Macho pMacho) {
 
@@ -711,6 +724,11 @@ public class dControladora {
     public static Macho buscarMachoPorCaravana(String pCaravanaMacho) {
 
         return dMacho.buscarMachoPorCaravana(pCaravanaMacho);
+    }
+    
+    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho) {
+
+        return dMacho.buscarMachoPorCaravanaCompleto(pCaravanaMacho);
     }
 
     public static Macho buscarUltimoMacho() {
@@ -751,6 +769,11 @@ public class dControladora {
     public static Hembra buscarHembraPorCaravana(String pCaravanaHembra) {
 
         return dHembra.buscarHembraPorCaravana(pCaravanaHembra);
+    }
+    
+    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra) {
+
+        return dHembra.buscarHembraPorCaravanaCompleta(pCaravanaHembra);
     }
 
     public static Hembra buscarUltimaHembra() {

@@ -40,6 +40,11 @@ public class dMacho {
         return pMacho.buscarMachoPorCaravana(pCaravanaMacho);
     }
     
+    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho){
+
+        return pMacho.buscarMachoPorCaravanaCompleto(pCaravanaMacho);
+    }
+    
     public static Macho buscarUltimoMacho(){
         
         return pMacho.buscarUltimoMacho();

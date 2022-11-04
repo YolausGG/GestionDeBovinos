@@ -11,6 +11,11 @@ public class dBovino {
         
         return persistencia.pBovino.altaBovino( pBovino);
     }
+    
+    public static boolean altaBovinoFoto(Bovino pBovino){
+        
+        return persistencia.pBovino.altaBovinoFoto(pBovino);
+    }
 
     public static boolean bajaBovino(int idBovino){
         
@@ -30,6 +35,11 @@ public class dBovino {
     public static boolean modificarBovino(Bovino pBovino){
 
         return persistencia.pBovino.modificarBovino(pBovino);
+    }
+    
+    public static boolean modificarBovinoFoto(Bovino pBovino){
+
+        return persistencia.pBovino.modificarBovinoFoto(pBovino);
     }
 
     public static Bovino buscarBovinoCaravana(String pCaravanaBovino){

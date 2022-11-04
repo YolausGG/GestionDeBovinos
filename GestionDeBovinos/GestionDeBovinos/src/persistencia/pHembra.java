@@ -17,13 +17,13 @@ public class pHembra {
     private static final String INSERT_HEMBRA = "INSERT INTO HEMBRA ( IDHEMBRA ) "
             + " VALUES ( ? )";
     private static final String DELETE_HEMBRA = "DELETE FROM HEMBRA WHERE IDHEMBRA = ? ";
-    private static final String BUSCAR_HEMBRA_CARAVANA = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA"
+    private static final String BUSCAR_HEMBRA_CARAVANA = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
             + " FROM BOVINO B INNER JOIN HEMBRA H ON B.IDBOVINO= H.IDHEMBRA"
             + " WHERE B.CARAVANABOVINO = ? ";   
-    private static final String BUSCAR_HEMBRA_ID = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA"
+    private static final String BUSCAR_HEMBRA_ID = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
             + " FROM BOVINO B INNER JOIN HEMBRA H ON B.IDBOVINO= H.IDHEMBRA"
             + " WHERE B.IDBOVINO = ? ";
-    private static final String BUSCAR_HEMBRA_ULTIMO = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA"
+    private static final String BUSCAR_HEMBRA_ULTIMO = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
             + " FROM BOVINO B INNER JOIN HEMBRA H ON B.IDBOVINO= H.IDHEMBRA"
             + " ORDER BY B.IDBOVINO DESC "
             + " LIMIT 1";
@@ -192,7 +192,9 @@ public class pHembra {
         int idRaza = resultado.getInt("IDRAZA");
         Raza raza = pRaza.buscarRaza(idRaza);
 
-        Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, raza);
+        byte[] foto = resultado.getBytes("FOTO");
+        
+        Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, raza, foto);
 
         return hembra;
     }
@@ -208,6 +210,8 @@ public class pHembra {
 
         ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
         
+        byte[] foto = resultado.getBytes("FOTO");
+        
         Macho padre = null;
         Hembra madre = null;
         
@@ -222,7 +226,7 @@ public class pHembra {
             }
         }
         
-        Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, raza, madre, padre);
+        Hembra hembra = new Hembra(idBovino, caravanaBovino, fechaNacimiento, madre, padre,raza, foto);
 
         return hembra;
     }
