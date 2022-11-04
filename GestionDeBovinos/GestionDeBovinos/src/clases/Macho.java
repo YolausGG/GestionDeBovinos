@@ -8,7 +8,6 @@ public class Macho extends Bovino {
     
     private String tipo;
 
-
     public String getTipo() {
         return tipo;
     }
@@ -33,23 +32,6 @@ public class Macho extends Bovino {
         super(caravanaBovino, fechaNacimiento, madre, padre, raza);
         this.tipo = tipo;
     }
-
-    public Macho(String tipo, int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto) {
-        super(idBovino, caravanaBovino, fechaNacimiento, madre, padre, raza, foto);
-        this.tipo = tipo;
-    }
-
-    public Macho(String tipo, int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto, ArrayList<EstadoDelBovino> estadosDelBovino) {
-        super(idBovino, caravanaBovino, fechaNacimiento, madre, padre, raza, foto, estadosDelBovino);
-        this.tipo = tipo;
-    }
-
-    public Macho(String tipo, int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza, byte[] foto) {
-        super(idBovino, caravanaBovino, fechaNacimiento, raza, foto);
-        this.tipo = tipo;
-    }
-    
-    
     
 }
 

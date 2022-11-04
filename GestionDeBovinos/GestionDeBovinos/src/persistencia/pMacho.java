@@ -18,13 +18,13 @@ public class pMacho {
     private static final String DELETE_MACHO = "DELETE FROM MACHO WHERE IDMACHO = ?";
     private static final String UPDATE_MACHO = "UPDATE MACHO SET TIPO = ? " +
             " WHERE IDMACHO = ?";
-    private static final String BUSCAR_MACHO_CARAVANA = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO,M.TIPO" +
+    private static final String BUSCAR_MACHO_CARAVANA = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,M.TIPO" +
             " FROM BOVINO B INNER JOIN MACHO M ON B.IDBOVINO = M.IDMACHO " +
             " WHERE B.CARAVANABOVINO = ? ";
-    private static final String BUSCAR_MACHO_ID = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO,M.TIPO" +
+    private static final String BUSCAR_MACHO_ID = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,M.TIPO" +
             " FROM BOVINO B INNER JOIN MACHO M ON B.IDBOVINO= M.IDMACHO" +
             " WHERE B.IDBOVINO = ? ";
-    private static final String BUSCAR_MACHO_ULTIMO = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO,M.TIPO"+
+    private static final String BUSCAR_MACHO_ULTIMO = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,M.TIPO"+
             " FROM BOVINO B INNER JOIN MACHO M ON B.IDBOVINO= M.IDMACHO" +
             " ORDER BY IDBOVINO DESC" +
             " LIMIT 1";
@@ -216,9 +216,8 @@ public class pMacho {
 
         String tipo = resultado.getString("TIPO");
 
-        byte[] foto = resultado.getBytes("FOTO");
         
-        Macho macho = new Macho (tipo, idBovino, caravanaBovino, fechaNacimiento, raza, foto);
+        Macho macho = new Macho (idBovino, caravanaBovino, fechaNacimiento, raza, tipo);
 
         return macho;
     }
@@ -234,8 +233,6 @@ public class pMacho {
 
         String tipo = resultado.getString("TIPO");
 
-        byte[] foto = resultado.getBytes("FOTO");
-        
         ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
         
         Macho padre = null;
@@ -252,7 +249,7 @@ public class pMacho {
             }
         }
         
-        Macho macho = new Macho (tipo ,idBovino, caravanaBovino, fechaNacimiento,  madre, padre,raza, foto);
+        Macho macho = new Macho (idBovino, caravanaBovino, fechaNacimiento, raza, tipo, madre, padre);
 
         return macho;
     }

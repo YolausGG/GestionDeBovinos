@@ -22,19 +22,5 @@ public class Hembra extends Bovino {
     public Hembra(String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza) {
         super(caravanaBovino, fechaNacimiento, madre, padre, raza);
     }
-
-    public Hembra(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto) {
-        super(idBovino, caravanaBovino, fechaNacimiento, madre, padre, raza, foto);
-    }
-
-    public Hembra(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto, ArrayList<EstadoDelBovino> estadosDelBovino) {
-        super(idBovino, caravanaBovino, fechaNacimiento, madre, padre, raza, foto, estadosDelBovino);
-    }
-
-    public Hembra(int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza, byte[] foto) {
-        super(idBovino, caravanaBovino, fechaNacimiento, raza, foto);
-    }
-    
-    
     
 }

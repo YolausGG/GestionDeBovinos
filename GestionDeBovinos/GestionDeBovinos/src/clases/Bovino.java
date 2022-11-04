@@ -13,7 +13,6 @@ public class Bovino {
     private Hembra madre;
     private Macho padre;
     private Raza raza;
-    private byte [] foto;
     private ArrayList<EstadoDelBovino> estadosDelBovino;
     
     public int getIdBovino() {
@@ -58,15 +57,6 @@ public class Bovino {
         this.raza = raza;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
-    
-    
     public ArrayList<EstadoDelBovino> getEstadosDelBovino() {
         return estadosDelBovino;
     }
@@ -118,48 +108,5 @@ public class Bovino {
         this.padre = padre;
         this.raza = raza;
     }
-
-    public Bovino(String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto) {
-        this.caravanaBovino = caravanaBovino;
-        this.fechaNacimiento = fechaNacimiento;
-        this.madre = madre;
-        this.padre = padre;
-        this.raza = raza;
-        this.foto = foto;
-    }
-
-    public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto) {
-        this.idBovino = idBovino;
-        this.caravanaBovino = caravanaBovino;
-        this.fechaNacimiento = fechaNacimiento;
-        this.madre = madre;
-        this.padre = padre;
-        this.raza = raza;
-        this.foto = foto;
-    }
-
-    public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, byte[] foto, ArrayList<EstadoDelBovino> estadosDelBovino) {
-        this.idBovino = idBovino;
-        this.caravanaBovino = caravanaBovino;
-        this.fechaNacimiento = fechaNacimiento;
-        this.madre = madre;
-        this.padre = padre;
-        this.raza = raza;
-        this.foto = foto;
-        this.estadosDelBovino = estadosDelBovino;
-    }
-
-    public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza, byte[] foto) {
-        this.idBovino = idBovino;
-        this.caravanaBovino = caravanaBovino;
-        this.fechaNacimiento = fechaNacimiento;
-        this.raza = raza;
-        this.foto = foto;
-    }
-
-    
-    
-    
-    
     
 }
