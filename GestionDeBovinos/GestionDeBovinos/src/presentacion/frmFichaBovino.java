@@ -93,7 +93,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
             try {
                 byte[] bi = hembra.getFoto();
-
+                
                 ByteArrayInputStream bis = new ByteArrayInputStream(hembra.getFoto());
                 BufferedImage image;
 

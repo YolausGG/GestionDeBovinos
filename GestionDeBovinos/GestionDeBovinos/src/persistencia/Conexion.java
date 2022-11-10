@@ -12,7 +12,7 @@ public class Conexion {
     private static Connection databaseConnection;
     private static String CONNECTION_STRING = "jdbc:mysql://localhost:3306/db_gestiondebovinos";
     private static String USUARIO="root";
-    private static String CLAVE="yola";
+    private static String CLAVE="admin";
 
     static{
         databaseConnection=null;

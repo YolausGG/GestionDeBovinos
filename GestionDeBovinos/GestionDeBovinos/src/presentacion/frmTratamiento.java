@@ -69,8 +69,6 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDetalle = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePadeceEnfermedad = new javax.swing.JTable();
         btnAltaTratamiento = new javax.swing.JButton();
         jDateFechaFinalizacionT = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -81,6 +79,9 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         lblFechaFinE = new javax.swing.JLabel();
         lblFechaInicioE = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePadeceEnfermedad = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -136,6 +137,46 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
 
             jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 290, -1));
 
+            btnAltaTratamiento.setText("Ingresar");
+            btnAltaTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    btnAltaTratamientoMouseClicked(evt);
+                }
+            });
+            jPanel2.add(btnAltaTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 90, -1));
+            jPanel2.add(jDateFechaFinalizacionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 30));
+
+            jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+            jLabel1.setText("Fecha Fin Enfermedad:");
+            jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 130, 20));
+
+            jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+            jLabel2.setText("Enfermedad:");
+            jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 90, -1));
+
+            lblCaravana.setText("...");
+            jPanel2.add(lblCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 60, -1));
+
+            lblEnfermedad.setText("...");
+            jPanel2.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 80, -1));
+
+            jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+            jLabel3.setText("CARAVANA:");
+            jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 70, -1));
+
+            jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+            jLabel5.setText("Fecha Inicio Enfermedad:");
+            jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 150, 20));
+
+            lblFechaFinE.setText("...");
+            jPanel2.add(lblFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 170, 20));
+
+            lblFechaInicioE.setText("...");
+            jPanel2.add(lblFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 80, 20));
+
+            jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enfermedades Activas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12))); // NOI18N
+            jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
             jTablePadeceEnfermedad = new javax.swing.JTable(){
                 public boolean isCellEditable(int row, int column){
                     return false;
@@ -158,44 +199,9 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
                 });
                 jScrollPane1.setViewportView(jTablePadeceEnfermedad);
 
-                jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 450, 170));
+                jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 450, 170));
 
-                btnAltaTratamiento.setText("Ingresar");
-                btnAltaTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        btnAltaTratamientoMouseClicked(evt);
-                    }
-                });
-                jPanel2.add(btnAltaTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 90, -1));
-                jPanel2.add(jDateFechaFinalizacionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 30));
-
-                jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-                jLabel1.setText("Fecha Fin Enfermedad:");
-                jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 130, 20));
-
-                jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-                jLabel2.setText("Enfermedad:");
-                jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 90, -1));
-
-                lblCaravana.setText("...");
-                jPanel2.add(lblCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 60, -1));
-
-                lblEnfermedad.setText("...");
-                jPanel2.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 80, -1));
-
-                jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-                jLabel3.setText("CARAVANA:");
-                jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 70, -1));
-
-                jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-                jLabel5.setText("Fecha Inicio Enfermedad:");
-                jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 150, 20));
-
-                lblFechaFinE.setText("...");
-                jPanel2.add(lblFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 170, 20));
-
-                lblFechaInicioE.setText("...");
-                jPanel2.add(lblFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 80, 20));
+                jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 470, 200));
 
                 jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 910, 410));
 
@@ -491,6 +497,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

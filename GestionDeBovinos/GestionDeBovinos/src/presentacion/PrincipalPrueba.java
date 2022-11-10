@@ -12,6 +12,10 @@ import java.util.Date;
 public class PrincipalPrueba {
     
     public static void main(String[] args) throws ParseException {
+        
+        frmLogin frmLogin1 = new frmLogin();
+        frmLogin1.setVisible(true);
+        /*
         Raza holando = new Raza(1,"Holando");
         ArrayList<EstadoDelBovino> estadoDelBovinos = new ArrayList<>();
         String fechaS = "2021/06/21";
@@ -34,6 +38,6 @@ public class PrincipalPrueba {
        // System.out.println(hembra1.getClass().getSimpleName());
         
         LocalDate fecha5 = LocalDate.now();
-        System.out.println(fecha5);
+        System.out.println(fecha5);*/
     }
 }
