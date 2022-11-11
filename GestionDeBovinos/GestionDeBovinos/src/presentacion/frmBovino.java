@@ -12,6 +12,8 @@ import clases.Pedigree;
 import clases.Raza;
 import dominio.dControladora;
 import java.awt.Image;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -20,6 +22,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import persistencia.pRaza;
 
 /**
@@ -42,7 +46,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
      */
     public frmBovino() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
 
         this.setTitle("BOVINOS");
@@ -313,6 +317,8 @@ public class frmBovino extends javax.swing.JInternalFrame {
         cboMadre.setSelectedIndex(0);
         chkPedigree.setSelected(false);
         txtNumeroPedigree.setText(null);
+        txtRutaFoto.setText(null);
+        lblFotoBovino.setIcon(null);
     }
 
     private void llenarComboRaza() {
@@ -370,6 +376,9 @@ public class frmBovino extends javax.swing.JInternalFrame {
         jTableBovinos.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableBovinos.setRowSorter(elQueOrdena);
+
         ArrayList<Bovino> listaBovino = dControladora.listarBovinos();
 
         model.addColumn("Nº Caravana");
@@ -396,7 +405,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
         row = evt.getY() / jTableBovinos.getRowHeight();
         if (columna <= jTableBovinos.getColumnCount() && columna >= 0 && row <= jTableBovinos.getRowCount() && row >= 0) {
             Object objeto = jTableBovinos.getValueAt(row, columna);
-            
+
             if (evt.getClickCount() == 2) {
 
                 int fila = jTableBovinos.getSelectedRow();
@@ -411,7 +420,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                     fichaBovino.setVisible(true);
                 }
             }
-            
+
             if (objeto instanceof JButton) {
                 ((JButton) objeto).doClick();
                 JButton botones = (JButton) objeto;
@@ -485,12 +494,12 @@ public class frmBovino extends javax.swing.JInternalFrame {
                 numeroPredigree = txtNumeroPedigree.getText();
             }
 
-            String foto = null;
-            
-            if(!txtRutaFoto.getText().isEmpty()){
-                foto = txtRutaFoto.getText();
+            String rutaFoto = null;
+
+            if (!txtRutaFoto.getText().isEmpty()) {
+                rutaFoto = txtRutaFoto.getText();
             }
-        
+
             Macho padre = null;
             Hembra madre = null;
 
@@ -507,7 +516,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                 if (chkMacho.isSelected()) {
                     String tipo = cboTipo.getSelectedItem().toString();
 
-                    if (foto == null) {
+                    if (rutaFoto == null) {
 
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza);
 
@@ -542,6 +551,15 @@ public class frmBovino extends javax.swing.JInternalFrame {
                         }
                     } else {
 
+                       byte[] foto = null;
+                        try {
+                            byte[] icono = new byte[(int) rutaFoto.length()];
+                            InputStream input = new FileInputStream(rutaFoto);
+                            input.read(icono);
+                            foto = icono;
+                        } catch (Exception ex) {
+                            foto = null;
+                        }
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza, foto);
 
                         if (dControladora.altaBovinoFoto(bovino)) {
@@ -576,7 +594,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                     }
                 } else if (chkHembra.isSelected()) {
 
-                    if (foto == null) {
+                    if (rutaFoto == null) {
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza);
 
                         if (dControladora.altaBovino(bovino)) {
@@ -608,6 +626,17 @@ public class frmBovino extends javax.swing.JInternalFrame {
                             JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Bovino");
                         }
                     } else {
+                        
+                        byte[] foto = null;
+                        try {
+                            byte[] icono = new byte[(int) rutaFoto.length()];
+                            InputStream input = new FileInputStream(rutaFoto);
+                            input.read(icono);
+                            foto = icono;
+                        } catch (Exception ex) {
+                            foto = null;
+                        }
+                        
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza, foto);
 
                         if (dControladora.altaBovinoFoto(bovino)) {
@@ -665,6 +694,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_chkPedigreeActionPerformed
 
     private void btnBuscarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFotoMouseClicked
+        
         JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         j.setFileFilter(fil);
@@ -678,7 +708,8 @@ public class frmBovino extends javax.swing.JInternalFrame {
             foto = foto.getScaledInstance(lblFotoBovino.getWidth(), lblFotoBovino.getHeight(), Image.SCALE_DEFAULT);
 
             lblFotoBovino.setIcon(new ImageIcon(foto));
-        }             
+        }
+        
     }//GEN-LAST:event_btnBuscarFotoMouseClicked
 
 

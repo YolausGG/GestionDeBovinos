@@ -234,6 +234,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
     }
     
     public void actualizarTabla() {
+        
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 

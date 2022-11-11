@@ -264,6 +264,14 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                         frmInicio.jDkPEscritorio.add(formularioApareable);
                         formularioApareable.setVisible(true);
                         break;
+                    case "frmListaContagiosActivos":
+                        frmListaContagiosActivos formularioListaContagiosActivos = new frmListaContagiosActivos();
+                        frmInicio.jDkPEscritorio.add(formularioListaContagiosActivos);
+                        formularioListaContagiosActivos.setVisible(true); 
+                    case "frmListaBovinosPorEstado":
+                        frmListaBovinosPorEstado formularioListaBovinosPorEstado = new frmListaBovinosPorEstado();
+                        frmInicio.jDkPEscritorio.add(formularioListaBovinosPorEstado);
+                        formularioListaBovinosPorEstado.setVisible(true); 
                     default:
                         throw new AssertionError();
                 }

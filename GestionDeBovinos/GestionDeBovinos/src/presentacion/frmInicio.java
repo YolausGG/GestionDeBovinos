@@ -7,9 +7,14 @@ package presentacion;
 import desplazable.Desface;
 import java.awt.Color;
 import java.awt.Dimension;
+<<<<<<< HEAD
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+=======
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+>>>>>>> a5e1d6a (Listados Yolaus)
 
 /**
  *
@@ -26,10 +31,13 @@ public class frmInicio extends javax.swing.JFrame {
     public frmInicio() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
+<<<<<<< HEAD
         
         MenuSanidad.setVisible(false);
         MenuEnfermedad.setVisible(false);
         MenuEstadoBovino.setVisible(false);          
+=======
+>>>>>>> a5e1d6a (Listados Yolaus)
 
         colorInicio = new Color(54, 67, 114);
         colorSeleccionado = new Color(93, 109, 126);
@@ -44,6 +52,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelTratamiento.setBackground(colorInicio);
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
+<<<<<<< HEAD
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -56,6 +65,8 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelPadeceEnfermedad.setBackground(colorInicio);
         jPanelAltaEstadoBovino.setBackground(colorInicio);
         jPanelEstadoConBovino.setBackground(colorInicio);
+=======
+>>>>>>> a5e1d6a (Listados Yolaus)
 
     }
 
@@ -666,6 +677,21 @@ public class frmInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
+=======
+    private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
+        /*   
+        if (MenuPlegable.getX() == 0) {
+            desplace.desplazarIzquierda(MenuPlegable, MenuPlegable.getX(), -168, 10, 10);
+           
+        } else if (MenuPlegable.getX() == -170) {
+            desplace.desplazarDerecha(MenuPlegable, MenuPlegable.getX(), 0, 10, 10);
+            //jDkPEscritorio.setSize(new Dimension(this.getWidth(), this.getHeight()));
+            //jDkPEscritorio.setSize(this.getWidth(), this.getHeight());
+        }
+         */
+    }//GEN-LAST:event_lblInicioMouseClicked
+>>>>>>> a5e1d6a (Listados Yolaus)
 
     private void lblBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBovinoMousePressed
      
@@ -678,7 +704,11 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
 
+<<<<<<< HEAD
         frmBovino frmBovino = new frmBovino();
+=======
+        frmBovino frmbovino = new frmBovino();
+>>>>>>> a5e1d6a (Listados Yolaus)
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmBovino);
         frmBovino.setVisible(true);
@@ -726,11 +756,19 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
+<<<<<<< HEAD
         
         MenuEnfermedad.setVisible(true);
         MenuPrincipal.setVisible(false);
 
         
+=======
+
+        frmEnfermedad frmenfermedad = new frmEnfermedad();
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmenfermedad);
+        frmenfermedad.setVisible(true);
+>>>>>>> a5e1d6a (Listados Yolaus)
     }//GEN-LAST:event_lblEnfermedadMousePressed
 
     private void lblTratamientoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTratamientoMousePressed
@@ -807,6 +845,7 @@ public class frmInicio extends javax.swing.JFrame {
         MenuPrincipal.setVisible(false);
     }//GEN-LAST:event_lblEstadoBovinoMousePressed
 
+<<<<<<< HEAD
     private void lblEventoFuturoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventoFuturoMousePressed
       
         jPanelEventoFuturo.setBackground(colorSeleccionado);
@@ -958,6 +997,9 @@ public class frmInicio extends javax.swing.JFrame {
 
     private void lblApareableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblApareableMousePressed
       
+=======
+    private void lblListadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListadosMousePressed
+>>>>>>> a5e1d6a (Listados Yolaus)
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
@@ -1012,7 +1054,10 @@ public class frmInicio extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
         try {
+<<<<<<< HEAD
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -1035,7 +1080,16 @@ public class frmInicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmInicio.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+=======
+            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+        } catch (Exception e) {
+>>>>>>> a5e1d6a (Listados Yolaus)
         }
+
+            
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
 

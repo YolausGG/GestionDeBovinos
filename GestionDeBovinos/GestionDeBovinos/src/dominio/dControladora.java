@@ -32,7 +32,7 @@ public class dControladora {
     private static ArrayList<Enfermedad> listaEnfermedades;
     private static ArrayList<Produccion> listaProduccionesHembra;
     private static ArrayList<EstadoDelBovino> listaEstadosDelBovino;
-    private static ArrayList<EventoDeSanidad> listaEventosDeSanidad;
+    private static ArrayList<EventoDeSanidad> listaEventosDeSanidad = new ArrayList<>();
     private static ArrayList<Raza> listaRazas;
 
     // <editor-fold defaultstate="collapsed" desc="Cargar Listas">
@@ -77,7 +77,7 @@ public class dControladora {
     /*public static void cargarProducciones(){
         listaProducciones = dProduccion.listarProducciones();
     }*/
- /*public static void agregarProduccion(Produccion pProduccion){
+    /*public static void agregarProduccion(Produccion pProduccion){
         
         listaProducciones.add(pProduccion);
     }*/
@@ -125,11 +125,15 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Devolver Listas">
-    /*public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
+    
+    public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
+        
         return listaEventosDeSanidad;
-    }*/
+    }
     public static ArrayList<Enfermedad> listarEnfermedads() {
+        
         return listaEnfermedades;
     }
 
@@ -148,14 +152,27 @@ public class dControladora {
         return listaBovinos;
     }
 
-    /* public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
+     public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
         return listaEstadosDelBovino;
-    }*/
+    }
     public static ArrayList<Raza> listarRazas() {
         return listaRazas;
     }
-
+    
+    public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravana(String pCaravana){
+        
+        ArrayList<EventoDeSanidad> lista = new ArrayList<>();
+        
+        for (EventoDeSanidad eventoDeSanidad : listaEventosDeSanidad) {
+            
+            if(eventoDeSanidad.getHembra().getCaravanaBovino().equals(pCaravana)){
+                lista.add(eventoDeSanidad);
+            }
+        }
+        return lista;
+    }
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="Evento Futuro">
     public static boolean altaEventoFuturo(EventoFuturo pEventoFuturo) {
 
@@ -215,12 +232,9 @@ public class dControladora {
         return dEventoDeSanidad.buscarEventoDeSanidadUltimo();
     }
 
-    public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
+    
 
-        return dEventoDeSanidad.listarEventosDeSanidad();
-    }
-
-    public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravana(String pCaravanaHembra) {
+    public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravanaPersistencia(String pCaravanaHembra) {
 
         return dEventoDeSanidad.listarEventosDeSanidadPorCaravana(pCaravanaHembra);
     }
@@ -290,6 +304,7 @@ public class dControladora {
     }
 
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="Aborto">
     public static boolean altaAborto(Aborto pAborto) {
 
@@ -533,10 +548,29 @@ public class dControladora {
 
         return dPadece.listarContagiosPorBovino(idBovino);
     }
+    
+    public static ArrayList<Padece> listarContagiosActivosPorBovino(int idBovino) {
 
-    public static ArrayList<Padece> listarContagiosBovinoPorEnfermedad(int idEnfermedad) {
+        return dPadece.listarContagiosActivosPorBovino(idBovino);
+    }
 
-        return dPadece.listarContagiosBovinoPorEnfermedad(idEnfermedad);
+    public static ArrayList<Padece> listarContagiosPorEnfermedad(int idEnfermedad) {
+
+        return dPadece.listarContagiosPorEnfermedad(idEnfermedad);
+    }
+    public static ArrayList<Padece> listarContagiosActivosPorEnfermedad(int idEnfermedad) {
+
+        return dPadece.listarContagiosActivosPorEnfermedad(idEnfermedad);
+    }
+    
+    public static ArrayList<Padece> listarContagiosPorBovinoPorEnfermedad(int idEnfermedad, int idBovino){
+        
+        return dPadece.listarContagiosPorBovinoPorEnfermedad(idEnfermedad, idBovino);
+    }
+    
+    public static ArrayList<Padece> listarContagiosActivosPorBovinoPorEnfermedad(int idEnfermedad, int idBovino){
+        
+        return dPadece.listarContagiosActivosPorBovinoPorEnfermedad(idEnfermedad, idBovino);
     }
     // </editor-fold>
 

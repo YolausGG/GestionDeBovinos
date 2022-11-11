@@ -29,18 +29,18 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         lblTipoMachoText.setVisible(false);
-        lblTipoMacho.setVisible(false);
+        txtTipoMacho.setVisible(false);
         if (frmBovino.sexo.equals("Macho")) {
             Macho macho = dControladora.buscarMachoPorCaravanaCompleto(frmBovino.caravana);
 
-            lblTipoMachoText.setVisible(false);
-            lblTipoMacho.setVisible(false);
+            lblTipoMachoText.setVisible(true);
+            txtTipoMacho.setVisible(true);
 
-            lblCaravanaBovino.setText(macho.getCaravanaBovino());
-            lblFechaNacimientoBovino.setText(macho.getFechaNacimiento().toString());
-            lblRazaBovino.setText(macho.getRaza().getTipo());
-            lblSexoBovino.setText("Macho");
-            lblTipoMacho.setText(macho.getTipo());
+            txtCaravanaBovino.setText(macho.getCaravanaBovino());
+            txtFechaNacimiento.setText(macho.getFechaNacimiento().toString());
+            txtRazaBovino.setText(macho.getRaza().getTipo());
+            txtSexoBovino.setText("Macho");
+            txtTipoMacho.setText(macho.getTipo());
 
             try {
                 byte[] bi = macho.getFoto();
@@ -55,7 +55,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             }
 
             if (macho.getMadre() != null) {
-                lblCaravanaMadre.setText(macho.getMadre().getCaravanaBovino());
+                txtCaravanaMadre.setText(macho.getMadre().getCaravanaBovino());
                 try {
                     byte[] bi = macho.getMadre().getFoto();
                     BufferedImage image = null;
@@ -69,7 +69,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 }
             }
             if (macho.getPadre() != null) {
-                lblCaravanaPadre.setText(macho.getPadre().getCaravanaBovino());
+                txtCaravanaPadre.setText(macho.getPadre().getCaravanaBovino());
                 try {
                     byte[] bi = macho.getPadre().getFoto();
                     BufferedImage image = null;
@@ -86,10 +86,10 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
             Hembra hembra = dControladora.buscarHembraPorCaravanaCompleta(frmBovino.caravana);
 
-            lblCaravanaBovino.setText(hembra.getCaravanaBovino());
-            lblFechaNacimientoBovino.setText(hembra.getFechaNacimiento().toString());
-            lblRazaBovino.setText(hembra.getRaza().getTipo());
-            lblSexoBovino.setText("Hembra");
+            txtCaravanaBovino.setText(hembra.getCaravanaBovino());
+            txtFechaNacimiento.setText(hembra.getFechaNacimiento().toString());
+            txtRazaBovino.setText(hembra.getRaza().getTipo());
+            txtSexoBovino.setText("Hembra");
 
             try {
                 byte[] bi = hembra.getFoto();
@@ -99,15 +99,17 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
                 image = ImageIO.read(bis);
 
-                Image imgi = image.getScaledInstance(150,150, Image.SCALE_DEFAULT);
+                Image imgi = image.getScaledInstance(lblFotoBovino.getWidth(),lblFotoBovino.getHeight(), Image.SCALE_DEFAULT);
 
-                lblFotoBovino.setIcon(new ImageIcon(imgi));
+                ImageIcon foto = new ImageIcon(imgi);
+                lblFotoBovino.setIcon(foto);
+                
 
             } catch (Exception ex) {
                 lblFotoBovino.setText("");
             }
             if (hembra.getMadre() != null) {
-                lblCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
+                txtCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
                 try {
                     byte[] bi = hembra.getMadre().getFoto();
                     BufferedImage image = null;
@@ -122,7 +124,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             }
 
             if (hembra.getPadre() != null) {
-                lblCaravanaPadre.setText(hembra.getMadre().getCaravanaBovino());
+                txtCaravanaPadre.setText(hembra.getMadre().getCaravanaBovino());
                 try {
                     byte[] bi = hembra.getPadre().getFoto();
                     BufferedImage image = null;
@@ -142,75 +144,216 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        popupMenu1 = new java.awt.PopupMenu();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        lblSexoBovino = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lblFechaNacimientoBovino = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lblCaravanaBovino = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblRazaBovino = new javax.swing.JLabel();
-        lblTipoMachoText = new javax.swing.JLabel();
-        lblTipoMacho = new javax.swing.JLabel();
-        lblCaravanaMadre = new javax.swing.JLabel();
-        lblCaravanaPadre = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblFotoMadre = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblFotoPadre = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        lblFotoMadre = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtCaravanaPadre = new javax.swing.JTextField();
+        txtCaravanaMadre = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblTipoMachoText = new javax.swing.JLabel();
+        txtCaravanaBovino = new javax.swing.JTextField();
+        txtFechaNacimiento = new javax.swing.JTextField();
+        txtRazaBovino = new javax.swing.JTextField();
+        txtSexoBovino = new javax.swing.JTextField();
+        txtTipoMacho = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
         lblFotoBovino = new javax.swing.JLabel();
 
-        popupMenu1.setLabel("popupMenu1");
+        setBackground(new java.awt.Color(0, 102, 102));
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setText("Sexo:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 40, 30));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblSexoBovino.setText("...");
-        jPanel1.add(lblSexoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 90, 30));
-
-        jLabel2.setText("Fecha Nacimiento:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 110, 30));
-
-        lblFechaNacimientoBovino.setText("...");
-        jPanel1.add(lblFechaNacimientoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 110, 30));
-
-        jLabel3.setText("Caravana:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 30));
-
-        lblCaravanaBovino.setText("...");
-        jPanel1.add(lblCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 100, 30));
-
-        jLabel4.setText("Raza:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 40, 30));
-
-        lblRazaBovino.setText("...");
-        jPanel1.add(lblRazaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 90, 30));
-
-        lblTipoMachoText.setText("Tipo:");
-        jPanel1.add(lblTipoMachoText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 30, 30));
-
-        lblTipoMacho.setText("...");
-        jPanel1.add(lblTipoMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 90, 30));
-
-        lblCaravanaMadre.setText("...");
-        jPanel1.add(lblCaravanaMadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 100, 30));
-
-        lblCaravanaPadre.setText("...");
-        jPanel1.add(lblCaravanaPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 100, 30));
-
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Madre:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 40, 30));
-        jPanel1.add(lblFotoPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 160, 90));
 
-        jLabel11.setText("Padre:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 40, 30));
-        jPanel1.add(lblFotoMadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 160, 90));
-        jPanel1.add(lblFotoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 250, 160));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Padre:");
+
+        txtCaravanaPadre.setEditable(false);
+
+        txtCaravanaMadre.setEditable(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFotoMadre, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCaravanaMadre, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCaravanaPadre, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                    .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCaravanaPadre)
+                    .addComponent(txtCaravanaMadre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFotoMadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Caravana:");
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Fecha Nacimiento:");
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Raza:");
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Sexo:");
+
+        lblTipoMachoText.setForeground(new java.awt.Color(0, 0, 0));
+        lblTipoMachoText.setText("Tipo:");
+
+        txtCaravanaBovino.setEditable(false);
+        txtCaravanaBovino.setBackground(new java.awt.Color(255, 255, 255));
+        txtCaravanaBovino.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        txtFechaNacimiento.setEditable(false);
+
+        txtRazaBovino.setEditable(false);
+
+        txtSexoBovino.setEditable(false);
+
+        txtTipoMacho.setEditable(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblTipoMachoText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSexoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRazaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(232, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRazaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSexoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoMachoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(126, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 458, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+        );
+
+        lblFotoBovino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,42 +361,42 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JLabel lblCaravanaBovino;
-    private javax.swing.JLabel lblCaravanaMadre;
-    private javax.swing.JLabel lblCaravanaPadre;
-    private javax.swing.JLabel lblFechaNacimientoBovino;
-    private javax.swing.JLabel lblFotoBovino;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    public static javax.swing.JLabel lblFotoBovino;
     private javax.swing.JLabel lblFotoMadre;
     private javax.swing.JLabel lblFotoPadre;
-    private javax.swing.JLabel lblRazaBovino;
-    private javax.swing.JLabel lblSexoBovino;
-    private javax.swing.JLabel lblTipoMacho;
     private javax.swing.JLabel lblTipoMachoText;
-    private java.awt.PopupMenu popupMenu1;
+    private javax.swing.JTextField txtCaravanaBovino;
+    private javax.swing.JTextField txtCaravanaMadre;
+    private javax.swing.JTextField txtCaravanaPadre;
+    private javax.swing.JTextField txtFechaNacimiento;
+    private javax.swing.JTextField txtRazaBovino;
+    private javax.swing.JTextField txtSexoBovino;
+    private javax.swing.JTextField txtTipoMacho;
     // End of variables declaration//GEN-END:variables
 
 }

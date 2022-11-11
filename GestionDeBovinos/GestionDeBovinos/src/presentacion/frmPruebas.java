@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import dominio.dControladora;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -19,8 +20,18 @@ public class frmPruebas extends javax.swing.JFrame {
      * Creates new form frmLogin
      */
     public frmPruebas() {
+        
         initComponents();
-        this.setTitle("LOGIN");
+        setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana
+        this.setTitle("Pruebas");
+        
+        dControladora.cargarEventosDeSanidad();
+        
+        frmListaEventosDeSanidad form = new frmListaEventosDeSanidad();
+        this.jDkPPruebas.add(form);
+        form.setVisible(true);
+        
+        
     }
 
     /**
@@ -34,40 +45,30 @@ public class frmPruebas extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        btnCalcular = new javax.swing.JButton();
+        jDkPPruebas = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jDateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, 30));
 
-        jLabel2.setText("Fecha:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 70, 20));
-
-        btnCalcular.setText("Calcular");
-        btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCalcularMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDkPPruebas, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDkPPruebas, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseClicked
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(jDateFecha.getDate());
-        
-        calendar.add(Calendar.DAY_OF_YEAR, 283);
-        
-        Date fecha = calendar.getTime();
-        
-        JOptionPane.showMessageDialog(null, "Fecha:"+fecha.toString());
-    }//GEN-LAST:event_btnCalcularMouseClicked
 
     
     /**
@@ -107,11 +108,9 @@ public class frmPruebas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalcular;
-    private com.toedter.calendar.JDateChooser jDateFecha;
+    public static javax.swing.JDesktopPane jDkPPruebas;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
 }

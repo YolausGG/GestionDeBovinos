@@ -64,9 +64,29 @@ public class dPadece {
         return persistencia.pPadece.listarContagiosPorBovino(idBovino);
     }
     
-    public static ArrayList<Padece> listarContagiosBovinoPorEnfermedad(int idEnfermedad){
+    public static ArrayList<Padece> listarContagiosActivosPorBovino(int idBovino){
         
-        return persistencia.pPadece.listarContagiosBovinoPorEnfermedad(idEnfermedad);
+        return persistencia.pPadece.listarContagiosActivosPorBovino(idBovino);
+    }
+    
+    public static ArrayList<Padece> listarContagiosPorEnfermedad(int idEnfermedad){
+        
+        return persistencia.pPadece.listarContagiosPorEnfermedad(idEnfermedad);
+    }
+    
+    public static ArrayList<Padece> listarContagiosActivosPorEnfermedad(int idEnfermedad){
+        
+        return persistencia.pPadece.listarContagiosActivosPorEnfermedad(idEnfermedad);
+    }
+    
+    public static ArrayList<Padece> listarContagiosPorBovinoPorEnfermedad(int idEnfermedad, int idBovino){
+        
+        return persistencia.pPadece.listarContagiosPorBovinoPorEnfermedad(idEnfermedad, idBovino);
+    }
+    
+    public static ArrayList<Padece> listarContagiosActivosPorBovinoPorEnfermedad(int idEnfermedad, int idBovino){
+        
+        return persistencia.pPadece.listarContagiosActivosPorBovinoPorEnfermedad(idEnfermedad, idBovino);
     }
         
 }

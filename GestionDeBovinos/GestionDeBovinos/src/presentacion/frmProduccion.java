@@ -13,6 +13,8 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -117,7 +119,11 @@ public class frmProduccion extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableProduccionHembra);
 
+<<<<<<< HEAD
             jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 850, 240));
+=======
+            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 850, 240));
+>>>>>>> a5e1d6a (Listados Yolaus)
 
             jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel1.setText("Segunda Produccion (lts):");
@@ -259,9 +265,9 @@ public class frmProduccion extends javax.swing.JInternalFrame {
         jTableProduccionHembra.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
-        String caravana = txtCaravanaHembra.getText();
 
-        Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableProduccionHembra.setRowSorter(elQueOrdena);
 
         ArrayList<Produccion> listaProduccionH = dControladora.listarProducciones();
 

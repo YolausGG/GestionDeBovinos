@@ -194,6 +194,14 @@ public class frmBuscarHembra extends javax.swing.JInternalFrame {
                         frmInicio.jDkPEscritorio.add(formularioEventoFuturo);
                         formularioEventoFuturo.setVisible(true);
                         break;
+                    case "frmListaProduccion":
+                        frmListaProduccion formularioListaProducciono = new frmListaProduccion();
+                        frmInicio.jDkPEscritorio.add(formularioListaProducciono);
+                        formularioListaProducciono.setVisible(true);
+                    case "frmListaEventosDeSanidad":
+                        frmListaEventosDeSanidad formularioListaEventosDeSanidad = new frmListaEventosDeSanidad();
+                        frmInicio.jDkPEscritorio.add(formularioListaEventosDeSanidad);
+                        formularioListaEventosDeSanidad.setVisible(true); 
                     case "frmModificarProduccion":
                         frmModificarProduccion.caravana = caravana;
                         frmModificarProduccion formularioModificarProduccion = new frmModificarProduccion();

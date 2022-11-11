@@ -46,7 +46,11 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+<<<<<<< HEAD
               <AbsoluteConstraints x="80" y="430" width="850" height="240"/>
+=======
+              <AbsoluteConstraints x="80" y="480" width="850" height="240"/>
+>>>>>>> a5e1d6a (Listados Yolaus)
             </Constraint>
           </Constraints>
 

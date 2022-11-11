@@ -16,9 +16,7 @@ public class Bovino {
     private byte [] foto;
     private ArrayList<EstadoDelBovino> estadosDelBovino;
 
-    public Bovino(String caravana, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, String foto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
     public int getIdBovino() {
         return idBovino;

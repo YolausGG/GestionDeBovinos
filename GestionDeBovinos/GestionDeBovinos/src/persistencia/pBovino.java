@@ -73,6 +73,7 @@ public class pBovino {
             statement.setInt(3, pBovino.getRaza().getIdRaza());
 
             statement.setBytes(4, pBovino.getFoto());
+            
             int retorno = statement.executeUpdate();
 
             if (retorno > 0) {
