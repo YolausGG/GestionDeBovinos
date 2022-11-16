@@ -16,6 +16,7 @@ import java.text.*;
 import java.util.Date;
 import javax.swing.JTable;
 
+
 public class frmEventoFuturo extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
