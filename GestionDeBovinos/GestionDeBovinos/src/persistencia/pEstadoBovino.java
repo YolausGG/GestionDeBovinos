@@ -31,11 +31,25 @@ public class pEstadoBovino {
     private static final String UPDATE_ESTADOBOVINO_FECHAINICIO= "UPDATE ESTADOBOVINO SET IDESTADODELBOVINO = ?, IDBOVINO = ?, FECHAINICIO = ? " +
             " WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String BUSCAR_ESTADOBOVINO = "SELECT * FROM ESTADOBOVINO WHERE IDESTADODELBOVINO = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
-    private static final String LISTAR_ESTADOBOVINO = "SELECT * FROM ESTADOBOVINO";
+    
+    private static final String LISTAR_ESTADOBOVINO = "SELECT * FROM ESTADOBOVINO";            
+    private static final String LISTAR_ESTADOBOVINO_ACTIVOS = "SELECT * FROM ESTADOBOVINO "+
+            " WHERE FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
+    
     private static final String LISTAR_ESTADOBOVINO_BOVINO = "SELECT * FROM ESTADOBOVINO "+
             " WHERE IDBOVINO = ?";
+    private static final String LISTAR_ESTADOBOVINO_ACTIVOS_BOVINO = "SELECT * FROM ESTADOBOVINO "+
+            " WHERE IDBOVINO = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
+    
     private static final String LISTAR_ESTADOBOVINO_ESTADO = "SELECT * FROM ESTADOBOVINO "+
             " WHERE IDESTADODELBOVINO = ?";
+    private static final String LISTAR_ESTADOBOVINO_ACTIVOS_ESTADO = "SELECT * FROM ESTADOBOVINO "+
+            " WHERE IDESTADODELBOVINO = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
+    
+    private static final String LISTAR_ESTADOBOVINO_BOVINO_ESTADO = "SELECT * FROM ESTADOBOVINO "+
+            " WHERE IDBOVINO = ? AND IDESTADODELBOVINO = ?";
+    private static final String LISTAR_ESTADOBOVINO_ACTIVOS_BOVINO_ESTADO = "SELECT * FROM ESTADOBOVINO "+
+            " WHERE IDBOVINO = ? AND IDESTADODELBOVINO = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
     
     public static boolean altaEstadoBovinoFechaInicio(EstadoBovino pEstadoBovino){
         try {
@@ -172,6 +186,7 @@ public class pEstadoBovino {
         }
     }
     
+    
     public static ArrayList<EstadoBovino> listarEstadosBovino(){
 
         ArrayList<EstadoBovino> listaEstadoBovino = new ArrayList<>();
@@ -191,6 +206,27 @@ public class pEstadoBovino {
             return null;
         }
     }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoActivos(){
+
+        ArrayList<EstadoBovino> listaEstadoBovino = new ArrayList<>();
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ESTADOBOVINO_ACTIVOS);
+            ResultSet resultado = statement.executeQuery();
+            EstadoBovino estadoBovino = null;
+            
+            while (resultado.next()) {
+                estadoBovino = getEstadoBovinoFromResultSet(resultado);
+                listaEstadoBovino.add(estadoBovino);
+            }
+            return listaEstadoBovino;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     
     public static ArrayList<EstadoBovino> listarEstadosBovinoPorBovino(int idBovino){
         
@@ -214,6 +250,30 @@ public class pEstadoBovino {
         }
                
     }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoActivosPorBovino(int idBovino){
+        
+        ArrayList<EstadoBovino> listaEstadosBovino = new ArrayList<>();
+        try {
+            
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ESTADOBOVINO_ACTIVOS_BOVINO);
+            statement.setInt(1, idBovino);
+            ResultSet resultado = statement.executeQuery();
+            EstadoBovino estadoBovino = null;
+            
+            while (resultado.next()) {
+                estadoBovino = getEstadoBovinoFromResultSet(resultado);
+                listaEstadosBovino.add(estadoBovino);
+            }
+            return listaEstadosBovino;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+               
+    }
+    
      
     public static ArrayList<EstadoBovino> listarEstadosBovinoPorEstado(int idEstadoDelBovino){
         
@@ -237,6 +297,79 @@ public class pEstadoBovino {
         }
                
     }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoActivosPorEstado(int idEstadoDelBovino){
+        
+        ArrayList<EstadoBovino> listaEstadosBovino = new ArrayList<>();
+        try {
+            
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ESTADOBOVINO_ACTIVOS_ESTADO);
+            statement.setInt(1, idEstadoDelBovino);
+            ResultSet resultado = statement.executeQuery();
+            EstadoBovino estadoBovino = null;
+            
+            while (resultado.next()) {
+                estadoBovino = getEstadoBovinoFromResultSet(resultado);
+                listaEstadosBovino.add(estadoBovino);
+            }
+            return listaEstadosBovino;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+               
+    }
+    
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoPorBovinoPorEstado(int idBovino, int idEstadoDelBovino){
+        
+        ArrayList<EstadoBovino> listaEstadosBovino = new ArrayList<>();
+        try {
+            
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ESTADOBOVINO_BOVINO_ESTADO);
+            statement.setInt(1, idBovino);
+            statement.setInt(2, idEstadoDelBovino);
+            ResultSet resultado = statement.executeQuery();
+            EstadoBovino estadoBovino = null;
+            
+            while (resultado.next()) {
+                estadoBovino = getEstadoBovinoFromResultSet(resultado);
+                listaEstadosBovino.add(estadoBovino);
+            }
+            return listaEstadosBovino;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+               
+    }
+    
+    public static ArrayList<EstadoBovino> listarEstadosBovinoActivosPorBovinoPorEstado(int idBovino, int idEstadoDelBovino){
+        
+        ArrayList<EstadoBovino> listaEstadosBovino = new ArrayList<>();
+        try {
+            
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ESTADOBOVINO_ACTIVOS_BOVINO_ESTADO);
+            statement.setInt(1, idBovino);
+            statement.setInt(2, idEstadoDelBovino);
+            ResultSet resultado = statement.executeQuery();
+            EstadoBovino estadoBovino = null;
+            
+            while (resultado.next()) {
+                estadoBovino = getEstadoBovinoFromResultSet(resultado);
+                listaEstadosBovino.add(estadoBovino);
+            }
+            return listaEstadosBovino;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+               
+    }
+    
     
     private static EstadoBovino getEstadoBovinoFromResultSet(ResultSet resultado) throws SQLException {
 

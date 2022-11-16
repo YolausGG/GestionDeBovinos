@@ -174,6 +174,12 @@ public class frmBuscarMacho extends javax.swing.JInternalFrame {
                     frmInicio.jDkPEscritorio.add(formularioModificarInseminacion);
                     formularioModificarInseminacion.setVisible(true);
                     break;
+                    case "frmListaEventosDeSanidad":
+                    frmListaEventosDeSanidad frmListaEventosDeSanidad = new frmListaEventosDeSanidad();
+                    frmListaEventosDeSanidad.cboTipoEvento.setSelectedIndex(3);
+                    frmInicio.jDkPEscritorio.add(frmListaEventosDeSanidad);
+                    frmListaEventosDeSanidad.setVisible(true);
+                    break;
                     default:
                     throw new AssertionError();
                 }

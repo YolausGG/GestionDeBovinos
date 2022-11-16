@@ -259,7 +259,15 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                         frmModificarEstadoConBovino formularioModificarEstadoConBovino = new frmModificarEstadoConBovino();
                         frmInicio.jDkPEscritorio.add(formularioModificarEstadoConBovino);
                         formularioModificarEstadoConBovino.setVisible(true);
+                        break;
                     case "frmApareable":
+
+                        if (chkHembra.isSelected()) {
+                            frmApareable.sexo = "Hembra";
+                        } else{
+                            frmApareable.sexo = "Macho";
+                        }
+                        
                         frmApareable formularioApareable = new frmApareable();
                         frmInicio.jDkPEscritorio.add(formularioApareable);
                         formularioApareable.setVisible(true);
@@ -267,11 +275,13 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                     case "frmListaContagiosActivos":
                         frmListaContagiosActivos formularioListaContagiosActivos = new frmListaContagiosActivos();
                         frmInicio.jDkPEscritorio.add(formularioListaContagiosActivos);
-                        formularioListaContagiosActivos.setVisible(true); 
+                        formularioListaContagiosActivos.setVisible(true);
+                        break;
                     case "frmListaBovinosPorEstado":
                         frmListaBovinosPorEstado formularioListaBovinosPorEstado = new frmListaBovinosPorEstado();
                         frmInicio.jDkPEscritorio.add(formularioListaBovinosPorEstado);
-                        formularioListaBovinosPorEstado.setVisible(true); 
+                        formularioListaBovinosPorEstado.setVisible(true);
+                        break;
                     default:
                         throw new AssertionError();
                 }

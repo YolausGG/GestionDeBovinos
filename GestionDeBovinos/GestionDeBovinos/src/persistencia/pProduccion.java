@@ -9,20 +9,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+public class pProduccion {
 
-public class pProduccion  {
-
-    private static final String INSERT_PRODUCCION = " INSERT INTO PRODUCCION ( PRIMERAPRODUCCION, SEGUNDAPRODUCCION, PROTEINA, GRASA, CELULASOMATICA, FECHA , IDHEMBRA) " +
-            " VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+    private static final String INSERT_PRODUCCION = " INSERT INTO PRODUCCION ( PRIMERAPRODUCCION, SEGUNDAPRODUCCION, PROTEINA, GRASA, CELULASOMATICA, FECHA , IDHEMBRA) "
+            + " VALUES ( ?, ?, ?, ?, ?, ?, ? )";
     private static final String DELETE_PRODUCCION = " DELETE FROM PRODUCCION WHERE IDPRODUCCION = ?";
-    private static final String UPDATE_PRODUCCION = "UPDATE PRODUCCION SET PRIMERAPRODUCCION = ?, SEGUNDAPRODUCCION = ?, PRODUCCIONTOTAL = ?, PROTEINA = ?, GRASA = ?, CELULASOMATICA = ?, FECHA = ?, IDHEMBRA = ?"+
-            " WHERE IDPRODUCCION = ?";
+    private static final String UPDATE_PRODUCCION = "UPDATE PRODUCCION SET PRIMERAPRODUCCION = ?, SEGUNDAPRODUCCION = ?, PRODUCCIONTOTAL = ?, PROTEINA = ?, GRASA = ?, CELULASOMATICA = ?, FECHA = ?, IDHEMBRA = ?"
+            + " WHERE IDPRODUCCION = ?";
     private static final String BUSCAR_PRODUCCION = "SELECT * FROM PRODUCCION WHERE IDPRODUCCION = ? ";
     private static final String BUSCAR_PRODUCCION_HEMBRA = "SELECT * FROM PRODUCCION WHERE IDHEMBRA = ? ";
     private static final String LISTAR_PRODUCCIONES = "SELECT * FROM PRODUCCION";
     private static final String LISTAR_PRODUCCIONES_HEMBRA = "SELECT * FROM PRODUCCION WHERE IDHEMBRA = ? ";
+    private static final String LISTAR_ULTIMAS_PRODUCCIONES = "SELECT MAX(IDPRODUCCION) IDPRODUCCION,PRIMERAPRODUCCION,SEGUNDAPRODUCCION,PRODUCCIONTOTAL,PROTEINA,GRASA,CELULASOMATICA,MAX(FECHA) FECHA, IDHEMBRA "
+            + " FROM PRODUCCION "
+            + " GROUP BY IDHEMBRA";
+    private static final String BUSCAR_ULTIMA_PRODUCCION_HEMBRA = "SELECT MAX(IDPRODUCCION) IDPRODUCCION,PRIMERAPRODUCCION,SEGUNDAPRODUCCION,PRODUCCIONTOTAL,PROTEINA,GRASA,CELULASOMATICA,MAX(FECHA) FECHA, IDHEMBRA "
+            + " FROM PRODUCCION "
+            + " WHERE IDHEMBRA = ? "
+            + " GROUP BY IDHEMBRA";
 
-    public static boolean altaProduccion(Produccion pProduccion){
+    public static boolean altaProduccion(Produccion pProduccion) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_PRODUCCION);
             statement.setDouble(1, pProduccion.getPrimeraProduccion());
@@ -36,7 +42,7 @@ public class pProduccion  {
 
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,13 +50,13 @@ public class pProduccion  {
         }
     }
 
-    public static boolean bajaProduccion(int idProduccion){
+    public static boolean bajaProduccion(int idProduccion) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_PRODUCCION);
             statement.setInt(1, idProduccion);
 
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +64,7 @@ public class pProduccion  {
         }
     }
 
-    public static boolean modificarProduccion(Produccion pProduccion){
+    public static boolean modificarProduccion(Produccion pProduccion) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_PRODUCCION);
@@ -75,7 +81,7 @@ public class pProduccion  {
             statement.setInt(9, pProduccion.getIdProduccion());
 
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,7 +89,7 @@ public class pProduccion  {
         }
     }
 
-    public static Produccion buscarProduccion(int idProduccion){
+    public static Produccion buscarProduccion(int idProduccion) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PRODUCCION);
@@ -91,7 +97,26 @@ public class pProduccion  {
 
             ResultSet resultado = statement.executeQuery();
             Produccion produccion = null;
-            if(resultado.next()){
+            if (resultado.next()) {
+                produccion = getProduccionFromResultSet(resultado);
+            }
+            return produccion;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Produccion buscarProduccionHembra(int idHembra) {
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PRODUCCION_HEMBRA);
+            statement.setInt(1, idHembra);
+
+            ResultSet resultado = statement.executeQuery();
+            Produccion produccion = null;
+            if (resultado.next()) {
                 produccion = getProduccionFromResultSet(resultado);
             }
             return produccion;
@@ -102,15 +127,15 @@ public class pProduccion  {
         }
     }
     
-    public static Produccion buscarProduccionHembra(int idHembra){
+    public static Produccion buscarUltimaProduccionHembra(int idHembra) {
 
         try {
-            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PRODUCCION_HEMBRA);
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_ULTIMA_PRODUCCION_HEMBRA);
             statement.setInt(1, idHembra);
 
             ResultSet resultado = statement.executeQuery();
             Produccion produccion = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 produccion = getProduccionFromResultSet(resultado);
             }
             return produccion;
@@ -121,7 +146,7 @@ public class pProduccion  {
         }
     }
 
-    public static ArrayList<Produccion> listarProducciones(){
+    public static ArrayList<Produccion> listarProducciones() {
 
         ArrayList<Produccion> listaProducciones = new ArrayList<>();
         try {
@@ -135,13 +160,33 @@ public class pProduccion  {
             }
             return listaProducciones;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
     
-    public static ArrayList<Produccion> listarProduccionesHembra(int idHembra){
+    public static ArrayList<Produccion> listarUltimasProducciones() {
+
+        ArrayList<Produccion> listaProducciones = new ArrayList<>();
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_ULTIMAS_PRODUCCIONES);
+            ResultSet resultado = statement.executeQuery();
+            Produccion produccion;
+
+            while (resultado.next()) {
+                produccion = getProduccionFromResultSet(resultado);
+                listaProducciones.add(produccion);
+            }
+            return listaProducciones;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<Produccion> listarProduccionesHembra(int idHembra) {
 
         ArrayList<Produccion> listaProducciones = new ArrayList<>();
         try {
@@ -156,11 +201,13 @@ public class pProduccion  {
             }
             return listaProducciones;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
+    
+    
 
     private static Produccion getProduccionFromResultSet(ResultSet resultado) throws SQLException {
 
@@ -171,13 +218,12 @@ public class pProduccion  {
         Double proteina = resultado.getDouble("PROTEINA");
         Double grasa = resultado.getDouble("GRASA");
         int celulaSomatica = resultado.getInt("CELULASOMATICA");
-        Date fecha = (java.util.Date)resultado.getDate("FECHA");
+        Date fecha = (java.util.Date) resultado.getDate("FECHA");
 
         int idHembra = resultado.getInt("IDHEMBRA");
         Hembra hembra = pHembra.buscarHembraPorId(idHembra);
 
-
-        Produccion produccion = new Produccion (idproduccion,primeraProduccion,segundaProduccion,produccionTotal,proteina,grasa,celulaSomatica,fecha,hembra);
+        Produccion produccion = new Produccion(idproduccion, primeraProduccion, segundaProduccion, produccionTotal, proteina, grasa, celulaSomatica, fecha, hembra);
         return produccion;
     }
 }

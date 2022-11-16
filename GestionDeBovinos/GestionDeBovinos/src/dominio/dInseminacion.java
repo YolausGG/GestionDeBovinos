@@ -46,5 +46,8 @@ public class dInseminacion {
         return pInseminacion.listarInseminacionesPorCaravana(pCaravana);
     }
     
-    
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho){
+        
+        return pInseminacion.listarInseminacionesPorCaravanaHembraYMacho(pCaravanaHembra,pCaravanaMacho);
+    }
 }

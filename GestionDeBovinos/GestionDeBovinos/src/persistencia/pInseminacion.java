@@ -33,7 +33,9 @@ public class pInseminacion {
     private static final String LISTAR_INSEMINACIONES_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, I.IDMACHO"+
             " FROM INSEMINACION I INNER JOIN EVENTOSDESANIDAD E ON I.IDINSEMINACION = E.IDEVENTODESANIDAD "+
             " WHERE E.IDHEMBRA = ? OR I.IDMACHO = ?";
-    
+    private static final String LISTAR_INSEMINACIONES_CARAVANA_JUNTOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, I.IDMACHO"+
+            " FROM INSEMINACION I INNER JOIN EVENTOSDESANIDAD E ON I.IDINSEMINACION = E.IDEVENTODESANIDAD "+
+            " WHERE E.IDHEMBRA = ? AND I.IDMACHO = ?";
     public static boolean altaInseminacion(Inseminacion pInseminacion){
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_INSEMINACION);
@@ -138,6 +140,32 @@ public class pInseminacion {
             Bovino bovino = pBovino.buscarBovinoCaravana(pCaravana);
             statement.setInt(1, bovino.getIdBovino());
             statement.setInt(2, bovino.getIdBovino());
+            
+            ResultSet resultado = statement.executeQuery();
+            Inseminacion inseminacion;
+
+            while (resultado.next()) {
+                inseminacion = getInseminacionFromResultSet(resultado);
+                listaInseminaciones.add(inseminacion);
+            }
+            return listaInseminaciones;
+
+        }catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho){
+
+        ArrayList<Inseminacion> listaInseminaciones = new ArrayList<>();
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_INSEMINACIONES_CARAVANA_JUNTOS);
+           
+            Bovino hembra = pBovino.buscarBovinoCaravana(pCaravanaHembra);
+            statement.setInt(1, hembra.getIdBovino());
+            Bovino macho = pBovino.buscarBovinoCaravana(pCaravanaMacho);
+            statement.setInt(2, macho.getIdBovino());
             
             ResultSet resultado = statement.executeQuery();
             Inseminacion inseminacion;

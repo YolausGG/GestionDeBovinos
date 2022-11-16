@@ -22,10 +22,10 @@ public class frmApareable extends javax.swing.JInternalFrame {
     public static frmApareable frmBovino1 = null;
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
-    
+
     public frmApareable() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("LISTADO DE BOVINOS BUENOS PARA REPRODUCIR");
 
@@ -42,7 +42,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinos = new javax.swing.JTable();
-        btnAgregar = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
         lblRCaravana = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
         txtCaravana = new javax.swing.JTextField();
@@ -74,13 +74,13 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
             jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 780, 260));
 
-            btnAgregar.setText("Listar");
-            btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            btnListar.setText("Listar");
+            btnListar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnAgregarMouseClicked(evt);
+                    btnListarMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 30));
+            jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 30));
 
             lblRCaravana.setText("Requerido");
             jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
@@ -155,22 +155,30 @@ public class frmApareable extends javax.swing.JInternalFrame {
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(txtCaravana.getText());
 
         //ArrayList<Bovino> arbolGenealogico = dControladora.arbolGenealogico(0, bovino, new ArrayList<Bovino>());
-
         ArrayList<Bovino> listaBovinos = dControladora.listarBovinos();
-                
+
         ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, new ArrayList<Bovino>());
 
-       // ArrayList<Bovino> listaBovinosHijos = dControladora.parentescos_Hermanos_Sobrinos_SobrinoNieto(0, bovino, new ArrayList<Bovino>());
+        // ArrayList<Bovino> listaBovinosHijos = dControladora.parentescos_Hermanos_Sobrinos_SobrinoNieto(0, bovino, new ArrayList<Bovino>());
+        
+        ArrayList<Bovino> listaBovinosFiltroSexo = new ArrayList<>();
+        
+        
+        for (Bovino listaBovino : listaBovinos) {
+            if (!listaBovino.getClass().getSimpleName().equals(sexo)) {
 
-         for (Bovino bovino1 : noApareables) {
+                listaBovinosFiltroSexo.add(listaBovino);
+            }
+        }
 
-            for (Bovino bovino2 : listaBovinos) {
+        for (Bovino bovino1 : noApareables) {
+
+            for (Bovino bovino2 : listaBovinosFiltroSexo) {
 
                 if (bovino1.getCaravanaBovino().equals(bovino2.getCaravanaBovino())) {
-                    listaBovinos.remove(bovino2);
+                    listaBovinosFiltroSexo.remove(bovino2);
                     break;
                 }
-
             }
         }
         model.addColumn("Nº Caravana");
@@ -180,9 +188,9 @@ public class frmApareable extends javax.swing.JInternalFrame {
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
 
-        for (Bovino b : listaBovinos) {
+        for (Bovino b : listaBovinosFiltroSexo) {
 
-            String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
+            String tipo = b.getClass().getSimpleName().equals("Macho") ? "Macho" : "Hembra";
 
             model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, modificar, eliminar});
         }
@@ -190,7 +198,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
     }
-    
+
     private void jTableBovinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBovinosMouseClicked
 
         columna = jTableBovinos.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -243,14 +251,14 @@ public class frmApareable extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTableBovinosMouseClicked
 
-    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+    private void btnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseClicked
 
         if (!txtCaravana.getText().isEmpty()) {
             actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
-    }//GEN-LAST:event_btnAgregarMouseClicked
+    }//GEN-LAST:event_btnListarMouseClicked
 
     private void txtCaravanaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaKeyReleased
 
@@ -272,8 +280,8 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscarBovino;
+    private javax.swing.JButton btnListar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

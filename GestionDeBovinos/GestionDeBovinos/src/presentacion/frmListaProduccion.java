@@ -19,8 +19,8 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
     public frmListaProduccion() {
         initComponents();
-        
-        this.setSize(frmPruebas.jDkPPruebas.getWidth(), frmPruebas.jDkPPruebas.getHeight());
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("LISTADO DE PRODUCCIONES");
 
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
@@ -41,6 +41,35 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         jTableProducciones.setRowSorter(elQueOrdena);
 
         ArrayList<Produccion> listaProduccion = dControladora.listarProducciones();
+
+        model.addColumn("ID Producción");
+        model.addColumn("Caravana");
+        model.addColumn("Fecha");
+        model.addColumn("1era Producción");
+        model.addColumn("2da Producción");
+        model.addColumn("Producción Total");
+        model.addColumn("Proteinas");
+        model.addColumn("Grasas");
+        model.addColumn("Celulas Somaticas");
+
+        for (Produccion p : listaProduccion) {
+
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+                p.getGrasa(), p.getCelulaSomatica()});
+        }
+
+        jTableProducciones.setModel(model);
+        jTableProducciones.setRowHeight(25);
+    }
+
+    public void listarUltimasProducciones() {
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableProducciones.setRowSorter(elQueOrdena);
+
+        ArrayList<Produccion> listaProduccion = dControladora.listarUltimasProducciones();
 
         model.addColumn("ID Producción");
         model.addColumn("Caravana");
@@ -93,6 +122,34 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         jTableProducciones.setRowHeight(25);
     }
 
+    public void listarUltimaProduccionHembra() {
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableProducciones.setRowSorter(elQueOrdena);
+
+        Hembra hembra = dControladora.buscarHembraPorCaravana(txtCaravanaHembra.getText());
+
+        Produccion p = dControladora.buscarUltimaProduccionHembra(hembra.getIdBovino());
+
+        model.addColumn("ID Producción");
+        model.addColumn("Caravana");
+        model.addColumn("Fecha");
+        model.addColumn("1era Producción");
+        model.addColumn("2da Producción");
+        model.addColumn("Producción Total");
+        model.addColumn("Proteinas");
+        model.addColumn("Grasas");
+        model.addColumn("Celulas Somaticas");
+
+        model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            p.getGrasa(), p.getCelulaSomatica()});
+
+        jTableProducciones.setModel(model);
+        jTableProducciones.setRowHeight(25);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,6 +160,8 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         txtCaravanaHembra = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscarCaravana = new javax.swing.JButton();
+        chkUltimaProduccion = new javax.swing.JCheckBox();
+        btnLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -144,29 +203,52 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
                 }
             });
 
+            chkUltimaProduccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            chkUltimaProduccion.setText("Última Producción");
+            chkUltimaProduccion.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    chkUltimaProduccionActionPerformed(evt);
+                }
+            });
+
+            btnLimpiar.setText("Limpiar");
+            btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnLimpiarActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(chkUltimaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
+                    .addGap(15, 15, 15)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(75, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(chkUltimaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(12, Short.MAX_VALUE))
             );
 
             jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -221,7 +303,7 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -255,15 +337,48 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
     private void btnBuscarCaravanaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCaravanaMouseClicked
         frmBuscarHembra form = new frmBuscarHembra();
-        form.frm = "frmListarProduccion";
+        form.frm = "frmListaProduccion";
+        frmInicio.jDkPEscritorio.add(form);
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarCaravanaMouseClicked
+
+    private void chkUltimaProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkUltimaProduccionActionPerformed
+
+        if (chkUltimaProduccion.isSelected()) {
+            if (!txtCaravanaHembra.getText().isEmpty()) {
+                listarUltimaProduccionHembra();
+            } else {
+                listarUltimasProducciones();
+            }
+        } else {
+            if (!txtCaravanaHembra.getText().isEmpty()) {
+                listarProduccionesHembra();
+            } else {
+                listarProducciones();
+            }
+        }
+    }//GEN-LAST:event_chkUltimaProduccionActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        this.txtCaravanaHembra.setText(null);
+        if (chkUltimaProduccion.isSelected()) {
+
+            listarUltimasProducciones();
+        } else {
+
+            listarProducciones();
+
+        }
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCaravana;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JCheckBox chkUltimaProduccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

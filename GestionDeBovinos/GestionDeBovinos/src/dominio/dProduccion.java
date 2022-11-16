@@ -38,6 +38,11 @@ public class dProduccion {
 
         return persistencia.pProduccion.buscarProduccionHembra(idHembra);
     }
+    
+    public static Produccion buscarUltimaProduccionHembra(int idHembra){
+        
+        return persistencia.pProduccion.buscarUltimaProduccionHembra(idHembra);
+    }
 
     public static ArrayList<Produccion> listarProducciones(){
 
@@ -47,6 +52,11 @@ public class dProduccion {
     public static ArrayList<Produccion> listarProduccionesHembra(int idHembra){
 
         return persistencia.pProduccion.listarProduccionesHembra(idHembra);
+    }
+    
+    public static ArrayList<Produccion> listarUltimasProducciones(){
+        
+        return persistencia.pProduccion.listarUltimasProducciones();
     }
         
 }

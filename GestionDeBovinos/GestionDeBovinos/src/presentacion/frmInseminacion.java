@@ -219,7 +219,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
     public void limpiarCajas() {
 
         txtCaravanaMacho.setText(null);
-        txtCaravanaMacho.setText(null);
+        txtCaravanaHembra.setText(null);
         jDateFechaInseminacion.setDate(null);
         txaDetalle.setText(null);  
     }
@@ -227,7 +227,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
     private boolean validarCampos(){
         int contador = 0;
         
-        if(txtCaravanaMacho.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
+        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
         if(txtCaravanaMacho.getText().isEmpty()){ lblRMacho.setVisible(true); contador++; }else { lblRMacho.setVisible(false);}
         if(jDateFechaInseminacion.getDate() == null){ lblRFechaCelo.setVisible(true); contador++; }else { lblRFechaCelo.setVisible(false);}
         
@@ -369,6 +369,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
         frmBuscarMacho buscarMacho = new frmBuscarMacho();
         frmBuscarMacho.frm = "frmInseminacion";
+        frmInicio.jDkPEscritorio.add(buscarMacho);
         buscarMacho.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarMachoMouseClicked

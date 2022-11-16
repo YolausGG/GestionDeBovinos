@@ -27,7 +27,7 @@ public class frmPruebas extends javax.swing.JFrame {
         
         dControladora.cargarEventosDeSanidad();
         
-        frmListaEventosDeSanidad form = new frmListaEventosDeSanidad();
+        frmListaContagiosActivos form = new frmListaContagiosActivos();
         this.jDkPPruebas.add(form);
         form.setVisible(true);
         

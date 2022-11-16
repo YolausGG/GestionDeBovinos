@@ -85,7 +85,7 @@ public class pHembra {
 
     public static ArrayList<Hembra> buscarHembrasCaravanaLIKE(String pCaravana) {
         
-        String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA"
+        String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA, B.FOTO"
             + " FROM BOVINO B INNER JOIN HEMBRA H ON B.IDBOVINO= H.IDHEMBRA"
             + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%' AND B.BAJALOGICA = 0 ";
         
