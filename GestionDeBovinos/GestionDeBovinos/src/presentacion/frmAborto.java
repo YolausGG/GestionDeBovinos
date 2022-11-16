@@ -23,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmAborto extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton(""); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("");
-    
+    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
+    JButton eliminar = new JButton("Eliminar");
+
     public static int idAborto = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
 
@@ -34,26 +34,27 @@ public class frmAborto extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmAborto() {
         initComponents();
-        
-       this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("ABORTO");
         actualizarTabla();
-        insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
-        insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
+        eliminar.setName("btnEliminar");
         lblRCausa.setVisible(false);
         lblRFechaAborto.setVisible(false);
         lblRHembra.setVisible(false);
-        
-        if(txtCaravanaHembra.getText().isEmpty()){
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
-        }
-        else{
+        } else {
             actualizarTablaHembra();
         }
     }
@@ -88,6 +89,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
         jLabel1.setText("Causa:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 160, 30));
 
+        btnAltaAborto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaAborto.setText("Agregar");
         btnAltaAborto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,6 +98,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAltaAborto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, 30));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,7 +118,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
         jPanel2.add(lblRCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 70, 30));
 
         lblRHembra.setText("Requerido");
-        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 70, 30));
+        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Hembra:");
@@ -142,13 +145,14 @@ public class frmAborto extends javax.swing.JInternalFrame {
         });
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 90, 30));
 
         jTableAborto = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -202,24 +206,38 @@ public class frmAborto extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(null);
         cboCausa.setSelectedIndex(0);
         jDateFechaAborto.setDate(null);
-        txaDetalle.setText(null);  
+        txaDetalle.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboCausa.getSelectedIndex() < 1){ lblRCausa.setVisible(true); contador++; }else { lblRCausa.setVisible(false);}
-        if(jDateFechaAborto.getDate() == null){ lblRFechaAborto.setVisible(true); contador++; }else { lblRFechaAborto.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboCausa.getSelectedIndex() < 1) {
+            lblRCausa.setVisible(true);
+            contador++;
+        } else {
+            lblRCausa.setVisible(false);
+        }
+        if (jDateFechaAborto.getDate() == null) {
+            lblRFechaAborto.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaAborto.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void actualizarTabla() {
         jTableAborto.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -233,16 +251,16 @@ public class frmAborto extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Aborto a : listaAbortos) {
 
-            model.addRow(new Object[]{a.getIdEventoDeSanidad(),a.getHembra().getCaravanaBovino(),a.getFecha(),a.getDetalle(), a.getCausa(), modificar, eliminar});
+            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa(), modificar, eliminar});
         }
 
         jTableAborto.setModel(model);
         jTableAborto.setRowHeight(35);
     }
-    
+
     public void actualizarTablaHembra() {
         jTableAborto.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -256,19 +274,19 @@ public class frmAborto extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Aborto a : listaAbortos) {
 
-            model.addRow(new Object[]{a.getIdEventoDeSanidad(),a.getHembra().getCaravanaBovino(),a.getFecha(),a.getDetalle(), a.getCausa(), modificar, eliminar});
+            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa(), modificar, eliminar});
         }
 
         jTableAborto.setModel(model);
         jTableAborto.setRowHeight(35);
     }
-    
+
     private void btnAltaAbortoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaAbortoMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
@@ -289,12 +307,11 @@ public class frmAborto extends javax.swing.JInternalFrame {
 
                     Aborto aborto = new Aborto(eventoDeSanidad.getIdEventoDeSanidad(), fechaAborto, detalle, hembra, causa);
 
-                    if(dControladora.altaAborto(aborto)){
+                    if (dControladora.altaAborto(aborto)) {
                         JOptionPane.showMessageDialog(null, "Aborto Ingresado Correctamente");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Aborto No Ingresado Correctamente");
                         limpiarCajas(); // Limpiamos Caja de Texto
                     }
@@ -305,7 +322,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaAbortoMouseClicked
@@ -324,7 +341,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirMouseClicked
 
     private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
-        if(txtCaravanaHembra.getText().isEmpty()){
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
         }
     }//GEN-LAST:event_txtCaravanaHembraKeyReleased

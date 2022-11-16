@@ -32,7 +32,13 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
     public static EstadoBovino estadoBovino = new EstadoBovino();
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
+    
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
 
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
+    
     /**
      * Creates new form frmEstadoConBovino1
      */
@@ -42,6 +48,10 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
         this.setTitle("ASIGNAR ESTADO A BOVINO");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         finalizar.setName("btnFinalizar");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
@@ -132,6 +142,7 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
             });
             jPanel2.add(txtCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 100, 30));
 
+            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
             btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -155,13 +166,14 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
             lblREstado.setText("Requerido");
             jPanel2.add(lblREstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 120, 20));
 
+            btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnIngresar.setText("Ingresar");
             btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnIngresarMouseClicked(evt);
                 }
             });
-            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 90, -1));
+            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 100, -1));
 
             jLabel8.setText("Estado:");
             jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));

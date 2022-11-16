@@ -66,13 +66,14 @@ public class frmFechaFinalizacionEnfermedad extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(jDateFechaFinalizacionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, 30));
 
+        btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfirmarMouseClicked(evt);
             }
         });
-        jPanel2.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 90, 30));
+        jPanel2.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,13 +110,14 @@ public class frmFechaFinalizacionEnfermedad extends javax.swing.JInternalFrame {
         lblEnfermedad.setText("...");
         jPanel2.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 80, 20));
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar16px.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseClicked(evt);
             }
         });
-        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 90, 30));
+        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, 30));
 
         lblRFechaF.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblRFechaF.setForeground(new java.awt.Color(0, 0, 0));

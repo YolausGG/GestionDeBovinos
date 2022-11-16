@@ -82,21 +82,23 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnModificarEventoFuturo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarEventoFuturo.setText("Modificar");
         btnModificarEventoFuturo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarEventoFuturoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnModificarEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 100, 30));
+        jPanel2.add(btnModificarEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 30));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

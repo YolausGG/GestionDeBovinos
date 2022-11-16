@@ -100,33 +100,36 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 270, 90));
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnModificarInseminacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarInseminacion.setText("Modificar");
         btnModificarInseminacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarInseminacionMouseClicked(evt);
             }
         });
-        jPanel2.add(btnModificarInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, 30));
+        jPanel2.add(btnModificarInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
 
+        btnBuscarHembra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarHembra.setText("Buscar");
         btnBuscarHembra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarHembraMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 30));
         jPanel2.add(txtCaravanaMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 160, 30));
 
         lblRMacho.setText("Requerido");
         jPanel2.add(lblRMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 70, 30));
 
+        btnBuscarMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarMacho.setText("Buscar");
         btnBuscarMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMachoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 80, 30));
+        jPanel2.add(btnBuscarMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

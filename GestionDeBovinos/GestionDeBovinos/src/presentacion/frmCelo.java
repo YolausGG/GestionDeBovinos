@@ -19,8 +19,8 @@ import javax.swing.JTable;
 
 public class frmCelo extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton(""); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("");
+    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
+    JButton eliminar = new JButton("Eliminar");
     
     public static int idCelo = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
@@ -36,8 +36,10 @@ public class frmCelo extends javax.swing.JInternalFrame {
         
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("CELO");
-        insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
-        insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");      
@@ -83,6 +85,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
         jLabel1.setText("Causa:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 160, 30));
 
+        btnAltaCelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaCelo.setText("Agregar");
         btnAltaCelo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,6 +94,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAltaCelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, 30));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,7 +114,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
         jPanel2.add(lblRCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 70, 30));
 
         lblRHembra.setText("Requerido");
-        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 70, 30));
+        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Hembra:");
@@ -137,13 +141,14 @@ public class frmCelo extends javax.swing.JInternalFrame {
         });
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 90, 30));
 
         jTableCelos = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){

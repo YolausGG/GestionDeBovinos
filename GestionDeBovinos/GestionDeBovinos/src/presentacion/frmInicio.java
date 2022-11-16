@@ -4,13 +4,12 @@
  */
 package presentacion;
 
+
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 /**
  *
@@ -26,11 +25,19 @@ public class frmInicio extends javax.swing.JFrame {
     public frmInicio() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
-        
+
         MenuSanidad.setVisible(false);
         MenuEnfermedad.setVisible(false);
-        MenuEstadoBovino.setVisible(false);     
+        MenuEstadoBovino.setVisible(false);
 
+        frmAvisoDeEventoFuturo frmAvisoDeEventoFuturo = new frmAvisoDeEventoFuturo();
+        
+        jDkPEscritorio.removeAll();
+        jDkPEscritorio.add(frmAvisoDeEventoFuturo);
+        frmAvisoDeEventoFuturo.setVisible(true);
+
+        
+     
         colorInicio = new Color(54, 67, 114);
         colorSeleccionado = new Color(93, 109, 126);
 
@@ -289,6 +296,11 @@ public class frmInicio extends javax.swing.JFrame {
         lblListados3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblListados3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         lblListados3.setIconTextGap(15);
+        lblListados3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblListados3MousePressed(evt);
+            }
+        });
         jPanelListados.add(lblListados3);
         lblListados3.setBounds(70, 50, 140, 30);
 
@@ -667,12 +679,12 @@ public class frmInicio extends javax.swing.JFrame {
 
 
     private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
-        
+
     }//GEN-LAST:event_lblInicioMouseClicked
 
 
     private void lblBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBovinoMousePressed
-     
+
         jPanelBovino.setBackground(colorSeleccionado);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
@@ -682,16 +694,17 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
 
-
         frmBovino frmBovino = new frmBovino();
 
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmBovino);
         frmBovino.setVisible(true);
+
+
     }//GEN-LAST:event_lblBovinoMousePressed
 
     private void lblProduccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProduccionMousePressed
-     
+
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorSeleccionado);
         jPanelSanidad.setBackground(colorInicio);
@@ -708,7 +721,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblProduccionMousePressed
 
     private void lblSanidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSanidadMousePressed
-      
+
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorSeleccionado);
@@ -717,13 +730,13 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
-        
+
         MenuSanidad.setVisible(true);
         MenuPrincipal.setVisible(false);
     }//GEN-LAST:event_lblSanidadMousePressed
 
     private void lblEnfermedadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEnfermedadMousePressed
-       
+
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
@@ -732,20 +745,15 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorInicio);
-        
+
         MenuEnfermedad.setVisible(true);
         MenuPrincipal.setVisible(false);
 
-        
 
-        frmEnfermedad frmenfermedad = new frmEnfermedad();
-        jDkPEscritorio.removeAll();
-        jDkPEscritorio.add(frmenfermedad);
-        frmenfermedad.setVisible(true);
     }//GEN-LAST:event_lblEnfermedadMousePressed
 
     private void lblTratamientoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTratamientoMousePressed
-       
+
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
@@ -804,7 +812,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblListadosMousePressed
 
     private void lblEstadoBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoBovinoMousePressed
-        
+
         jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
@@ -818,9 +826,8 @@ public class frmInicio extends javax.swing.JFrame {
         MenuPrincipal.setVisible(false);
     }//GEN-LAST:event_lblEstadoBovinoMousePressed
 
-
     private void lblEventoFuturoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventoFuturoMousePressed
-      
+
         jPanelEventoFuturo.setBackground(colorSeleccionado);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -828,7 +835,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmEventoFuturo frmEventoFuturo = new frmEventoFuturo();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmEventoFuturo);
@@ -836,7 +843,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblEventoFuturoMousePressed
 
     private void lblAbortoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAbortoMousePressed
-      
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorSeleccionado);
         jPanelSecado.setBackground(colorInicio);
@@ -844,7 +851,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmAborto frmAborto = new frmAborto();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmAborto);
@@ -852,7 +859,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAbortoMousePressed
 
     private void lblSecadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSecadoMousePressed
-       
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorSeleccionado);
@@ -860,16 +867,16 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmSecado frmSecado = new frmSecado();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmSecado);
         frmSecado.setVisible(true);
-        
+
     }//GEN-LAST:event_lblSecadoMousePressed
 
     private void lblPartoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPartoMousePressed
-   
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -877,7 +884,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmParto frmParto = new frmParto();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmParto);
@@ -885,7 +892,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblPartoMousePressed
 
     private void lblInseminacionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInseminacionMousePressed
-      
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -893,7 +900,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorSeleccionado);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmInseminacion frmInseminacion = new frmInseminacion();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmInseminacion);
@@ -901,7 +908,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblInseminacionMousePressed
 
     private void lblCeloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCeloMousePressed
-       
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -909,7 +916,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorSeleccionado);
         jPanelTacto.setBackground(colorInicio);
-        
+
         frmCelo frmCelo = new frmCelo();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmCelo);
@@ -917,7 +924,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCeloMousePressed
 
     private void lblTactoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTactoMousePressed
-      
+
         jPanelEventoFuturo.setBackground(colorInicio);
         jPanelAborto.setBackground(colorInicio);
         jPanelSecado.setBackground(colorInicio);
@@ -925,7 +932,7 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelInseminacion.setBackground(colorInicio);
         jPanelCelo.setBackground(colorInicio);
         jPanelTacto.setBackground(colorSeleccionado);
-        
+
         frmTacto frmTacto = new frmTacto();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmTacto);
@@ -933,24 +940,24 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTactoMousePressed
 
     private void lblInicioSanidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioSanidadMousePressed
-      
+
         MenuSanidad.setVisible(false);
         MenuPrincipal.setVisible(true);
     }//GEN-LAST:event_lblInicioSanidadMousePressed
 
     private void lblInicioEnfermedadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioEnfermedadMousePressed
-      
+
         MenuEnfermedad.setVisible(false);
         MenuPrincipal.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_lblInicioEnfermedadMousePressed
 
     private void lblAltaEnfermedadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAltaEnfermedadMousePressed
-       
+
         jPanelAltaEnfermedad.setBackground(colorSeleccionado);
         jPanelPadeceEnfermedad.setBackground(colorInicio);
-        
+
         frmEnfermedad frmEnfermedad = new frmEnfermedad();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmEnfermedad);
@@ -958,18 +965,18 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAltaEnfermedadMousePressed
 
     private void lblPadeceEnfermedadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPadeceEnfermedadMousePressed
-       
+
         jPanelAltaEnfermedad.setBackground(colorInicio);
         jPanelPadeceEnfermedad.setBackground(colorSeleccionado);
-        
+
         frmPadeceEnfermedad frmPadeceEnfermedad = new frmPadeceEnfermedad();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmPadeceEnfermedad);
         frmPadeceEnfermedad.setVisible(true);
     }//GEN-LAST:event_lblPadeceEnfermedadMousePressed
 
-    private void lblApareableMousePressed(java.awt.event.MouseEvent evt) {                                          
-      jPanelBovino.setBackground(colorInicio);
+    private void lblApareableMousePressed(java.awt.event.MouseEvent evt) {
+        jPanelBovino.setBackground(colorInicio);
         jPanelProduccion.setBackground(colorInicio);
         jPanelSanidad.setBackground(colorInicio);
         jPanelEnfermedad.setBackground(colorInicio);
@@ -977,26 +984,24 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelEstadoBovino.setBackground(colorInicio);
         jPanelApareable.setBackground(colorSeleccionado);
         jPanelListados.setBackground(colorInicio);
-        
+
         frmApareable frmApareable = new frmApareable();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmApareable);
         frmApareable.setVisible(true);
-    }                                     
-                                        
+    }
 
     private void lblInicioEstadoBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioEstadoBovinoMousePressed
-      
+
         MenuEstadoBovino.setVisible(false);
         MenuPrincipal.setVisible(true);
     }//GEN-LAST:event_lblInicioEstadoBovinoMousePressed
 
     private void lblAltaEstadoBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAltaEstadoBovinoMousePressed
-      
+
         jPanelAltaEstadoBovino.setBackground(colorSeleccionado);
         jPanelEstadoConBovino.setBackground(colorInicio);
-        
-        
+
         frmEstadoDelBovino frmEstadoDelBovino = new frmEstadoDelBovino();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmEstadoDelBovino);
@@ -1004,16 +1009,22 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAltaEstadoBovinoMousePressed
 
     private void lblEstadoConBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoConBovinoMousePressed
-      
+
         jPanelAltaEstadoBovino.setBackground(colorInicio);
         jPanelEstadoConBovino.setBackground(colorSeleccionado);
-        
-        
+
         frmEstadoConBovino frmEstadoConBovino = new frmEstadoConBovino();
         jDkPEscritorio.removeAll();
         jDkPEscritorio.add(frmEstadoConBovino);
         frmEstadoConBovino.setVisible(true);
     }//GEN-LAST:event_lblEstadoConBovinoMousePressed
+
+    private void lblListados3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListados3MousePressed
+
+        frmAvisoDeEventoFuturo frmAvisoDeEventoFuturo = new frmAvisoDeEventoFuturo();
+        jDkPEscritorio.add(frmAvisoDeEventoFuturo);
+        frmAvisoDeEventoFuturo.setVisible(true);
+    }//GEN-LAST:event_lblListados3MousePressed
 
     /**
      * @param args the command line arguments
@@ -1049,13 +1060,11 @@ public class frmInicio extends javax.swing.JFrame {
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmInicio.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex); 
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-            
         //</editor-fold>
         //</editor-fold>
-        
         //</editor-fold>
         //</editor-fold>
 

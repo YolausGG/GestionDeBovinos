@@ -92,21 +92,20 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             txtSexoBovino.setText("Hembra");
 
             try {
-                byte[] bi = hembra.getFoto();
-                
+                byte[] bi = hembra.getFoto();                                
+                        
                 ByteArrayInputStream bis = new ByteArrayInputStream(hembra.getFoto());
                 BufferedImage image;
 
                 image = ImageIO.read(bis);
-
-                Image imgi = image.getScaledInstance(lblFotoBovino.getWidth(),lblFotoBovino.getHeight(), Image.SCALE_DEFAULT);
+                
+                Image imgi = image.getScaledInstance(150,150, Image.SCALE_DEFAULT);
 
                 ImageIcon foto = new ImageIcon(imgi);
                 lblFotoBovino.setIcon(foto);
-                
 
             } catch (Exception ex) {
-                lblFotoBovino.setText("");
+                lblFotoBovino.setText("Sin foto");
             }
             if (hembra.getMadre() != null) {
                 txtCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
@@ -119,12 +118,12 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     lblFotoMadre.setIcon(imgi);
 
                 } catch (Exception ex) {
-                    lblFotoMadre.setText("");
+                    lblFotoMadre.setText("Sin foto");
                 }
             }
 
             if (hembra.getPadre() != null) {
-                txtCaravanaPadre.setText(hembra.getMadre().getCaravanaBovino());
+                txtCaravanaPadre.setText(hembra.getPadre().getCaravanaBovino());
                 try {
                     byte[] bi = hembra.getPadre().getFoto();
                     BufferedImage image = null;
@@ -134,10 +133,12 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     lblFotoPadre.setIcon(imgi);
 
                 } catch (Exception ex) {
-                    lblFotoPadre.setText("");
+                    lblFotoPadre.setText("Sin foto");
                 }
             }
         }
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -333,8 +334,9 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -345,9 +347,11 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

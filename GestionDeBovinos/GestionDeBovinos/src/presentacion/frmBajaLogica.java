@@ -63,21 +63,23 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         cboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Muerte", "Vendido", "Mal Ingresado" }));
         jPanel2.add(cboMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 210, 30));
 
+        btnConfirmarBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnConfirmarBaja.setText("Confirmar");
         btnConfirmarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfirmarBajaMouseClicked(evt);
             }
         });
-        jPanel2.add(btnConfirmarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 100, 30));
+        jPanel2.add(btnConfirmarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, 30));
 
+        btnCancelarBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar16px.png"))); // NOI18N
         btnCancelarBaja.setText("Cancelar");
         btnCancelarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCancelarBajaMouseClicked(evt);
             }
         });
-        jPanel2.add(btnCancelarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 100, 30));
+        jPanel2.add(btnCancelarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

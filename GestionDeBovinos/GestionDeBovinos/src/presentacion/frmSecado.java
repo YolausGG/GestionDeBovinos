@@ -19,8 +19,8 @@ import javax.swing.JTable;
 
 public class frmSecado extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton(""); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("");
+    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
+    JButton eliminar = new JButton("Eliminar");
     
     public static int idSecado = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
@@ -36,8 +36,10 @@ public class frmSecado extends javax.swing.JInternalFrame {
         
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("SECADO");
-        insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
-        insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");      
@@ -85,21 +87,23 @@ public class frmSecado extends javax.swing.JInternalFrame {
         jLabel1.setText("Causa:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 160, 30));
 
+        btnAltaSecado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaSecado.setText("Agregar");
         btnAltaSecado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAltaSecadoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnAltaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, 30));
+        jPanel2.add(btnAltaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
-        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 100, 30));
+        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Detalle (Opcional): ");
@@ -139,13 +143,14 @@ public class frmSecado extends javax.swing.JInternalFrame {
         });
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 30));
 
         jTableSecados = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){

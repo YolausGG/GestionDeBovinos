@@ -67,6 +67,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnConfirmar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagenes/Ingresar 16px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Confirmar"/>
               </Properties>
               <Events>
@@ -74,7 +77,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="50" y="240" width="90" height="30"/>
+                  <AbsoluteConstraints x="50" y="240" width="-1" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -192,6 +195,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCancelar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagenes/Eliminar16px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
@@ -199,7 +205,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="260" y="240" width="90" height="30"/>
+                  <AbsoluteConstraints x="260" y="240" width="-1" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>

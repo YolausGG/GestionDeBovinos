@@ -32,6 +32,11 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
     
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
+
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
     /**
      * Creates new form frmTratamiento1
      */
@@ -43,6 +48,10 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
         finalizar.setName("btnFinalizar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         lblRFechaInicioT.setVisible(false);
 
         actualizarTabla();
@@ -137,13 +146,14 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
 
             jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 290, -1));
 
+            btnAltaTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnAltaTratamiento.setText("Ingresar");
             btnAltaTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnAltaTratamientoMouseClicked(evt);
                 }
             });
-            jPanel2.add(btnAltaTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 90, -1));
+            jPanel2.add(btnAltaTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
             jPanel2.add(jDateFechaFinalizacionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 30));
 
             jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N

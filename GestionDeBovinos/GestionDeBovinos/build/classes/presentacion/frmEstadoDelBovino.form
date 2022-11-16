@@ -118,6 +118,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAltaEstado">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagenes/Ingresar 16px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
               <Events>
@@ -131,6 +134,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnImprimir">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Imagenes/impresora16px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
               <Events>

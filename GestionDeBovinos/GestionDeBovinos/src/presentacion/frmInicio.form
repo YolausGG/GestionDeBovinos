@@ -441,6 +441,9 @@
                     <Property name="horizontalTextPosition" type="int" value="10"/>
                     <Property name="iconTextGap" type="int" value="15"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblListados3MousePressed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="70" y="50" width="140" height="30"/>
@@ -1241,6 +1244,7 @@
     </Container>
     <Container class="javax.swing.JDesktopPane" name="jDkPEscritorio">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="frmInicio_jDkPEscritorio"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
 

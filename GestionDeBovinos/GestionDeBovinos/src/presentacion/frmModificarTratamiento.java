@@ -150,13 +150,14 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
             jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 450, 170));
 
+            btnModificarTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
             btnModificarTratamiento.setText("Modificar");
             btnModificarTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnModificarTratamientoMouseClicked(evt);
                 }
             });
-            jPanel2.add(btnModificarTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 90, -1));
+            jPanel2.add(btnModificarTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
             jPanel2.add(jDateFechaFinalizacionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 30));
 
             jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N

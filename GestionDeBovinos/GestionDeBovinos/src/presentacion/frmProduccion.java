@@ -26,7 +26,12 @@ public class frmProduccion extends javax.swing.JInternalFrame {
     JButton eliminar = new JButton("Eliminar");
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
+    
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
 
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
     /**
      * Creates new form frmProduccion1
      */
@@ -37,6 +42,10 @@ public class frmProduccion extends javax.swing.JInternalFrame {
         this.setTitle("PRODUCCION DE LECHE MENSUAL");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         lblRCaravanaH.setVisible(false);
         lblRFechaProduccion.setVisible(false);
         lblRPrimeraProduccion.setVisible(false);
@@ -130,13 +139,14 @@ public class frmProduccion extends javax.swing.JInternalFrame {
             jLabel4.setText("Fecha Produccion:");
             jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
+            btnIngresarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnIngresarProduccion.setText("Ingresar");
             btnIngresarProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnIngresarProduccionMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnIngresarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 90, -1));
+            jPanel1.add(btnIngresarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, 30));
 
             jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel2.setText("Caravana:");
@@ -169,13 +179,14 @@ public class frmProduccion extends javax.swing.JInternalFrame {
             jLabel7.setText("Proteinas:");
             jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 160, -1));
 
+            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
             btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnBuscarBovinoMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, 30));
 
             lblRCaravanaH.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
             lblRCaravanaH.setForeground(new java.awt.Color(0, 0, 0));

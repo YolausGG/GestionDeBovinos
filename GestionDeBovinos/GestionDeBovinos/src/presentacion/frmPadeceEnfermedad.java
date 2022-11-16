@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.pEnfermedad;
+import static presentacion.frmInicio.jDkPEscritorio;
 
 /**
  *
@@ -32,6 +33,12 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
+
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
+
     /**
      * Creates new form frmPadeceEnfermedad1
      */
@@ -43,6 +50,10 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
         finalizar.setName("btnFinalizar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
         lblREnfermedad.setVisible(false);
@@ -131,13 +142,14 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
             });
             jPanel2.add(txtCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 100, 30));
 
+            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
             btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnBuscarBovinoMouseClicked(evt);
                 }
             });
-            jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+            jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, 30));
 
             lblRCaravanaB.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
             lblRCaravanaB.setForeground(new java.awt.Color(0, 0, 0));
@@ -154,13 +166,14 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
             lblREnfermedad.setText("Requerido");
             jPanel2.add(lblREnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 120, 20));
 
+            btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnIngresar.setText("Ingresar");
             btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnIngresarMouseClicked(evt);
                 }
             });
-            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 90, -1));
+            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 30));
 
             jLabel8.setText("Enfermedad:");
             jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
@@ -232,9 +245,9 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
         cboEnfermedad.setSelectedIndex(0);
 
     }
-    
+
     public void actualizarTabla() {
-        
+
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
@@ -263,7 +276,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-    
+
     public void actualizarTablaPadeceB() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -296,7 +309,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-    
+
     private void llenarComboEnfermedad() {
 
         ArrayList<Enfermedad> listaEnfermedades = pEnfermedad.listarEnfermedades();
@@ -307,10 +320,24 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     public static String caravana = "";
     public static String enfermedad = "";
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            if (jTablePadeceEnfermedad.getValueAt(jTablePadeceEnfermedad.getSelectedRow(), 4) == null) {
+
+                frmTratamiento frmtratamiento = new frmTratamiento();
+                jDkPEscritorio.add(frmtratamiento);
+                frmtratamiento.setVisible(true);
+                
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La Enfermedad ya finalizo no se puede ingresar Tratamiento");
+            }
+
+        }
 
         columna = jTablePadeceEnfermedad.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / jTablePadeceEnfermedad.getRowHeight();

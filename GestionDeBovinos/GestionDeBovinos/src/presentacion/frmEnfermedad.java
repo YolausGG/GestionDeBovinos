@@ -23,8 +23,8 @@ import javax.swing.JTable;
  */
 public class frmEnfermedad extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton(""); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("");
+    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
+    JButton eliminar = new JButton("Eliminar");
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
 
@@ -46,8 +46,8 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         modificar.setBorder(null);
         eliminar.setBorder(null);
         
-        insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
-        insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
     }
@@ -101,43 +101,46 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableEnfermedad);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 360, 240));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 420, 240));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(txtNombreEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, 30));
+        jPanel2.add(txtNombreEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nombre Enfermedad:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, -1));
 
+        btnAltaEnfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaEnfermedad.setText("Agregar");
         btnAltaEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAltaEnfermedadMouseClicked(evt);
             }
         });
-        jPanel2.add(btnAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPanel2.add(btnAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora.png"))); // NOI18N
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
+        btnImprimir.setText("Imprimir");
         btnImprimir.setBorder(null);
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
-        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 70, 40));
+        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 80, 40));
 
-        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel.png"))); // NOI18N
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+        btnExportar.setText("Exportar");
         btnExportar.setBorder(null);
         btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExportarMouseClicked(evt);
             }
         });
-        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 50, 40));
+        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 80, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 360, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 420, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

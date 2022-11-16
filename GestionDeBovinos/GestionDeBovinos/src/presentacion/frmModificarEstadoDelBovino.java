@@ -57,13 +57,14 @@ public class frmModificarEstadoDelBovino extends javax.swing.JInternalFrame {
         jLabel1.setText("Estado:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 160, -1));
 
+        btnModificarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarEstado.setText("Modificar");
         btnModificarEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarEstadoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnModificarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel2.add(btnModificarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 380, 170));
 

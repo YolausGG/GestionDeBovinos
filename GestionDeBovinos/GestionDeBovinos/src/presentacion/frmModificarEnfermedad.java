@@ -57,13 +57,14 @@ public class frmModificarEnfermedad extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre Enfermedad:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 160, -1));
 
+        btnModificarEnfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarEnfermedad.setText("Modificar");
         btnModificarEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarEnfermedadMouseClicked(evt);
             }
         });
-        jPanel2.add(btnModificarEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel2.add(btnModificarEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 440, 190));
 

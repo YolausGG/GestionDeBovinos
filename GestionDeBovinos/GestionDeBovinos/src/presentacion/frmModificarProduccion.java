@@ -99,13 +99,14 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
         jLabel4.setText("Fecha Produccion:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
+        btnModificarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarProduccion.setText("Modificar");
         btnModificarProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarProduccionMouseClicked(evt);
             }
         });
-        jPanel1.add(btnModificarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 90, -1));
+        jPanel1.add(btnModificarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Caravana:");
@@ -167,13 +168,14 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
         lblRProteinas.setText("Requerido");
         jPanel1.add(lblRProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 80, 30));
+        jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

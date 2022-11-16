@@ -18,8 +18,8 @@ import javax.swing.JTable;
 
 public class frmEventoFuturo extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton(""); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("");
+    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
+    JButton eliminar = new JButton("Eliminar");
 
     public static int idEventoFuturo = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
@@ -40,6 +40,10 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         lblRTipo.setVisible(false);
         lblRFechaEventoFuturo.setVisible(false);
         lblRHembra.setVisible(false);
@@ -82,6 +86,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         jLabel1.setText("Tipo Evento:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 160, 30));
 
+        btnAltaEventoFuturo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaEventoFuturo.setText("Agregar");
         btnAltaEventoFuturo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,13 +95,14 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAltaEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 100, 30));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
-        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 100, 30));
+        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, -1, 30));
 
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Inseminacion", "Tacto", "Secado", "Parto" }));
         jPanel2.add(cboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 210, 30));
@@ -105,7 +111,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         jPanel2.add(lblRTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 70, 30));
 
         lblRHembra.setText("Requerido");
-        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 70, 30));
+        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 70, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Hembra:");
@@ -126,13 +132,14 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         });
         jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 80, 30));
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 90, 30));
 
         jTableEventosFuturos = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){

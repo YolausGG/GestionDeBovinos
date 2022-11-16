@@ -96,13 +96,14 @@ public class frmApareable extends javax.swing.JInternalFrame {
             });
             jPanel1.add(txtCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
 
+            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
             btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnBuscarBovinoMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 80, 30));
+            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 90, 30));
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);

@@ -28,6 +28,11 @@ public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
     
     public static int idEstado = 0;
     
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
+
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
     /**
      * Creates new form frmEstadoDelBovino1
      */
@@ -39,6 +44,10 @@ public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
         actualizarTabla();        
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
     }
 
     /**
@@ -98,6 +107,7 @@ public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
         jLabel1.setText("Nuevo Estado:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, -1));
 
+        btnAltaEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaEstado.setText("Agregar");
         btnAltaEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,6 +116,7 @@ public class frmEstadoDelBovino extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnAltaEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

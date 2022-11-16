@@ -41,6 +41,12 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
+
+        btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
+
+    }
+
     /**
      * Creates new form frmBovino1
      */
@@ -68,6 +74,10 @@ public class frmBovino extends javax.swing.JInternalFrame {
         actualizarTabla();
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
+        modificar.setBorder(null);
+        eliminar.setBorder(null);
+        insertarIconos(modificar, "/Imagenes/Modificar16px.png");
+        insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
     }
 
     /**
@@ -197,6 +207,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
             cboRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
             jPanel1.add(cboRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 210, 30));
 
+            btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnAgregar.setText("Agregar");
             btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -235,13 +246,14 @@ public class frmBovino extends javax.swing.JInternalFrame {
             jPanel1.add(lblRTipoMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 90, 30));
             jPanel1.add(txtRutaFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 210, 30));
 
+            btnBuscarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarFoto.setText("Buscar Foto");
             btnBuscarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnBuscarFotoMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnBuscarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 110, 30));
+            jPanel1.add(btnBuscarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, 30));
 
             jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel7.setText("Fecha Nacimiento:");
@@ -551,7 +563,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                         }
                     } else {
 
-                       byte[] foto = null;
+                        byte[] foto = null;
                         try {
                             byte[] icono = new byte[(int) rutaFoto.length()];
                             InputStream input = new FileInputStream(rutaFoto);
@@ -626,7 +638,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                             JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Bovino");
                         }
                     } else {
-                        
+
                         byte[] foto = null;
                         try {
                             byte[] icono = new byte[(int) rutaFoto.length()];
@@ -636,7 +648,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                         } catch (Exception ex) {
                             foto = null;
                         }
-                        
+
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza, foto);
 
                         if (dControladora.altaBovinoFoto(bovino)) {
@@ -694,7 +706,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_chkPedigreeActionPerformed
 
     private void btnBuscarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFotoMouseClicked
-        
+
         JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         j.setFileFilter(fil);
@@ -709,7 +721,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
             lblFotoBovino.setIcon(new ImageIcon(foto));
         }
-        
+
     }//GEN-LAST:event_btnBuscarFotoMouseClicked
 
 
