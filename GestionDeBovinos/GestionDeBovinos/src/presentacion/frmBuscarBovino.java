@@ -8,7 +8,6 @@ import clases.Bovino;
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -145,14 +144,7 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         for (Macho m : listaMachos) {
 
-<<<<<<< HEAD
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                String fechaNacimiento = formato.format(b.getFechaNacimiento());
-
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo});
-=======
             model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
         jTableBovinos.setModel(model);
@@ -174,15 +166,6 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
             model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
 
-<<<<<<< HEAD
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                String fechaNacimientoH = formato.format(b.getFechaNacimiento());
-
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimientoH, b.getRaza().getTipo(), tipo});
-
-            }
-=======
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         }
         jTableBovinos.setModel(model);
 
@@ -201,16 +184,7 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         for (Hembra h : listaHembra) {
 
-<<<<<<< HEAD
-            String tipo = h.getClass().getSimpleName().toString();
-
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaNacimientoH = formato.format(h.getFechaNacimiento());
-
-            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo(), tipo});
-=======
             model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
 
@@ -232,16 +206,7 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         for (Macho m : listaMacho) {
 
-<<<<<<< HEAD
-            String tipo = m.getClass().getSimpleName().toString();
-            
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaNacimientoM = formato.format(m.getFechaNacimiento());
-            
-            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), tipo});
-=======
             model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
 

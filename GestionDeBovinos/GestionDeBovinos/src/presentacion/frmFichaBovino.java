@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
@@ -13,14 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
-<<<<<<< HEAD
-=======
 import javax.swing.JLabel;
 import javax.swing.Timer;
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
 /**
  *
@@ -31,123 +30,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     public frmFichaBovino() {
         initComponents();
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
-<<<<<<< HEAD
-        lblTipoMachoText.setVisible(false);
-        txtTipoMacho.setVisible(false);
-
-        if (frmBovino.sexo.equals(
-                "Macho")) {
-            Macho macho = dControladora.buscarMachoPorCaravanaCompleto(frmBovino.caravana);
-
-            lblTipoMachoText.setVisible(true);
-            txtTipoMacho.setVisible(true);
-
-            txtCaravanaBovino.setText(macho.getCaravanaBovino());
-            txtFechaNacimiento.setText(macho.getFechaNacimiento().toString());
-            txtRazaBovino.setText(macho.getRaza().getTipo());
-            txtSexoBovino.setText("Macho");
-            txtTipoMacho.setText(macho.getTipo());
-
-            try {
-                byte[] bi = macho.getFoto();
-                BufferedImage image = null;
-                InputStream in = new ByteArrayInputStream(bi);
-                image = ImageIO.read(in);
-                ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-                lblFotoBovino.setIcon(imgi);
-
-            } catch (Exception ex) {
-                lblFotoBovino.setText("Sin foto");
-            }
-
-            if (macho.getMadre() != null) {
-                txtCaravanaMadre.setText(macho.getMadre().getCaravanaBovino());
-                try {
-                    byte[] bi = macho.getMadre().getFoto();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-                    lblFotoMadre.setIcon(imgi);
-
-                } catch (Exception ex) {
-                    lblFotoMadre.setText("Sin foto");
-                }
-            }
-            if (macho.getPadre() != null) {
-                txtCaravanaPadre.setText(macho.getPadre().getCaravanaBovino());
-                try {
-                    byte[] bi = macho.getPadre().getFoto();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-                    lblFotoPadre.setIcon(imgi);
-
-                } catch (Exception ex) {
-                    lblFotoPadre.setText("Sin foto");
-                }
-            }
-        } else {
-
-            Hembra hembra = dControladora.buscarHembraPorCaravanaCompleta(frmBovino.caravana);
-
-            txtCaravanaBovino.setText(hembra.getCaravanaBovino());
-            txtFechaNacimiento.setText(hembra.getFechaNacimiento().toString());
-            txtRazaBovino.setText(hembra.getRaza().getTipo());
-            txtSexoBovino.setText("Hembra");
-
-            try {
-                byte[] bi = hembra.getFoto();
-
-                ByteArrayInputStream bis = new ByteArrayInputStream(bi);
-                BufferedImage image = null;
-
-                image = ImageIO.read(bis);
-
-                Image imgi = image.getScaledInstance(150, 150, Image.SCALE_DEFAULT);
-
-                ImageIcon foto = new ImageIcon(imgi);
-                lblFotoBovino.setIcon(foto);
-
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-                lblFotoBovino.setText("Sin foto");
-            }
-            if (hembra.getMadre() != null) {
-                txtCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
-                try {
-                    byte[] bi = hembra.getMadre().getFoto();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-                    lblFotoMadre.setIcon(imgi);
-
-                } catch (Exception ex) {
-                    lblFotoMadre.setText("Sin foto");
-                }
-            }
-
-            if (hembra.getPadre() != null) {
-                txtCaravanaPadre.setText(hembra.getPadre().getCaravanaBovino());
-                try {
-                    byte[] bi = hembra.getPadre().getFoto();
-                    BufferedImage image = null;
-                    InputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-                    lblFotoPadre.setIcon(imgi);
-
-                } catch (Exception ex) {
-                    lblFotoPadre.setText("Sin foto");
-                }
-            }
-        }
-
-=======
         tm1.start();
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
     }
 
     @SuppressWarnings("unchecked")
@@ -176,11 +59,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         txtSexoBovino = new javax.swing.JTextField();
         txtTipoMacho = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-<<<<<<< HEAD
-        jPanelFoto = new javax.swing.JPanel();
-=======
         jpanelFoto = new javax.swing.JPanel();
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         lblFotoBovino = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(54, 67, 114));
@@ -361,40 +240,15 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(55, 113, 137));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout jPanelFotoLayout = new javax.swing.GroupLayout(jPanelFoto);
-        jPanelFoto.setLayout(jPanelFotoLayout);
-        jPanelFotoLayout.setHorizontalGroup(
-            jPanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
-        );
-        jPanelFotoLayout.setVerticalGroup(
-            jPanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jPanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jPanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-=======
             .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         );
 
         jpanelFoto.setBackground(new java.awt.Color(55, 113, 137));
@@ -471,12 +325,6 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-    
-
-            
-
-=======
     Integer seg = 0;
 
     Timer tm1 = new Timer(1, new ActionListener() {
@@ -607,7 +455,6 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             }
         }
     }
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -619,15 +466,10 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-<<<<<<< HEAD
-    public static transient volatile javax.swing.JPanel jPanelFoto;
-    public static javax.swing.JLabel lblFotoBovino;
-=======
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jpanelFoto;
     public static volatile javax.swing.JLabel lblFotoBovino;
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
     private javax.swing.JLabel lblFotoMadre;
     private javax.swing.JLabel lblFotoPadre;
     private javax.swing.JLabel lblTipoMachoText;

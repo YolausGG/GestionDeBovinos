@@ -8,7 +8,6 @@ import clases.BotonesTabla;
 import clases.Bovino;
 import clases.Macho;
 import dominio.dControladora;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -197,26 +196,15 @@ public class frmApareable extends javax.swing.JInternalFrame {
             }
         }
 
-<<<<<<< HEAD
-        for (Bovino b : listaBovinosFiltroSexo) {
-            
-             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaNacimiento = formato.format(b.getFechaNacimiento());
-=======
         if (sexo.equals("Macho")) {
             model.addColumn("Nº Caravana");
             model.addColumn("Fecha Nacimiento");
             model.addColumn("Raza");
             model.addColumn("Sexo");
             for (Bovino b : listaBovinosFiltroSexo) {
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
                 model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), "Hembra"});
 
-<<<<<<< HEAD
-            model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, modificar, eliminar});
-        }
-=======
             }
         } else {
             model.addColumn("Nº Caravana");
@@ -230,7 +218,6 @@ public class frmApareable extends javax.swing.JInternalFrame {
                 Macho macho = (Macho) b;
                 model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), "Macho", macho.getTipo()});
             }
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
         jTableBovinos.setModel(model);

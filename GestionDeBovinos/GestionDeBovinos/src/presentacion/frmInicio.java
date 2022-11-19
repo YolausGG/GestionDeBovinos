@@ -91,19 +91,8 @@ public class frmInicio extends javax.swing.JFrame {
         lblApareable = new javax.swing.JLabel();
         jPanelEstadoBovino = new javax.swing.JPanel();
         lblEstadoBovino = new javax.swing.JLabel();
-        jPanelProduccion = new javax.swing.JPanel();
-        lblProduccion = new javax.swing.JLabel();
         jPanelListados = new javax.swing.JPanel();
         lblListados = new javax.swing.JLabel();
-<<<<<<< HEAD
-        lblListados3 = new javax.swing.JLabel();
-        lblListados4 = new javax.swing.JLabel();
-        lblListados5 = new javax.swing.JLabel();
-        lblListados6 = new javax.swing.JLabel();
-        lblListados2 = new javax.swing.JLabel();
-        lblListados7 = new javax.swing.JLabel();
-        lblListados8 = new javax.swing.JLabel();
-=======
         lblContagios = new javax.swing.JLabel();
         lblEventosFuturos = new javax.swing.JLabel();
         lblEventosDeSanidad = new javax.swing.JLabel();
@@ -113,7 +102,6 @@ public class frmInicio extends javax.swing.JFrame {
         lblProducciones = new javax.swing.JLabel();
         jPanelProduccion = new javax.swing.JPanel();
         lblProduccion = new javax.swing.JLabel();
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         MenuSanidad = new javax.swing.JPanel();
         lblInicioSanidad = new javax.swing.JLabel();
         jPanelEventoFuturo = new javax.swing.JPanel();
@@ -275,26 +263,6 @@ public class frmInicio extends javax.swing.JFrame {
 
         MenuPrincipal.add(jPanelEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 216, -1));
 
-        jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblProduccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblProduccion.setForeground(new java.awt.Color(255, 255, 255));
-        lblProduccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Produccion.png"))); // NOI18N
-        lblProduccion.setText("Producción");
-        lblProduccion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblProduccion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblProduccion.setIconTextGap(15);
-        lblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblProduccionMousePressed(evt);
-            }
-        });
-        jPanelProduccion.add(lblProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
-
-        MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
-
         jPanelListados.setLayout(null);
 
         lblListados.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -312,19 +280,6 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
         jPanelListados.add(lblListados);
-<<<<<<< HEAD
-        lblListados.setBounds(70, 0, 140, 50);
-
-        lblListados3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados3.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados3.setText("Listados");
-        lblListados3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados3.setIconTextGap(15);
-        lblListados3.addMouseListener(new java.awt.event.MouseAdapter() {
-=======
         lblListados.setBounds(0, 0, 210, 50);
 
         lblContagios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -336,7 +291,6 @@ public class frmInicio extends javax.swing.JFrame {
         lblContagios.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         lblContagios.setIconTextGap(15);
         lblContagios.addMouseListener(new java.awt.event.MouseAdapter() {
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblContagiosMousePressed(evt);
             }
@@ -440,44 +394,6 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelListados.add(lblProducciones);
         lblProducciones.setBounds(0, 250, 210, 40);
 
-<<<<<<< HEAD
-        lblListados2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados2.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados2.setText("Listados");
-        lblListados2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados2.setIconTextGap(15);
-        jPanelListados.add(lblListados2);
-        lblListados2.setBounds(70, 230, 140, 30);
-
-        lblListados7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados7.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados7.setText("Listados");
-        lblListados7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados7.setIconTextGap(15);
-        jPanelListados.add(lblListados7);
-        lblListados7.setBounds(70, 200, 140, 30);
-
-        lblListados8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados8.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados8.setText("Listados");
-        lblListados8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados8.setIconTextGap(15);
-        jPanelListados.add(lblListados8);
-        lblListados8.setBounds(70, 170, 140, 30);
-
-        MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 210, 50));
-
-        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 650));
-=======
         MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 216, 50));
 
         jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -501,7 +417,6 @@ public class frmInicio extends javax.swing.JFrame {
         MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
 
         MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 680));
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         MenuSanidad.setBackground(new java.awt.Color(54, 67, 114));
         MenuSanidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -797,11 +712,7 @@ public class frmInicio extends javax.swing.JFrame {
         );
         jDkPEscritorioLayout.setVerticalGroup(
             jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 809, Short.MAX_VALUE)
-=======
             .addGap(0, 0, Short.MAX_VALUE)
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -816,11 +727,7 @@ public class frmInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
-=======
             .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
             .addComponent(jDkPEscritorio)
         );
 
@@ -927,11 +834,7 @@ public class frmInicio extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
-<<<<<<< HEAD
-            if (panelMedida > 250) {
-=======
             if (panelMedida > 335) {
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
                 tm1.stop();
 
             } else {
@@ -952,17 +855,10 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorSeleccionado);
 
-<<<<<<< HEAD
-        if (panelMedida > 250) {
-            tm1.stop();
-            panelMedida = 60;
-            jPanelListados.setSize(250, 50);
-=======
         if (panelMedida > 335) {
             tm1.stop();
             panelMedida = 60;
             jPanelListados.setSize(335, 50);
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         } else {
 
@@ -1323,16 +1219,6 @@ public class frmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblInicioSanidad;
     private javax.swing.JLabel lblInseminacion;
     private javax.swing.JLabel lblListados;
-<<<<<<< HEAD
-    private javax.swing.JLabel lblListados2;
-    private javax.swing.JLabel lblListados3;
-    private javax.swing.JLabel lblListados4;
-    private javax.swing.JLabel lblListados5;
-    private javax.swing.JLabel lblListados6;
-    private javax.swing.JLabel lblListados7;
-    private javax.swing.JLabel lblListados8;
-=======
->>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
     private javax.swing.JLabel lblPadeceEnfermedad;
     private javax.swing.JLabel lblParto;
     private javax.swing.JLabel lblProduccion;
