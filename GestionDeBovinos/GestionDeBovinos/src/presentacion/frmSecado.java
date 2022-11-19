@@ -80,6 +80,10 @@ public class frmSecado extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSecados = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -237,8 +241,11 @@ public class frmSecado extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
         
         for (Secado s : listaSecados) {
-
-            model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), s.getFecha(), s.getDetalle(), s.getCausa(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaSecado = formato.format(s.getFecha());
+            
+            model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
         jTableSecados.setModel(model);
@@ -261,8 +268,11 @@ public class frmSecado extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
         
         for (Secado s : listaSecados) {
-
-            model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), s.getFecha(), s.getDetalle(), s.getCausa(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaSecado = formato.format(s.getFecha());
+            
+            model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
         jTableSecados.setModel(model);

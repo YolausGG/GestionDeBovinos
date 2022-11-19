@@ -20,36 +20,34 @@ import static presentacion.frmModificarPadeceEnfermedad.caravana;
  */
 public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
 
-     public static String caravana = null;
-     
+    public static String caravana = null;
+
     /**
      * Creates new form frmModificarPadeceEnfermedad1
      */
     public frmModificarPadeceEnfermedad() {
-        initComponents();        
-         
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+        initComponents();
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR BOVINO ENFERMO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
         lblREnfermedad.setVisible(false);
         llenarComboEnfermedad();
-        
-        
+
         if (caravana != null) {
             txtModificarCaravanaBovino.setText(caravana);
         } else {
             txtModificarCaravanaBovino.setText(frmPadeceEnfermedad.caravana);
         }
 
-                
         jDateModificarFechaIE.setDate(frmPadeceEnfermedad.padece.getFechaInicio());
         Date fechaIE = jDateModificarFechaIE.getDate();
         jDateModificarFechaFE.setDate(frmPadeceEnfermedad.padece.getFechaFinalizacion());
         Date fechaFE = jDateModificarFechaFE.getDate();
         int idEnfermedad = frmPadeceEnfermedad.padece.getIdEnfermedad();
-        Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad); 
-        
+        Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
+
         cboModificarEnfermedad.getModel().setSelectedItem(enfermedad);
         cboModificarEnfermedad.setSelectedItem(enfermedad);
     }
@@ -186,7 +184,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         txtModificarCaravanaBovino.setText(null);
@@ -195,7 +193,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
         cboModificarEnfermedad.setSelectedIndex(0);
 
     }
-    
+
     private void llenarComboEnfermedad() {
 
         ArrayList<Enfermedad> listaEnfermedades = pEnfermedad.listarEnfermedades();
@@ -206,7 +204,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
         frmBuscarBovino buscarBovino = new frmBuscarBovino();
         frmBuscarBovino.frm = "frmModificarPadeceEnfermedad";
@@ -234,11 +232,11 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
             Padece padeceFechaInicio = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE);
 
             Padece padeceCompleta = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE, fechaFE);
-            Padece padeceViejoFF = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja,fechaFEVieja);
+            Padece padeceViejoFF = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
 
             try {
                 if (jDateModificarFechaFE.getDate() == null) {
-                    boolean resultado = dControladora.modificarPadeceFechaInicio(padeceFechaInicio, padeceViejo) ;
+                    boolean resultado = dControladora.modificarPadeceFechaInicio(padeceFechaInicio, padeceViejo);
                     if (resultado) {
 
                         JOptionPane.showMessageDialog(null, "Bovino Enfermo Modificado Correctamente");
@@ -253,6 +251,10 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Bovino Enfermo");
                     }
+                } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
+
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+
                 } else {
                     if (dControladora.modificarPadece(padeceCompleta, padeceViejoFF)) {
 

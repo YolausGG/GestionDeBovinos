@@ -6,6 +6,7 @@ package presentacion;
 
 import clases.Hembra;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -112,8 +113,11 @@ public class frmBuscarHembra extends javax.swing.JInternalFrame {
         model.addColumn("Raza");
 
         for (Hembra h : listaHembras) {
-
-            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo()});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoH = formato.format(h.getFechaNacimiento());
+            
+            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo()});
 
         }
         jTableHembras.setModel(model);
@@ -131,8 +135,11 @@ public class frmBuscarHembra extends javax.swing.JInternalFrame {
         model.addColumn("Raza");
 
         for (Hembra h : listaHembra) {
-
-            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo()});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoH = formato.format(h.getFechaNacimiento());
+            
+            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo()});
 
         }
 

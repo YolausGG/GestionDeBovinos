@@ -32,11 +32,11 @@ public class frmTacto extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmTacto() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("TACTO");
         modificar.setBorder(null);
         eliminar.setBorder(null);
@@ -56,7 +56,6 @@ public class frmTacto extends javax.swing.JInternalFrame {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,6 +81,10 @@ public class frmTacto extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txaDiagnostico = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jTableTactos = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -266,8 +269,11 @@ public class frmTacto extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Tacto t : listaTactos) {
-
-            model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), t.getFecha(), t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaTacto = formato.format(t.getFecha());
+            
+            model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
         }
 
         jTableTactos.setModel(model);
@@ -291,14 +297,17 @@ public class frmTacto extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Tacto t : listaTactos) {
-
-            model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), t.getFecha(), t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaTacto = formato.format(t.getFecha());
+            
+            model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
         }
 
         jTableTactos.setModel(model);
         jTableTactos.setRowHeight(35);
     }
-    
+
     private void jTableTactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTactosMouseClicked
 
         columna = jTableTactos.getColumnModel().getColumnIndexAtX(evt.getX());

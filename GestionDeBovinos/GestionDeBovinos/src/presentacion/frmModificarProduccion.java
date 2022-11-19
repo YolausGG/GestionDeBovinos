@@ -253,7 +253,8 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
 
                     this.dispose();
                     frmProduccion nuevoFormulario = new frmProduccion();
-                    nuevoFormulario.setVisible(true);
+                     frmInicio.jDkPEscritorio.add(nuevoFormulario);
+                    nuevoFormulario.setVisible(true);                 
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar la Producción");

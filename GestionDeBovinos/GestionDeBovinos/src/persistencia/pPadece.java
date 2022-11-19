@@ -86,7 +86,8 @@ public class pPadece {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_PADECE);
             statement.setInt(1, pPadece.getIdEnfermedad());
             statement.setInt(2, pPadece.getIdBovino());
-            statement.setDate(3, (java.sql.Date) pPadece.getFechaInicio());
+             java.sql.Date sqlDate = new java.sql.Date(pPadece.getFechaInicio().getTime());
+            statement.setDate(3, sqlDate);
 
             int retorno = statement.executeUpdate();
             return retorno > 0;

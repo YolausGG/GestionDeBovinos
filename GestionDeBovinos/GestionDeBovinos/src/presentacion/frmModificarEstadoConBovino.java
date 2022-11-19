@@ -21,21 +21,20 @@ import static presentacion.frmModificarEstadoConBovino.caravana;
 public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
-    
+
     /**
      * Creates new form frmModificarEstadoConBovino1
      */
     public frmModificarEstadoConBovino() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR ESTADO DEL BOVINO");
         lblRCaravanaB.setVisible(false);
         lblRFechaInicioE.setVisible(false);
         lblREstado.setVisible(false);
         llenarComboEstado();
-        
-        
+
         if (caravana != null) {
             txtModificarCaravanaBovino.setText(caravana);
         } else {
@@ -43,14 +42,14 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
         }
 
         EstadoBovino estadoBovino = frmEstadoConBovino.estadoBovino;
-        
+
         jDateModificarFechaIE.setDate(estadoBovino.getFechaInicio());
         Date fechaIE = jDateModificarFechaIE.getDate();
         jDateModificarFechaFE.setDate(estadoBovino.getFechaFinalizacion());
         Date fechaFE = jDateModificarFechaFE.getDate();
         int idEstado = estadoBovino.getIdEstadoDelBovino();
-        EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(idEstado); 
-        
+        EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(idEstado);
+
         cboModificarEstado.getModel().setSelectedItem(estadoDelBovino);
         cboModificarEstado.setSelectedItem(estadoDelBovino);
     }
@@ -196,7 +195,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         txtModificarCaravanaBovino.setText(null);
@@ -205,7 +204,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
         cboModificarEstado.setSelectedIndex(0);
 
     }
-    
+
     private void llenarComboEstado() {
 
         ArrayList<EstadoDelBovino> listaEstados = pEstadoDelBovino.listarEstadosDelBovino();
@@ -216,7 +215,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     private void txtModificarCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModificarCaravanaBovinoKeyReleased
 
     }//GEN-LAST:event_txtModificarCaravanaBovinoKeyReleased
@@ -247,11 +246,11 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
             Date fechaFE = jDateModificarFechaFE.getDate();
             EstadoDelBovino estadoNuevo = (EstadoDelBovino) cboModificarEstado.getSelectedItem();
 
-            EstadoBovino estadoBovinoViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(),bovinoViejo.getIdBovino(), fechaIEVieja);
-            EstadoBovino estadoFechaInicio = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(),bovino.getIdBovino(), fechaIE);
+            EstadoBovino estadoBovinoViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja);
+            EstadoBovino estadoFechaInicio = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE);
 
-            EstadoBovino estadoBViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(),bovinoViejo.getIdBovino(), fechaIEVieja,fechaFEVieja);
-            EstadoBovino estadoBovinoCompleto = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(),bovino.getIdBovino(), fechaIE, fechaFE);
+            EstadoBovino estadoBViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
+            EstadoBovino estadoBovinoCompleto = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE, fechaFE);
 
             try {
                 if (jDateModificarFechaFE.getDate() == null) {
@@ -270,6 +269,10 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Estado del Bovino");
                     }
+                } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
+                    
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                    
                 } else {
                     if (dControladora.modificarEstadoBovino(estadoBovinoCompleto, estadoBViejo)) {
 

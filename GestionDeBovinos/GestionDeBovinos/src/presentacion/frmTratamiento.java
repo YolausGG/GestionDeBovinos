@@ -10,12 +10,16 @@ import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.frmInicio.jDkPEscritorio;
 
 /**
  *
@@ -26,24 +30,25 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
     JButton finalizar = new JButton("Finalizar");
-    
+
     public static int idTratamiento = 0;
     public static frmTratamiento frmTratamiento1 = null;
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
-    
+
     public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
 
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
+
     /**
      * Creates new form frmTratamiento1
      */
     public frmTratamiento() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("TRATAMIENTO ENFERMEDAD");
         modificar.setName("btnModificar");
         eliminar.setName("btnEliminar");
@@ -56,6 +61,38 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
 
         actualizarTabla();
         actualizarTablaContagiosActivos();
+
+        if (frmPadeceEnfermedad.caravana != null) {
+
+            lblCaravana.setText(frmPadeceEnfermedad.caravana);
+            int idEnfermedad = frmPadeceEnfermedad.padece.getIdEnfermedad();
+            Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
+            lblEnfermedad.setText(enfermedad.getNombre());
+            Date fechaInicioE = frmPadeceEnfermedad.padece.getFechaInicio();
+            Date fechaFinE = frmPadeceEnfermedad.padece.getFechaFinalizacion();
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicio = formato.format(fechaInicioE);
+
+            if (fechaFinE == null) {
+                lblFechaFinE.setText("SIN FECHA FINALIZACIÓN");
+            } else {
+                String fechaFin = formato.format(fechaFinE);
+                lblFechaFinE.setText(fechaFin);
+            }
+
+            lblFechaInicioE.setText(fechaInicio);
+
+        } else {
+
+            lblCaravana.setText("...");
+            lblEnfermedad.setText("...");
+            lblFechaFinE.setText("...");
+            lblFechaFinE.setText("...");
+            lblFechaInicioE.setText("...");
+
+        }
+
     }
 
     /**
@@ -251,7 +288,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         jDateFechaInicioT.setDate(null);
@@ -259,7 +296,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         jTextAreaDetalle.setText(null);
 
     }
-    
+
     public void actualizarTabla() {
         jTableTratamiento.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
@@ -267,7 +304,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         ArrayList<Tratamiento> listaTratamientos = dControladora.listarTratamientos();
 
         model.addColumn("ID Tratamiento");
-        model.addColumn("Caravana");        
+        model.addColumn("Caravana");
         model.addColumn("Enfermedad");
         model.addColumn("");
         model.addColumn("Fecha Inicio");
@@ -278,11 +315,25 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Tratamiento t : listaTratamientos) {
-            
+
             Bovino bovino = dControladora.buscarBovinoId(t.getPadece().getIdBovino());
             Enfermedad enfermedad = dControladora.buscarEnfermedad(t.getPadece().getIdEnfermedad());
-            
-            model.addRow(new Object[]{t.getIdTratamiento(), bovino.getCaravanaBovino(), enfermedad.getNombre(), t.getPadece().getFechaInicio(), t.getFechaInicio(), t.getFechaFinalizacion(), t.getDetalle(), finalizar, modificar, eliminar});
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicioT = formato.format(t.getFechaInicio());
+
+            if (t.getFechaFinalizacion() == null) {
+
+                model.addRow(new Object[]{t.getIdTratamiento(), bovino.getCaravanaBovino(), enfermedad.getNombre(), t.getPadece().getFechaInicio(), fechaInicioT, t.getFechaFinalizacion(), t.getDetalle(), finalizar, modificar, eliminar});
+
+            } else {
+
+                SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFinalizacionT = formato1.format(t.getFechaFinalizacion());
+
+                model.addRow(new Object[]{t.getIdTratamiento(), bovino.getCaravanaBovino(), enfermedad.getNombre(), t.getPadece().getFechaInicio(), fechaInicioT, fechaFinalizacionT, t.getDetalle(), finalizar, modificar, eliminar});
+            }
+
         }
 
         jTableTratamiento.setModel(model);
@@ -291,7 +342,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         jTableTratamiento.getColumnModel().getColumn(3).setMinWidth(0);
         jTableTratamiento.getColumnModel().getColumn(3).setPreferredWidth(0);
     }
-    
+
     public void actualizarTablaContagiosActivos() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -310,7 +361,21 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicioE = formato.format(p.getFechaInicio());
+
+            if (p.getFechaFinalizacion() == null) {
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFinalizacionE = formato1.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, fechaFinalizacionE});
+            }
+
         }
 
         jTablePadeceEnfermedad.setModel(model);
@@ -319,7 +384,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-        
+
     private void jTableTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTratamientoMouseClicked
 
         columna = jTableTratamiento.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -351,7 +416,7 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
                 if (botones.getName().equals("btnEliminar")) {
                     int fila = jTableTratamiento.getSelectedRow();
 
-                    int idTratamiento = (int)this.jTableTratamiento.getValueAt(fila, 0);
+                    int idTratamiento = (int) this.jTableTratamiento.getValueAt(fila, 0);
 
                     try {
 
@@ -407,22 +472,19 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
 
             String caravana = jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
             String enfermedad = jTablePadeceEnfermedad.getValueAt(fila, 2).toString();
-            Date fechaInicioE = (Date) jTablePadeceEnfermedad.getValueAt(fila, 3);
-            Date fechaFinE = (Date) jTablePadeceEnfermedad.getValueAt(fila, 4);
-
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaInicio = formato.format(fechaInicioE);
+            String fechaInicioE = (String) jTablePadeceEnfermedad.getValueAt(fila, 3);
+            String fechaFinE = (String) jTablePadeceEnfermedad.getValueAt(fila, 4);
 
             if (fechaFinE == null) {
                 lblFechaFinE.setText("SIN FECHA FINALIZACIÓN");
             } else {
-                String fechaFin = formato.format(fechaFinE);
-                lblFechaFinE.setText(fechaFin);
+
+                lblFechaFinE.setText(fechaFinE);
             }
 
             lblCaravana.setText(caravana);
             lblEnfermedad.setText(enfermedad);
-            lblFechaInicioE.setText(fechaInicio);
+            lblFechaInicioE.setText(fechaInicioE);
 
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
@@ -432,60 +494,67 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
     private void btnAltaTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaTratamientoMouseClicked
 
         if (validarCampos()) {
-            int fila = jTablePadeceEnfermedad.getSelectedRow();
+            // int fila = jTablePadeceEnfermedad.getSelectedRow();           
 
-            if (fila != -1) {
+            String caravana = lblCaravana.getText();
+            Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
-                String caravana = jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
-                Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
-                int idEnfermedad = (int) jTablePadeceEnfermedad.getValueAt(fila, 1);
-                Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
-                Date fechaInicioContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 3);
-                Date fechaFinContagio = (Date)jTablePadeceEnfermedad.getValueAt(fila, 4);
+            Enfermedad enfermedad = dControladora.buscarEnfermedadNombre(lblEnfermedad.getText());
+            int idEnfermedad = enfermedad.getIdEnfermedad();
 
-                Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaInicioContagio, fechaFinContagio);
+            String fecha = lblFechaInicioE.getText();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaPadece = null;
 
-                String detalle = jTextAreaDetalle.getText();
-                Date fechaInicioT = jDateFechaInicioT.getDate();
-                Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
+            try {
+                fechaPadece = formato.parse(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(frmModificarTratamiento.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                Tratamiento tratamiento = new Tratamiento(padece, detalle, fechaInicioT);
-                Tratamiento tratamientoFechaF = new Tratamiento(padece, detalle, fechaInicioT, fechaFinalizacionT);
+            Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaPadece);
 
-                try {
+            String detalle = jTextAreaDetalle.getText();
+            Date fechaInicioT = jDateFechaInicioT.getDate();
+            Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
 
-                    if (jDateFechaFinalizacionT.getDate() == null) {
-                        boolean resultado = dominio.dTratamiento.altaTratamientoFechaInicio(tratamiento);
+            Tratamiento tratamiento = new Tratamiento(padece, detalle, fechaInicioT);
+            Tratamiento tratamientoFechaF = new Tratamiento(padece, detalle, fechaInicioT, fechaFinalizacionT);
 
-                        if (resultado) {
+            try {
 
-                            JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Tratamiento al Bovino Enfermo");
-                            actualizarTabla();
-                            limpiarCajas(); // Limpiamos Caja de Texto
+                if (jDateFechaFinalizacionT.getDate() == null) {
+                    boolean resultado = dominio.dTratamiento.altaTratamientoFechaInicio(tratamiento);
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Tratamiento al Bovino Enfermo");
-                        }
+                    if (resultado) {
+
+                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Tratamiento al Bovino Enfermo");
+                        actualizarTabla();
+                        limpiarCajas(); // Limpiamos Caja de Texto
+
                     } else {
-                        boolean resultado = dominio.dTratamiento.altaTratamiento(tratamientoFechaF);
-
-                        if (resultado) {
-
-                            JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Tratamiento al Bovino Enfermo");
-                            actualizarTabla();
-                            limpiarCajas(); // Limpiamos Caja de Texto
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Tratamiento al Bovino Enfermo");
-                        }
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Tratamiento al Bovino Enfermo");
                     }
+                } else if (jDateFechaFinalizacionT.getDate().before(fechaInicioT)) {
 
-                } catch (Exception e) {
-                    throw e;
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+
+                } else {
+                    boolean resultado = dominio.dTratamiento.altaTratamiento(tratamientoFechaF);
+
+                    if (resultado) {
+
+                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Tratamiento al Bovino Enfermo");
+                        actualizarTabla();
+                        limpiarCajas(); // Limpiamos Caja de Texto
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Tratamiento al Bovino Enfermo");
+                    }
                 }
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino Enfermo");
+            } catch (Exception e) {
+                throw e;
             }
 
         } else {

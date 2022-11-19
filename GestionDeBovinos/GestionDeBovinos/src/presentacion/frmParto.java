@@ -21,7 +21,7 @@ public class frmParto extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
-    
+
     public static int idParto = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
 
@@ -30,10 +30,10 @@ public class frmParto extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmParto() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("PARTO");
         modificar.setBorder(null);
@@ -42,20 +42,18 @@ public class frmParto extends javax.swing.JInternalFrame {
         insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
+        eliminar.setName("btnEliminar");
         lblRTipo.setVisible(false);
         lblRFechaParto.setVisible(false);
         lblRHembra.setVisible(false);
-        
-        if(txtCaravanaHembra.getText().isEmpty()){
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
-        }
-        else{
+        } else {
             actualizarTablaHembra();
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,6 +76,10 @@ public class frmParto extends javax.swing.JInternalFrame {
         btnBuscarBovino = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePartos = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -203,24 +205,38 @@ public class frmParto extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(null);
         cboTipo.setSelectedIndex(0);
         jDateFechaParto.setDate(null);
-        txaDetalle.setText(null);  
+        txaDetalle.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboTipo.getSelectedIndex() < 1){ lblRTipo.setVisible(true); contador++; }else { lblRTipo.setVisible(false);}
-        if(jDateFechaParto.getDate() == null){ lblRFechaParto.setVisible(true); contador++; }else { lblRFechaParto.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboTipo.getSelectedIndex() < 1) {
+            lblRTipo.setVisible(true);
+            contador++;
+        } else {
+            lblRTipo.setVisible(false);
+        }
+        if (jDateFechaParto.getDate() == null) {
+            lblRFechaParto.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaParto.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void actualizarTabla() {
         jTablePartos.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -234,21 +250,24 @@ public class frmParto extends javax.swing.JInternalFrame {
         model.addColumn("Tipo");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Parto p : listaPartos) {
 
-            model.addRow(new Object[]{p.getIdEventoDeSanidad(),p.getHembra().getCaravanaBovino(),p.getFecha(),p.getDetalle(), p.getTipo(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaParto = formato.format(p.getFecha());
+
+            model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo(), modificar, eliminar});
         }
 
         jTablePartos.setModel(model);
         jTablePartos.setRowHeight(35);
     }
-    
+
     public void actualizarTablaHembra() {
         jTablePartos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         ArrayList<Parto> listaPartos = dControladora.listarPartosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Parto");
@@ -258,19 +277,22 @@ public class frmParto extends javax.swing.JInternalFrame {
         model.addColumn("Tipo");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Parto p : listaPartos) {
 
-            model.addRow(new Object[]{p.getIdEventoDeSanidad(),p.getHembra().getCaravanaBovino(),p.getFecha(),p.getDetalle(), p.getTipo(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaParto = formato.format(p.getFecha());
+
+            model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo(), modificar, eliminar});
         }
 
         jTablePartos.setModel(model);
         jTablePartos.setRowHeight(35);
     }
-    
+
     private void btnAltaPartoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaPartoMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
 
@@ -292,12 +314,11 @@ public class frmParto extends javax.swing.JInternalFrame {
 
                     Parto parto = new Parto(eventoDeSanidad.getIdEventoDeSanidad(), fechaParto, detalle, hembra, tipo);
 
-                    if(dControladora.altaParto(parto)){
+                    if (dControladora.altaParto(parto)) {
                         JOptionPane.showMessageDialog(null, "Parto Ingresado Correctamente");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Parto No Ingresado Correctamente");
                         limpiarCajas(); // Limpiamos Caja de Texto
                     }
@@ -308,7 +329,7 @@ public class frmParto extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaPartoMouseClicked
@@ -328,7 +349,7 @@ public class frmParto extends javax.swing.JInternalFrame {
 
     private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
 
-        if(txtCaravanaHembra.getText().isEmpty()){
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
         }
     }//GEN-LAST:event_txtCaravanaHembraKeyReleased

@@ -24,7 +24,7 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JInternalFrame 
      */
     public frmFechaFinalizacionTratamiento() {
         initComponents();
-        
+
         this.setTitle("FECHA FINALIZACIÓN TRATAMIENTO");
         lblRFechaFT.setVisible(false);
 
@@ -168,13 +168,13 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JInternalFrame 
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         jDateFechaFinalizacionT.setDate(null);
 
     }
-    
+
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
 
         if (validarCampos()) {
@@ -184,33 +184,38 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JInternalFrame 
 
             Padece padece = new Padece(t.getPadece().getIdEnfermedad(), t.getPadece().getIdBovino(), t.getPadece().getFechaInicio(), t.getPadece().getFechaFinalizacion());
 
+            Date fechaI = t.getFechaInicio();
             Date fechaF = jDateFechaFinalizacionT.getDate();
 
-            Tratamiento tratamientoNuevo = new Tratamiento(t.getIdTratamiento(),padece, t.getDetalle(), t.getFechaInicio(), fechaF);
+            Tratamiento tratamientoNuevo = new Tratamiento(t.getIdTratamiento(), padece, t.getDetalle(), t.getFechaInicio(), fechaF);
 
             try {
+                if (jDateFechaFinalizacionT.getDate().before(fechaI)) {
 
-                boolean resultado = dControladora.modificarTratamientoFechaFin(tratamientoNuevo);
-                if (resultado) {
-
-                    JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
-
-                    frmTratamiento.frmTratamiento1.dispose();
-                    frmTratamiento.frmTratamiento1 = null;
-
-                    frmTratamiento fTratamiento = new frmTratamiento();
-                    frmInicio.jDkPEscritorio.add(fTratamiento);
-                    fTratamiento.setVisible(true);
-                    this.dispose();
-
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+                    boolean resultado = dControladora.modificarTratamientoFechaFin(tratamientoNuevo);
+                    if (resultado) {
 
-                    frmTratamiento fTratamiento = new frmTratamiento();
-                    fTratamiento.actualizarTabla();
-                    this.dispose();
+                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
+
+                        frmTratamiento.frmTratamiento1.dispose();
+                        frmTratamiento.frmTratamiento1 = null;
+
+                        frmTratamiento fTratamiento = new frmTratamiento();
+                        frmInicio.jDkPEscritorio.add(fTratamiento);
+                        fTratamiento.setVisible(true);
+                        this.dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+
+                        frmTratamiento fTratamiento = new frmTratamiento();
+                        fTratamiento.actualizarTabla();
+                        this.dispose();
+                    }
                 }
-
             } catch (Exception e) {
                 throw e;
             }

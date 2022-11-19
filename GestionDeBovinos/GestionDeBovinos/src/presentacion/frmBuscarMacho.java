@@ -6,6 +6,7 @@ package presentacion;
 
 import clases.Macho;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -120,8 +121,11 @@ public class frmBuscarMacho extends javax.swing.JInternalFrame {
         model.addColumn("Tipo");
 
         for (Macho m : listaMachos) {
-
-            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), m.getTipo()});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoM = formato.format(m.getFechaNacimiento());
+            
+            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), m.getTipo()});
 
         }
         jTableMachos.setModel(model);
@@ -140,8 +144,11 @@ public class frmBuscarMacho extends javax.swing.JInternalFrame {
         model.addColumn("Tipo");
         
         for (Macho m : listaMachos) {
-
-            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), m.getTipo()});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoM = formato.format(m.getFechaNacimiento());
+            
+            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), m.getTipo()});
 
         }
 

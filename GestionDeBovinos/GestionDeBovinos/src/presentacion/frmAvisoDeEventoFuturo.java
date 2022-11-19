@@ -8,6 +8,7 @@ import clases.BotonesTabla;
 import clases.ColorCeldaTabla;
 import clases.EventoFuturo;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -181,11 +182,12 @@ public class frmAvisoDeEventoFuturo extends javax.swing.JInternalFrame {
 
         model.addColumn("id Evento Futuro");
         model.addColumn("Caravana Hembra");
-        model.addColumn("Fecha");
+        model.addColumn("AÑO/MES/DIA");
         model.addColumn("Tipo");
 
         for (EventoFuturo EF : listaEventosFuturos) {
-
+            
+           
             model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), EF.getFechaPrevista(), EF.getTipo()});
         }
 

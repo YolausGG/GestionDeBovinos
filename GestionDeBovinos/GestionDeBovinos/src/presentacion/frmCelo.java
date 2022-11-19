@@ -78,6 +78,10 @@ public class frmCelo extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCelos = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -235,8 +239,11 @@ public class frmCelo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
         
         for (Celo c : listaCelos) {
-
-            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),c.getFecha(),c.getDetalle(), c.getCausa(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaCelo = formato.format(c.getFecha());
+            
+            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),fechaCelo,c.getDetalle(), c.getCausa(), modificar, eliminar});
         }
 
         jTableCelos.setModel(model);
@@ -259,8 +266,11 @@ public class frmCelo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
         
         for (Celo c : listaCelos) {
-
-            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),c.getFecha(),c.getDetalle(), c.getCausa(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaCelo = formato.format(c.getFecha());
+            
+            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),fechaCelo,c.getDetalle(), c.getCausa(), modificar, eliminar});
         }
 
         jTableCelos.setModel(model);

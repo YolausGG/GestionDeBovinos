@@ -24,20 +24,21 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
-    
+
     public static int idInseminacion = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
     public static String caravanaHembra, caravanaMacho;
+
     public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
 
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmInseminacion() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("INSEMINACIÓN");
         modificar.setBorder(null);
         eliminar.setBorder(null);
@@ -46,21 +47,21 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         txtCaravanaMacho.setText(frmBuscarMacho.caravana);
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
+        eliminar.setName("btnEliminar");
         lblRMacho.setVisible(false);
         lblRFechaCelo.setVisible(false);
         lblRHembra.setVisible(false);
-        
-        if(txtCaravanaHembra.getText().isEmpty() && txtCaravanaMacho.getText().isEmpty()){
+
+        if (txtCaravanaHembra.getText().isEmpty() && txtCaravanaMacho.getText().isEmpty()) {
             actualizarTabla();
-        }else if(!txtCaravanaHembra.getText().isEmpty()){
+        } else if (!txtCaravanaHembra.getText().isEmpty()) {
             actualizarTablaHembraMacho(txtCaravanaHembra.getText());
-        }else if(!txtCaravanaMacho.getText().isEmpty()){
+        } else if (!txtCaravanaMacho.getText().isEmpty()) {
             actualizarTablaHembraMacho(txtCaravanaMacho.getText());
         }
     }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -83,6 +84,10 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         btnBuscarHembra = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInseminaciones = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -221,24 +226,38 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         txtCaravanaMacho.setText(null);
         txtCaravanaHembra.setText(null);
         jDateFechaInseminacion.setDate(null);
-        txaDetalle.setText(null);  
+        txaDetalle.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(txtCaravanaMacho.getText().isEmpty()){ lblRMacho.setVisible(true); contador++; }else { lblRMacho.setVisible(false);}
-        if(jDateFechaInseminacion.getDate() == null){ lblRFechaCelo.setVisible(true); contador++; }else { lblRFechaCelo.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (txtCaravanaMacho.getText().isEmpty()) {
+            lblRMacho.setVisible(true);
+            contador++;
+        } else {
+            lblRMacho.setVisible(false);
+        }
+        if (jDateFechaInseminacion.getDate() == null) {
+            lblRFechaCelo.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaCelo.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void actualizarTabla() {
         jTableInseminaciones.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -252,21 +271,24 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         model.addColumn("Detalle");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Inseminacion i : listaInseminaciones) {
 
-            model.addRow(new Object[]{i.getIdEventoDeSanidad(),i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), i.getFecha(),i.getDetalle(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInseminacion = formato.format(i.getFecha());
+
+            model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaInseminacion, i.getDetalle(), modificar, eliminar});
         }
 
         jTableInseminaciones.setModel(model);
         jTableInseminaciones.setRowHeight(25);
     }
-    
+
     public void actualizarTablaHembraMacho(String pCaravana) {
         jTableInseminaciones.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         ArrayList<Inseminacion> listaInseminaciones = dControladora.listarInseminacionesPorCaravana(pCaravana);
 
         model.addColumn("id Inseminacion");
@@ -276,19 +298,22 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         model.addColumn("Detalle");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Inseminacion i : listaInseminaciones) {
 
-            model.addRow(new Object[]{i.getIdEventoDeSanidad(),i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), i.getFecha(),i.getDetalle(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInseminacion = formato.format(i.getFecha());
+            
+            model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(),fechaInseminacion, i.getDetalle(), modificar, eliminar});
         }
 
         jTableInseminaciones.setModel(model);
         jTableInseminaciones.setRowHeight(35);
     }
-    
+
     private void btnAltaInseminacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaInseminacionMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravanaHembra = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravanaHembra);
@@ -310,7 +335,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
                     Inseminacion inseminacion = new Inseminacion(eventoDeSanidad.getIdEventoDeSanidad(), fechaInseminacion, detalle, hembra, macho);
 
-                    if(dControladora.altaInseminacion(inseminacion)){
+                    if (dControladora.altaInseminacion(inseminacion)) {
                         JOptionPane.showMessageDialog(null, "Inseminación Ingresada Correctamente");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto
@@ -323,14 +348,12 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
                         Date fechaPrevista = calendar.getTime();
                         EventoFuturo eventoFuturo = new EventoFuturo(hembra, "Tacto", fechaPrevista);
 
-                        if(dControladora.altaEventoFuturo(eventoFuturo)){
+                        if (dControladora.altaEventoFuturo(eventoFuturo)) {
                             JOptionPane.showMessageDialog(null, "Tacto Previsto Agregado como Evento Futuro en 3 Meses");
-                        }
-                        else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Tacto Previsto No Agregado");
                         }
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Inseminación No Ingresada Correctamente");
                         limpiarCajas(); // Limpiamos Caja de Texto
                     }
@@ -341,7 +364,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaInseminacionMouseClicked

@@ -8,6 +8,7 @@ import clases.BotonesTabla;
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -296,7 +297,10 @@ public class frmProduccion extends javax.swing.JInternalFrame {
 
         for (Produccion p : listaProduccionH) {
 
-            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaProduccion = formato.format(p.getFecha());
+            
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
                 p.getGrasa(), p.getCelulaSomatica(), modificar, eliminar});
         }
 
@@ -328,7 +332,11 @@ public class frmProduccion extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Produccion p : listaProduccionH) {
-            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaProduccion = formato.format(p.getFecha());
+            
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
                 p.getGrasa(), p.getCelulaSomatica(), modificar, eliminar});
         }
 

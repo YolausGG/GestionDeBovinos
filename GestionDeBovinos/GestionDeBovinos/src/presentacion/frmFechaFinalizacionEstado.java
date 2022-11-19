@@ -22,13 +22,13 @@ public class frmFechaFinalizacionEstado extends javax.swing.JInternalFrame {
      */
     public frmFechaFinalizacionEstado() {
         initComponents();
-        
+
         this.setTitle("FECHA FINALIZACIÓN ESTADO");
         lblRFechaF.setVisible(false);
 
         EstadoBovino estado = frmEstadoConBovino.estadoBovino;
         Bovino bovino = dControladora.buscarBovinoId(estado.getIdBovino());
-        
+
         lblCaravana.setText(bovino.getCaravanaBovino());
         lblEstado.setText(frmEstadoConBovino.estado);
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -160,46 +160,51 @@ public class frmFechaFinalizacionEstado extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         jDateFechaFinalizacionE.setDate(null);
 
     }
-    
+
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
 
         if (validarCampos()) {
 
             EstadoBovino estado = frmEstadoConBovino.estadoBovino;
 
+            Date fechaI = estado.getFechaInicio();
             Date fechaF = jDateFechaFinalizacionE.getDate();
 
-            EstadoBovino estadoViejo = new EstadoBovino(estado.getIdEstadoDelBovino(),estado.getIdBovino(),estado.getFechaInicio());
-            EstadoBovino estadoNuevo = new EstadoBovino(estado.getIdEstadoDelBovino(),estado.getIdBovino(),estado.getFechaInicio(), fechaF);
+            EstadoBovino estadoViejo = new EstadoBovino(estado.getIdEstadoDelBovino(), estado.getIdBovino(), estado.getFechaInicio());
+            EstadoBovino estadoNuevo = new EstadoBovino(estado.getIdEstadoDelBovino(), estado.getIdBovino(), estado.getFechaInicio(), fechaF);
 
             try {
-
-                if (dControladora.modificarEstadoBovino(estadoNuevo, estadoViejo)) {
-
-                    JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
-
-                    frmEstadoConBovino.frmEstadoConBovino1.dispose();
-                    frmEstadoConBovino.frmEstadoConBovino1 = null;
-
-                    frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
-                    frmInicio.jDkPEscritorio.add(fEstadoConBovino);
-                    fEstadoConBovino.setVisible(true);
-                    this.dispose();
-
+                if (jDateFechaFinalizacionE.getDate().before(fechaI)) {
+                    
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                    
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+                    if (dControladora.modificarEstadoBovino(estadoNuevo, estadoViejo)) {
 
-                    frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
-                    fEstadoConBovino.actualizarTabla();
-                    this.dispose();
+                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
+
+                        frmEstadoConBovino.frmEstadoConBovino1.dispose();
+                        frmEstadoConBovino.frmEstadoConBovino1 = null;
+
+                        frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
+                        frmInicio.jDkPEscritorio.add(fEstadoConBovino);
+                        fEstadoConBovino.setVisible(true);
+                        this.dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+
+                        frmEstadoConBovino fEstadoConBovino = new frmEstadoConBovino();
+                        fEstadoConBovino.actualizarTabla();
+                        this.dispose();
+                    }
                 }
-
             } catch (Exception e) {
                 throw e;
             }

@@ -4,19 +4,16 @@
  */
 package presentacion;
 
+
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.System.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *
@@ -30,7 +27,9 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         lblTipoMachoText.setVisible(false);
         txtTipoMacho.setVisible(false);
-        if (frmBovino.sexo.equals("Macho")) {
+
+        if (frmBovino.sexo.equals(
+                "Macho")) {
             Macho macho = dControladora.buscarMachoPorCaravanaCompleto(frmBovino.caravana);
 
             lblTipoMachoText.setVisible(true);
@@ -47,7 +46,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 BufferedImage image = null;
                 InputStream in = new ByteArrayInputStream(bi);
                 image = ImageIO.read(in);
-                ImageIcon imgi = new ImageIcon(image.getScaledInstance(150,150, Image.SCALE_DEFAULT));
+                ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 lblFotoBovino.setIcon(imgi);
 
             } catch (Exception ex) {
@@ -61,7 +60,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     BufferedImage image = null;
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150,150, Image.SCALE_DEFAULT));
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                     lblFotoMadre.setIcon(imgi);
 
                 } catch (Exception ex) {
@@ -75,7 +74,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     BufferedImage image = null;
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150,150, Image.SCALE_DEFAULT));
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                     lblFotoPadre.setIcon(imgi);
 
                 } catch (Exception ex) {
@@ -92,19 +91,20 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             txtSexoBovino.setText("Hembra");
 
             try {
-                byte[] bi = hembra.getFoto();                                
-                        
-                ByteArrayInputStream bis = new ByteArrayInputStream(hembra.getFoto());
-                BufferedImage image;
+                byte[] bi = hembra.getFoto();
+
+                ByteArrayInputStream bis = new ByteArrayInputStream(bi);
+                BufferedImage image = null;
 
                 image = ImageIO.read(bis);
-                
-                Image imgi = image.getScaledInstance(150,150, Image.SCALE_DEFAULT);
+
+                Image imgi = image.getScaledInstance(150, 150, Image.SCALE_DEFAULT);
 
                 ImageIcon foto = new ImageIcon(imgi);
                 lblFotoBovino.setIcon(foto);
 
             } catch (Exception ex) {
+                System.out.println(ex.toString());
                 lblFotoBovino.setText("Sin foto");
             }
             if (hembra.getMadre() != null) {
@@ -114,7 +114,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     BufferedImage image = null;
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150,150, Image.SCALE_DEFAULT));
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                     lblFotoMadre.setIcon(imgi);
 
                 } catch (Exception ex) {
@@ -129,7 +129,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     BufferedImage image = null;
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150,150, Image.SCALE_DEFAULT));
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                     lblFotoPadre.setIcon(imgi);
 
                 } catch (Exception ex) {
@@ -137,8 +137,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 }
             }
         }
-        
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -165,6 +164,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         txtSexoBovino = new javax.swing.JTextField();
         txtTipoMacho = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
+        jPanelFoto = new javax.swing.JPanel();
         lblFotoBovino = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 102));
@@ -312,15 +312,32 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        javax.swing.GroupLayout jPanelFotoLayout = new javax.swing.GroupLayout(jPanelFoto);
+        jPanelFoto.setLayout(jPanelFotoLayout);
+        jPanelFotoLayout.setHorizontalGroup(
+            jPanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 188, Short.MAX_VALUE)
+        );
+        jPanelFotoLayout.setVerticalGroup(
+            jPanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jPanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jPanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         lblFotoBovino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -379,6 +396,10 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+
+            
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -390,6 +411,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    public static transient volatile javax.swing.JPanel jPanelFoto;
     public static javax.swing.JLabel lblFotoBovino;
     private javax.swing.JLabel lblFotoMadre;
     private javax.swing.JLabel lblFotoPadre;

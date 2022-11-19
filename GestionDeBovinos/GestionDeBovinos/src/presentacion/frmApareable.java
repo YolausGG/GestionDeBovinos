@@ -7,6 +7,7 @@ package presentacion;
 import clases.BotonesTabla;
 import clases.Bovino;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -189,10 +190,13 @@ public class frmApareable extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Bovino b : listaBovinosFiltroSexo) {
+            
+             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimiento = formato.format(b.getFechaNacimiento());
 
             String tipo = b.getClass().getSimpleName().equals("Macho") ? "Macho" : "Hembra";
 
-            model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, modificar, eliminar});
+            model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, modificar, eliminar});
         }
 
         jTableBovinos.setModel(model);

@@ -8,6 +8,7 @@ import clases.Bovino;
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -147,7 +148,10 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
                 String tipo = b.getClass().getSimpleName().toString();
 
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(b.getFechaNacimiento());
+
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo});
 
             }
         }
@@ -172,7 +176,10 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
                 String tipo = b.getClass().getSimpleName().toString();
 
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimientoH = formato.format(b.getFechaNacimiento());
+
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimientoH, b.getRaza().getTipo(), tipo});
 
             }
         }
@@ -194,7 +201,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         for (Hembra h : listaHembra) {
 
             String tipo = h.getClass().getSimpleName().toString();
-            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), tipo});
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoH = formato.format(h.getFechaNacimiento());
+
+            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo(), tipo});
 
         }
 
@@ -216,7 +227,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         for (Macho m : listaMacho) {
 
             String tipo = m.getClass().getSimpleName().toString();
-            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), tipo});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoM = formato.format(m.getFechaNacimiento());
+            
+            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), tipo});
 
         }
 
@@ -264,10 +279,10 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
                         if (chkHembra.isSelected()) {
                             frmApareable.sexo = "Hembra";
-                        } else{
+                        } else {
                             frmApareable.sexo = "Macho";
                         }
-                        
+
                         frmApareable formularioApareable = new frmApareable();
                         frmInicio.jDkPEscritorio.add(formularioApareable);
                         formularioApareable.setVisible(true);

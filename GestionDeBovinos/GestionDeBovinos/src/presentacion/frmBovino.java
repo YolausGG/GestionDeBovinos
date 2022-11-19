@@ -14,6 +14,7 @@ import dominio.dControladora;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -402,9 +403,12 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
         for (Bovino b : listaBovino) {
 
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimiento = formato.format(b.getFechaNacimiento());
+
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
-            model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, modificar, eliminar});
+            model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, modificar, eliminar});
         }
 
         jTableBovinos.setModel(model);
@@ -708,7 +712,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
     private void btnBuscarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFotoMouseClicked
 
         JFileChooser j = new JFileChooser();
-        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
+        FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF", ".jpg", ".png", ".gif");
         j.setFileFilter(fil);
 
         int s = j.showOpenDialog(this);

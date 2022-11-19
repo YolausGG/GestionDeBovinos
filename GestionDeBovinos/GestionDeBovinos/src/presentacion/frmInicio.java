@@ -88,15 +88,17 @@ public class frmInicio extends javax.swing.JFrame {
         lblApareable = new javax.swing.JLabel();
         jPanelEstadoBovino = new javax.swing.JPanel();
         lblEstadoBovino = new javax.swing.JLabel();
+        jPanelProduccion = new javax.swing.JPanel();
+        lblProduccion = new javax.swing.JLabel();
         jPanelListados = new javax.swing.JPanel();
         lblListados = new javax.swing.JLabel();
-        lblListados2 = new javax.swing.JLabel();
         lblListados3 = new javax.swing.JLabel();
         lblListados4 = new javax.swing.JLabel();
         lblListados5 = new javax.swing.JLabel();
         lblListados6 = new javax.swing.JLabel();
-        jPanelProduccion = new javax.swing.JPanel();
-        lblProduccion = new javax.swing.JLabel();
+        lblListados2 = new javax.swing.JLabel();
+        lblListados7 = new javax.swing.JLabel();
+        lblListados8 = new javax.swing.JLabel();
         MenuSanidad = new javax.swing.JPanel();
         lblInicioSanidad = new javax.swing.JLabel();
         jPanelEventoFuturo = new javax.swing.JPanel();
@@ -258,6 +260,26 @@ public class frmInicio extends javax.swing.JFrame {
 
         MenuPrincipal.add(jPanelEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 216, -1));
 
+        jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProduccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblProduccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblProduccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Produccion.png"))); // NOI18N
+        lblProduccion.setText("Producción");
+        lblProduccion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProduccion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblProduccion.setIconTextGap(15);
+        lblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblProduccionMousePressed(evt);
+            }
+        });
+        jPanelProduccion.add(lblProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+
+        MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
+
         jPanelListados.setLayout(null);
 
         lblListados.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -276,17 +298,6 @@ public class frmInicio extends javax.swing.JFrame {
         });
         jPanelListados.add(lblListados);
         lblListados.setBounds(70, 0, 140, 50);
-
-        lblListados2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados2.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados2.setText("Listados");
-        lblListados2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados2.setIconTextGap(15);
-        jPanelListados.add(lblListados2);
-        lblListados2.setBounds(70, 170, 140, 30);
 
         lblListados3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblListados3.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,29 +348,42 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelListados.add(lblListados6);
         lblListados6.setBounds(70, 140, 140, 30);
 
-        MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 216, 50));
+        lblListados2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblListados2.setForeground(new java.awt.Color(255, 255, 255));
+        lblListados2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblListados2.setText("Listados");
+        lblListados2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblListados2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblListados2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblListados2.setIconTextGap(15);
+        jPanelListados.add(lblListados2);
+        lblListados2.setBounds(70, 230, 140, 30);
 
-        jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblListados7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblListados7.setForeground(new java.awt.Color(255, 255, 255));
+        lblListados7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblListados7.setText("Listados");
+        lblListados7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblListados7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblListados7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblListados7.setIconTextGap(15);
+        jPanelListados.add(lblListados7);
+        lblListados7.setBounds(70, 200, 140, 30);
 
-        lblProduccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblProduccion.setForeground(new java.awt.Color(255, 255, 255));
-        lblProduccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Produccion.png"))); // NOI18N
-        lblProduccion.setText("Producción");
-        lblProduccion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblProduccion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblProduccion.setIconTextGap(15);
-        lblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblProduccionMousePressed(evt);
-            }
-        });
-        jPanelProduccion.add(lblProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+        lblListados8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblListados8.setForeground(new java.awt.Color(255, 255, 255));
+        lblListados8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblListados8.setText("Listados");
+        lblListados8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblListados8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblListados8.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblListados8.setIconTextGap(15);
+        jPanelListados.add(lblListados8);
+        lblListados8.setBounds(70, 170, 140, 30);
 
-        MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
+        MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 210, 50));
 
-        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 550));
+        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 650));
 
         MenuSanidad.setBackground(new java.awt.Color(54, 67, 114));
         MenuSanidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -655,7 +679,7 @@ public class frmInicio extends javax.swing.JFrame {
         );
         jDkPEscritorioLayout.setVerticalGroup(
             jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -670,7 +694,7 @@ public class frmInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
             .addComponent(jDkPEscritorio)
         );
 
@@ -777,7 +801,7 @@ public class frmInicio extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
-            if (panelMedida > 210) {
+            if (panelMedida > 250) {
                 tm1.stop();
 
             } else {
@@ -798,10 +822,10 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorSeleccionado);
 
-        if (panelMedida > 210) {
+        if (panelMedida > 250) {
             tm1.stop();
             panelMedida = 60;
-            jPanelListados.setSize(210, 50);
+            jPanelListados.setSize(250, 50);
 
         } else {
 
@@ -1122,6 +1146,8 @@ public class frmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblListados4;
     private javax.swing.JLabel lblListados5;
     private javax.swing.JLabel lblListados6;
+    private javax.swing.JLabel lblListados7;
+    private javax.swing.JLabel lblListados8;
     private javax.swing.JLabel lblPadeceEnfermedad;
     private javax.swing.JLabel lblParto;
     private javax.swing.JLabel lblProduccion;

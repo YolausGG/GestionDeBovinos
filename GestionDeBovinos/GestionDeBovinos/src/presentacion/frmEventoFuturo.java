@@ -239,8 +239,11 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (EventoFuturo EF : listaEventosFuturos) {
-
-            model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), EF.getFechaPrevista(), EF.getTipo(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaEventoF = formato.format(EF.getFechaPrevista());
+            
+            model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), fechaEventoF, EF.getTipo(), modificar, eliminar});
         }
 
         jTableEventosFuturos.setModel(model);
@@ -262,8 +265,11 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (EventoFuturo EF : listaEventosFuturos) {
-
-            model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), EF.getFechaPrevista(), EF.getTipo(), modificar, eliminar});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaEventoF = formato.format(EF.getFechaPrevista());
+            
+            model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), fechaEventoF, EF.getTipo(), modificar, eliminar});
         }
 
         jTableEventosFuturos.setModel(model);

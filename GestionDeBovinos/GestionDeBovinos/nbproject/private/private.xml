@@ -3,25 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmPruebas.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarInseminacion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/persistencia/pProduccion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarEstadoDelBovino.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmLogin.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmBuscarHembra.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmProduccion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmEstadoConBovino.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaBovinosPorEstado.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmFichaBovino.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaProduccion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/dominio/dProduccion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/PrincipalPrueba.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmApareable.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarTratamiento.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarEnfermedad.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/dominio/dControladora.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmInicio.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarPadeceEnfermedad.java</file>
+            <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmInicio.java</file>
+            <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/clases/ImagenMYSQL.java</file>
+            <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmFichaBovino.java</file>
+            <file>file:/C:/Users/nico_/Documents/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmBovino.java</file>
         </group>
     </open-files>
 </project-private>

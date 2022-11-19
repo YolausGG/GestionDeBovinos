@@ -10,6 +10,7 @@ import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -81,6 +82,10 @@ public class frmAborto extends javax.swing.JInternalFrame {
         btnBuscarBovino = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAborto = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -254,7 +259,10 @@ public class frmAborto extends javax.swing.JInternalFrame {
 
         for (Aborto a : listaAbortos) {
 
-            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaAborto = formato.format(a.getFecha());
+
+            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa(), modificar, eliminar});
         }
 
         jTableAborto.setModel(model);
@@ -277,7 +285,10 @@ public class frmAborto extends javax.swing.JInternalFrame {
 
         for (Aborto a : listaAbortos) {
 
-            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa(), modificar, eliminar});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaAborto = formato.format(a.getFecha());
+
+            model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa(), modificar, eliminar});
         }
 
         jTableAborto.setModel(model);

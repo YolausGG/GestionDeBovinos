@@ -30,7 +30,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
      */
     public frmModificarTratamiento() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR TRATAMIENTO ENFERMEDAD");
 
@@ -225,15 +225,15 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
-     public void limpiarCajas() {
+
+    public void limpiarCajas() {
 
         jDateFechaInicioT.setDate(null);
         jDateFechaFinalizacionT.setDate(null);
         jTextAreaDetalle.setText(null);
 
     }
-     
+
     public void actualizarTablaContagiosActivos() {
 
         jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
@@ -252,16 +252,28 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
-        }
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicioE = formato.format(p.getFechaInicio());
 
+            if (p.getFechaFinalizacion() == null) {
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFinalizacionE = formato1.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, fechaFinalizacionE});
+            }
+        }
         jTablePadeceEnfermedad.setModel(model);
         jTablePadeceEnfermedad.setRowHeight(25);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMaxWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
         jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
-    
+
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
         int fila = jTablePadeceEnfermedad.getSelectedRow();
@@ -270,22 +282,19 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
             String caravana = jTablePadeceEnfermedad.getValueAt(fila, 0).toString();
             String enfermedad = jTablePadeceEnfermedad.getValueAt(fila, 2).toString();
-            Date fechaInicioE = (Date) jTablePadeceEnfermedad.getValueAt(fila, 3);
-            Date fechaFinE = (Date) jTablePadeceEnfermedad.getValueAt(fila, 4);
-
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaInicio = formato.format(fechaInicioE);
+            String fechaInicioE = (String) jTablePadeceEnfermedad.getValueAt(fila, 3);
+            String fechaFinE = (String) jTablePadeceEnfermedad.getValueAt(fila, 4);
 
             if (fechaFinE == null) {
                 lblFechaFinE.setText("SIN FECHA FINALIZACIÓN");
             } else {
-                String fechaFin = formato.format(fechaFinE);
-                lblFechaFinE.setText(fechaFin);
+                
+                lblFechaFinE.setText(fechaFinE);
             }
 
             lblCaravana.setText(caravana);
             lblEnfermedad.setText(enfermedad);
-            lblFechaInicioE.setText(fechaInicio);
+            lblFechaInicioE.setText(fechaInicioE);
 
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
@@ -321,8 +330,8 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
 
             int idTratamiento = frmTratamiento.idTratamiento;
-            Tratamiento tratamiento = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT);
-            Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento,padece, detalle, fechaInicioT, fechaFinalizacionT);
+            Tratamiento tratamiento = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT);
+            Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT, fechaFinalizacionT);
 
             try {
 
@@ -343,6 +352,10 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Tratamiento al Bovino Enfermo");
                     }
+                } else if (jDateFechaFinalizacionT.getDate().before(fechaInicioT)) {
+
+                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+
                 } else {
                     boolean resultado = dominio.dTratamiento.modificarTratamiento(tratamientoFechaF);
 

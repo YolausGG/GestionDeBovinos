@@ -22,7 +22,7 @@ public class frmFechaFinalizacionEnfermedad extends javax.swing.JInternalFrame {
      */
     public frmFechaFinalizacionEnfermedad() {
         initComponents();
-        
+
         this.setTitle("FECHA FINALIZACIÓN ENFERMEDAD");
         lblRFechaF.setVisible(false);
 
@@ -157,13 +157,13 @@ public class frmFechaFinalizacionEnfermedad extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     public void limpiarCajas() {
 
         jDateFechaFinalizacionE.setDate(null);
 
     }
-    
+
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
 
         if (validarCampos()) {
@@ -180,27 +180,31 @@ public class frmFechaFinalizacionEnfermedad extends javax.swing.JInternalFrame {
             Padece padeceNuevo = new Padece(idEnfermedad, bovino.getIdBovino(), fechaI, fechaF);
 
             try {
-
-                if (dControladora.modificarPadece(padeceNuevo, padeceViejo)) {
-
-                    JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
-
-                    frmPadeceEnfermedad.frmPadeceEnfermedad1.dispose();
-                    frmPadeceEnfermedad.frmPadeceEnfermedad1 = null;
-
-                    frmPadeceEnfermedad fPadeceEnfermedad = new frmPadeceEnfermedad();
-                    frmInicio.jDkPEscritorio.add(fPadeceEnfermedad);
-                    fPadeceEnfermedad.setVisible(true);
-                    this.dispose();
-
+                if (jDateFechaFinalizacionE.getDate().before(fechaI)) {
+                    
+                   JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                    
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+                    if (dControladora.modificarPadece(padeceNuevo, padeceViejo)) {
 
-                    frmPadeceEnfermedad fPadeceEnfermedad = new frmPadeceEnfermedad();
-                    fPadeceEnfermedad.actualizarTabla();
-                    this.dispose();
+                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente la Fecha de Finalización ");
+
+                        frmPadeceEnfermedad.frmPadeceEnfermedad1.dispose();
+                        frmPadeceEnfermedad.frmPadeceEnfermedad1 = null;
+
+                        frmPadeceEnfermedad fPadeceEnfermedad = new frmPadeceEnfermedad();
+                        frmInicio.jDkPEscritorio.add(fPadeceEnfermedad);
+                        fPadeceEnfermedad.setVisible(true);
+                        this.dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Fecha de Finalización ");
+
+                        frmPadeceEnfermedad fPadeceEnfermedad = new frmPadeceEnfermedad();
+                        fPadeceEnfermedad.actualizarTabla();
+                        this.dispose();
+                    }
                 }
-
             } catch (Exception e) {
                 throw e;
             }
