@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class dControladora {
 
-    //private static ArrayList<Bovino> listaBovinos = new ArrayList<>();
+    private static ArrayList<Bovino> listaBovinos = new ArrayList<>();
     private static ArrayList<Tratamiento> listaTratamientos;
     private static ArrayList<Enfermedad> listaEnfermedades;
     private static ArrayList<Produccion> listaProduccionesHembra;
@@ -35,22 +35,24 @@ public class dControladora {
     private static ArrayList<Raza> listaRazas;
 
     // <editor-fold defaultstate="collapsed" desc="Cargar Listas">
-    /* public static void cargarBovinos(){
-        
+    public static void cargarBovinos() {
+
         for (Macho macho : dMacho.listarMachos()) {
-            
+
             listaBovinos.add(macho);
         }
         for (Hembra hembra : dHembra.listarHembras()) {
-            
+
             listaBovinos.add(hembra);
         }
-        
-    }*/
- /*  public static void agregarBovino(Bovino pBovino){
-        
+
+    }
+
+    public static void agregarBovino(Bovino pBovino) {
+
         listaBovinos.add(pBovino);
-    }*/
+    }
+
     public static void cargarRazas() {
         listaRazas = dRaza.listarRazas();
     }
@@ -395,10 +397,10 @@ public class dControladora {
 
         return dInseminacion.listarInseminacionesPorCaravana(pCaravana);
     }
-    
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho){
-        
-        return dInseminacion.listarInseminacionesPorCaravanaHembraYMacho(pCaravanaHembra,pCaravanaMacho);
+
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho) {
+
+        return dInseminacion.listarInseminacionesPorCaravanaHembraYMacho(pCaravanaHembra, pCaravanaMacho);
     }
     // </editor-fold>
 
@@ -747,6 +749,11 @@ public class dControladora {
         return dBovino.buscarBovinoCaravana(pCaravanaBovino);
     }
 
+    public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino){
+        
+        return dBovino.buscarBovinoBajaLogicaCaravana(pCaravanaBovino);
+    }
+    
     public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
 
         return dBovino.buscarBovinoCaravanaCompleto(pCaravanaBovino);
@@ -930,9 +937,9 @@ public class dControladora {
 
         return dProduccion.buscarProduccionHembra(idHembra);
     }
-    
-    public static Produccion buscarUltimaProduccionHembra(int idHembra){
-        
+
+    public static Produccion buscarUltimaProduccionHembra(int idHembra) {
+
         return dProduccion.buscarUltimaProduccionHembra(idHembra);
     }
 
@@ -940,9 +947,9 @@ public class dControladora {
 
         return dProduccion.listarProducciones();
     }
-    
-    public static ArrayList<Produccion> listarUltimasProducciones(){
-        
+
+    public static ArrayList<Produccion> listarUltimasProducciones() {
+
         return dProduccion.listarUltimasProducciones();
     }
 

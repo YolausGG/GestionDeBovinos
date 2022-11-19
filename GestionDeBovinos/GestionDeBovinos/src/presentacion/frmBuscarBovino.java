@@ -135,25 +135,25 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         DefaultTableModel model = new DefaultTableModel();
 
-        ArrayList<Bovino> listaBovino = dControladora.listarBovinos();
+        ArrayList<Macho> listaMachos = dControladora.listarMachos();
 
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
-        model.addColumn("Tipo");
+        model.addColumn("Sexo");
+        model.addColumn("Tipo Macho");
 
-        for (Bovino b : listaBovino) {
+        for (Macho m : listaMachos) {
 
-            if (b.getClass().getSimpleName().toString().equals("Macho")) {
-
-                String tipo = b.getClass().getSimpleName().toString();
-
+<<<<<<< HEAD
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(b.getFechaNacimiento());
 
                 model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo});
+=======
+            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
-            }
         }
         jTableBovinos.setModel(model);
 
@@ -163,25 +163,26 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         DefaultTableModel model = new DefaultTableModel();
 
-        ArrayList<Bovino> listaBovino = dControladora.listarBovinos();
+        ArrayList<Hembra> listaHembras = dControladora.listarHembras();
 
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
-        model.addColumn("Tipo");
+        model.addColumn("Sexo");
 
-        for (Bovino b : listaBovino) {
+        for (Hembra h : listaHembras) {
 
-            if (b.getClass().getSimpleName().toString().equals("Hembra")) {
+            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
 
-                String tipo = b.getClass().getSimpleName().toString();
-
+<<<<<<< HEAD
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimientoH = formato.format(b.getFechaNacimiento());
 
                 model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimientoH, b.getRaza().getTipo(), tipo});
 
             }
+=======
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         }
         jTableBovinos.setModel(model);
 
@@ -200,12 +201,16 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         for (Hembra h : listaHembra) {
 
+<<<<<<< HEAD
             String tipo = h.getClass().getSimpleName().toString();
 
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaNacimientoH = formato.format(h.getFechaNacimiento());
 
             model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo(), tipo});
+=======
+            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
 
@@ -222,16 +227,21 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         model.addColumn("Nº Caravana");
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
-        model.addColumn("Tipo");
+        model.addColumn("Sexo");
+        model.addColumn("tipo Macho");
 
         for (Macho m : listaMacho) {
 
+<<<<<<< HEAD
             String tipo = m.getClass().getSimpleName().toString();
             
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaNacimientoM = formato.format(m.getFechaNacimiento());
             
             model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), tipo});
+=======
+            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         }
 
@@ -296,6 +306,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                         frmListaBovinosPorEstado formularioListaBovinosPorEstado = new frmListaBovinosPorEstado();
                         frmInicio.jDkPEscritorio.add(formularioListaBovinosPorEstado);
                         formularioListaBovinosPorEstado.setVisible(true);
+                        break;
+                    case "frmListaBovinos":
+                        frmListaBovinos formularioListaBovinos = new frmListaBovinos();
+                        frmInicio.jDkPEscritorio.add(formularioListaBovinos);
+                        formularioListaBovinos.setVisible(true);
                         break;
                     default:
                         throw new AssertionError();

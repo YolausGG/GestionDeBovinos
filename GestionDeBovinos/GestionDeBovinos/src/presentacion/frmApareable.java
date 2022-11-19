@@ -6,21 +6,17 @@ package presentacion;
 
 import clases.BotonesTabla;
 import clases.Bovino;
+import clases.Macho;
 import dominio.dControladora;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class frmApareable extends javax.swing.JInternalFrame {
 
-    JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
-    JButton eliminar = new JButton("Eliminar");
-    public static String caravana = "";
+    
     public static String sexo = "";
-
-    public static frmApareable frmBovino1 = null;
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
@@ -32,8 +28,6 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
         lblRCaravana.setVisible(false);
         txtCaravana.setText(frmBuscarBovino.caravana);
-        modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");
     }
 
     @SuppressWarnings("unchecked")
@@ -43,10 +37,11 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinos = new javax.swing.JTable();
-        btnListar = new javax.swing.JButton();
         lblRCaravana = new java.awt.Label();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnListar = new javax.swing.JButton();
         txtCaravana = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         btnBuscarBovino = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,27 +70,18 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
             jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 780, 260));
 
+            lblRCaravana.setText("Requerido");
+            jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
+
             btnListar.setText("Listar");
             btnListar.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     btnListarMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 90, 30));
-
-            lblRCaravana.setText("Requerido");
-            jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 30));
 
             jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel3.setText("Caravana:");
-            jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, -1));
-
-            txtCaravana.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyReleased(java.awt.event.KeyEvent evt) {
-                    txtCaravanaKeyReleased(evt);
-                }
-            });
-            jPanel1.add(txtCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
 
             btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
@@ -104,7 +90,37 @@ public class frmApareable extends javax.swing.JInternalFrame {
                     btnBuscarBovinoMouseClicked(evt);
                 }
             });
-            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 90, 30));
+
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txtCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnBuscarBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(543, Short.MAX_VALUE))
+            );
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(19, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(43, 43, 43)
+                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22))
+            );
+
+            jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 170));
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -161,10 +177,8 @@ public class frmApareable extends javax.swing.JInternalFrame {
         ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, new ArrayList<Bovino>());
 
         // ArrayList<Bovino> listaBovinosHijos = dControladora.parentescos_Hermanos_Sobrinos_SobrinoNieto(0, bovino, new ArrayList<Bovino>());
-        
         ArrayList<Bovino> listaBovinosFiltroSexo = new ArrayList<>();
-        
-        
+
         for (Bovino listaBovino : listaBovinos) {
             if (!listaBovino.getClass().getSimpleName().equals(sexo)) {
 
@@ -182,23 +196,43 @@ public class frmApareable extends javax.swing.JInternalFrame {
                 }
             }
         }
-        model.addColumn("Nº Caravana");
-        model.addColumn("Fecha Nacimiento");
-        model.addColumn("Raza");
-        model.addColumn("Sexo");
-        model.addColumn("Modificar ");
-        model.addColumn("Eliminar ");
 
+<<<<<<< HEAD
         for (Bovino b : listaBovinosFiltroSexo) {
             
              SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaNacimiento = formato.format(b.getFechaNacimiento());
+=======
+        if (sexo.equals("Macho")) {
+            model.addColumn("Nº Caravana");
+            model.addColumn("Fecha Nacimiento");
+            model.addColumn("Raza");
+            model.addColumn("Sexo");
+            for (Bovino b : listaBovinosFiltroSexo) {
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
-            String tipo = b.getClass().getSimpleName().equals("Macho") ? "Macho" : "Hembra";
+                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), "Hembra"});
 
+<<<<<<< HEAD
             model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, modificar, eliminar});
         }
+=======
+            }
+        } else {
+            model.addColumn("Nº Caravana");
+            model.addColumn("Fecha Nacimiento");
+            model.addColumn("Raza");
+            model.addColumn("Sexo");
+            model.addColumn("Tipo Macho");
+            
+            for (Bovino b : listaBovinosFiltroSexo) {
+                ;
+                Macho macho = (Macho) b;
+                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), "Macho", macho.getTipo()});
+            }
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
+        }
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
     }
@@ -208,48 +242,19 @@ public class frmApareable extends javax.swing.JInternalFrame {
         columna = jTableBovinos.getColumnModel().getColumnIndexAtX(evt.getX());
         row = evt.getY() / jTableBovinos.getRowHeight();
         if (columna <= jTableBovinos.getColumnCount() && columna >= 0 && row <= jTableBovinos.getRowCount() && row >= 0) {
-            Object objeto = jTableBovinos.getValueAt(row, columna);
-            if (objeto instanceof JButton) {
-                ((JButton) objeto).doClick();
-                JButton botones = (JButton) objeto;
+            
+            if (evt.getClickCount() == 2) {
 
-                if (botones.getName().equals("btnModificar")) {
+                int fila = jTableBovinos.getSelectedRow();
 
-                    int fila = jTableBovinos.getSelectedRow();
+                if (fila != -1) {
 
-                    if (fila != -1) {
-                        limpiarCajas();
+                    frmBovino.caravana = jTableBovinos.getValueAt(fila, 0).toString();
+                    frmBovino.sexo = jTableBovinos.getValueAt(fila, 3).toString();
 
-                        caravana = jTableBovinos.getValueAt(fila, 0).toString();
-                        sexo = jTableBovinos.getValueAt(fila, 3).toString();
-                        this.dispose();
-                        frmModificarBovino modificarBovino = new frmModificarBovino();
-                        frmInicio.jDkPEscritorio.add(modificarBovino);
-                        modificarBovino.setVisible(true); // Abre el formulario de Modificar la Enfermedad
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
-                    }
-                } else {
-                    if (botones.getName().equals("btnEliminar")) {
-
-                        int fila = jTableBovinos.getSelectedRow();
-
-                        String caravana = jTableBovinos.getValueAt(fila, 0).toString();
-
-                        frmApareable.caravana = caravana;
-
-                        frmBajaLogica formularioBajaLogica = new frmBajaLogica();
-                        frmInicio.jDkPEscritorio.add(formularioBajaLogica);
-                        formularioBajaLogica.setVisible(true);
-
-                        frmBovino1 = this;
-
-                        //this.dispose();
-                        //actualizarTabla();
-                        //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                        //int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Bovino?", "Eliminar Bovino ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    }
+                    frmFichaBovino fichaBovino = new frmFichaBovino();
+                    frmInicio.jDkPEscritorio.add(fichaBovino);
+                    fichaBovino.setVisible(true);
                 }
             }
         }
@@ -263,15 +268,6 @@ public class frmApareable extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnListarMouseClicked
-
-    private void txtCaravanaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaKeyReleased
-
-        if (!txtCaravana.getText().isEmpty()) {
-            actualizarTabla();
-        } else {
-
-        }
-    }//GEN-LAST:event_txtCaravanaKeyReleased
 
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
 
@@ -288,6 +284,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableBovinos;
     private java.awt.Label lblRCaravana;

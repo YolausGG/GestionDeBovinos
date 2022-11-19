@@ -21,12 +21,13 @@ public class pBovino {
             + " VALUES ( ?, ?, ?, ? )";
     private static final String DELETE_BOVINO = "UPDATE BOVINO SET BAJALOGICA = 1 WHERE IDBOVINO = ?";
     private static final String DELETE_BOVINO_REAL = "DELETE FROM BOVINO WHERE IDBOVINO = ?";
-    private static final String UPDATE_BOVINO_ALTA_LOGICA = "UPDATE BOVINO SET BAJALOGICA = 1 WHERE IDBOVINO = ?";
+    private static final String UPDATE_BOVINO_ALTA_LOGICA = "UPDATE BOVINO SET BAJALOGICA = 0 WHERE IDBOVINO = ?";
     private static final String UPDATE_BOVINO = "UPDATE BOVINO SET CARAVANABOVINO = ?, FECHANACIMIENTO = ?, IDRAZA = ?  WHERE IDBOVINO = ?";
     private static final String UPDATE_BOVINO_FOTO = "UPDATE BOVINO SET CARAVANABOVINO = ?, FECHANACIMIENTO = ?, IDRAZA = ?, FOTO = ?  WHERE IDBOVINO = ?";
     private static final String BUSCAR_BOVINO_CARAVANA = "SELECT * FROM BOVINO WHERE CARAVANABOVINO = ? ";
     private static final String BUSCAR_BOVINO_ID = "SELECT * FROM BOVINO WHERE IDBOVINO = ? ";
     private static final String LISTAR_BOVINOS = "SELECT * FROM BOVINO WHERE BAJALOGICA = 0 ";
+    private static final String BUSCAR_BOVINO_BAJA_LOGICA = "SELECT * FROM BOVINO WHERE BAJALOGICA = 1 AND CARAVANABOVINO = ?";
 
     public static boolean altaBovino(Bovino pBovino) {
         
@@ -201,6 +202,25 @@ public class pBovino {
         }
     }
     
+    public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino) {
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_BOVINO_BAJA_LOGICA);
+            statement.setString(1, pCaravanaBovino);
+
+            ResultSet resultado = statement.executeQuery();
+            Bovino bovino = null;
+            if (resultado.next()) {
+                bovino = getBovinoFromResultSet(resultado);
+            }
+            return bovino;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
 
         try {
@@ -243,7 +263,7 @@ public class pBovino {
     
     public static ArrayList<Bovino> buscarBovinoCaravanaLIKE(String pCaravana) {
         
-        String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA"
+        String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
             + " FROM BOVINO B"
             + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%' AND B.BAJALOGICA = 0 ";
         
@@ -337,4 +357,5 @@ public class pBovino {
         return bovino;
     }
 
+    
 }

@@ -5,6 +5,7 @@
 package presentacion;
 
 
+import dominio.dControladora;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +27,8 @@ public class frmInicio extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); // Maximisa la ventana 
 
+        //dControladora.cargarBovinos();
+        dControladora.cargarEventosDeSanidad();
         MenuSanidad.setVisible(false);
         MenuEnfermedad.setVisible(false);
         MenuEstadoBovino.setVisible(false);
@@ -92,6 +95,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblProduccion = new javax.swing.JLabel();
         jPanelListados = new javax.swing.JPanel();
         lblListados = new javax.swing.JLabel();
+<<<<<<< HEAD
         lblListados3 = new javax.swing.JLabel();
         lblListados4 = new javax.swing.JLabel();
         lblListados5 = new javax.swing.JLabel();
@@ -99,6 +103,17 @@ public class frmInicio extends javax.swing.JFrame {
         lblListados2 = new javax.swing.JLabel();
         lblListados7 = new javax.swing.JLabel();
         lblListados8 = new javax.swing.JLabel();
+=======
+        lblContagios = new javax.swing.JLabel();
+        lblEventosFuturos = new javax.swing.JLabel();
+        lblEventosDeSanidad = new javax.swing.JLabel();
+        lblEstadosDelBovino = new javax.swing.JLabel();
+        lblBajas = new javax.swing.JLabel();
+        lblBovinos = new javax.swing.JLabel();
+        lblProducciones = new javax.swing.JLabel();
+        jPanelProduccion = new javax.swing.JPanel();
+        lblProduccion = new javax.swing.JLabel();
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         MenuSanidad = new javax.swing.JPanel();
         lblInicioSanidad = new javax.swing.JLabel();
         jPanelEventoFuturo = new javax.swing.JPanel();
@@ -156,7 +171,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblBovinoMousePressed(evt);
             }
         });
-        jPanelBovino.add(lblBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+        jPanelBovino.add(lblBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 216, -1));
 
@@ -176,7 +191,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblSanidadMousePressed(evt);
             }
         });
-        jPanelSanidad.add(lblSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+        jPanelSanidad.add(lblSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 216, -1));
 
@@ -196,7 +211,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblEnfermedadMousePressed(evt);
             }
         });
-        jPanelEnfermedad.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 50));
+        jPanelEnfermedad.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 216, -1));
 
@@ -216,7 +231,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblTratamientoMousePressed(evt);
             }
         });
-        jPanelTratamiento.add(lblTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+        jPanelTratamiento.add(lblTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 216, -1));
 
@@ -236,7 +251,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblApareableMousePressed(evt);
             }
         });
-        jPanelApareable.add(lblApareable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 50));
+        jPanelApareable.add(lblApareable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelApareable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 210, -1));
 
@@ -256,7 +271,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblEstadoBovinoMousePressed(evt);
             }
         });
-        jPanelEstadoBovino.add(lblEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+        jPanelEstadoBovino.add(lblEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuPrincipal.add(jPanelEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 216, -1));
 
@@ -297,6 +312,7 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
         jPanelListados.add(lblListados);
+<<<<<<< HEAD
         lblListados.setBounds(70, 0, 140, 50);
 
         lblListados3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -308,46 +324,123 @@ public class frmInicio extends javax.swing.JFrame {
         lblListados3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         lblListados3.setIconTextGap(15);
         lblListados3.addMouseListener(new java.awt.event.MouseAdapter() {
+=======
+        lblListados.setBounds(0, 0, 210, 50);
+
+        lblContagios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContagios.setForeground(new java.awt.Color(255, 255, 255));
+        lblContagios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblContagios.setText("Contagios");
+        lblContagios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblContagios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblContagios.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblContagios.setIconTextGap(15);
+        lblContagios.addMouseListener(new java.awt.event.MouseAdapter() {
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblListados3MousePressed(evt);
+                lblContagiosMousePressed(evt);
             }
         });
-        jPanelListados.add(lblListados3);
-        lblListados3.setBounds(70, 50, 140, 30);
+        jPanelListados.add(lblContagios);
+        lblContagios.setBounds(0, 210, 210, 40);
 
-        lblListados4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados4.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados4.setText("Listados");
-        lblListados4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados4.setIconTextGap(15);
-        jPanelListados.add(lblListados4);
-        lblListados4.setBounds(70, 80, 140, 30);
+        lblEventosFuturos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventosFuturos.setForeground(new java.awt.Color(255, 255, 255));
+        lblEventosFuturos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEventosFuturos.setText("Eventos Futuros");
+        lblEventosFuturos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblEventosFuturos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEventosFuturos.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblEventosFuturos.setIconTextGap(15);
+        lblEventosFuturos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEventosFuturosMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblEventosFuturos);
+        lblEventosFuturos.setBounds(0, 290, 210, 40);
 
-        lblListados5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados5.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados5.setText("Listados");
-        lblListados5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados5.setIconTextGap(15);
-        jPanelListados.add(lblListados5);
-        lblListados5.setBounds(70, 110, 140, 30);
+        lblEventosDeSanidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventosDeSanidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblEventosDeSanidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEventosDeSanidad.setText("Eventos de Sanidad");
+        lblEventosDeSanidad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblEventosDeSanidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEventosDeSanidad.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblEventosDeSanidad.setIconTextGap(15);
+        lblEventosDeSanidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEventosDeSanidadMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblEventosDeSanidad);
+        lblEventosDeSanidad.setBounds(0, 130, 210, 40);
 
-        lblListados6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblListados6.setForeground(new java.awt.Color(255, 255, 255));
-        lblListados6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblListados6.setText("Listados");
-        lblListados6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        lblListados6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListados6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        lblListados6.setIconTextGap(15);
-        jPanelListados.add(lblListados6);
-        lblListados6.setBounds(70, 140, 140, 30);
+        lblEstadosDelBovino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEstadosDelBovino.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstadosDelBovino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEstadosDelBovino.setText("Estados de Bovinos");
+        lblEstadosDelBovino.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblEstadosDelBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEstadosDelBovino.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblEstadosDelBovino.setIconTextGap(15);
+        lblEstadosDelBovino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblEstadosDelBovinoMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblEstadosDelBovino);
+        lblEstadosDelBovino.setBounds(0, 170, 210, 40);
 
+        lblBajas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblBajas.setForeground(new java.awt.Color(255, 255, 255));
+        lblBajas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBajas.setText("Bajas de Bovino");
+        lblBajas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblBajas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBajas.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblBajas.setIconTextGap(15);
+        lblBajas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBajasMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblBajas);
+        lblBajas.setBounds(0, 50, 210, 40);
+
+        lblBovinos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblBovinos.setForeground(new java.awt.Color(255, 255, 255));
+        lblBovinos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBovinos.setText("Bovinos");
+        lblBovinos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblBovinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBovinos.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblBovinos.setIconTextGap(15);
+        lblBovinos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBovinosMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblBovinos);
+        lblBovinos.setBounds(0, 90, 210, 40);
+
+        lblProducciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblProducciones.setForeground(new java.awt.Color(255, 255, 255));
+        lblProducciones.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProducciones.setText("Producciones");
+        lblProducciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblProducciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProducciones.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblProducciones.setIconTextGap(15);
+        lblProducciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblProduccionesMousePressed(evt);
+            }
+        });
+        jPanelListados.add(lblProducciones);
+        lblProducciones.setBounds(0, 250, 210, 40);
+
+<<<<<<< HEAD
         lblListados2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblListados2.setForeground(new java.awt.Color(255, 255, 255));
         lblListados2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -384,6 +477,31 @@ public class frmInicio extends javax.swing.JFrame {
         MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 210, 50));
 
         MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 650));
+=======
+        MenuPrincipal.add(jPanelListados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 216, 50));
+
+        jPanelProduccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblProduccion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblProduccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblProduccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Produccion.png"))); // NOI18N
+        lblProduccion.setText("Producción");
+        lblProduccion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
+        lblProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblProduccion.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        lblProduccion.setIconTextGap(15);
+        lblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblProduccionMousePressed(evt);
+            }
+        });
+        jPanelProduccion.add(lblProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
+
+        MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
+
+        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 680));
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         MenuSanidad.setBackground(new java.awt.Color(54, 67, 114));
         MenuSanidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -402,7 +520,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblInicioSanidadMousePressed(evt);
             }
         });
-        MenuSanidad.add(lblInicioSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
+        MenuSanidad.add(lblInicioSanidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         jPanelEventoFuturo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -420,7 +538,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblEventoFuturoMousePressed(evt);
             }
         });
-        jPanelEventoFuturo.add(lblEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+        jPanelEventoFuturo.add(lblEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelEventoFuturo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
 
@@ -441,7 +559,7 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
         jPanelAborto.add(lblAborto);
-        lblAborto.setBounds(70, 0, 140, 50);
+        lblAborto.setBounds(0, 0, 210, 50);
 
         MenuSanidad.add(jPanelAborto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 210, 50));
 
@@ -461,7 +579,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblSecadoMousePressed(evt);
             }
         });
-        jPanelSecado.add(lblSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+        jPanelSecado.add(lblSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 210, -1));
 
@@ -481,7 +599,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblPartoMousePressed(evt);
             }
         });
-        jPanelParto.add(lblParto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 50));
+        jPanelParto.add(lblParto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelParto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 210, -1));
 
@@ -501,7 +619,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblInseminacionMousePressed(evt);
             }
         });
-        jPanelInseminacion.add(lblInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 50));
+        jPanelInseminacion.add(lblInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 210, -1));
 
@@ -521,7 +639,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblCeloMousePressed(evt);
             }
         });
-        jPanelCelo.add(lblCelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 140, 50));
+        jPanelCelo.add(lblCelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelCelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, -1));
 
@@ -541,7 +659,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblTactoMousePressed(evt);
             }
         });
-        jPanelTacto.add(lblTacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 170, 50));
+        jPanelTacto.add(lblTacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuSanidad.add(jPanelTacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 210, -1));
 
@@ -564,7 +682,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblInicioEnfermedadMousePressed(evt);
             }
         });
-        MenuEnfermedad.add(lblInicioEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
+        MenuEnfermedad.add(lblInicioEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         jPanelAltaEnfermedad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -582,7 +700,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblAltaEnfermedadMousePressed(evt);
             }
         });
-        jPanelAltaEnfermedad.add(lblAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
+        jPanelAltaEnfermedad.add(lblAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuEnfermedad.add(jPanelAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
 
@@ -603,7 +721,7 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
         jPanelPadeceEnfermedad.add(lblPadeceEnfermedad);
-        lblPadeceEnfermedad.setBounds(20, 0, 190, 50);
+        lblPadeceEnfermedad.setBounds(0, 0, 210, 50);
 
         MenuEnfermedad.add(jPanelPadeceEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 50));
 
@@ -626,7 +744,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblInicioEstadoBovinoMousePressed(evt);
             }
         });
-        MenuEstadoBovino.add(lblInicioEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
+        MenuEstadoBovino.add(lblInicioEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         jPanelAltaEstadoBovino.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -644,7 +762,7 @@ public class frmInicio extends javax.swing.JFrame {
                 lblAltaEstadoBovinoMousePressed(evt);
             }
         });
-        jPanelAltaEstadoBovino.add(lblAltaEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 50));
+        jPanelAltaEstadoBovino.add(lblAltaEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 50));
 
         MenuEstadoBovino.add(jPanelAltaEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, -1));
 
@@ -665,7 +783,7 @@ public class frmInicio extends javax.swing.JFrame {
             }
         });
         jPanelEstadoConBovino.add(lblEstadoConBovino);
-        lblEstadoConBovino.setBounds(20, 0, 190, 50);
+        lblEstadoConBovino.setBounds(0, 0, 210, 50);
 
         MenuEstadoBovino.add(jPanelEstadoConBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 50));
 
@@ -679,7 +797,11 @@ public class frmInicio extends javax.swing.JFrame {
         );
         jDkPEscritorioLayout.setVerticalGroup(
             jDkPEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 809, Short.MAX_VALUE)
+=======
+            .addGap(0, 0, Short.MAX_VALUE)
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -694,7 +816,11 @@ public class frmInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+=======
+            .addComponent(MenuPlegable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
             .addComponent(jDkPEscritorio)
         );
 
@@ -801,7 +927,11 @@ public class frmInicio extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
+<<<<<<< HEAD
             if (panelMedida > 250) {
+=======
+            if (panelMedida > 335) {
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
                 tm1.stop();
 
             } else {
@@ -822,10 +952,17 @@ public class frmInicio extends javax.swing.JFrame {
         jPanelApareable.setBackground(colorInicio);
         jPanelListados.setBackground(colorSeleccionado);
 
+<<<<<<< HEAD
         if (panelMedida > 250) {
             tm1.stop();
             panelMedida = 60;
             jPanelListados.setSize(250, 50);
+=======
+        if (panelMedida > 335) {
+            tm1.stop();
+            panelMedida = 60;
+            jPanelListados.setSize(335, 50);
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
 
         } else {
 
@@ -1043,12 +1180,51 @@ public class frmInicio extends javax.swing.JFrame {
         frmEstadoConBovino.setVisible(true);
     }//GEN-LAST:event_lblEstadoConBovinoMousePressed
 
-    private void lblListados3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListados3MousePressed
+    private void lblContagiosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblContagiosMousePressed
 
-        frmAvisoDeEventoFuturo frmAvisoDeEventoFuturo = new frmAvisoDeEventoFuturo();
-        jDkPEscritorio.add(frmAvisoDeEventoFuturo);
-        frmAvisoDeEventoFuturo.setVisible(true);
-    }//GEN-LAST:event_lblListados3MousePressed
+        frmListaContagiosActivos form = new frmListaContagiosActivos();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblContagiosMousePressed
+
+    private void lblBajasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBajasMousePressed
+        
+        frmListaBajaBovinos form = new frmListaBajaBovinos();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblBajasMousePressed
+
+    private void lblBovinosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBovinosMousePressed
+        frmListaBovinos form = new frmListaBovinos();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblBovinosMousePressed
+
+    private void lblEventosDeSanidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosDeSanidadMousePressed
+        
+        frmListaEventosDeSanidad form = new frmListaEventosDeSanidad();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblEventosDeSanidadMousePressed
+
+    private void lblEstadosDelBovinoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadosDelBovinoMousePressed
+        frmListaBovinosPorEstado form = new frmListaBovinosPorEstado();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblEstadosDelBovinoMousePressed
+
+    private void lblProduccionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProduccionesMousePressed
+        
+        frmListaProduccion form = new frmListaProduccion();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblProduccionesMousePressed
+
+    private void lblEventosFuturosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosFuturosMousePressed
+        frmListaEventosFuturos form = new frmListaEventosFuturos();
+        jDkPEscritorio.add(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_lblEventosFuturosMousePressed
 
     /**
      * @param args the command line arguments
@@ -1130,17 +1306,24 @@ public class frmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblAltaEnfermedad;
     private javax.swing.JLabel lblAltaEstadoBovino;
     private javax.swing.JLabel lblApareable;
+    private javax.swing.JLabel lblBajas;
     private javax.swing.JLabel lblBovino;
+    private javax.swing.JLabel lblBovinos;
     private javax.swing.JLabel lblCelo;
+    private javax.swing.JLabel lblContagios;
     private javax.swing.JLabel lblEnfermedad;
     private javax.swing.JLabel lblEstadoBovino;
     private javax.swing.JLabel lblEstadoConBovino;
+    private javax.swing.JLabel lblEstadosDelBovino;
     private javax.swing.JLabel lblEventoFuturo;
+    private javax.swing.JLabel lblEventosDeSanidad;
+    private javax.swing.JLabel lblEventosFuturos;
     private javax.swing.JLabel lblInicioEnfermedad;
     private javax.swing.JLabel lblInicioEstadoBovino;
     private javax.swing.JLabel lblInicioSanidad;
     private javax.swing.JLabel lblInseminacion;
     private javax.swing.JLabel lblListados;
+<<<<<<< HEAD
     private javax.swing.JLabel lblListados2;
     private javax.swing.JLabel lblListados3;
     private javax.swing.JLabel lblListados4;
@@ -1148,9 +1331,12 @@ public class frmInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblListados6;
     private javax.swing.JLabel lblListados7;
     private javax.swing.JLabel lblListados8;
+=======
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
     private javax.swing.JLabel lblPadeceEnfermedad;
     private javax.swing.JLabel lblParto;
     private javax.swing.JLabel lblProduccion;
+    private javax.swing.JLabel lblProducciones;
     private javax.swing.JLabel lblSanidad;
     private javax.swing.JLabel lblSecado;
     private javax.swing.JLabel lblTacto;

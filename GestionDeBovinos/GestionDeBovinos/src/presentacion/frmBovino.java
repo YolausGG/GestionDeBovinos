@@ -12,6 +12,7 @@ import clases.Pedigree;
 import clases.Raza;
 import dominio.dControladora;
 import java.awt.Image;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -245,6 +246,8 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
             lblRTipoMacho.setText("Requerido");
             jPanel1.add(lblRTipoMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 90, 30));
+
+            txtRutaFoto.setEditable(false);
             jPanel1.add(txtRutaFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 210, 30));
 
             btnBuscarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
@@ -398,6 +401,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
         model.addColumn("Sexo");
+        model.addColumn("Tipo");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
 
@@ -408,7 +412,16 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
+<<<<<<< HEAD
             model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, modificar, eliminar});
+=======
+            if (tipo.equals("Macho")) {
+                Macho macho = (Macho) b;
+                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, macho.getTipo(), modificar, eliminar});
+            } else {
+                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, "", modificar, eliminar});
+            }
+>>>>>>> 7f77656 (2 Listas y ficha andando Yolaus)
         }
 
         jTableBovinos.setModel(model);
@@ -496,6 +509,21 @@ public class frmBovino extends javax.swing.JInternalFrame {
         cboTipo.setVisible(true);
     }//GEN-LAST:event_chkMachoMouseClicked
 
+    private byte[] getImagen(String pRuta){
+        
+        File imagen = new File(pRuta);
+        try {
+            byte[] icono = new byte[(int) imagen.length()];
+            InputStream input = new FileInputStream(imagen);
+            input.read(icono);
+            return icono;
+            
+        } catch (Exception e) {
+            return null;
+        }
+    }
+            
+    
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
 
         if (validarCampos()) {
@@ -567,15 +595,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                         }
                     } else {
 
-                        byte[] foto = null;
-                        try {
-                            byte[] icono = new byte[(int) rutaFoto.length()];
-                            InputStream input = new FileInputStream(rutaFoto);
-                            input.read(icono);
-                            foto = icono;
-                        } catch (Exception ex) {
-                            foto = null;
-                        }
+                        byte[] foto = getImagen(rutaFoto);
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza, foto);
 
                         if (dControladora.altaBovinoFoto(bovino)) {
@@ -643,15 +663,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
                         }
                     } else {
 
-                        byte[] foto = null;
-                        try {
-                            byte[] icono = new byte[(int) rutaFoto.length()];
-                            InputStream input = new FileInputStream(rutaFoto);
-                            input.read(icono);
-                            foto = icono;
-                        } catch (Exception ex) {
-                            foto = null;
-                        }
+                        byte[] foto = getImagen(rutaFoto);
 
                         Bovino bovino = new Bovino(caravana, fechaNacimiento, madre, padre, raza, foto);
 

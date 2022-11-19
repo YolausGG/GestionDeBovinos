@@ -47,6 +47,10 @@ public class dBovino {
         return persistencia.pBovino.buscarBovinoCaravana(pCaravanaBovino);
     }
     
+    public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino){
+        
+        return persistencia.pBovino.buscarBovinoBajaLogicaCaravana(pCaravanaBovino);
+    }
     public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
 
         return persistencia.pBovino.buscarBovinoCaravanaCompleto(pCaravanaBovino);
