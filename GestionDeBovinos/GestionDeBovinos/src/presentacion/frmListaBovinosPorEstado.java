@@ -7,8 +7,13 @@ package presentacion;
 import clases.Bovino;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
+import clases.ExportarExcel;
 import dominio.dControladora;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -52,6 +57,9 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinosPorEstado = new javax.swing.JTable();
 
@@ -65,6 +73,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Caravana Bovino");
 
+        btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravana.setText("Buscar Caravana");
         btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,6 +98,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,12 +120,12 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addComponent(btnBuscarCaravana)
+                        .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboEstado, 0, 193, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,32 +151,60 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Imprimir Lista");
+
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+        btnExportar.setText("Exportar");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportarMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Exportar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         jTableBovinosPorEstado = new javax.swing.JTable(){
@@ -252,7 +290,23 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+            if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
+
         }
 
         jTableBovinosPorEstado.setModel(model);
@@ -280,13 +334,27 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+             if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
-    
 
     public void listarEstadosDeBovinosPorBovino() {
 
@@ -310,7 +378,22 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+             if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
@@ -339,13 +422,27 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+             if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
-    
 
     public void listarEstadoDeBovinosPorEstado() {
 
@@ -355,7 +452,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         jTableBovinosPorEstado.setRowSorter(elQueOrdena);
 
         EstadoDelBovino estadoDelBovino = (EstadoDelBovino) cboEstado.getSelectedItem();
-        
+
         ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoPorEstado(estadoDelBovino.getIdEstadoDelBovino());
 
         model.addColumn("Caravana");
@@ -369,7 +466,22 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+             if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
@@ -384,7 +496,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         jTableBovinosPorEstado.setRowSorter(elQueOrdena);
 
         EstadoDelBovino estadoDelBovino = (EstadoDelBovino) cboEstado.getSelectedItem();
-        
+
         ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorEstado(estadoDelBovino.getIdEstadoDelBovino());
 
         model.addColumn("Caravana");
@@ -398,13 +510,27 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+            if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
-    
 
     public void listarEstadosDeBovinosPorEstadoPorBovino() {
 
@@ -416,8 +542,8 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         Bovino bovino = dControladora.buscarBovinoCaravana(txtCaravanaBovino.getText());
 
         EstadoDelBovino estadoDelBovino = (EstadoDelBovino) cboEstado.getSelectedItem();
-        
-        ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoPorBovinoPorEstado(bovino.getIdBovino(),estadoDelBovino.getIdEstadoDelBovino());
+
+        ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoPorBovinoPorEstado(bovino.getIdBovino(), estadoDelBovino.getIdEstadoDelBovino());
 
         model.addColumn("Caravana");
         model.addColumn("Estado");
@@ -428,7 +554,22 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         for (EstadoBovino eb : listaEstadosBovino) {
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+             if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
@@ -445,9 +586,9 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         Bovino bovino = dControladora.buscarBovinoCaravana(txtCaravanaBovino.getText());
 
         EstadoDelBovino estadoDelBovino = (EstadoDelBovino) cboEstado.getSelectedItem();
-        
-        ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorBovinoPorEstado(bovino.getIdBovino(),estadoDelBovino.getIdEstadoDelBovino());
-        
+
+        ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorBovinoPorEstado(bovino.getIdBovino(), estadoDelBovino.getIdEstadoDelBovino());
+
         model.addColumn("Caravana");
         model.addColumn("Estado");
         model.addColumn("FechaNacimeinto");
@@ -457,7 +598,22 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         for (EstadoBovino eb : listaEstadosBovino) {
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), bovino.getFechaNacimiento(), bovino.getRaza().getTipo(), eb.getFechaInicio(), eb.getFechaFinalizacion()});
+            if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), estadoDelBovino.getEstado(), fechaNacimiento, bovino.getRaza().getTipo(), fechaInicio, fechaFinalizacion});
+            }
         }
 
         jTableBovinosPorEstado.setModel(model);
@@ -563,19 +719,46 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cboEstadoActionPerformed
 
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+
+        MessageFormat header = new MessageFormat("Reporte ");
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            jTableBovinosPorEstado.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("No se pudo Imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+      
+        ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableBovinosPorEstado);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCaravana;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<Object> cboEstado;
     private javax.swing.JCheckBox chkActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableBovinosPorEstado;
     private javax.swing.JTextField txtCaravanaBovino;
     // End of variables declaration//GEN-END:variables

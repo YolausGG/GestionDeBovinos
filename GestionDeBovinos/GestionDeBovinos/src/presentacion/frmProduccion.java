@@ -75,8 +75,6 @@ public class frmProduccion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProduccionHembra = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtSegundaProduccion = new javax.swing.JTextField();
         jDateFechaProduccion = new com.toedter.calendar.JDateChooser();
@@ -100,12 +98,197 @@ public class frmProduccion extends javax.swing.JInternalFrame {
         lblRSegundaProduccion = new javax.swing.JLabel();
         lblRPrimeraProduccion = new javax.swing.JLabel();
         lblRFechaProduccion = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProduccionHembra = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Segunda Produccion (lts):");
+
+        jLabel4.setText("Fecha Produccion:");
+
+        btnIngresarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
+        btnIngresarProduccion.setText("Ingresar");
+        btnIngresarProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresarProduccionMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Caravana:");
+
+        txtCaravanaHembra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCaravanaHembraKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Grasas (%):");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Primera Produccion (lts):");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Celulas Somaticas:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Proteinas (%):");
+
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
+        btnBuscarBovino.setText("Buscar");
+        btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarBovinoMouseClicked(evt);
+            }
+        });
+
+        lblRCaravanaH.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRCaravanaH.setForeground(new java.awt.Color(0, 0, 0));
+        lblRCaravanaH.setText("Requerido");
+
+        lblRCelulasSomaticas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRCelulasSomaticas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRCelulasSomaticas.setText("Requerido");
+
+        lblRProteinas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRProteinas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRProteinas.setText("Requerido");
+
+        lblRGrasas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRGrasas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRGrasas.setText("Requerido");
+
+        lblRSegundaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRSegundaProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRSegundaProduccion.setText("Requerido");
+
+        lblRPrimeraProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRPrimeraProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRPrimeraProduccion.setText("Requerido");
+
+        lblRFechaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRFechaProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRFechaProduccion.setText("Requerido");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblRPrimeraProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscarBovino))
+                            .addComponent(lblRCaravanaH, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrimeraProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtProteinas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblRProteinas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtCelulasSomaticas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblRCelulasSomaticas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIngresarProduccion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jDateFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblRFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtGrasas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRGrasas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSegundaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRSegundaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(297, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRCaravanaH, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrimeraProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblRPrimeraProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel7)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtProteinas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblRProteinas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSegundaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRSegundaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtGrasas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRGrasas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel6)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCelulasSomaticas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblRCelulasSomaticas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addComponent(btnIngresarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
 
         jTableProduccionHembra = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -129,114 +312,25 @@ public class frmProduccion extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableProduccionHembra);
 
-            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 790, 240));
-
-            jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel1.setText("Segunda Produccion (lts):");
-            jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 160, -1));
-            jPanel1.add(txtSegundaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 100, 30));
-            jPanel1.add(jDateFechaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 160, 30));
-
-            jLabel4.setText("Fecha Produccion:");
-            jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
-
-            btnIngresarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
-            btnIngresarProduccion.setText("Ingresar");
-            btnIngresarProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnIngresarProduccionMouseClicked(evt);
-                }
-            });
-            jPanel1.add(btnIngresarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, 30));
-
-            jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel2.setText("Caravana:");
-            jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, -1));
-
-            txtCaravanaHembra.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyReleased(java.awt.event.KeyEvent evt) {
-                    txtCaravanaHembraKeyReleased(evt);
-                }
-            });
-            jPanel1.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 100, 30));
-            jPanel1.add(txtGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 100, 30));
-
-            jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel3.setText("Grasas:");
-            jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 160, -1));
-            jPanel1.add(txtPrimeraProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 100, 30));
-
-            jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel5.setText("Primera Produccion (lts):");
-            jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 160, -1));
-            jPanel1.add(txtCelulasSomaticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 100, 30));
-
-            jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel6.setText("Celulas Somaticas:");
-            jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 160, -1));
-            jPanel1.add(txtProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 100, 30));
-
-            jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel7.setText("Proteinas:");
-            jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 160, -1));
-
-            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
-            btnBuscarBovino.setText("Buscar");
-            btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnBuscarBovinoMouseClicked(evt);
-                }
-            });
-            jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, 30));
-
-            lblRCaravanaH.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRCaravanaH.setForeground(new java.awt.Color(0, 0, 0));
-            lblRCaravanaH.setText("Requerido");
-            jPanel1.add(lblRCaravanaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 120, 20));
-
-            lblRCelulasSomaticas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRCelulasSomaticas.setForeground(new java.awt.Color(0, 0, 0));
-            lblRCelulasSomaticas.setText("Requerido");
-            jPanel1.add(lblRCelulasSomaticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 120, 20));
-
-            lblRProteinas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRProteinas.setForeground(new java.awt.Color(0, 0, 0));
-            lblRProteinas.setText("Requerido");
-            jPanel1.add(lblRProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 120, 20));
-
-            lblRGrasas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRGrasas.setForeground(new java.awt.Color(0, 0, 0));
-            lblRGrasas.setText("Requerido");
-            jPanel1.add(lblRGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 120, 20));
-
-            lblRSegundaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRSegundaProduccion.setForeground(new java.awt.Color(0, 0, 0));
-            lblRSegundaProduccion.setText("Requerido");
-            jPanel1.add(lblRSegundaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 120, 20));
-
-            lblRPrimeraProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRPrimeraProduccion.setForeground(new java.awt.Color(0, 0, 0));
-            lblRPrimeraProduccion.setText("Requerido");
-            jPanel1.add(lblRPrimeraProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 120, 20));
-
-            lblRFechaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRFechaProduccion.setForeground(new java.awt.Color(0, 0, 0));
-            lblRFechaProduccion.setText("Requerido");
-            jPanel1.add(lblRFechaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 120, 20));
-
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
+                    .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addContainerGap())
             );
 
             pack();

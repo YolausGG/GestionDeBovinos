@@ -7,9 +7,14 @@ package presentacion;
 import clases.Bovino;
 import clases.EstadoBovino;
 import clases.EstadoDelBovino;
+import clases.ExportarExcel;
 import clases.Macho;
 import dominio.dControladora;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -40,6 +45,9 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinos = new javax.swing.JTable();
 
@@ -80,10 +88,27 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Imprimir Lista");
+        jLabel2.setText("Exportar");
+
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+        btnExportar.setText("Exportar");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportarMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Imprimir Lista");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -91,21 +116,43 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(56, 56, 56)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(139, Short.MAX_VALUE)))
         );
 
         jTableBovinos = new javax.swing.JTable(){
@@ -178,11 +225,14 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
 
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimiento = formato.format(b.getFechaNacimiento());
+
             if (tipo.equals("Macho")) {
                 Macho macho = (Macho) b;
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, macho.getTipo()});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, macho.getTipo()});
             } else {
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, ""});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, ""});
             }
         }
         jTableBovinos.setModel(model);
@@ -223,11 +273,14 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
 
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimiento = formato.format(b.getFechaNacimiento());
+
             if (tipo.equals("Macho")) {
                 Macho macho = (Macho) b;
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, macho.getTipo()});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, macho.getTipo()});
             } else {
-                model.addRow(new Object[]{b.getCaravanaBovino(), b.getFechaNacimiento(), b.getRaza().getTipo(), tipo, ""});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, ""});
             }
         }
 
@@ -266,14 +319,40 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
         this.listarBovinosCaravanaLIKE(txtCaravanaBovino.getText());
     }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
 
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+        
+        MessageFormat header = new MessageFormat("Reporte ");
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            jTableBovinos.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("No se pudo Imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+         ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableBovinos);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableBovinos;
     private javax.swing.JTextField txtCaravanaBovino;
     // End of variables declaration//GEN-END:variables

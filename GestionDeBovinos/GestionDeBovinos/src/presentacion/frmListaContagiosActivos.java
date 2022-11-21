@@ -6,9 +6,14 @@ package presentacion;
 
 import clases.Bovino;
 import clases.Enfermedad;
+import clases.ExportarExcel;
 import clases.Padece;
 import dominio.dControladora;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -29,7 +34,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         this.setTitle("LISTADO DE CONTAGIOS ");
 
         this.llenarComboEnfermedad();
-        
+
         txtCaravanaBovino.setText(frmBuscarBovino.caravana);
 
         this.chkActivo.setSelected(true);
@@ -57,6 +62,9 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableContagios = new javax.swing.JTable();
 
@@ -70,6 +78,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Caravana Bovino");
 
+        btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravana.setText("Buscar Caravana");
         btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -94,6 +103,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,12 +125,12 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
+                        .addComponent(btnBuscarCaravana)
+                        .addGap(79, 79, 79)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,32 +156,64 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Imprimir Lista");
+        jLabel2.setText("Exportar");
+
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+        btnExportar.setText("Exportar");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportarMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Imprimir Lista");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         jTableContagios = new javax.swing.JTable(){
@@ -244,7 +286,22 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+            if (p.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+
         }
 
         jTableContagios.setModel(model);
@@ -270,7 +327,22 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+            if (p.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+
         }
 
         jTableContagios.setModel(model);
@@ -297,7 +369,21 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
 
-            model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+            if (p.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
         }
 
         jTableContagios.setModel(model);
@@ -324,7 +410,22 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
 
-            model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+            if (p.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+
         }
 
         jTableContagios.setModel(model);
@@ -350,8 +451,24 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         for (Padece p : listaContagios) {
 
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
+            
+            if (p.getFechaFinalizacion() == null) {
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+                
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+            
+            
         }
 
         jTableContagios.setModel(model);
@@ -377,8 +494,24 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         for (Padece p : listaContagios) {
 
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
+            
+            if (p.getFechaFinalizacion() == null) {
 
-            model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+                
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+
+            
         }
 
         jTableContagios.setModel(model);
@@ -404,8 +537,22 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Finalización");
 
         for (Padece p : listaContagios) {
+            
+            if (p.getFechaFinalizacion() == null) {
 
-            model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+                
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }           
         }
 
         jTableContagios.setModel(model);
@@ -430,8 +577,23 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Finalización");
 
         for (Padece p : listaContagios) {
+            
+            if (p.getFechaFinalizacion() == null) {
 
-            model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), p.getFechaInicio(), p.getFechaFinalizacion()});
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+                
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+            
         }
 
         jTableContagios.setModel(model);
@@ -535,32 +697,59 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cboEnfermedadActionPerformed
 
     private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
-        
+
         this.txtCaravanaBovino.setText(null);
-        if(cboEnfermedad.getSelectedIndex() != 0 && chkActivo.isSelected()){
+        if (cboEnfermedad.getSelectedIndex() != 0 && chkActivo.isSelected()) {
             listarContagiosActivosPorEnfermedad();
-        }else if(cboEnfermedad.getSelectedIndex() != 0){
+        } else if (cboEnfermedad.getSelectedIndex() != 0) {
             listarContagiosPorEnfermedad();
-        }else if(chkActivo.isSelected()){
+        } else if (chkActivo.isSelected()) {
             listarContagiosActivos();
-        }else{
+        } else {
             listarContagios();
         }
     }//GEN-LAST:event_btnLimpiarMouseClicked
 
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+
+        MessageFormat header = new MessageFormat("Reporte ");
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            jTableContagios.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("No se pudo Imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+
+        ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableContagios);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCaravana;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<Object> cboEnfermedad;
     private javax.swing.JCheckBox chkActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableContagios;
     private javax.swing.JTextField txtCaravanaBovino;
     // End of variables declaration//GEN-END:variables

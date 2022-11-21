@@ -8,6 +8,7 @@ import clases.Bovino;
 import clases.Hembra;
 import clases.Macho;
 import dominio.dControladora;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -55,7 +56,7 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(133, 146, 158));
 
         jTableBovinos = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -84,18 +85,14 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableBovinos);
 
-            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 580, 240));
-
             jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel1.setText("Caravana:");
-            jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, -1));
 
             txtBuscarCaravana.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyReleased(java.awt.event.KeyEvent evt) {
                     txtBuscarCaravanaKeyReleased(evt);
                 }
             });
-            jPanel1.add(txtBuscarCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 210, 30));
 
             grupoBotones.add(chkHembra);
             chkHembra.setSelected(true);
@@ -105,7 +102,6 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                     chkHembraMouseClicked(evt);
                 }
             });
-            jPanel1.add(chkHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
             grupoBotones.add(chkMacho);
             chkMacho.setText("Macho");
@@ -114,17 +110,51 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                     chkMachoMouseClicked(evt);
                 }
             });
-            jPanel1.add(chkMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(80, 80, 80)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40)
+                            .addComponent(chkHembra)
+                            .addGap(44, 44, 44)
+                            .addComponent(chkMacho))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(34, Short.MAX_VALUE))
+            );
+            jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(jLabel1)
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(chkHembra)
+                                .addComponent(chkMacho))))
+                    .addGap(50, 50, 50)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(66, Short.MAX_VALUE))
+            );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
 
             pack();
@@ -144,7 +174,10 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
 
         for (Macho m : listaMachos) {
 
-            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoM = formato.format( m.getFechaNacimiento());
+
+            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), "Macho", m.getTipo()});
 
         }
         jTableBovinos.setModel(model);
@@ -163,8 +196,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         model.addColumn("Sexo");
 
         for (Hembra h : listaHembras) {
-
-            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoH = formato.format( h.getFechaNacimiento());
+            
+            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo(), "Hembra"});
 
         }
         jTableBovinos.setModel(model);
@@ -183,8 +219,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         model.addColumn("Tipo");
 
         for (Hembra h : listaHembra) {
-
-            model.addRow(new Object[]{h.getCaravanaBovino(), h.getFechaNacimiento(), h.getRaza().getTipo(), "Hembra"});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoH = formato.format( h.getFechaNacimiento());
+            
+            model.addRow(new Object[]{h.getCaravanaBovino(), fechaNacimientoH, h.getRaza().getTipo(), "Hembra"});
 
         }
 
@@ -205,8 +244,11 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
         model.addColumn("tipo Macho");
 
         for (Macho m : listaMacho) {
-
-            model.addRow(new Object[]{m.getCaravanaBovino(), m.getFechaNacimiento(), m.getRaza().getTipo(), "Macho", m.getTipo()});
+            
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaNacimientoM = formato.format( m.getFechaNacimiento());
+            
+            model.addRow(new Object[]{m.getCaravanaBovino(), fechaNacimientoM, m.getRaza().getTipo(), "Macho", m.getTipo()});
 
         }
 

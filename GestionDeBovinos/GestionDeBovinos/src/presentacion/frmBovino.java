@@ -91,42 +91,259 @@ public class frmBovino extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         grupoBotones = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblFotoBovino = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnBuscarFoto = new javax.swing.JButton();
+        txtRutaFoto = new javax.swing.JTextField();
+        lblRTipoMacho = new java.awt.Label();
+        jLabel3 = new javax.swing.JLabel();
+        txtCaravana = new javax.swing.JTextField();
+        chkPedigree = new javax.swing.JCheckBox();
+        lblRCaravana = new java.awt.Label();
+        lblRNumeroPedigree = new java.awt.Label();
+        lblRRaza = new java.awt.Label();
+        lblRFechaNacimiento = new java.awt.Label();
+        btnAgregar = new javax.swing.JButton();
+        cboRaza = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cboTipo = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        cboMadre = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        cboPadre = new javax.swing.JComboBox<>();
+        chkMacho = new javax.swing.JCheckBox();
+        chkHembra = new javax.swing.JCheckBox();
+        jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        lblTipo = new javax.swing.JLabel();
+        txtNumeroPedigree = new javax.swing.JTextField();
+        lblNumeroPedigree = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinos = new javax.swing.JTable();
-        lblNumeroPedigree = new javax.swing.JLabel();
-        txtNumeroPedigree = new javax.swing.JTextField();
-        lblTipo = new javax.swing.JLabel();
-        jDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        chkHembra = new javax.swing.JCheckBox();
-        chkMacho = new javax.swing.JCheckBox();
-        cboPadre = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        cboMadre = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        cboTipo = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        cboRaza = new javax.swing.JComboBox<>();
-        btnAgregar = new javax.swing.JButton();
-        lblRFechaNacimiento = new java.awt.Label();
-        lblRRaza = new java.awt.Label();
-        lblRNumeroPedigree = new java.awt.Label();
-        lblRCaravana = new java.awt.Label();
-        chkPedigree = new javax.swing.JCheckBox();
-        txtCaravana = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        lblRTipoMacho = new java.awt.Label();
-        txtRutaFoto = new javax.swing.JTextField();
-        btnBuscarFoto = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        lblFotoBovino = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Fecha Nacimiento:");
+
+        btnBuscarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
+        btnBuscarFoto.setText("Buscar Foto");
+        btnBuscarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarFotoMouseClicked(evt);
+            }
+        });
+
+        txtRutaFoto.setEditable(false);
+
+        lblRTipoMacho.setText("Requerido");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Caravana:");
+
+        chkPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkPedigree.setText("Pedigree");
+        chkPedigree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPedigreeActionPerformed(evt);
+            }
+        });
+
+        lblRCaravana.setText("Requerido");
+
+        lblRNumeroPedigree.setText("Requerido");
+
+        lblRRaza.setText("Requerido");
+
+        lblRFechaNacimiento.setText("Requerido");
+
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
+
+        cboRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Raza:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Madre:");
+
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "En Pie", "Congelado" }));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Padre:");
+
+        cboMadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Ruta Foto:");
+
+        cboPadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        grupoBotones.add(chkMacho);
+        chkMacho.setText("Macho");
+        chkMacho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkMachoMouseClicked(evt);
+            }
+        });
+
+        grupoBotones.add(chkHembra);
+        chkHembra.setText("Hembra");
+        chkHembra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkHembraMouseClicked(evt);
+            }
+        });
+
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipo.setText("Tipo:");
+
+        lblNumeroPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNumeroPedigree.setText("Número de Pedigree por ARU:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(lblTipo)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblRTipoMacho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(cboRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblRRaza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(chkHembra)
+                                                .addGap(34, 34, 34)
+                                                .addComponent(chkMacho))
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblRFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblRCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(232, 232, 232)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(cboMadre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(txtRutaFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarFoto)
+                            .addComponent(chkPedigree)
+                            .addComponent(lblNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblRNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(70, 70, 70))))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(690, Short.MAX_VALUE)
+                    .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel7)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkHembra)
+                                    .addComponent(chkMacho))
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel2))
+                            .addComponent(lblRFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(lblTipo)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboPadre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboMadre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel4)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtRutaFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnBuscarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(chkPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNumeroPedigree)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(124, 124, 124)
+                    .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(182, Short.MAX_VALUE)))
+        );
 
         jTableBovinos = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -150,130 +367,27 @@ public class frmBovino extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableBovinos);
 
-            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 840, 230));
-
-            lblNumeroPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            lblNumeroPedigree.setText("Número de Pedigree por ARU:");
-            jPanel1.add(lblNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 210, -1));
-            jPanel1.add(txtNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 210, 30));
-
-            lblTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            lblTipo.setText("Tipo:");
-            jPanel1.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
-            jPanel1.add(jDateFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 30));
-
-            grupoBotones.add(chkHembra);
-            chkHembra.setText("Hembra");
-            chkHembra.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    chkHembraMouseClicked(evt);
-                }
-            });
-            jPanel1.add(chkHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
-
-            grupoBotones.add(chkMacho);
-            chkMacho.setText("Macho");
-            chkMacho.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    chkMachoMouseClicked(evt);
-                }
-            });
-            jPanel1.add(chkMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
-
-            cboPadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-            jPanel1.add(cboPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 220, 30));
-
-            jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel4.setText("Ruta Foto:");
-            jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
-
-            cboMadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-            jPanel1.add(cboMadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 220, 30));
-
-            jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel5.setText("Padre:");
-            jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
-
-            cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "En Pie", "Congelado" }));
-            jPanel1.add(cboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 210, 30));
-
-            jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel6.setText("Madre:");
-            jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, -1, -1));
-
-            jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel2.setText("Raza:");
-            jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 40, -1));
-
-            cboRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-            jPanel1.add(cboRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 210, 30));
-
-            btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
-            btnAgregar.setText("Agregar");
-            btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnAgregarMouseClicked(evt);
-                }
-            });
-            jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 100, 30));
-
-            lblRFechaNacimiento.setText("Requerido");
-            jPanel1.add(lblRFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 90, 30));
-
-            lblRRaza.setText("Requerido");
-            jPanel1.add(lblRRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 90, 30));
-
-            lblRNumeroPedigree.setText("Requerido");
-            jPanel1.add(lblRNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 90, 30));
-
-            lblRCaravana.setText("Requerido");
-            jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 90, 30));
-
-            chkPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            chkPedigree.setText("Pedigree");
-            chkPedigree.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    chkPedigreeActionPerformed(evt);
-                }
-            });
-            jPanel1.add(chkPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, 30));
-            jPanel1.add(txtCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 210, 30));
-
-            jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel3.setText("Caravana:");
-            jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, -1));
-
-            lblRTipoMacho.setText("Requerido");
-            jPanel1.add(lblRTipoMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 90, 30));
-
-            txtRutaFoto.setEditable(false);
-            jPanel1.add(txtRutaFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 210, 30));
-
-            btnBuscarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
-            btnBuscarFoto.setText("Buscar Foto");
-            btnBuscarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnBuscarFotoMouseClicked(evt);
-                }
-            });
-            jPanel1.add(btnBuscarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, 30));
-
-            jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel7.setText("Fecha Nacimiento:");
-            jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
-            jPanel1.add(lblFotoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 220, 110));
-
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jScrollPane1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addContainerGap())
             );
 
             pack();
@@ -501,21 +615,6 @@ public class frmBovino extends javax.swing.JInternalFrame {
         cboTipo.setVisible(true);
     }//GEN-LAST:event_chkMachoMouseClicked
 
-    private byte[] getImagen(String pRuta){
-        
-        File imagen = new File(pRuta);
-        try {
-            byte[] icono = new byte[(int) imagen.length()];
-            InputStream input = new FileInputStream(imagen);
-            input.read(icono);
-            return icono;
-            
-        } catch (Exception e) {
-            return null;
-        }
-    }
-            
-    
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
 
         if (validarCampos()) {
@@ -710,7 +809,6 @@ public class frmBovino extends javax.swing.JInternalFrame {
             txtNumeroPedigree.setVisible(false);
             lblRNumeroPedigree.setVisible(false);
         }
-
     }//GEN-LAST:event_chkPedigreeActionPerformed
 
     private void btnBuscarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFotoMouseClicked
@@ -729,9 +827,23 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
             lblFotoBovino.setIcon(new ImageIcon(foto));
         }
-
     }//GEN-LAST:event_btnBuscarFotoMouseClicked
 
+    private byte[] getImagen(String pRuta){
+        
+        File imagen = new File(pRuta);
+        try {
+            byte[] icono = new byte[(int) imagen.length()];
+            InputStream input = new FileInputStream(imagen);
+            input.read(icono);
+            return icono;
+            
+        } catch (Exception e) {
+            return null;
+        }
+    }
+            
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -751,7 +863,7 @@ public class frmBovino extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableBovinos;
     private javax.swing.JLabel lblFotoBovino;

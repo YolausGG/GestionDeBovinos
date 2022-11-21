@@ -81,9 +81,6 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableEstadoConBovino = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jDateFechaInicioE = new com.toedter.calendar.JDateChooser();
@@ -98,12 +95,118 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEstadoConBovino = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Caravana:");
+
+        txtCaravanaBovino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCaravanaBovinoKeyReleased(evt);
+            }
+        });
+
+        btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
+        btnBuscarBovino.setText("Buscar");
+        btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarBovinoMouseClicked(evt);
+            }
+        });
+
+        lblRCaravanaB.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRCaravanaB.setForeground(new java.awt.Color(0, 0, 0));
+        lblRCaravanaB.setText("Requerido");
+
+        lblRFechaInicioE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblRFechaInicioE.setForeground(new java.awt.Color(0, 0, 0));
+        lblRFechaInicioE.setText("Requerido");
+
+        lblREstado.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblREstado.setForeground(new java.awt.Color(0, 0, 0));
+        lblREstado.setText("Requerido");
+
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setText("Estado:");
+
+        jLabel9.setText("Fecha Finalizacion de Estado:");
+
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        jLabel4.setText("Fecha Comienzo de Estado:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblREstado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnBuscarBovino))
+                            .addComponent(lblRCaravanaB, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jDateFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jDateFechaFinalizacionE, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(424, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarBovino)
+                    .addComponent(jDateFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRCaravanaB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateFechaFinalizacionE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblREstado, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnIngresar)
+                .addGap(19, 19, 19))
+        );
 
         jTableEstadoConBovino = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -127,85 +230,25 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableEstadoConBovino);
 
-            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 850, 240));
-
-            jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            jLabel2.setText("Caravana:");
-            jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 160, -1));
-            jPanel2.add(jDateFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 160, 30));
-            jPanel2.add(jDateFechaFinalizacionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 160, 30));
-
-            txtCaravanaBovino.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyReleased(java.awt.event.KeyEvent evt) {
-                    txtCaravanaBovinoKeyReleased(evt);
-                }
-            });
-            jPanel2.add(txtCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 100, 30));
-
-            btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
-            btnBuscarBovino.setText("Buscar");
-            btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnBuscarBovinoMouseClicked(evt);
-                }
-            });
-            jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
-
-            lblRCaravanaB.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRCaravanaB.setForeground(new java.awt.Color(0, 0, 0));
-            lblRCaravanaB.setText("Requerido");
-            jPanel2.add(lblRCaravanaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 120, 20));
-
-            lblRFechaInicioE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblRFechaInicioE.setForeground(new java.awt.Color(0, 0, 0));
-            lblRFechaInicioE.setText("Requerido");
-            jPanel2.add(lblRFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, 20));
-
-            lblREstado.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            lblREstado.setForeground(new java.awt.Color(0, 0, 0));
-            lblREstado.setText("Requerido");
-            jPanel2.add(lblREstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 120, 20));
-
-            btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
-            btnIngresar.setText("Ingresar");
-            btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnIngresarMouseClicked(evt);
-                }
-            });
-            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 100, -1));
-
-            jLabel8.setText("Estado:");
-            jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-
-            jLabel9.setText("Fecha Finalizacion de Estado:");
-            jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
-
-            cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-            jPanel2.add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 180, 30));
-
-            jLabel4.setText("Fecha Comienzo de Estado:");
-            jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
-
-            jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 510, 290));
-
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addContainerGap())
             );
 
             pack();
@@ -396,13 +439,16 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
                             Logger.getLogger(frmEstadoConBovino.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
-                        try {
-                            Date fechaFinalizacion = formato.parse((String) this.jTableEstadoConBovino.getValueAt(fila, 4));
-                            estadoBovino.setFechaFinalizacion(fechaFinalizacion);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(frmEstadoConBovino.class.getName()).log(Level.SEVERE, null, ex);
+                        if (this.jTableEstadoConBovino.getValueAt(fila, 4) == null) {
+                            estadoBovino.setFechaFinalizacion((Date) this.jTableEstadoConBovino.getValueAt(fila, 4));
+                        } else {
+                            try {
+                                Date fechaFinalizacion = formato.parse((String) this.jTableEstadoConBovino.getValueAt(fila, 4));
+                                estadoBovino.setFechaFinalizacion(fechaFinalizacion);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(frmEstadoConBovino.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
-
                         this.dispose();
                         frmModificarEstadoConBovino modificarEstadoConBovino = new frmModificarEstadoConBovino();
                         frmInicio.jDkPEscritorio.add(modificarEstadoConBovino);
@@ -571,7 +617,6 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEstadoConBovino;

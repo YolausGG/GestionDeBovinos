@@ -4,11 +4,16 @@
  */
 package presentacion;
 
+import clases.ExportarExcel;
 import clases.Hembra;
 import clases.Produccion;
 import dominio.dControladora;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -54,7 +59,10 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
         for (Produccion p : listaProduccion) {
 
-            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaProduccion = formato.format(p.getFecha());
+
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
                 p.getGrasa(), p.getCelulaSomatica()});
         }
 
@@ -83,7 +91,10 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
         for (Produccion p : listaProduccion) {
 
-            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaProduccion = formato.format(p.getFecha());
+
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
                 p.getGrasa(), p.getCelulaSomatica()});
         }
 
@@ -114,7 +125,10 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
         for (Produccion p : listaProduccion) {
 
-            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaProduccion = formato.format(p.getFecha());
+
+            model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
                 p.getGrasa(), p.getCelulaSomatica()});
         }
 
@@ -143,7 +157,10 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         model.addColumn("Grasas");
         model.addColumn("Celulas Somaticas");
 
-        model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaProduccion = formato.format(p.getFecha());
+
+        model.addRow(new Object[]{p.getIdProduccion(), p.getHembra().getCaravanaBovino(), fechaProduccion, p.getPrimeraProduccion(), p.getSegundaProduccion(), p.getProduccionTotal(), p.getProteina(),
             p.getGrasa(), p.getCelulaSomatica()});
 
         jTableProducciones.setModel(model);
@@ -165,6 +182,9 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
         setIconifiable(true);
@@ -196,6 +216,7 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
             jLabel1.setText("Caravana Hembra");
 
+            btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarCaravana.setText("Buscar Caravana");
             btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -211,6 +232,7 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
                 }
             });
 
+            btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
             btnLimpiar.setText("Limpiar");
             btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,8 +254,8 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnBuscarCaravana)))
+                    .addContainerGap(329, Short.MAX_VALUE))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,10 +275,27 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
             jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+            btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
             btnImprimir.setText("Imprimir");
+            btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    btnImprimirMouseClicked(evt);
+                }
+            });
 
             jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             jLabel2.setText("Imprimir Lista");
+
+            btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+            btnExportar.setText("Exportar");
+            btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    btnExportarMouseClicked(evt);
+                }
+            });
+
+            jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jLabel3.setText("Exportar");
 
             javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
             jPanel2.setLayout(jPanel2Layout);
@@ -264,21 +303,35 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(49, 49, 49)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(49, 49, 49))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)))
+                .addComponent(jSeparator1)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(53, Short.MAX_VALUE))
+                    .addGap(46, 46, 46))
             );
             jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(12, 12, 12)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(12, 12, 12))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -373,17 +426,44 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+
+        MessageFormat header = new MessageFormat("Reporte ");
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            jTableProducciones.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("No se pudo Imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+
+        ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableProducciones);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCaravana;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox chkUltimaProduccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableProducciones;
     private javax.swing.JTextField txtCaravanaHembra;
     // End of variables declaration//GEN-END:variables

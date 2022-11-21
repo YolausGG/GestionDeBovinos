@@ -74,7 +74,6 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jDateFechaInicioT = new com.toedter.calendar.JDateChooser();
@@ -83,8 +82,6 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaDetalle = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePadeceEnfermedad = new javax.swing.JTable();
         btnModificarTratamiento = new javax.swing.JButton();
         jDateFechaFinalizacionT = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -95,36 +92,63 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         lblFechaFinE = new javax.swing.JLabel();
         lblFechaInicioE = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePadeceEnfermedad = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Fecha Comienzo de Tratamiento:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
-        jPanel2.add(jDateFechaInicioT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 160, 30));
 
         lblRFechaInicioT.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblRFechaInicioT.setForeground(new java.awt.Color(0, 0, 0));
         lblRFechaInicioT.setText("Requerido");
-        jPanel2.add(lblRFechaInicioT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 120, 20));
 
         jLabel9.setText("Fecha Finalizacion de Tratamiento:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         jLabel8.setText("Detalle:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jTextAreaDetalle.setColumns(20);
         jTextAreaDetalle.setRows(5);
         jScrollPane2.setViewportView(jTextAreaDetalle);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 290, -1));
+        btnModificarTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
+        btnModificarTratamiento.setText("Modificar");
+        btnModificarTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarTratamientoMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel1.setText("Fecha Fin Enfermedad:");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setText("Enfermedad:");
+
+        lblCaravana.setText("...");
+
+        lblEnfermedad.setText("...");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setText("CARAVANA:");
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setText("Fecha Inicio Enfermedad:");
+
+        lblFechaFinE.setText("...");
+
+        lblFechaInicioE.setText("...");
+
+        jPanel1.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enfermedades Activas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTablePadeceEnfermedad = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -148,62 +172,99 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTablePadeceEnfermedad);
 
-            jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 450, 170));
+            jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 430, 170));
 
-            btnModificarTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
-            btnModificarTratamiento.setText("Modificar");
-            btnModificarTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    btnModificarTratamientoMouseClicked(evt);
-                }
-            });
-            jPanel2.add(btnModificarTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
-            jPanel2.add(jDateFechaFinalizacionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 30));
-
-            jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            jLabel1.setText("Fecha Fin Enfermedad:");
-            jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 130, 20));
-
-            jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            jLabel2.setText("Enfermedad:");
-            jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 90, -1));
-
-            lblCaravana.setText("...");
-            jPanel2.add(lblCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 60, -1));
-
-            lblEnfermedad.setText("...");
-            jPanel2.add(lblEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 80, -1));
-
-            jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            jLabel3.setText("CARAVANA:");
-            jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 70, -1));
-
-            jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-            jLabel5.setText("Fecha Inicio Enfermedad:");
-            jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 150, 20));
-
-            lblFechaFinE.setText("...");
-            jPanel2.add(lblFechaFinE, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 170, 20));
-
-            lblFechaInicioE.setText("...");
-            jPanel2.add(lblFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 80, 20));
-
-            jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 910, 410));
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jDateFechaInicioT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRFechaInicioT, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(jDateFechaFinalizacionT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificarTratamiento))
+                    .addGap(71, 71, 71)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(lblCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(50, 50, 50)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(lblFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(lblEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(lblFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(259, Short.MAX_VALUE))
+            );
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(38, 38, 38)
+                    .addComponent(jLabel4)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jDateFechaInicioT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(lblRFechaInicioT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(lblCaravana)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(30, 30, 30)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(lblEnfermedad)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFechaFinE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(24, 24, 24)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(4, 4, 4)
+                            .addComponent(jDateFechaFinalizacionT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel8)
+                            .addGap(4, 4, 4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(109, 109, 109)
+                    .addComponent(btnModificarTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(90, 90, 90))
+            );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
             );
 
             pack();
@@ -252,8 +313,8 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
 
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaInicioE = formato.format(p.getFechaInicio());
+            SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicioE = formato1.format(p.getFechaInicio());
 
             if (p.getFechaFinalizacion() == null) {
 
@@ -261,8 +322,8 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
             } else {
 
-                SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
-                String fechaFinalizacionE = formato1.format(p.getFechaFinalizacion());
+                SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFinalizacionE = formato2.format(p.getFechaFinalizacion());
 
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, fechaFinalizacionE});
             }

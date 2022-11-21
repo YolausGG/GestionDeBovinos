@@ -61,22 +61,56 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableEnfermedad = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtNombreEnfermedad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnAltaEnfermedad = new javax.swing.JButton();
-        btnImprimir = new javax.swing.JButton();
-        btnExportar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEnfermedad = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Nombre Enfermedad:");
+
+        btnAltaEnfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
+        btnAltaEnfermedad.setText("Agregar");
+        btnAltaEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAltaEnfermedadMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAltaEnfermedad))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(txtNombreEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnAltaEnfermedad)
+                .addGap(19, 19, 19))
+        );
 
         jTableEnfermedad = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -101,56 +135,25 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableEnfermedad);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 420, 240));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(txtNombreEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 30));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre Enfermedad:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, -1));
-
-        btnAltaEnfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
-        btnAltaEnfermedad.setText("Agregar");
-        btnAltaEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAltaEnfermedadMouseClicked(evt);
-            }
-        });
-        jPanel2.add(btnAltaEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
-        btnImprimir.setText("Imprimir");
-        btnImprimir.setBorder(null);
-        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnImprimirMouseClicked(evt);
-            }
-        });
-        jPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 80, 40));
-
-        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
-        btnExportar.setText("Exportar");
-        btnExportar.setBorder(null);
-        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExportarMouseClicked(evt);
-            }
-        });
-        jPanel2.add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 80, 40));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 420, 140));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -179,7 +182,7 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         }
 
         jTableEnfermedad.setModel(model);
-        jTableEnfermedad.setRowHeight(40);
+        jTableEnfermedad.setRowHeight(25);
     }
     
     public static String nombreEnfermedad = "";
@@ -276,36 +279,10 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAltaEnfermedadMouseClicked
 
-    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-
-        MessageFormat header = new MessageFormat("Reporte ");
-        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
-
-        try {
-            jTableEnfermedad.print(JTable.PrintMode.NORMAL, header, footer);
-        } catch (java.awt.print.PrinterException e) {
-            System.err.format("No se pudo Imprimir", e.getMessage());
-        }
-    }//GEN-LAST:event_btnImprimirMouseClicked
-
-    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
-        ExportarExcel obj;
-
-        try {
-            obj = new ExportarExcel();
-            obj.exportarExcel(jTableEnfermedad);
-        } catch (IOException ex) {
-            System.out.println("Error: " + ex);
-        }
-    }//GEN-LAST:event_btnExportarMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaEnfermedad;
-    private javax.swing.JButton btnExportar;
-    private javax.swing.JButton btnImprimir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEnfermedad;

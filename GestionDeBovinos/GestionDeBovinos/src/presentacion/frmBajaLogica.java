@@ -39,6 +39,9 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         btnConfirmarBaja = new javax.swing.JButton();
         btnCancelarBaja = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(54, 67, 114));
+
+        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setText("¿Está seguro que quiere dar de Baja el Bovino");

@@ -285,6 +285,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblContagios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContagios.setForeground(new java.awt.Color(255, 255, 255));
         lblContagios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblContagios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblContagios.setText("Contagios");
         lblContagios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblContagios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -301,6 +302,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblEventosFuturos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEventosFuturos.setForeground(new java.awt.Color(255, 255, 255));
         lblEventosFuturos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEventosFuturos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblEventosFuturos.setText("Eventos Futuros");
         lblEventosFuturos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblEventosFuturos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -317,6 +319,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblEventosDeSanidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEventosDeSanidad.setForeground(new java.awt.Color(255, 255, 255));
         lblEventosDeSanidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEventosDeSanidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblEventosDeSanidad.setText("Eventos de Sanidad");
         lblEventosDeSanidad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblEventosDeSanidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -333,6 +336,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblEstadosDelBovino.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEstadosDelBovino.setForeground(new java.awt.Color(255, 255, 255));
         lblEstadosDelBovino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEstadosDelBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblEstadosDelBovino.setText("Estados de Bovinos");
         lblEstadosDelBovino.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblEstadosDelBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -349,6 +353,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblBajas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBajas.setForeground(new java.awt.Color(255, 255, 255));
         lblBajas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBajas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblBajas.setText("Bajas de Bovino");
         lblBajas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblBajas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -365,6 +370,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblBovinos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBovinos.setForeground(new java.awt.Color(255, 255, 255));
         lblBovinos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBovinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblBovinos.setText("Bovinos");
         lblBovinos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblBovinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -381,6 +387,7 @@ public class frmInicio extends javax.swing.JFrame {
         lblProducciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblProducciones.setForeground(new java.awt.Color(255, 255, 255));
         lblProducciones.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblProducciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Listados16px.png"))); // NOI18N
         lblProducciones.setText("Producciones");
         lblProducciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
         lblProducciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

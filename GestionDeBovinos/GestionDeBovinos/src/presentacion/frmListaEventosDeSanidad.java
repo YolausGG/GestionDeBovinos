@@ -7,13 +7,18 @@ package presentacion;
 import clases.Aborto;
 import clases.Celo;
 import clases.EventoDeSanidad;
+import clases.ExportarExcel;
 import clases.Hembra;
 import clases.Inseminacion;
 import clases.Parto;
 import clases.Secado;
 import clases.Tacto;
 import dominio.dControladora;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -70,6 +75,9 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEventosDeSanidad = new javax.swing.JTable();
 
@@ -83,6 +91,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Caravana Hembra");
 
+        btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravana.setText("Buscar Caravana");
         btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,6 +99,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiarMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiarMacho.setText("Limpiar");
         btnLimpiarMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,6 +116,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Tipo de Evento");
 
+        btnBuscarCaravanaMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravanaMacho.setText("Buscar Caravana");
         btnBuscarCaravanaMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,6 +128,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         lblCaravanaMacho.setText("Caravana Macho:");
 
+        btnLimpiarHembra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiarHembra.setText("Limpiar");
         btnLimpiarHembra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,8 +149,8 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarCaravana, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(37, 37, 37)
+                                .addComponent(btnBuscarCaravana)))
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -149,9 +161,9 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCaravanaMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCaravanaMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarCaravanaMacho))
                     .addComponent(btnLimpiarMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,37 +185,70 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiarMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Imprimir Lista");
+        jLabel2.setText("Exportar");
+
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
+        btnExportar.setText("Exportar");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExportarMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Imprimir Lista");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         jTableEventosDeSanidad = new javax.swing.JTable(){
@@ -250,7 +295,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -282,11 +327,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
             switch (e.getClass().getSimpleName().toString()) {
                 case "Inseminacion":
                     Inseminacion ins = (Inseminacion) e;
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaIns = formato.format(ins.getFecha());
                     model.addRow(new Object[]{
                         ins.getIdEventoDeSanidad(),
                         "Inseminacion",
                         ins.getHembra().getCaravanaBovino(),
-                        ins.getFecha(),
+                        fechaIns,
                         ins.getDetalle(),
                         "",
                         "",
@@ -296,11 +343,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Aborto":
                     Aborto abo = (Aborto) e;
+                    SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaAborto = formato1.format(abo.getFecha());
                     model.addRow(new Object[]{
                         abo.getIdEventoDeSanidad(),
                         "Aborto",
                         abo.getHembra().getCaravanaBovino(),
-                        abo.getFecha(),
+                        fechaAborto,
                         abo.getDetalle(),
                         abo.getCausa(),
                         "",
@@ -310,11 +359,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Parto":
                     Parto par = (Parto) e;
+                    SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaParto = formato2.format(par.getFecha());
                     model.addRow(new Object[]{
                         par.getIdEventoDeSanidad(),
                         "Parto",
                         par.getHembra().getCaravanaBovino(),
-                        par.getFecha(),
+                        fechaParto,
                         par.getDetalle(),
                         "",
                         par.getTipo(),
@@ -324,11 +375,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Tacto":
                     Tacto tac = (Tacto) e;
+                    SimpleDateFormat formato3 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTacto = formato3.format(tac.getFecha());
                     model.addRow(new Object[]{
                         tac.getIdEventoDeSanidad(),
                         "Tacto",
                         tac.getHembra().getCaravanaBovino(),
-                        tac.getFecha(),
+                        fechaTacto,
                         tac.getDetalle(),
                         "",
                         "",
@@ -338,11 +391,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Secado":
                     Secado sec = (Secado) e;
+                    SimpleDateFormat formato4 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaSecado = formato4.format(sec.getFecha());
                     model.addRow(new Object[]{
                         sec.getIdEventoDeSanidad(),
                         "Secado",
                         sec.getHembra().getCaravanaBovino(),
-                        sec.getFecha(),
+                        fechaSecado,
                         sec.getDetalle(),
                         sec.getCausa(),
                         "",
@@ -352,11 +407,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Celo":
                     Celo celo = (Celo) e;
+                    SimpleDateFormat formato5 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaCelo = formato5.format(celo.getFecha());
                     model.addRow(new Object[]{
                         celo.getIdEventoDeSanidad(),
                         "Celo",
                         celo.getHembra().getCaravanaBovino(),
-                        celo.getFecha(),
+                        fechaCelo,
                         celo.getDetalle(),
                         celo.getCausa(),
                         "",
@@ -395,17 +452,19 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
         model.addColumn("Resultado");
         model.addColumn("Diagnóstico");
         model.addColumn("Caravana Macho");
-        
+
         for (EventoDeSanidad e : listaEventosDeSanidadHembra) {
 
             switch (e.getClass().getSimpleName().toString()) {
                 case "Inseminacion":
                     Inseminacion ins = (Inseminacion) e;
+                    SimpleDateFormat formato6 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaIns = formato6.format(ins.getFecha());
                     model.addRow(new Object[]{
                         ins.getIdEventoDeSanidad(),
                         "Inseminacion",
                         ins.getHembra().getCaravanaBovino(),
-                        ins.getFecha(),
+                        fechaIns,
                         ins.getDetalle(),
                         "",
                         "",
@@ -415,11 +474,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Aborto":
                     Aborto abo = (Aborto) e;
+                    SimpleDateFormat formato7 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaAborto = formato7.format(abo.getFecha());
                     model.addRow(new Object[]{
                         abo.getIdEventoDeSanidad(),
                         "Aborto",
                         abo.getHembra().getCaravanaBovino(),
-                        abo.getFecha(),
+                        fechaAborto,
                         abo.getDetalle(),
                         abo.getCausa(),
                         "",
@@ -429,11 +490,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Parto":
                     Parto par = (Parto) e;
+                    SimpleDateFormat formato8 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaParto = formato8.format(par.getFecha());
                     model.addRow(new Object[]{
                         par.getIdEventoDeSanidad(),
                         "Parto",
                         par.getHembra().getCaravanaBovino(),
-                        par.getFecha(),
+                        fechaParto,
                         par.getDetalle(),
                         "",
                         par.getTipo(),
@@ -443,11 +506,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Tacto":
                     Tacto tac = (Tacto) e;
+                    SimpleDateFormat formato9 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTacto = formato9.format(tac.getFecha());
                     model.addRow(new Object[]{
                         tac.getIdEventoDeSanidad(),
                         "Tacto",
                         tac.getHembra().getCaravanaBovino(),
-                        tac.getFecha(),
+                        fechaTacto,
                         tac.getDetalle(),
                         "",
                         "",
@@ -457,11 +522,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Secado":
                     Secado sec = (Secado) e;
+                    SimpleDateFormat formato10 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaSecado = formato10.format(sec.getFecha());
                     model.addRow(new Object[]{
                         sec.getIdEventoDeSanidad(),
                         "Secado",
                         sec.getHembra().getCaravanaBovino(),
-                        sec.getFecha(),
+                        fechaSecado,
                         sec.getDetalle(),
                         sec.getCausa(),
                         "",
@@ -471,11 +538,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     break;
                 case "Celo":
                     Celo celo = (Celo) e;
+                    SimpleDateFormat formato11 = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaCelo = formato11.format(celo.getFecha());
                     model.addRow(new Object[]{
                         celo.getIdEventoDeSanidad(),
                         "Celo",
                         celo.getHembra().getCaravanaBovino(),
-                        celo.getFecha(),
+                        fechaCelo,
                         celo.getDetalle(),
                         celo.getCausa(),
                         "",
@@ -514,7 +583,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
                 for (Tacto t : listaTactos) {
 
-                    model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), t.getFecha(), t.getDetalle(), t.getResultado(), t.getDiagnostico()});
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTacto = formato.format(t.getFecha());
+
+                    model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico()});
                 }
                 break;
             case "Secado":
@@ -527,8 +599,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Secado s : listaSecados) {
-
-                    model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), s.getFecha(), s.getDetalle(), s.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaSecado = formato.format(s.getFecha());
+                    
+                    model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa()});
                 }
                 break;
             case "Inseminacion":
@@ -541,8 +616,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Detalle");
 
                 for (Inseminacion i : listaInseminaciones) {
-
-                    model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), i.getFecha(), i.getDetalle()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaIns = formato.format(i.getFecha());
+                    
+                    model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaIns, i.getDetalle()});
                 }
                 break;
             case "Celo":
@@ -555,8 +633,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Celo c : listaCelos) {
-
-                    model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), c.getFecha(), c.getDetalle(), c.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaCelo = formato.format(c.getFecha());
+                    
+                    model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa()});
                 }
                 break;
             case "Parto":
@@ -569,8 +650,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Tipo");
 
                 for (Parto p : listaPartos) {
-
-                    model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getDetalle(), p.getTipo()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaParto = formato.format(p.getFecha());
+                    
+                    model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo()});
                 }
                 break;
             case "Aborto":
@@ -583,8 +667,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Aborto a : listaAbortos) {
-
-                    model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaAborto = formato.format(a.getFecha());
+                    
+                    model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa()});
                 }
                 break;
             default:
@@ -618,8 +705,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Diagnostico");
 
                 for (Tacto t : listaTactos) {
-
-                    model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), t.getFecha(), t.getDetalle(), t.getResultado(), t.getDiagnostico()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaTacto = formato.format(t.getFecha());
+                    
+                    model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico()});
                 }
                 break;
             case "Secado":
@@ -632,8 +722,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Secado s : listaSecados) {
-
-                    model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), s.getFecha(), s.getDetalle(), s.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaSecado = formato.format(s.getFecha());
+                    
+                    model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa()});
                 }
                 break;
             case "Inseminacion":
@@ -654,8 +747,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Detalle");
 
                 for (Inseminacion i : listaInseminaciones) {
-
-                    model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), i.getFecha(), i.getDetalle()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaIns = formato.format(i.getFecha());
+                    
+                    model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaIns, i.getDetalle()});
                 }
                 break;
 
@@ -669,8 +765,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Celo c : listaCelos) {
-
-                    model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), c.getFecha(), c.getDetalle(), c.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaCelo = formato.format(c.getFecha());
+                    
+                    model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa()});
                 }
                 break;
             case "Parto":
@@ -683,8 +782,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Tipo");
 
                 for (Parto p : listaPartos) {
-
-                    model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), p.getFecha(), p.getDetalle(), p.getTipo()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaParto = formato.format( p.getFecha());
+                    
+                    model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo()});
                 }
                 break;
             case "Aborto":
@@ -697,8 +799,11 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Aborto a : listaAbortos) {
-
-                    model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), a.getFecha(), a.getDetalle(), a.getCausa()});
+                    
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    String fechaAborto = formato.format( a.getFecha());
+                    
+                    model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa()});
                 }
                 break;
             default:
@@ -856,20 +961,46 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnLimpiarMachoMouseClicked
 
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+
+        MessageFormat header = new MessageFormat("Reporte ");
+        MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+        try {
+            jTableEventosDeSanidad.print(JTable.PrintMode.NORMAL, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("No se pudo Imprimir", e.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
+
+    private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
+        ExportarExcel obj;
+
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(jTableEventosDeSanidad);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_btnExportarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCaravana;
     private javax.swing.JButton btnBuscarCaravanaMacho;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiarHembra;
     private javax.swing.JButton btnLimpiarMacho;
     public static javax.swing.JComboBox<Object> cboTipoEvento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableEventosDeSanidad;
     private javax.swing.JLabel lblCaravanaMacho;
     private javax.swing.JTextField txtCaravanaHembra;
