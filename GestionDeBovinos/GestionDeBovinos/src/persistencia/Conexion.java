@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    
     //MySQL
 
     private static Connection databaseConnection;

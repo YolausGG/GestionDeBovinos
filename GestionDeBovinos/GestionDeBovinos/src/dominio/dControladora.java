@@ -6,6 +6,7 @@ import clases.Raza;
 import clases.EstadoDelBovino;
 import clases.Enfermedad;
 import clases.Bovino;
+import clases.BovinoPosicion;
 import clases.Celo;
 import clases.EstadoBovino;
 import clases.Produccion;
@@ -749,11 +750,11 @@ public class dControladora {
         return dBovino.buscarBovinoCaravana(pCaravanaBovino);
     }
 
-    public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino){
-        
+    public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino) {
+
         return dBovino.buscarBovinoBajaLogicaCaravana(pCaravanaBovino);
     }
-    
+
     public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
 
         return dBovino.buscarBovinoCaravanaCompleto(pCaravanaBovino);
@@ -1054,6 +1055,37 @@ public class dControladora {
             if (bovino.getMadre() != null && contador <= 3) {
                 Bovino madre = buscarBovinoCaravanaCompleto(bovino.getMadre().getCaravanaBovino());
                 bovinosFinal = arbolGenealogico(contador + 1, madre, arbolGenealogico);
+            }
+        }
+        return bovinosFinal;
+
+    }
+
+    public static ArrayList<Bovino> arbolGenealogicoNull(int contador, Bovino bovino, ArrayList<Bovino> arbolGenealogico) {
+
+        System.out.println("Caravana: "+bovino);
+        ArrayList<Bovino> bovinosFinal = new ArrayList();
+
+        if(bovino != null){
+            arbolGenealogico.add(bovino);
+        }
+        if (contador >= 3 ) {
+            return arbolGenealogico;
+        } else {
+            if (bovino.getPadre() != null && contador <= 3) {
+                Macho padre = buscarMachoPorCaravanaCompleto(bovino.getPadre().getCaravanaBovino());
+                bovinosFinal = arbolGenealogicoNull(contador + 1, padre, arbolGenealogico);
+            }
+            else{
+                bovinosFinal = arbolGenealogicoNull(contador + 1, new Bovino(), arbolGenealogico);
+            }
+
+            if (bovino.getMadre() != null && contador <= 3) {
+                Hembra madre = buscarHembraPorCaravanaCompleta(bovino.getMadre().getCaravanaBovino());
+                bovinosFinal = arbolGenealogicoNull(contador + 1, madre, arbolGenealogico);
+            }
+            else{
+                bovinosFinal = arbolGenealogicoNull(contador + 1, new Bovino(), arbolGenealogico);
             }
         }
         return bovinosFinal;

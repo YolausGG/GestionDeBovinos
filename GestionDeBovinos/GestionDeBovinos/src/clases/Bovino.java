@@ -159,9 +159,9 @@ public class Bovino {
         this.foto = foto;
     }
 
-    
-    
-    
+    public Bovino() {
+    }
+
     
     
 }
