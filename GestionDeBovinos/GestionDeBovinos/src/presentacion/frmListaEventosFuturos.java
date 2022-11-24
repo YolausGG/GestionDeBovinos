@@ -36,7 +36,7 @@ public class frmListaEventosFuturos extends javax.swing.JInternalFrame {
         initComponents();
 
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
-        this.setTitle("LISTADO DE EVENTOS DE SANIDAD");
+        this.setTitle("LISTADO DE EVENTOS FUTUROS");
 
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
 
@@ -455,8 +455,8 @@ public class frmListaEventosFuturos extends javax.swing.JInternalFrame {
 
                 if (fila != -1) {
 
-                    frmBovino.caravana = jTableEventosDeSanidad.getValueAt(fila, 0).toString();
-                    frmBovino.sexo = jTableEventosDeSanidad.getValueAt(fila, 3).toString();
+                    frmBovino.caravana = jTableEventosDeSanidad.getValueAt(fila, 2).toString();
+                    frmBovino.sexo = "Hembra";
 
                     frmFichaBovino fichaBovino = new frmFichaBovino();
                     frmInicio.jDkPEscritorio.add(fichaBovino);

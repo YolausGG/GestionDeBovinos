@@ -376,8 +376,8 @@ public class frmListaProduccion extends javax.swing.JInternalFrame {
 
                 if (fila != -1) {
 
-                    frmBovino.caravana = jTableProducciones.getValueAt(fila, 0).toString();
-                    frmBovino.sexo = jTableProducciones.getValueAt(fila, 3).toString();
+                    frmBovino.caravana = jTableProducciones.getValueAt(fila, 1).toString();
+                    frmBovino.sexo = "Hembra";
 
                     frmFichaBovino fichaBovino = new frmFichaBovino();
                     frmInicio.jDkPEscritorio.add(fichaBovino);

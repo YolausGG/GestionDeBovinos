@@ -5,6 +5,8 @@
 package presentacion;
 
 import clases.BotonesTabla;
+import clases.EstadoBovino;
+import clases.EstadoDelBovino;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import clases.Secado;
@@ -21,7 +23,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
-    
+
     public static int idSecado = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
 
@@ -30,10 +32,10 @@ public class frmSecado extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmSecado() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("SECADO");
         modificar.setBorder(null);
@@ -42,21 +44,19 @@ public class frmSecado extends javax.swing.JInternalFrame {
         insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
+        eliminar.setName("btnEliminar");
         lblRCausa.setVisible(false);
         lblRFechaSecado.setVisible(false);
         lblRHembra.setVisible(false);
-        
-        if(txtCaravanaHembra.getText().isEmpty()){
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
-        }
-        else{
+        } else {
             actualizarTablaHembra();
         }
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,6 +76,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
         txaDetalle = new javax.swing.JTextArea();
         txtCaravanaHembra = new javax.swing.JTextField();
         btnBuscarBovino = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSecados = new javax.swing.JTable();
 
@@ -84,11 +85,15 @@ public class frmSecado extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(null);
         jLabel1.setText("Causa:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 40));
 
         btnAltaSecado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaSecado.setText("Agregar");
@@ -97,33 +102,52 @@ public class frmSecado extends javax.swing.JInternalFrame {
                 btnAltaSecadoMouseClicked(evt);
             }
         });
+        jPanel2.add(btnAltaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(null);
         jLabel2.setText("Detalle (Opcional): ");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, 40));
 
         cboCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Prelactancia", "Baja Producción" }));
+        cboCausa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(cboCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 210, 30));
 
+        lblRCausa.setForeground(null);
         lblRCausa.setText("Requerido");
+        jPanel2.add(lblRCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, 30));
 
+        lblRHembra.setForeground(null);
         lblRHembra.setText("Requerido");
+        jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(null);
         jLabel3.setText("Hembra:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 40));
+        jPanel2.add(jDateFechaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, 30));
 
+        lblRFechaSecado.setForeground(null);
         lblRFechaSecado.setText("Requerido");
+        jPanel2.add(lblRFechaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(null);
         jLabel4.setText("Fecha Secado:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 40));
 
         txaDetalle.setColumns(20);
         txaDetalle.setRows(5);
         jScrollPane2.setViewportView(txaDetalle);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 270, 90));
 
         txtCaravanaHembra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCaravanaHembraKeyReleased(evt);
             }
         });
+        jPanel2.add(txtCaravanaHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, 30));
 
         btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
@@ -132,66 +156,11 @@ public class frmSecado extends javax.swing.JInternalFrame {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
+        jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 100, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnBuscarBovino)
-                        .addGap(5, 5, 5)
-                        .addComponent(lblRHembra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRCausa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jDateFechaSecado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRFechaSecado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAltaSecado))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCaravanaHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRCausa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateFechaSecado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRFechaSecado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnAltaSecado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setForeground(null);
 
         jTableSecados = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
@@ -209,6 +178,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableSecados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTableSecados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableSecadosMouseClicked(evt);
@@ -216,25 +186,30 @@ public class frmSecado extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableSecados);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,24 +220,38 @@ public class frmSecado extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(null);
         cboCausa.setSelectedIndex(0);
         jDateFechaSecado.setDate(null);
-        txaDetalle.setText(null);  
+        txaDetalle.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboCausa.getSelectedIndex() < 1){ lblRCausa.setVisible(true); contador++; }else { lblRCausa.setVisible(false);}
-        if(jDateFechaSecado.getDate() == null){ lblRFechaSecado.setVisible(true); contador++; }else { lblRFechaSecado.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboCausa.getSelectedIndex() < 1) {
+            lblRCausa.setVisible(true);
+            contador++;
+        } else {
+            lblRCausa.setVisible(false);
+        }
+        if (jDateFechaSecado.getDate() == null) {
+            lblRFechaSecado.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaSecado.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void actualizarTabla() {
         jTableSecados.setDefaultRenderer(Object.class, new BotonesTabla());
 
@@ -276,24 +265,24 @@ public class frmSecado extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Secado s : listaSecados) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaSecado = formato.format(s.getFecha());
-            
+
             model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
         jTableSecados.setModel(model);
         jTableSecados.setRowHeight(35);
     }
-    
+
     public void actualizarTablaHembra() {
         jTableSecados.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         ArrayList<Secado> listaSecados = dControladora.listarSecadosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Secado");
@@ -303,22 +292,22 @@ public class frmSecado extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Secado s : listaSecados) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaSecado = formato.format(s.getFecha());
-            
+
             model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
         jTableSecados.setModel(model);
         jTableSecados.setRowHeight(35);
     }
-    
+
     private void btnAltaSecadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaSecadoMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
@@ -339,12 +328,26 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
                     Secado secado = new Secado(eventoDeSanidad.getIdEventoDeSanidad(), fechaSecado, detalle, hembra, causa);
 
-                    if(dControladora.altaSecado(secado)){
+                    if (dControladora.altaSecado(secado)) {
+                        dControladora.agregarEventoDeSanidad(secado);
+
+                        EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Secada");
+                        EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), secado.getHembra().getIdBovino(), secado.getFecha());
+                        dControladora.altaEstadoBovinoFechaInicio(EB);
+
+                        EstadoDelBovino estadoProduccion = dControladora.buscarEstadoDelBovinoNombre("Produccion");
+                        EstadoBovino eBProduccion = new EstadoBovino();
+                        eBProduccion.setIdEstadoDelBovino(estadoProduccion.getIdEstadoDelBovino());
+                        eBProduccion.setIdBovino(hembra.getIdBovino());
+
+                        eBProduccion = dControladora.buscarUltimoEstadoBovinoNombre(eBProduccion);
+                        eBProduccion.setFechaFinalizacion(fechaSecado);
+                        dControladora.bajaEstadoBovino(eBProduccion);
+
                         JOptionPane.showMessageDialog(null, "Secado Ingresado Correctamente");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Secado No Ingresado Correctamente");
                         limpiarCajas(); // Limpiamos Caja de Texto
                     }
@@ -355,7 +358,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaSecadoMouseClicked
@@ -449,6 +452,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

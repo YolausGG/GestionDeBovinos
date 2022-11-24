@@ -47,6 +47,11 @@ public class dEstadoBovino {
 
         return persistencia.pEstadoBovino.buscarEstadoBovino(pEstadoBovino);
     }
+    
+    public static EstadoBovino buscarUltimoEstadoBovinoNombre(EstadoBovino pEstadoBovino) {
+
+        return persistencia.pEstadoBovino.buscarUltimoEstadoBovinoNombre(pEstadoBovino);
+    }
 
     public static ArrayList<EstadoBovino> listarEstadosBovino() {
 

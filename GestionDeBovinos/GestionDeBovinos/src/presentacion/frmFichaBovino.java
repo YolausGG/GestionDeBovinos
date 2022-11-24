@@ -4,8 +4,13 @@
  */
 package presentacion;
 
+import clases.Bovino;
+import clases.Enfermedad;
+import clases.EstadoBovino;
+import clases.EstadoDelBovino;
 import clases.Hembra;
 import clases.Macho;
+import clases.Padece;
 import dominio.dControladora;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -13,13 +18,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.System.Logger;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -39,11 +45,11 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPMadre = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtCaravanaMadre = new javax.swing.JTextField();
         lblFotoMadre = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        jPPadre = new javax.swing.JPanel();
         lblFotoPadre = new javax.swing.JLabel();
         txtCaravanaPadre = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -62,6 +68,22 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         btnArbol = new javax.swing.JButton();
         jpanelFoto = new javax.swing.JPanel();
         lblFotoBovino = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jEnfermedades = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableContagiosActivos = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jTratamientos = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableContagiosActivos1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEstadosActivos = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableProducciones = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 67, 114));
         setBorder(null);
@@ -72,12 +94,17 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(54, 67, 114));
 
-        jPanel2.setBackground(new java.awt.Color(55, 113, 137));
+        jPanel2.setBackground(new java.awt.Color(41, 96, 143));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel5.setBackground(new java.awt.Color(50, 123, 150));
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPMadre.setBackground(new java.awt.Color(41, 96, 143));
+        jPMadre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPMadre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMadreMouseClicked(evt);
+            }
+        });
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Madre:");
@@ -87,36 +114,41 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         lblFotoMadre.setBackground(new java.awt.Color(55, 113, 137));
         lblFotoMadre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPMadreLayout = new javax.swing.GroupLayout(jPMadre);
+        jPMadre.setLayout(jPMadreLayout);
+        jPMadreLayout.setHorizontalGroup(
+            jPMadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMadreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPMadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFotoMadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(jPMadreLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCaravanaMadre, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
+                        .addComponent(txtCaravanaMadre)))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jPMadreLayout.setVerticalGroup(
+            jPMadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPMadreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPMadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCaravanaMadre, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFotoMadre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addComponent(lblFotoMadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel5);
+        jPanel2.add(jPMadre);
 
-        jPanel6.setBackground(new java.awt.Color(50, 123, 150));
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPPadre.setBackground(new java.awt.Color(41, 96, 143));
+        jPPadre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPPadre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPPadreMouseClicked(evt);
+            }
+        });
 
         lblFotoPadre.setBackground(new java.awt.Color(55, 113, 137));
         lblFotoPadre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -126,36 +158,37 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Padre:");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPPadreLayout = new javax.swing.GroupLayout(jPPadre);
+        jPPadre.setLayout(jPPadreLayout);
+        jPPadreLayout.setHorizontalGroup(
+            jPPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPadreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPadreLayout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCaravanaPadre, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
+                        .addComponent(txtCaravanaPadre)))
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        jPPadreLayout.setVerticalGroup(
+            jPPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPPadreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCaravanaPadre, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addComponent(lblFotoPadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel6);
+        jPanel2.add(jPPadre);
 
-        jPanel3.setBackground(new java.awt.Color(55, 113, 137));
+        jPanel3.setBackground(new java.awt.Color(41, 96, 143));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setToolTipText("");
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Caravana:");
@@ -210,7 +243,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRazaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,13 +268,18 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoMachoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(55, 113, 137));
+        jPanel4.setBackground(new java.awt.Color(41, 96, 143));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnArbol.setText("Arbol Genealógico");
+        btnArbol.setText("Ver Arbol Genealógico");
+        btnArbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnArbolMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -249,21 +287,21 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnArbol)
+                .addComponent(btnArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpanelFoto.setBackground(new java.awt.Color(55, 113, 137));
+        jpanelFoto.setBackground(new java.awt.Color(41, 96, 143));
         jpanelFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblFotoBovino.setBackground(new java.awt.Color(55, 113, 137));
+        lblFotoBovino.setBackground(new java.awt.Color(133, 146, 158));
         lblFotoBovino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jpanelFotoLayout = new javax.swing.GroupLayout(jpanelFoto);
@@ -271,46 +309,217 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jpanelFotoLayout.setHorizontalGroup(
             jpanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelFotoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpanelFotoLayout.setVerticalGroup(
             jpanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelFotoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFotoBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel8.setBackground(new java.awt.Color(41, 96, 143));
+        jPanel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
+
+        jEnfermedades.setBackground(new java.awt.Color(41, 96, 143));
+        jEnfermedades.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTableContagiosActivos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableContagiosActivos);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Enfermedades Activas");
+
+        javax.swing.GroupLayout jEnfermedadesLayout = new javax.swing.GroupLayout(jEnfermedades);
+        jEnfermedades.setLayout(jEnfermedadesLayout);
+        jEnfermedadesLayout.setHorizontalGroup(
+            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jEnfermedadesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jEnfermedadesLayout.setVerticalGroup(
+            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEnfermedadesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel8.add(jEnfermedades);
+
+        jTratamientos.setBackground(new java.awt.Color(41, 96, 143));
+        jTratamientos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTableContagiosActivos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableContagiosActivos1);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Tratamientos Activas");
+
+        javax.swing.GroupLayout jTratamientosLayout = new javax.swing.GroupLayout(jTratamientos);
+        jTratamientos.setLayout(jTratamientosLayout);
+        jTratamientosLayout.setHorizontalGroup(
+            jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jTratamientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jTratamientosLayout.setVerticalGroup(
+            jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTratamientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel8.add(jTratamientos);
+
+        jPanel10.setBackground(new java.awt.Color(41, 96, 143));
+        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTableEstadosActivos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableEstadosActivos);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Estados Activos ");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel8.add(jPanel10);
+
+        jPanel5.setBackground(new java.awt.Color(41, 96, 143));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jTableProducciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTableProducciones);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpanelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpanelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -318,21 +527,46 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArbolMouseClicked
+
+        frmArbol frm = new frmArbol();
+        frm.caravana = txtCaravanaBovino.getText();
+        frm.setVisible(true);
+    }//GEN-LAST:event_btnArbolMouseClicked
+
+    private void jPMadreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMadreMouseClicked
+        
+        if (evt.getClickCount() >= 2 && !txtCaravanaMadre.getText().isEmpty()) {
+            frmFichaBovino frm = new frmFichaBovino();
+            frmBovino.caravana = txtCaravanaMadre.getText();
+            frmBovino.sexo = "Hembra";
+            frmInicio.jDkPEscritorio.add(frm);
+            frm.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jPMadreMouseClicked
+
+    private void jPPadreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPPadreMouseClicked
+        
+        if (evt.getClickCount() >= 2 && !txtCaravanaPadre.getText().isEmpty()) {
+            frmFichaBovino frm = new frmFichaBovino();
+            frmBovino.caravana = txtCaravanaPadre.getText();
+            frmBovino.sexo = "Macho";
+            frmInicio.jDkPEscritorio.add(frm);
+            frm.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jPPadreMouseClicked
 
     Integer seg = 0;
 
@@ -352,14 +586,84 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         }
     });
 
-
     public void cargarDatos() {
 
-        int ancho = jpanelFoto.getWidth();
-        int largo = jpanelFoto.getHeight();
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         lblTipoMachoText.setVisible(false);
         txtTipoMacho.setVisible(false);
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+
+        Bovino bovino = dControladora.buscarBovinoCaravana(frmBovino.caravana);
+
+        ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorBovino(bovino.getIdBovino());
+
+        model.addColumn("Estado");
+        model.addColumn("Fcha. Inicio");
+        model.addColumn("Fcha. Finaliación");
+
+        jTableEstadosActivos.setRowSorter(elQueOrdena);
+        for (EstadoBovino eb : listaEstadosBovino) {
+
+            EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
+
+            if (eb.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaInicio = formato.format(eb.getFechaInicio());
+
+                model.addRow(new Object[]{estadoDelBovino.getEstado(), fechaInicio, eb.getFechaFinalizacion()});
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaInicio = formato.format(eb.getFechaInicio());
+                String fechaFinalizacion = formato.format(eb.getFechaFinalizacion());
+
+                model.addRow(new Object[]{estadoDelBovino.getEstado(), fechaInicio, fechaFinalizacion});
+            }
+        }
+
+        jTableEstadosActivos.setModel(model);
+        jTableEstadosActivos.setRowHeight(25);
+
+        DefaultTableModel model1 = new DefaultTableModel();
+
+        ArrayList<Padece> listaContagios = dControladora.listarContagiosActivosPorBovino(bovino.getIdBovino());
+
+        model1.addColumn("Enfermedad");
+        model1.addColumn("Fcha. Inicio");
+        model1.addColumn("Fcha. Finaliación");
+
+        TableRowSorter<TableModel> elQueOrdena2 = new TableRowSorter<TableModel>(model1);
+
+        jTableContagiosActivos.setRowSorter(elQueOrdena2);
+        for (Padece p : listaContagios) {
+
+            Enfermedad enfermedad = dControladora.buscarEnfermedad(p.getIdEnfermedad());
+
+            if (p.getFechaFinalizacion() == null) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+
+                model1.addRow(new Object[]{enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
+
+            } else {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaPInicio = formato.format(p.getFechaInicio());
+                String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
+
+                model1.addRow(new Object[]{enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
+            }
+
+        }
+
+        jTableContagiosActivos.setModel(model1);
+        jTableContagiosActivos.setRowHeight(25);
+
         if (frmBovino.sexo.equals("Macho")) {
             Macho macho = dControladora.buscarMachoPorCaravanaCompleto(frmBovino.caravana);
 
@@ -372,46 +676,53 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             txtSexoBovino.setText("Macho");
             txtTipoMacho.setText(macho.getTipo());
 
-            try {
-                byte[] bi = macho.getFoto();
-                BufferedImage image = null;
-                ByteArrayInputStream in = new ByteArrayInputStream(bi);
-                image = ImageIO.read(in);
-                ImageIcon imgi = new ImageIcon(image.getScaledInstance(ancho, largo, Image.SCALE_DEFAULT));
-                lblFotoBovino.setIcon(imgi);
-
-            } catch (Exception ex) {
-                lblFotoBovino.setText("Sin foto");
-            }
-
-            if (macho.getMadre() != null) {
-                txtCaravanaMadre.setText(macho.getMadre().getCaravanaBovino());
+            if (macho.getFoto() != null) {
                 try {
-                    byte[] bi = macho.getMadre().getFoto();
-                    BufferedImage image = null;
+                    byte[] bi = macho.getFoto();
+                    BufferedImage image;
                     ByteArrayInputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoMadre.getWidth(), lblFotoMadre.getHeight(), Image.SCALE_DEFAULT));
-                    lblFotoMadre.setIcon(imgi);
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoBovino.getWidth(), lblFotoBovino.getHeight(), Image.SCALE_DEFAULT));
+                    lblFotoBovino.setIcon(imgi);
 
-                } catch (Exception ex) {
-                    lblFotoMadre.setText("Sin foto");
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
+            }
+            if (macho.getMadre() != null) {
+                txtCaravanaMadre.setText(macho.getMadre().getCaravanaBovino());
+                if (macho.getMadre().getFoto() != null) {
+                    try {
+                        byte[] bi = macho.getMadre().getFoto();
+                        BufferedImage image;
+                        ByteArrayInputStream in = new ByteArrayInputStream(bi);
+                        image = ImageIO.read(in);
+                        ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoMadre.getWidth(), lblFotoMadre.getHeight(), Image.SCALE_DEFAULT));
+                        lblFotoMadre.setIcon(imgi);
+
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+
+                    }
                 }
             }
             if (macho.getPadre() != null) {
                 txtCaravanaPadre.setText(macho.getPadre().getCaravanaBovino());
-                try {
-                    byte[] bi = macho.getPadre().getFoto();
-                    BufferedImage image = null;
-                    ByteArrayInputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoPadre.getWidth(), lblFotoPadre.getHeight(), Image.SCALE_DEFAULT));
-                    lblFotoPadre.setIcon(imgi);
+                if (macho.getPadre().getFoto() != null) {
+                    try {
+                        byte[] bi = macho.getPadre().getFoto();
+                        BufferedImage image;
+                        ByteArrayInputStream in = new ByteArrayInputStream(bi);
+                        image = ImageIO.read(in);
+                        ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoPadre.getWidth(), lblFotoPadre.getHeight(), Image.SCALE_DEFAULT));
+                        lblFotoPadre.setIcon(imgi);
 
-                } catch (Exception ex) {
-                    lblFotoPadre.setText("Sin foto");
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                 }
             }
+
         } else {
 
             Hembra hembra = dControladora.buscarHembraPorCaravanaCompleta(frmBovino.caravana);
@@ -421,63 +732,86 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             txtRazaBovino.setText(hembra.getRaza().getTipo());
             txtSexoBovino.setText("Hembra");
 
-            try {
-                byte[] bi = hembra.getFoto();
-                ByteArrayInputStream bis = new ByteArrayInputStream(hembra.getFoto());
-                BufferedImage image;
-                image = ImageIO.read(bis);
-                Image imgi = image.getScaledInstance(lblFotoBovino.getWidth(), lblFotoBovino.getHeight(), Image.SCALE_DEFAULT);
-                ImageIcon foto = new ImageIcon(imgi);
-                lblFotoBovino.setIcon(foto);
-
-            } catch (Exception ex) {
-                lblFotoBovino.setText("Sin foto");
-            }
-            if (hembra.getMadre() != null) {
-                txtCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
+            if (hembra.getFoto() != null) {
                 try {
-                    byte[] bi = hembra.getMadre().getFoto();
-                    BufferedImage image = null;
+                    byte[] bi = hembra.getFoto();
+                    BufferedImage image;
                     ByteArrayInputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoMadre.getWidth(), lblFotoMadre.getHeight(), Image.SCALE_DEFAULT));
-                    lblFotoMadre.setIcon(imgi);
+                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoBovino.getWidth(), lblFotoBovino.getHeight(), Image.SCALE_DEFAULT));
+                    lblFotoBovino.setIcon(imgi);
 
-                } catch (Exception ex) {
-                    lblFotoMadre.setText("Sin foto");
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
+            }
+
+            if (hembra.getMadre() != null) {
+                txtCaravanaMadre.setText(hembra.getMadre().getCaravanaBovino());
+                if (hembra.getMadre().getFoto() != null) {
+                    try {
+                        byte[] bi = hembra.getMadre().getFoto();
+                        BufferedImage image;
+                        ByteArrayInputStream in = new ByteArrayInputStream(bi);
+                        image = ImageIO.read(in);
+                        ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoMadre.getWidth(), lblFotoMadre.getHeight(), Image.SCALE_DEFAULT));
+                        lblFotoMadre.setIcon(imgi);
+
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                 }
             }
 
             if (hembra.getPadre() != null) {
                 txtCaravanaPadre.setText(hembra.getPadre().getCaravanaBovino());
-                try {
-                    byte[] bi = hembra.getPadre().getFoto();
-                    BufferedImage image = null;
-                    ByteArrayInputStream in = new ByteArrayInputStream(bi);
-                    image = ImageIO.read(in);
-                    ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoPadre.getWidth(), lblFotoPadre.getHeight(), Image.SCALE_DEFAULT));
-                    lblFotoPadre.setIcon(imgi);
+                if (hembra.getPadre().getFoto() != null) {
+                    try {
+                        byte[] bi = hembra.getPadre().getFoto();
+                        BufferedImage image;
+                        ByteArrayInputStream in = new ByteArrayInputStream(bi);
+                        image = ImageIO.read(in);
+                        ImageIcon imgi = new ImageIcon(image.getScaledInstance(lblFotoPadre.getWidth(), lblFotoPadre.getHeight(), Image.SCALE_DEFAULT));
+                        lblFotoPadre.setIcon(imgi);
 
-                } catch (Exception ex) {
-                    lblFotoPadre.setText("Sin foto");
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    }
                 }
             }
         }
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArbol;
+    private javax.swing.JPanel jEnfermedades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPMadre;
+    private javax.swing.JPanel jPPadre;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTableContagiosActivos;
+    private javax.swing.JTable jTableContagiosActivos1;
+    private javax.swing.JTable jTableEstadosActivos;
+    private javax.swing.JTable jTableProducciones;
+    private javax.swing.JPanel jTratamientos;
     private javax.swing.JPanel jpanelFoto;
     public static volatile javax.swing.JLabel lblFotoBovino;
     private javax.swing.JLabel lblFotoMadre;

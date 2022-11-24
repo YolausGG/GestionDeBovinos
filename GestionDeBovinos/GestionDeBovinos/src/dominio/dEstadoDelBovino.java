@@ -27,7 +27,12 @@ public class dEstadoDelBovino {
 
         return pEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
     }
+    
+    public static EstadoDelBovino buscarEstadoDelBovinoNombre(String estadoDelBovino){
 
+        return pEstadoDelBovino.buscarEstadoDelBovinoNombre(estadoDelBovino);
+    }
+    
     public static ArrayList<EstadoDelBovino> listarEstadosDelBovino(){
 
         return pEstadoDelBovino.listarEstadosDelBovino();

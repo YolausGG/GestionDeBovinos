@@ -15,6 +15,7 @@ public class pEstadoDelBovino {
     private static final String DELETE_ESTADODELBOVINO = "DELETE FROM ESTADODELBOVINO WHERE IDESTADODELBOVINO = ?";
     private static final String UPDATE_ESTADODELBOVINO = "UPDATE ESTADODELBOVINO SET ESTADO = ?  WHERE IDESTADODELBOVINO = ?";
     private static final String BUSCAR_ESTADODELBOVINO = "SELECT * FROM ESTADODELBOVINO WHERE IDESTADODELBOVINO = ? ";
+    private static final String BUSCAR_ESTADODELBOVINO_NOMBRE = "SELECT * FROM ESTADODELBOVINO WHERE ESTADO = ? ";
     private static final String LISTAR_ESTADOSDELBOVINO = "SELECT * FROM ESTADODELBOVINO";
 
     public static boolean altaEstadoDelBovino(EstadoDelBovino pEstadoDelBovino){
@@ -68,6 +69,25 @@ public class pEstadoDelBovino {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_ESTADODELBOVINO);
             statement.setInt(1, idEstadoDelBovino);
+
+            ResultSet resultado = statement.executeQuery();
+            EstadoDelBovino estadoDelBovino = null;
+            if(resultado.next()){
+                estadoDelBovino = getEstadoDelBovinoFromResultSet(resultado);
+            }
+            return estadoDelBovino;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static EstadoDelBovino buscarEstadoDelBovinoNombre(String pEstadoDelBovino){
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_ESTADODELBOVINO_NOMBRE);
+            statement.setString(1, pEstadoDelBovino);
 
             ResultSet resultado = statement.executeQuery();
             EstadoDelBovino estadoDelBovino = null;

@@ -1072,7 +1072,7 @@ public class frmArbolGenealogico extends javax.swing.JInternalFrame {
 
     private void cargarDatos() throws IOException {
 
-        this.setSize(frmPruebas.jDkPPruebas.getWidth(), frmPruebas.jDkPPruebas.getHeight());
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
 
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(caravana);
         ArrayList<Bovino> bovinos = dControladora.arbolGenealogicoNull(0, bovino, new ArrayList<Bovino>());

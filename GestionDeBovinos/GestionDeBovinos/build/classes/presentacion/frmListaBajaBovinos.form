@@ -124,6 +124,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtCaravanaHembra">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCaravanaHembraKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>

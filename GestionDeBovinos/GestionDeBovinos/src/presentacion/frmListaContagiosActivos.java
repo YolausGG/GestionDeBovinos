@@ -623,26 +623,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
     private void jTableContagiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableContagiosMouseClicked
 
-        columna = jTableContagios.getColumnModel().getColumnIndexAtX(evt.getX());
-        row = evt.getY() / jTableContagios.getRowHeight();
-        if (columna <= jTableContagios.getColumnCount() && columna >= 0 && row <= jTableContagios.getRowCount() && row >= 0) {
-
-            if (evt.getClickCount() == 2) {
-
-                int fila = jTableContagios.getSelectedRow();
-
-                if (fila != -1) {
-
-                    frmBovino.caravana = jTableContagios.getValueAt(fila, 0).toString();
-                    frmBovino.sexo = jTableContagios.getValueAt(fila, 3).toString();
-
-                    frmFichaBovino fichaBovino = new frmFichaBovino();
-                    frmInicio.jDkPEscritorio.add(fichaBovino);
-                    fichaBovino.setVisible(true);
-                }
-            }
-
-        }
+        
     }//GEN-LAST:event_jTableContagiosMouseClicked
 
     private void chkActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkActivoActionPerformed

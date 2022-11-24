@@ -74,6 +74,58 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
         jTableBajasLogicas.setRowHeight(25);
     }
 
+    public void listarBajasLogicasLIKE() {
+
+        jTableBajasLogicas.setDefaultRenderer(Object.class, new BotonesTabla());
+        DefaultTableModel model = new DefaultTableModel();
+
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableBajasLogicas.setRowSorter(elQueOrdena);
+        
+        
+        ArrayList<BajaLogicaBovino> listaBajasFinal = new ArrayList<>();
+
+        ArrayList<Bovino> listaBovinos = dControladora.buscarBovinoCaravanaLIKE(txtCaravanaHembra.getText());
+
+        ArrayList<BajaLogicaBovino> lista = dControladora.listarBajasLogicaBovinos();
+        
+        
+        for (BajaLogicaBovino bajaLogica : lista) {
+            
+            for (Bovino bovino : listaBovinos) {
+                if(bajaLogica.getBovino().getIdBovino() == bovino.getIdBovino()){
+                    listaBajasFinal.add(bajaLogica);
+                    listaBovinos.remove(bovino);
+                    break;
+                }
+                
+            }
+        }
+        
+        model.addColumn("ID Baja Lógica");
+        model.addColumn("Caravana");
+        model.addColumn("Fecha");
+        model.addColumn("Motivo");
+        model.addColumn("Alta Lógica");
+
+        for (BajaLogicaBovino b : listaBajasFinal) {
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaBaja = formato.format(b.getFechaBaja());
+
+            if (b.getMotivo().equals("Muerte")) {
+                model.addRow(new Object[]{b.getIdBajaBovino(), b.getBovino().getCaravanaBovino(), fechaBaja, b.getMotivo(), ""});
+            } else if (dControladora.buscarBovinoBajaLogicaCaravana(b.getBovino().getCaravanaBovino()) != null) {
+                model.addRow(new Object[]{b.getIdBajaBovino(), b.getBovino().getCaravanaBovino(), fechaBaja, b.getMotivo(), alta});
+            } else {
+                model.addRow(new Object[]{b.getIdBajaBovino(), b.getBovino().getCaravanaBovino(), fechaBaja, b.getMotivo(), ""});
+            }
+        }
+
+        jTableBajasLogicas.setModel(model);
+        jTableBajasLogicas.setRowHeight(25);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -118,6 +170,12 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
             jScrollPane1.setViewportView(jTableBajasLogicas);
 
             jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+            txtCaravanaHembra.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyReleased(java.awt.event.KeyEvent evt) {
+                    txtCaravanaHembraKeyReleased(evt);
+                }
+            });
 
             jLabel1.setText("Caravana Hembra");
 
@@ -304,7 +362,7 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
     }
 
     private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-       
+
         MessageFormat header = new MessageFormat("Reporte ");
         MessageFormat footer = new MessageFormat("Page {0, number, integer}");
 
@@ -325,6 +383,11 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
             System.out.println("Error: " + ex);
         }
     }//GEN-LAST:event_btnExportarMouseClicked
+
+    private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
+        
+        this.listarBajasLogicasLIKE();
+    }//GEN-LAST:event_txtCaravanaHembraKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

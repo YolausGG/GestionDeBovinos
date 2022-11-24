@@ -5,8 +5,6 @@
 package presentacion;
 
 import clases.Bovino;
-import clases.EstadoBovino;
-import clases.EstadoDelBovino;
 import clases.ExportarExcel;
 import clases.Macho;
 import dominio.dControladora;
@@ -18,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import persistencia.pEstadoDelBovino;
 
 public class frmListaBovinos extends javax.swing.JInternalFrame {
 

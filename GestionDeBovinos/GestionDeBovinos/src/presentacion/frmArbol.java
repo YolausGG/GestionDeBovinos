@@ -50,7 +50,6 @@ public class frmArbol extends javax.swing.JFrame {
     private void cargarDatos() throws IOException {
 
         
-
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(caravana);
         ArrayList<Bovino> bovinos = dControladora.arbolGenealogicoNull(0, bovino, new ArrayList<Bovino>());
 
@@ -473,26 +472,37 @@ public class frmArbol extends javax.swing.JFrame {
         txtR14 = new javax.swing.JTextField();
         txtTM14 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 51, 102));
 
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+
+        pBovino.setBackground(new java.awt.Color(0, 51, 102));
         pBovino.setLayout(new java.awt.GridBagLayout());
 
-        jP0.setBackground(new java.awt.Color(255, 255, 255));
+        jP0.setBackground(new java.awt.Color(255, 204, 153));
         jP0.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jP0.setForeground(new java.awt.Color(255, 255, 255));
         jP0.setAlignmentX(1.0F);
         jP0.setAlignmentY(1.0F);
         jP0.setName(""); // NOI18N
         jP0.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN.setEditable(false);
+        txtFN.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN.setForeground(new java.awt.Color(0, 0, 0));
 
         txtCB.setEditable(false);
+        txtCB.setBackground(new java.awt.Color(255, 255, 255));
+        txtCB.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR.setEditable(false);
+        txtR.setBackground(new java.awt.Color(255, 255, 255));
+        txtR.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM.setEditable(false);
+        txtTM.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP0Layout = new javax.swing.GroupLayout(jP0);
         jP0.setLayout(jP0Layout);
@@ -515,16 +525,16 @@ public class frmArbol extends javax.swing.JFrame {
             jP0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP0Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtCB)
+                .addComponent(txtCB, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFN)
+                .addComponent(txtFN, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jP0Layout.createSequentialGroup()
-                        .addComponent(txtR)
+                        .addComponent(txtR, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTM))
-                    .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtTM)))
                 .addContainerGap())
         );
 
@@ -535,24 +545,31 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pBovino.add(jP0, gridBagConstraints);
 
+        jPanel17.setBackground(new java.awt.Color(0, 51, 102));
         jPanel17.setLayout(new java.awt.GridBagLayout());
 
-        jP1.setBackground(new java.awt.Color(255, 255, 255));
+        jP1.setBackground(new java.awt.Color(255, 204, 153));
         jP1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP1.setAlignmentX(1.0F);
         jP1.setAlignmentY(1.0F);
         jP1.setName(""); // NOI18N
         jP1.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN1.setEditable(false);
+        txtFN1.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN1.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC1.setEditable(false);
+        txtC1.setBackground(new java.awt.Color(255, 255, 255));
+        txtC1.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR1.setEditable(false);
+        txtR1.setBackground(new java.awt.Color(255, 255, 255));
+        txtR1.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM1.setEditable(false);
+        txtTM1.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM1.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP1Layout = new javax.swing.GroupLayout(jP1);
         jP1.setLayout(jP1Layout);
@@ -595,22 +612,28 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel17.add(jP1, gridBagConstraints);
 
-        jP8.setBackground(new java.awt.Color(255, 255, 255));
+        jP8.setBackground(new java.awt.Color(255, 204, 153));
         jP8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP8.setAlignmentX(1.0F);
         jP8.setAlignmentY(1.0F);
         jP8.setName(""); // NOI18N
         jP8.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN8.setEditable(false);
+        txtFN8.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN8.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC8.setEditable(false);
+        txtC8.setBackground(new java.awt.Color(255, 255, 255));
+        txtC8.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR8.setEditable(false);
+        txtR8.setBackground(new java.awt.Color(255, 255, 255));
+        txtR8.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM8.setEditable(false);
+        txtTM8.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM8.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP8Layout = new javax.swing.GroupLayout(jP8);
         jP8.setLayout(jP8Layout);
@@ -653,26 +676,33 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel17.add(jP8, gridBagConstraints);
 
+        jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setName(""); // NOI18N
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jP2.setBackground(new java.awt.Color(255, 255, 255));
+        jP2.setBackground(new java.awt.Color(255, 204, 153));
         jP2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP2.setAlignmentX(1.0F);
         jP2.setAlignmentY(1.0F);
         jP2.setName(""); // NOI18N
         jP2.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN2.setEditable(false);
+        txtFN2.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN2.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC2.setEditable(false);
+        txtC2.setBackground(new java.awt.Color(255, 255, 255));
+        txtC2.setForeground(new java.awt.Color(0, 0, 0));
         txtC2.setName(""); // NOI18N
 
         txtR2.setEditable(false);
+        txtR2.setBackground(new java.awt.Color(255, 255, 255));
+        txtR2.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM2.setEditable(false);
+        txtTM2.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM2.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP2Layout = new javax.swing.GroupLayout(jP2);
         jP2.setLayout(jP2Layout);
@@ -715,22 +745,28 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jP2, gridBagConstraints);
 
-        jP5.setBackground(new java.awt.Color(255, 255, 255));
+        jP5.setBackground(new java.awt.Color(255, 204, 153));
         jP5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP5.setAlignmentX(1.0F);
         jP5.setAlignmentY(1.0F);
         jP5.setName(""); // NOI18N
         jP5.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN5.setEditable(false);
+        txtFN5.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN5.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC5.setEditable(false);
+        txtC5.setBackground(new java.awt.Color(255, 255, 255));
+        txtC5.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR5.setEditable(false);
+        txtR5.setBackground(new java.awt.Color(255, 255, 255));
+        txtR5.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM5.setEditable(false);
+        txtTM5.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM5.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP5Layout = new javax.swing.GroupLayout(jP5);
         jP5.setLayout(jP5Layout);
@@ -773,22 +809,28 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jP5, gridBagConstraints);
 
-        jP9.setBackground(new java.awt.Color(255, 255, 255));
+        jP9.setBackground(new java.awt.Color(255, 204, 153));
         jP9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP9.setAlignmentX(1.0F);
         jP9.setAlignmentY(1.0F);
         jP9.setName(""); // NOI18N
         jP9.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN9.setEditable(false);
+        txtFN9.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN9.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC9.setEditable(false);
+        txtC9.setBackground(new java.awt.Color(255, 255, 255));
+        txtC9.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR9.setEditable(false);
+        txtR9.setBackground(new java.awt.Color(255, 255, 255));
+        txtR9.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM9.setEditable(false);
+        txtTM9.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM9.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP9Layout = new javax.swing.GroupLayout(jP9);
         jP9.setLayout(jP9Layout);
@@ -831,22 +873,28 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jP9, gridBagConstraints);
 
-        jP12.setBackground(new java.awt.Color(255, 255, 255));
+        jP12.setBackground(new java.awt.Color(255, 204, 153));
         jP12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP12.setAlignmentX(1.0F);
         jP12.setAlignmentY(1.0F);
         jP12.setName(""); // NOI18N
         jP12.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN12.setEditable(false);
+        txtFN12.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN12.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC12.setEditable(false);
+        txtC12.setBackground(new java.awt.Color(255, 255, 255));
+        txtC12.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR12.setEditable(false);
+        txtR12.setBackground(new java.awt.Color(255, 255, 255));
+        txtR12.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM12.setEditable(false);
+        txtTM12.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM12.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP12Layout = new javax.swing.GroupLayout(jP12);
         jP12.setLayout(jP12Layout);
@@ -889,24 +937,31 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jP12, gridBagConstraints);
 
+        pTerceraGeneracion.setBackground(new java.awt.Color(0, 51, 102));
         pTerceraGeneracion.setPreferredSize(new java.awt.Dimension(720, 140));
         pTerceraGeneracion.setLayout(new java.awt.GridBagLayout());
 
-        jP3.setBackground(new java.awt.Color(255, 255, 255));
+        jP3.setBackground(new java.awt.Color(255, 204, 153));
         jP3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP3.setName(""); // NOI18N
         jP3.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN3.setEditable(false);
+        txtFN3.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN3.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC3.setEditable(false);
+        txtC3.setBackground(new java.awt.Color(255, 255, 255));
+        txtC3.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR3.setEditable(false);
+        txtR3.setBackground(new java.awt.Color(255, 255, 255));
+        txtR3.setForeground(new java.awt.Color(0, 0, 0));
         txtR3.setActionCommand("<Not Set>");
 
         txtTM3.setEditable(false);
+        txtTM3.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM3.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP3Layout = new javax.swing.GroupLayout(jP3);
         jP3.setLayout(jP3Layout);
@@ -949,21 +1004,27 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP3, gridBagConstraints);
 
-        jP4.setBackground(new java.awt.Color(255, 255, 255));
+        jP4.setBackground(new java.awt.Color(255, 204, 153));
         jP4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP4.setName(""); // NOI18N
         jP4.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN4.setEditable(false);
+        txtFN4.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN4.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC4.setEditable(false);
+        txtC4.setBackground(new java.awt.Color(255, 255, 255));
+        txtC4.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR4.setEditable(false);
-        txtR4.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        txtR4.setBackground(new java.awt.Color(255, 255, 255));
+        txtR4.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM4.setEditable(false);
+        txtTM4.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM4.setForeground(new java.awt.Color(0, 0, 0));
+        txtTM4.setToolTipText("");
 
         javax.swing.GroupLayout jP4Layout = new javax.swing.GroupLayout(jP4);
         jP4.setLayout(jP4Layout);
@@ -977,7 +1038,7 @@ public class frmArbol extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP4Layout.createSequentialGroup()
                         .addGroup(jP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtR4)
-                            .addComponent(txtTM4))
+                            .addComponent(txtTM4, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblFoto4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1006,20 +1067,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP4, gridBagConstraints);
 
-        jP6.setBackground(new java.awt.Color(255, 255, 255));
+        jP6.setBackground(new java.awt.Color(255, 204, 153));
         jP6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP6.setName(""); // NOI18N
         jP6.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN6.setEditable(false);
+        txtFN6.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN6.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC6.setEditable(false);
+        txtC6.setBackground(new java.awt.Color(255, 255, 255));
+        txtC6.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR6.setEditable(false);
+        txtR6.setBackground(new java.awt.Color(255, 255, 255));
+        txtR6.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM6.setEditable(false);
+        txtTM6.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM6.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP6Layout = new javax.swing.GroupLayout(jP6);
         jP6.setLayout(jP6Layout);
@@ -1062,20 +1129,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP6, gridBagConstraints);
 
-        jP7.setBackground(new java.awt.Color(255, 255, 255));
+        jP7.setBackground(new java.awt.Color(255, 204, 153));
         jP7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP7.setName(""); // NOI18N
         jP7.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN7.setEditable(false);
+        txtFN7.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN7.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC7.setEditable(false);
+        txtC7.setBackground(new java.awt.Color(255, 255, 255));
+        txtC7.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR7.setEditable(false);
+        txtR7.setBackground(new java.awt.Color(255, 255, 255));
+        txtR7.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM7.setEditable(false);
+        txtTM7.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM7.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP7Layout = new javax.swing.GroupLayout(jP7);
         jP7.setLayout(jP7Layout);
@@ -1118,20 +1191,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP7, gridBagConstraints);
 
-        jP10.setBackground(new java.awt.Color(255, 255, 255));
+        jP10.setBackground(new java.awt.Color(255, 204, 153));
         jP10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP10.setName(""); // NOI18N
         jP10.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN10.setEditable(false);
+        txtFN10.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN10.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC10.setEditable(false);
+        txtC10.setBackground(new java.awt.Color(255, 255, 255));
+        txtC10.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR10.setEditable(false);
+        txtR10.setBackground(new java.awt.Color(255, 255, 255));
+        txtR10.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM10.setEditable(false);
+        txtTM10.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM10.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP10Layout = new javax.swing.GroupLayout(jP10);
         jP10.setLayout(jP10Layout);
@@ -1174,20 +1253,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP10, gridBagConstraints);
 
-        jP11.setBackground(new java.awt.Color(255, 255, 255));
+        jP11.setBackground(new java.awt.Color(255, 204, 153));
         jP11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP11.setName(""); // NOI18N
         jP11.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN11.setEditable(false);
+        txtFN11.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN11.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC11.setEditable(false);
+        txtC11.setBackground(new java.awt.Color(255, 255, 255));
+        txtC11.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR11.setEditable(false);
+        txtR11.setBackground(new java.awt.Color(255, 255, 255));
+        txtR11.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM11.setEditable(false);
+        txtTM11.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM11.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP11Layout = new javax.swing.GroupLayout(jP11);
         jP11.setLayout(jP11Layout);
@@ -1230,20 +1315,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP11, gridBagConstraints);
 
-        jP13.setBackground(new java.awt.Color(255, 255, 255));
+        jP13.setBackground(new java.awt.Color(255, 204, 153));
         jP13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP13.setName(""); // NOI18N
         jP13.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN13.setEditable(false);
+        txtFN13.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN13.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC13.setEditable(false);
+        txtC13.setBackground(new java.awt.Color(255, 255, 255));
+        txtC13.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR13.setEditable(false);
+        txtR13.setBackground(new java.awt.Color(255, 255, 255));
+        txtR13.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM13.setEditable(false);
+        txtTM13.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM13.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP13Layout = new javax.swing.GroupLayout(jP13);
         jP13.setLayout(jP13Layout);
@@ -1286,20 +1377,26 @@ public class frmArbol extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         pTerceraGeneracion.add(jP13, gridBagConstraints);
 
-        jP14.setBackground(new java.awt.Color(255, 255, 255));
+        jP14.setBackground(new java.awt.Color(255, 204, 153));
         jP14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jP14.setName(""); // NOI18N
         jP14.setPreferredSize(new java.awt.Dimension(180, 140));
 
-        lblFoto14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         txtFN14.setEditable(false);
+        txtFN14.setBackground(new java.awt.Color(255, 255, 255));
+        txtFN14.setForeground(new java.awt.Color(0, 0, 0));
 
         txtC14.setEditable(false);
+        txtC14.setBackground(new java.awt.Color(255, 255, 255));
+        txtC14.setForeground(new java.awt.Color(0, 0, 0));
 
         txtR14.setEditable(false);
+        txtR14.setBackground(new java.awt.Color(255, 255, 255));
+        txtR14.setForeground(new java.awt.Color(0, 0, 0));
 
         txtTM14.setEditable(false);
+        txtTM14.setBackground(new java.awt.Color(255, 255, 255));
+        txtTM14.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jP14Layout = new javax.swing.GroupLayout(jP14);
         jP14.setLayout(jP14Layout);
@@ -1349,7 +1446,7 @@ public class frmArbol extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pBovino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pTerceraGeneracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1359,13 +1456,13 @@ public class frmArbol extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pBovino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pTerceraGeneracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pTerceraGeneracion, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1373,17 +1470,11 @@ public class frmArbol extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

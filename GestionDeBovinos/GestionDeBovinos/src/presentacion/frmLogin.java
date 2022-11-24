@@ -10,7 +10,6 @@ import persistencia.pLogin;
  *
  * @author nico_
  */
-
 public class frmLogin extends javax.swing.JFrame {
 
     /**
@@ -50,9 +49,15 @@ public class frmLogin extends javax.swing.JFrame {
         txtPassword.setBackground(new java.awt.Color(204, 204, 204));
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPassword.setBorder(null);
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 222, 250, 40));
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btnLogin.png"))); // NOI18N
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
@@ -69,19 +74,28 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-       
+
         String Password = String.valueOf(txtPassword.getPassword());
         String nombreUsuario = txtNombreUsuario.getText();
-        
-       pLogin.validarUsuario(nombreUsuario, Password);
-       
-       this.dispose(); // Cierra Formulario Login
-    }                                     
-    
+
+        pLogin.validarUsuario(nombreUsuario, Password);
+
+        this.dispose(); // Cierra Formulario Login
+    }
+
     /*public void validarUsuario(){ 
     }//GEN-LAST:event_btnLoginMouseClicked
-
+    */
     
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        String Password = String.valueOf(txtPassword.getPassword());
+        String nombreUsuario = txtNombreUsuario.getText();
+
+        pLogin.validarUsuario(nombreUsuario, Password);
+
+        this.dispose(); // Cierra Formulario Login
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
     /**
      * @param args the command line arguments
      */

@@ -632,26 +632,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
     private void jTableBovinosPorEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBovinosPorEstadoMouseClicked
 
-        columna = jTableBovinosPorEstado.getColumnModel().getColumnIndexAtX(evt.getX());
-        row = evt.getY() / jTableBovinosPorEstado.getRowHeight();
-        if (columna <= jTableBovinosPorEstado.getColumnCount() && columna >= 0 && row <= jTableBovinosPorEstado.getRowCount() && row >= 0) {
-
-            if (evt.getClickCount() == 2) {
-
-                int fila = jTableBovinosPorEstado.getSelectedRow();
-
-                if (fila != -1) {
-
-                    frmBovino.caravana = jTableBovinosPorEstado.getValueAt(fila, 0).toString();
-                    frmBovino.sexo = jTableBovinosPorEstado.getValueAt(fila, 3).toString();
-
-                    frmFichaBovino fichaBovino = new frmFichaBovino();
-                    frmInicio.jDkPEscritorio.add(fichaBovino);
-                    fichaBovino.setVisible(true);
-                }
-            }
-
-        }
+        
     }//GEN-LAST:event_jTableBovinosPorEstadoMouseClicked
 
 

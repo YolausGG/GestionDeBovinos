@@ -7,6 +7,8 @@ package presentacion;
 import clases.BotonesTabla;
 import clases.Bovino;
 import clases.Enfermedad;
+import clases.EstadoBovino;
+import clases.EstadoDelBovino;
 import clases.Padece;
 import dominio.dControladora;
 import java.text.ParseException;
@@ -19,9 +21,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.pEnfermedad;
-import static presentacion.frmBovino.caravana;
-import static presentacion.frmBovino.sexo;
-import static presentacion.frmEstadoConBovino.estadoBovino;
 import static presentacion.frmInicio.jDkPEscritorio;
 
 /**
@@ -131,15 +130,20 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
             jPanel2.setBackground(new java.awt.Color(133, 146, 158));
             jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
             jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             jLabel2.setText("Caravana:");
+            jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 190, 30));
+            jPanel2.add(jDateFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 160, 30));
+            jPanel2.add(jDateFechaFinalizacionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 160, 30));
 
             txtCaravanaBovino.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyReleased(java.awt.event.KeyEvent evt) {
                     txtCaravanaBovinoKeyReleased(evt);
                 }
             });
+            jPanel2.add(txtCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 140, 30));
 
             btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
             btnBuscarBovino.setText("Buscar");
@@ -148,18 +152,22 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
                     btnBuscarBovinoMouseClicked(evt);
                 }
             });
+            jPanel2.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, 30));
 
             lblRCaravanaB.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
             lblRCaravanaB.setForeground(new java.awt.Color(0, 0, 0));
             lblRCaravanaB.setText("Requerido");
+            jPanel2.add(lblRCaravanaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 130, 30));
 
             lblRFechaInicioE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
             lblRFechaInicioE.setForeground(new java.awt.Color(0, 0, 0));
             lblRFechaInicioE.setText("Requerido");
+            jPanel2.add(lblRFechaInicioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 140, 30));
 
             lblREnfermedad.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
             lblREnfermedad.setForeground(new java.awt.Color(0, 0, 0));
             lblREnfermedad.setText("Requerido");
+            jPanel2.add(lblREnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 30));
 
             btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
             btnIngresar.setText("Ingresar");
@@ -168,81 +176,19 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
                     btnIngresarMouseClicked(evt);
                 }
             });
+            jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 237, 110, 30));
 
             jLabel8.setText("Enfermedad:");
+            jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 90, 30));
 
             jLabel9.setText("Fecha Finalizacion de Enfermedad:");
+            jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 190, 30));
 
             cboEnfermedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+            jPanel2.add(cboEnfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 180, 30));
 
             jLabel4.setText("Fecha Comienzo de Enfermedad:");
-
-            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-            jPanel2.setLayout(jPanel2Layout);
-            jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(90, 90, 90)
-                    .addComponent(jLabel4))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(btnBuscarBovino)
-                    .addGap(55, 55, 55)
-                    .addComponent(jDateFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(lblRCaravanaB, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(130, 130, 130)
-                    .addComponent(lblRFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(jLabel8)
-                    .addGap(183, 183, 183)
-                    .addComponent(jLabel9))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(cboEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(70, 70, 70)
-                    .addComponent(jDateFechaFinalizacionE, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(lblREnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addComponent(btnIngresar))
-            );
-            jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4))
-                    .addGap(10, 10, 10)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscarBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblRCaravanaB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblRFechaInicioE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(20, 20, 20)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel9))
-                    .addGap(14, 14, 14)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cboEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateFechaFinalizacionE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblREnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(21, 21, 21))
-            );
+            jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 180, 30));
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -251,17 +197,17 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -404,6 +350,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
     public static String enfermedad = null;
+
     private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
         if (evt.getClickCount() == 2) {
@@ -614,6 +561,12 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
                     if (resultado) {
 
+                        EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Enfermo");
+
+                        EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), padece.getIdBovino(), padece.getFechaInicio());
+
+                        dControladora.altaEstadoBovinoFechaInicio(EB);
+                        
                         JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Bovino Enfermo");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto

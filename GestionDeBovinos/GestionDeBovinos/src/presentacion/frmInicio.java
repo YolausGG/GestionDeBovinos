@@ -423,7 +423,7 @@ public class frmInicio extends javax.swing.JFrame {
 
         MenuPrincipal.add(jPanelProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 216, -1));
 
-        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 680));
+        MenuPlegable.add(MenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 690));
 
         MenuSanidad.setBackground(new java.awt.Color(54, 67, 114));
         MenuSanidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -710,6 +710,8 @@ public class frmInicio extends javax.swing.JFrame {
         MenuEstadoBovino.add(jPanelEstadoConBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 50));
 
         MenuPlegable.add(MenuEstadoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 150));
+
+        jDkPEscritorio.setBackground(new java.awt.Color(54, 67, 114));
 
         javax.swing.GroupLayout jDkPEscritorioLayout = new javax.swing.GroupLayout(jDkPEscritorio);
         jDkPEscritorio.setLayout(jDkPEscritorioLayout);

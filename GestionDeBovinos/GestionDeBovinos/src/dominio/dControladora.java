@@ -6,7 +6,6 @@ import clases.Raza;
 import clases.EstadoDelBovino;
 import clases.Enfermedad;
 import clases.Bovino;
-import clases.BovinoPosicion;
 import clases.Celo;
 import clases.EstadoBovino;
 import clases.Produccion;
@@ -27,69 +26,14 @@ import java.util.ArrayList;
 
 public class dControladora {
 
-    private static ArrayList<Bovino> listaBovinos = new ArrayList<>();
-    private static ArrayList<Tratamiento> listaTratamientos;
-    private static ArrayList<Enfermedad> listaEnfermedades;
-    private static ArrayList<Produccion> listaProduccionesHembra;
-    private static ArrayList<EstadoDelBovino> listaEstadosDelBovino;
+    
     private static ArrayList<EventoDeSanidad> listaEventosDeSanidad = new ArrayList<>();
     private static ArrayList<Raza> listaRazas;
 
     // <editor-fold defaultstate="collapsed" desc="Cargar Listas">
-    public static void cargarBovinos() {
-
-        for (Macho macho : dMacho.listarMachos()) {
-
-            listaBovinos.add(macho);
-        }
-        for (Hembra hembra : dHembra.listarHembras()) {
-
-            listaBovinos.add(hembra);
-        }
-
-    }
-
-    public static void agregarBovino(Bovino pBovino) {
-
-        listaBovinos.add(pBovino);
-    }
-
+    
     public static void cargarRazas() {
         listaRazas = dRaza.listarRazas();
-    }
-
-    public static void cargarTratamientos() {
-        listaTratamientos = dTratamiento.listarTratamientos();
-    }
-
-    public static void agregarTrataniento(Tratamiento pTratamiento) {
-
-        listaTratamientos.add(pTratamiento);
-    }
-
-    public static void cargarEnfermedades() {
-        listaEnfermedades = dEnfermedad.listarEnfermedades();
-    }
-
-    public static void agregarEnfermedad(Enfermedad penfermedad) {
-
-        listaEnfermedades.add(penfermedad);
-    }
-
-    /*public static void cargarProducciones(){
-        listaProducciones = dProduccion.listarProducciones();
-    }*/
- /*public static void agregarProduccion(Produccion pProduccion){
-        
-        listaProducciones.add(pProduccion);
-    }*/
-    public static void cargarEstadosDelBovino() {
-        listaEstadosDelBovino = dEstadoDelBovino.listarEstadosDelBovino();
-    }
-
-    public static void agregarEstadoDelBovino(EstadoDelBovino pEestadoDelBovino) {
-
-        listaEstadosDelBovino.add(pEestadoDelBovino);
     }
 
     public static void cargarEventosDeSanidad() {
@@ -125,18 +69,28 @@ public class dControladora {
 
         listaEventosDeSanidad.add(pEventoDeSanidad);
     }
+    
+    public static void modificarEventoDeSanidad(EventoDeSanidad pEventoDeSanidad) {
+
+        for (EventoDeSanidad eventoDeSanidad : listaEventosDeSanidad) {
+            
+            if(eventoDeSanidad.getIdEventoDeSanidad() == pEventoDeSanidad.getIdEventoDeSanidad()){
+                listaEventosDeSanidad.remove(eventoDeSanidad);
+                listaEventosDeSanidad.add(pEventoDeSanidad);
+                break;
+            }
+        }
+        
+    }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Devolver Listas">
     public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
 
         return listaEventosDeSanidad;
     }
 
-    public static ArrayList<Enfermedad> listarEnfermedads() {
-
-        return listaEnfermedades;
-    }
 
     public static ArrayList<Bovino> listarBovinos() {
 
@@ -151,10 +105,6 @@ public class dControladora {
             listaBovinos.add(hembra);
         }
         return listaBovinos;
-    }
-
-    public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
-        return listaEstadosDelBovino;
     }
 
     public static ArrayList<Raza> listarRazas() {
@@ -297,13 +247,19 @@ public class dControladora {
 
         return dEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
     }
+    
+    public static EstadoDelBovino buscarEstadoDelBovinoNombre(String pEstadoDelBovino) {
+
+        return dEstadoDelBovino.buscarEstadoDelBovinoNombre(pEstadoDelBovino);
+    }
 
     public static ArrayList<EstadoDelBovino> listarEstadoDelBovino() {
 
         return dEstadoDelBovino.listarEstadosDelBovino();
     }
 
-    // </editor-fold> 
+    // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Aborto">
     public static boolean altaAborto(Aborto pAborto) {
 
@@ -615,6 +571,11 @@ public class dControladora {
         return dEstadoBovino.buscarEstadoBovino(pEstadoBovino);
     }
 
+    public static EstadoBovino buscarUltimoEstadoBovinoNombre(EstadoBovino pEstadoBovino) {
+
+        return dEstadoBovino.buscarUltimoEstadoBovinoNombre(pEstadoBovino);
+    }
+    
     public static ArrayList<EstadoBovino> listarEstadosBovino() {
 
         return dEstadoBovino.listarEstadosBovino();
@@ -771,6 +732,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Macho">
     public static boolean altaMacho(Macho pMacho) {
 
@@ -960,6 +922,7 @@ public class dControladora {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Tratamiento">
     public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
 
@@ -1011,8 +974,7 @@ public class dControladora {
     }
     // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Copia">
-    // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Consanguinidad">
     public static ArrayList<Bovino> parentescos_Hermanos_Sobrinos_SobrinoNieto(int contador, Bovino bovino, ArrayList<Bovino> hijos) {
 
@@ -1063,7 +1025,7 @@ public class dControladora {
 
     public static ArrayList<Bovino> arbolGenealogicoNull(int contador, Bovino bovino, ArrayList<Bovino> arbolGenealogico) {
 
-        System.out.println("Caravana: "+bovino);
+        
         ArrayList<Bovino> bovinosFinal = new ArrayList();
 
         if(bovino != null){

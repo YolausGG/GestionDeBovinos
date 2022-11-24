@@ -324,7 +324,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         for (EventoDeSanidad e : listaEventosDeSanidad) {
 
-            switch (e.getClass().getSimpleName().toString()) {
+            switch (e.getClass().getSimpleName()) {
                 case "Inseminacion":
                     Inseminacion ins = (Inseminacion) e;
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -836,8 +836,8 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
                 if (fila != -1) {
 
-                    frmBovino.caravana = jTableEventosDeSanidad.getValueAt(fila, 0).toString();
-                    frmBovino.sexo = jTableEventosDeSanidad.getValueAt(fila, 3).toString();
+                    frmBovino.caravana = jTableEventosDeSanidad.getValueAt(fila, 2).toString();
+                    frmBovino.sexo = "Hembra";
 
                     frmFichaBovino fichaBovino = new frmFichaBovino();
                     frmInicio.jDkPEscritorio.add(fichaBovino);
