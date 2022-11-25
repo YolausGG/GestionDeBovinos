@@ -15,7 +15,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -361,7 +360,7 @@ public class frmArbol extends javax.swing.JFrame {
                 try {
                     cargarDatos();
                 } catch (IOException ex) {
-                    Logger.getLogger(frmArbolGenealogico.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(frmArbol.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 tm1.stop();
 

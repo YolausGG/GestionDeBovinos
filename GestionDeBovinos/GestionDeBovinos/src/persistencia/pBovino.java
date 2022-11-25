@@ -286,6 +286,31 @@ public class pBovino {
             return null;
         }
     }
+    
+    public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana) {
+        
+        String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
+            + " FROM BOVINO B"
+            + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%'";
+        
+        ArrayList<Bovino> listaBovinos = new ArrayList<>();
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareCall(consulta);
+           
+            ResultSet resultado = statement.executeQuery();
+            Bovino bovino;
+            
+            while (resultado.next()) {
+                bovino = getBovinoFromResultSet(resultado);
+                listaBovinos.add(bovino);
+            }
+            return listaBovinos;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static ArrayList<Bovino> listarBovinos() {
 

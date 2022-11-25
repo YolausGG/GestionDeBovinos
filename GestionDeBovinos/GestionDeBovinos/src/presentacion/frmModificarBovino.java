@@ -219,21 +219,27 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Caravana:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, 30));
         jPanel1.add(txtModificarCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 210, 30));
 
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
         lblTipo.setText("Tipo:");
         jPanel1.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 90, 30));
         jPanel1.add(jDateFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 210, 30));
 
         grupoBotones.add(chkHembra);
+        chkHembra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkHembra.setForeground(new java.awt.Color(255, 255, 255));
         chkHembra.setText("Hembra");
+        chkHembra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkHembra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chkHembraMouseClicked(evt);
@@ -242,7 +248,10 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         jPanel1.add(chkHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
         grupoBotones.add(chkMacho);
+        chkMacho.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkMacho.setForeground(new java.awt.Color(255, 255, 255));
         chkMacho.setText("Macho");
+        chkMacho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chkMachoMouseClicked(evt);
@@ -251,31 +260,44 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         jPanel1.add(chkMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 202, -1, -1));
 
         cboPadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cboPadre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(cboPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 72, 220, 30));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha Nacimiento:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 120, 30));
 
         cboMadre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cboMadre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(cboMadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(679, 72, 220, 30));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Padre:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 42, 70, 30));
 
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "En Pie", "Congelado" }));
+        cboTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(cboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 210, 30));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Madre:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(679, 42, 80, 30));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Raza:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 70, 30));
 
         cboRaza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cboRaza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(cboRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 210, 30));
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarMouseClicked(evt);
@@ -283,23 +305,30 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, 30));
 
+        lblRFechaNacimiento.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaNacimiento.setText("Requerido");
         jPanel1.add(lblRFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 90, 30));
 
+        lblRRaza.setForeground(new java.awt.Color(255, 51, 51));
         lblRRaza.setText("Requerido");
         jPanel1.add(lblRRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 90, 30));
 
+        lblRTipoMacho.setForeground(new java.awt.Color(255, 51, 51));
         lblRTipoMacho.setText("Requerido");
         jPanel1.add(lblRTipoMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 90, 30));
 
+        lblRCaravana.setForeground(new java.awt.Color(255, 51, 51));
         lblRCaravana.setText("Requerido");
         jPanel1.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 90, 30));
 
+        lblRNumeroPedigree.setForeground(new java.awt.Color(255, 51, 51));
         lblRNumeroPedigree.setText("Requerido");
         jPanel1.add(lblRNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 90, 30));
 
         chkPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkPedigree.setForeground(new java.awt.Color(255, 255, 255));
         chkPedigree.setText("Pedigree");
+        chkPedigree.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkPedigree.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkPedigreeActionPerformed(evt);
@@ -309,11 +338,13 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         jPanel1.add(txtNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 210, 30));
 
         lblNumeroPedigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNumeroPedigree.setForeground(new java.awt.Color(255, 255, 255));
         lblNumeroPedigree.setText("Número de Pedigree por ARU:");
         jPanel1.add(lblNumeroPedigree, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 210, 30));
 
         btnBuscarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarFoto.setText("Buscar Foto");
+        btnBuscarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarFotoMouseClicked(evt);
@@ -325,6 +356,7 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         jPanel1.add(txtRutaFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 152, 210, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Ruta Foto:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 122, 90, 30));
         jPanel1.add(lblFotoBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 220, 110));
@@ -337,7 +369,7 @@ public class frmModificarBovino extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
         );
 
         pack();

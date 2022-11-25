@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarInseminacion.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarSecado.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarTacto.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmModificarParto.java</file>
-            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmInseminacion.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaContagiosActivos.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmTratamiento.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaEventosDeSanidad.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmPadeceEnfermedad.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaBovinosPorEstado.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaEventosFuturos.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaBovinos.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmFichaBovino.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaProduccion.java</file>
+            <file>file:/C:/Users/Godoy/OneDrive/Documentos/NetBeansProjects/GestionDeBovinos/GestionDeBovinos/GestionDeBovinos/src/presentacion/frmListaBajaBovinos.java</file>
         </group>
     </open-files>
 </project-private>

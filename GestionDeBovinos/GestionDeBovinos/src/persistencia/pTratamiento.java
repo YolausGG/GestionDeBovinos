@@ -27,9 +27,10 @@ public class pTratamiento {
             + " WHERE IDTRATAMIENTO = ? ";
     private static final String BUSCAR_TRATAMIENTO = "SELECT * FROM TRATAMIENTO WHERE IDTRATAMIENTO = ? ";
     private static final String LISTAR_TRATAMIENTOS = "SELECT * FROM TRATAMIENTO";
-    private static final String LISTAR_TRATAMIENTOS_BOVINO = "SELECT * FROM TRATAMIENTO WHERE IDBOVINO = ?";
+    private static final String LISTAR_TRATAMIENTOS_ACTIVOS_BOVINO = "SELECT * FROM TRATAMIENTO "
+            + " WHERE IDBOVINO = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
     private static final String LISTAR_TRATAMIENTOS_ACTIVOS = "SELECT * FROM TRATAMINETO "
-            + "WHERE FECHAINICIO <= CURDATE() AND FECHAFINALIZACION >= CURDATE()";
+            + " WHERE FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
 
     public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
         try {
@@ -217,11 +218,11 @@ public class pTratamiento {
         }
     }
 
-    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino) {
+    public static ArrayList<Tratamiento> listarTratamientosActivosBovino(int idBovino) {
 
         ArrayList<Tratamiento> listaTratamientos = new ArrayList<>();
         try {
-            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_TRATAMIENTOS_BOVINO);
+            PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_TRATAMIENTOS_ACTIVOS_BOVINO);
             statement.setInt(1, idBovino);
             ResultSet resultado = statement.executeQuery();
             Tratamiento tratamiento;

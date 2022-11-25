@@ -78,6 +78,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
         btnExportar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEventosDeSanidad = new javax.swing.JTable();
 
@@ -85,14 +86,17 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtCaravanaHembra.setEditable(false);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Caravana Hembra");
 
         btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravana.setText("Buscar Caravana");
+        btnBuscarCaravana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarCaravanaMouseClicked(evt);
@@ -101,6 +105,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         btnLimpiarMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiarMacho.setText("Limpiar");
+        btnLimpiarMacho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiarMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimpiarMachoMouseClicked(evt);
@@ -114,10 +119,12 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tipo de Evento");
 
         btnBuscarCaravanaMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravanaMacho.setText("Buscar Caravana");
+        btnBuscarCaravanaMacho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCaravanaMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarCaravanaMachoMouseClicked(evt);
@@ -126,10 +133,12 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         txtCaravanaMacho.setEditable(false);
 
+        lblCaravanaMacho.setForeground(new java.awt.Color(255, 255, 255));
         lblCaravanaMacho.setText("Caravana Macho:");
 
         btnLimpiarHembra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiarHembra.setText("Limpiar");
+        btnLimpiarHembra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiarHembra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimpiarHembraMouseClicked(evt);
@@ -163,7 +172,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscarCaravanaMacho))
                     .addComponent(btnLimpiarMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,30 +194,35 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiarMacho, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarHembra, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Exportar");
 
         btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
         btnExportar.setText("Exportar");
+        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExportarMouseClicked(evt);
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Imprimir Lista");
 
@@ -223,13 +237,13 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jSeparator1)
@@ -242,7 +256,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,10 +265,14 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22))
         );
 
+        jPanel3.setBackground(new java.awt.Color(54, 67, 114));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jTableEventosDeSanidad = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
             }};
+            jTableEventosDeSanidad.setBackground(new java.awt.Color(204, 255, 255));
             jTableEventosDeSanidad.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null, null},
@@ -273,30 +291,35 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
             });
             jScrollPane1.setViewportView(jTableEventosDeSanidad);
 
+            javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+            jPanel3.setLayout(jPanel3Layout);
+            jPanel3Layout.setHorizontalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            );
+            jPanel3Layout.setVerticalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            );
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             pack();
@@ -427,6 +450,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
         }
 
+        jTableEventosDeSanidad.getTableHeader().setReorderingAllowed(false);
         jTableEventosDeSanidad.setModel(model);
         jTableEventosDeSanidad.setRowHeight(25);
     }
@@ -556,6 +580,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                     throw new AssertionError();
             }
         }
+        jTableEventosDeSanidad.getTableHeader().setReorderingAllowed(false);
         jTableEventosDeSanidad.setModel(model);
         jTableEventosDeSanidad.setRowHeight(25);
     }
@@ -599,10 +624,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Secado s : listaSecados) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaSecado = formato.format(s.getFecha());
-                    
+
                     model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa()});
                 }
                 break;
@@ -616,10 +641,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Detalle");
 
                 for (Inseminacion i : listaInseminaciones) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaIns = formato.format(i.getFecha());
-                    
+
                     model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaIns, i.getDetalle()});
                 }
                 break;
@@ -633,10 +658,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Celo c : listaCelos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaCelo = formato.format(c.getFecha());
-                    
+
                     model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa()});
                 }
                 break;
@@ -650,10 +675,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Tipo");
 
                 for (Parto p : listaPartos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaParto = formato.format(p.getFecha());
-                    
+
                     model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo()});
                 }
                 break;
@@ -667,16 +692,17 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Aborto a : listaAbortos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaAborto = formato.format(a.getFecha());
-                    
+
                     model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa()});
                 }
                 break;
             default:
                 throw new AssertionError();
         }
+        jTableEventosDeSanidad.getTableHeader().setReorderingAllowed(false);
         jTableEventosDeSanidad.setModel(model);
         jTableEventosDeSanidad.setRowHeight(25);
     }
@@ -705,10 +731,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Diagnostico");
 
                 for (Tacto t : listaTactos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaTacto = formato.format(t.getFecha());
-                    
+
                     model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico()});
                 }
                 break;
@@ -722,10 +748,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Secado s : listaSecados) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaSecado = formato.format(s.getFecha());
-                    
+
                     model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa()});
                 }
                 break;
@@ -747,10 +773,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Detalle");
 
                 for (Inseminacion i : listaInseminaciones) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaIns = formato.format(i.getFecha());
-                    
+
                     model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaIns, i.getDetalle()});
                 }
                 break;
@@ -765,10 +791,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Celo c : listaCelos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaCelo = formato.format(c.getFecha());
-                    
+
                     model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa()});
                 }
                 break;
@@ -782,10 +808,10 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Tipo");
 
                 for (Parto p : listaPartos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                    String fechaParto = formato.format( p.getFecha());
-                    
+                    String fechaParto = formato.format(p.getFecha());
+
                     model.addRow(new Object[]{p.getIdEventoDeSanidad(), p.getHembra().getCaravanaBovino(), fechaParto, p.getDetalle(), p.getTipo()});
                 }
                 break;
@@ -799,20 +825,19 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
                 model.addColumn("Causa");
 
                 for (Aborto a : listaAbortos) {
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                    String fechaAborto = formato.format( a.getFecha());
-                    
+                    String fechaAborto = formato.format(a.getFecha());
+
                     model.addRow(new Object[]{a.getIdEventoDeSanidad(), a.getHembra().getCaravanaBovino(), fechaAborto, a.getDetalle(), a.getCausa()});
                 }
                 break;
             default:
                 throw new AssertionError();
         }
+        jTableEventosDeSanidad.getTableHeader().setReorderingAllowed(false);
         jTableEventosDeSanidad.setModel(model);
-
-        jTableEventosDeSanidad.setRowHeight(
-                25);
+        jTableEventosDeSanidad.setRowHeight(25);
     }
 
     private void btnBuscarCaravanaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCaravanaMouseClicked
@@ -999,6 +1024,7 @@ public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableEventosDeSanidad;

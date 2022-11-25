@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class frmInseminacion extends javax.swing.JInternalFrame {
 
@@ -82,6 +84,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         btnBuscarMacho = new javax.swing.JButton();
         txtCaravanaHembra = new javax.swing.JTextField();
         btnBuscarHembra = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInseminaciones = new javax.swing.JTable();
 
@@ -90,16 +93,18 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Macho:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 40));
 
         btnAltaInseminacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaInseminacion.setText("Agregar");
+        btnAltaInseminacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAltaInseminacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAltaInseminacionMouseClicked(evt);
@@ -113,26 +118,32 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         jPanel2.add(btnAltaInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 322, 100, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Detalle (Opcional): ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 160, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 160, 40));
 
+        lblRMacho.setForeground(new java.awt.Color(255, 51, 51));
         lblRMacho.setText("Requerido");
         jPanel2.add(lblRMacho, new org.netbeans.lib.awtextra.AbsoluteConstraints(658, 60, -1, 30));
 
+        lblRHembra.setForeground(new java.awt.Color(255, 51, 51));
         lblRHembra.setText("Requerido");
         jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Hembra:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 40));
         jPanel2.add(jDateFechaInseminacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, 30));
 
+        lblRFechaCelo.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaCelo.setText("Requerido");
         jPanel2.add(lblRFechaCelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha Inseminación:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 40));
 
         txaDetalle.setColumns(20);
         txaDetalle.setRows(5);
@@ -149,6 +160,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
         btnBuscarMacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarMacho.setText("Buscar");
+        btnBuscarMacho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarMacho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMachoMouseClicked(evt);
@@ -165,6 +177,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
         btnBuscarHembra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarHembra.setText("Buscar");
+        btnBuscarHembra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarHembra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarHembraMouseClicked(evt);
@@ -172,11 +185,15 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnBuscarHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 100, 30));
 
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jTableInseminaciones = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
             }
         };
+        jTableInseminaciones.setBackground(new java.awt.Color(204, 255, 255));
         jTableInseminaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -188,6 +205,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableInseminaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTableInseminaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableInseminacionesMouseClicked(evt);
@@ -195,25 +213,33 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableInseminaciones);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,6 +286,9 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         jTableInseminaciones.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
+        
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableInseminaciones.setRowSorter(elQueOrdena);
         ArrayList<Inseminacion> listaInseminaciones = dControladora.listarInseminaciones();
 
         model.addColumn("id Inseminacion");
@@ -278,6 +307,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaInseminacion, i.getDetalle(), modificar, eliminar});
         }
 
+        jTableInseminaciones.getTableHeader().setReorderingAllowed(false);
         jTableInseminaciones.setModel(model);
         jTableInseminaciones.setRowHeight(25);
     }
@@ -287,6 +317,9 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
         DefaultTableModel model = new DefaultTableModel();
 
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableInseminaciones.setRowSorter(elQueOrdena);
+        
         ArrayList<Inseminacion> listaInseminaciones = dControladora.listarInseminacionesPorCaravana(pCaravana);
 
         model.addColumn("id Inseminacion");
@@ -305,6 +338,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(),fechaInseminacion, i.getDetalle(), modificar, eliminar});
         }
 
+        jTableInseminaciones.getTableHeader().setReorderingAllowed(false);
         jTableInseminaciones.setModel(model);
         jTableInseminaciones.setRowHeight(35);
     }
@@ -481,6 +515,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

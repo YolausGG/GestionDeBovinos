@@ -28,14 +28,10 @@ public class dControladora {
 
     
     private static ArrayList<EventoDeSanidad> listaEventosDeSanidad = new ArrayList<>();
-    private static ArrayList<Raza> listaRazas;
 
     // <editor-fold defaultstate="collapsed" desc="Cargar Listas">
     
-    public static void cargarRazas() {
-        listaRazas = dRaza.listarRazas();
-    }
-
+   
     public static void cargarEventosDeSanidad() {
 
         for (Celo celo : dCelo.listarCelos()) {
@@ -108,7 +104,7 @@ public class dControladora {
     }
 
     public static ArrayList<Raza> listarRazas() {
-        return listaRazas;
+        return dRaza.listarRazas();
     }
 
     public static ArrayList<EventoDeSanidad> listarEventosDeSanidadPorCaravana(String pCaravana) {
@@ -731,6 +727,10 @@ public class dControladora {
         return dBovino.buscarBovinoCaravanaLIKE(pCaravana);
     }
 
+    public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana){
+
+        return dBovino.buscarBovinoCaravanaLIKETodos(pCaravana);
+    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Macho">
@@ -968,9 +968,9 @@ public class dControladora {
         return dTratamiento.listarTratamientos();
     }
 
-    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino) {
+    public static ArrayList<Tratamiento> listarTratamientosActivosBovino(int idBovino) {
 
-        return dTratamiento.listarTratamientosBovino(idBovino);
+        return dTratamiento.listarTratamientosActivosBovino(idBovino);
     }
     // </editor-fold>
 

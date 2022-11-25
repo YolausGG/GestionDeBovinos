@@ -89,110 +89,116 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Segunda Produccion (lts):");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 160, 30));
-        jPanel1.add(txtModificarSegundaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 104, 30));
-        jPanel1.add(jDateModificarFechaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 160, 30));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Segunda Producción (lts):");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 160, 30));
+        jPanel1.add(txtModificarSegundaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 104, 30));
+        jPanel1.add(jDateModificarFechaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 160, 30));
 
-        jLabel4.setText("Fecha Produccion:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 120, 30));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Fecha Producción:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 120, 30));
 
         btnModificarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarProduccion.setText("Modificar");
+        btnModificarProduccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarProduccionMouseClicked(evt);
             }
         });
-        jPanel1.add(btnModificarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 120, 30));
+        jPanel1.add(btnModificarProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 120, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Caravana:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 160, 30));
-        jPanel1.add(txtModificarCaravanaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 160, 30));
-        jPanel1.add(txtModificarGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 100, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 160, 30));
+        jPanel1.add(txtModificarCaravanaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 160, 30));
+        jPanel1.add(txtModificarGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Grasas:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 160, 30));
-        jPanel1.add(txtModificarPrimeraP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 100, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 160, 30));
+        jPanel1.add(txtModificarPrimeraP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 100, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Primera Produccion (lts):");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 170, 30));
-        jPanel1.add(txtModificarCS, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 100, 30));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Primera Producción (lts):");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 170, 30));
+        jPanel1.add(txtModificarCS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 100, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Celulas Somaticas:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 160, 30));
-        jPanel1.add(txtModificarProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 100, 30));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Células Somáticas:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 160, 30));
+        jPanel1.add(txtModificarProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 100, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("Proteinas:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 160, 30));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Proteínas:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 160, 30));
 
         lblRCelulasSomaticas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRCelulasSomaticas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRCelulasSomaticas.setForeground(new java.awt.Color(255, 51, 51));
         lblRCelulasSomaticas.setText("Requerido");
-        jPanel1.add(lblRCelulasSomaticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 70, 30));
+        jPanel1.add(lblRCelulasSomaticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 70, 30));
 
         lblRCaravanaH.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRCaravanaH.setForeground(new java.awt.Color(0, 0, 0));
+        lblRCaravanaH.setForeground(new java.awt.Color(255, 51, 51));
         lblRCaravanaH.setText("Requerido");
-        jPanel1.add(lblRCaravanaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 120, 30));
+        jPanel1.add(lblRCaravanaH, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 120, 30));
 
         lblRFechaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRFechaProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRFechaProduccion.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaProduccion.setText("Requerido");
-        jPanel1.add(lblRFechaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 80, 30));
+        jPanel1.add(lblRFechaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 80, 30));
 
         lblRPrimeraProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRPrimeraProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRPrimeraProduccion.setForeground(new java.awt.Color(255, 51, 51));
         lblRPrimeraProduccion.setText("Requerido");
-        jPanel1.add(lblRPrimeraProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 80, 30));
+        jPanel1.add(lblRPrimeraProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 80, 30));
 
         lblRSegundaProduccion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRSegundaProduccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblRSegundaProduccion.setForeground(new java.awt.Color(255, 51, 51));
         lblRSegundaProduccion.setText("Requerido");
-        jPanel1.add(lblRSegundaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 90, 30));
+        jPanel1.add(lblRSegundaProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 90, 30));
 
         lblRGrasas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRGrasas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRGrasas.setForeground(new java.awt.Color(255, 51, 51));
         lblRGrasas.setText("Requerido");
-        jPanel1.add(lblRGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 70, 30));
+        jPanel1.add(lblRGrasas, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 70, 30));
 
         lblRProteinas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRProteinas.setForeground(new java.awt.Color(0, 0, 0));
+        lblRProteinas.setForeground(new java.awt.Color(255, 51, 51));
         lblRProteinas.setText("Requerido");
-        jPanel1.add(lblRProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 70, 30));
+        jPanel1.add(lblRProteinas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 70, 30));
 
         btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
+        btnBuscarBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
             }
         });
-        jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, 30));
+        jPanel1.add(btnBuscarBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

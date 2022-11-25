@@ -18,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Date;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class frmSecado extends javax.swing.JInternalFrame {
 
@@ -87,16 +89,17 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(null);
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Causa:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 160, 40));
 
         btnAltaSecado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnAltaSecado.setText("Agregar");
+        btnAltaSecado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAltaSecado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAltaSecadoMouseClicked(evt);
@@ -105,7 +108,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
         jPanel2.add(btnAltaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(null);
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Detalle (Opcional): ");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, 40));
 
@@ -113,26 +116,26 @@ public class frmSecado extends javax.swing.JInternalFrame {
         cboCausa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(cboCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 210, 30));
 
-        lblRCausa.setForeground(null);
+        lblRCausa.setForeground(new java.awt.Color(255, 51, 51));
         lblRCausa.setText("Requerido");
         jPanel2.add(lblRCausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, 30));
 
-        lblRHembra.setForeground(null);
+        lblRHembra.setForeground(new java.awt.Color(255, 51, 51));
         lblRHembra.setText("Requerido");
         jPanel2.add(lblRHembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(null);
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Hembra:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 40));
         jPanel2.add(jDateFechaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 210, 30));
 
-        lblRFechaSecado.setForeground(null);
+        lblRFechaSecado.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaSecado.setText("Requerido");
         jPanel2.add(lblRFechaSecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(null);
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha Secado:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 40));
 
@@ -151,6 +154,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarBovino.setText("Buscar");
+        btnBuscarBovino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarBovino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarBovinoMouseClicked(evt);
@@ -160,13 +164,13 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(54, 67, 114));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setForeground(null);
 
         jTableSecados = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
             }
         };
+        jTableSecados.setBackground(new java.awt.Color(204, 255, 255));
         jTableSecados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -256,6 +260,9 @@ public class frmSecado extends javax.swing.JInternalFrame {
         jTableSecados.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
+        
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableSecados.setRowSorter(elQueOrdena);
         ArrayList<Secado> listaSecados = dControladora.listarSecados();
 
         model.addColumn("id Secado");
@@ -274,6 +281,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
+        jTableSecados.getTableHeader().setReorderingAllowed(false);
         jTableSecados.setModel(model);
         jTableSecados.setRowHeight(35);
     }
@@ -283,6 +291,9 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         DefaultTableModel model = new DefaultTableModel();
 
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableSecados.setRowSorter(elQueOrdena);
+        
         ArrayList<Secado> listaSecados = dControladora.listarSecadosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Secado");
@@ -301,6 +312,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{s.getIdEventoDeSanidad(), s.getHembra().getCaravanaBovino(), fechaSecado, s.getDetalle(), s.getCausa(), modificar, eliminar});
         }
 
+        jTableSecados.getTableHeader().setReorderingAllowed(false);
         jTableSecados.setModel(model);
         jTableSecados.setRowHeight(35);
     }

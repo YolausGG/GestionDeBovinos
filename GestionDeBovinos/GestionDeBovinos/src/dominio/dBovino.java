@@ -66,6 +66,11 @@ public class dBovino {
 
         return pBovino.buscarBovinoCaravanaLIKE(pCaravana);
     }
+    
+    public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana){
+
+        return pBovino.buscarBovinoCaravanaLIKETodos(pCaravana);
+    }
 
     public static ArrayList<Bovino> listarBovinos(){
 

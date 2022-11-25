@@ -56,9 +56,9 @@ public class dTratamiento {
 
         return persistencia.pTratamiento.listarTratamientosActivos();
     }
-    public static ArrayList<Tratamiento> listarTratamientosBovino(int idBovino){
+    public static ArrayList<Tratamiento> listarTratamientosActivosBovino(int idBovino){
 
-        return persistencia.pTratamiento.listarTratamientosBovino(idBovino);
+        return persistencia.pTratamiento.listarTratamientosActivosBovino(idBovino);
     }
         
 }

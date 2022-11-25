@@ -11,15 +11,20 @@ import clases.EstadoDelBovino;
 import clases.Hembra;
 import clases.Macho;
 import clases.Padece;
+import clases.Produccion;
+import clases.Tratamiento;
 import dominio.dControladora;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -36,7 +41,9 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     public frmFichaBovino() {
         initComponents();
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
+
         tm1.start();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -73,17 +80,17 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableContagiosActivos = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTratamientos = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTableContagiosActivos1 = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
+        jTableTratamientosActivos = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEstadosActivos = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jPProducciones = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableProducciones = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(54, 67, 114));
         setBorder(null);
@@ -106,7 +113,8 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Madre:");
 
         txtCaravanaMadre.setEditable(false);
@@ -155,7 +163,8 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         txtCaravanaPadre.setEditable(false);
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Padre:");
 
         javax.swing.GroupLayout jPPadreLayout = new javax.swing.GroupLayout(jPPadre);
@@ -190,19 +199,24 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setToolTipText("");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Caravana:");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Fecha Nacimiento:");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Raza:");
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sexo:");
 
-        lblTipoMachoText.setForeground(new java.awt.Color(0, 0, 0));
+        lblTipoMachoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoMachoText.setForeground(new java.awt.Color(255, 255, 255));
         lblTipoMachoText.setText("Tipo:");
 
         txtCaravanaBovino.setEditable(false);
@@ -236,14 +250,14 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRazaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +282,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoMachoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(41, 96, 143));
@@ -288,7 +302,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,9 +322,9 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jpanelFoto.setLayout(jpanelFotoLayout);
         jpanelFotoLayout.setHorizontalGroup(
             jpanelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelFotoLayout.createSequentialGroup()
+            .addGroup(jpanelFotoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(lblFotoBovino, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpanelFotoLayout.setVerticalGroup(
@@ -328,6 +342,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jEnfermedades.setBackground(new java.awt.Color(41, 96, 143));
         jEnfermedades.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jTableContagiosActivos.setBackground(new java.awt.Color(204, 255, 255));
         jTableContagiosActivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -341,36 +356,13 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTableContagiosActivos);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Enfermedades Activas");
 
-        javax.swing.GroupLayout jEnfermedadesLayout = new javax.swing.GroupLayout(jEnfermedades);
-        jEnfermedades.setLayout(jEnfermedadesLayout);
-        jEnfermedadesLayout.setHorizontalGroup(
-            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jEnfermedadesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jEnfermedadesLayout.setVerticalGroup(
-            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEnfermedadesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel8.add(jEnfermedades);
-
-        jTratamientos.setBackground(new java.awt.Color(41, 96, 143));
-        jTratamientos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jTableContagiosActivos1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTratamientosActivos.setBackground(new java.awt.Color(204, 255, 255));
+        jTableTratamientosActivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -381,37 +373,46 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTableContagiosActivos1);
+        jScrollPane4.setViewportView(jTableTratamientosActivos);
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Tratamientos Activas");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Tratamientos Activas");
 
-        javax.swing.GroupLayout jTratamientosLayout = new javax.swing.GroupLayout(jTratamientos);
-        jTratamientos.setLayout(jTratamientosLayout);
-        jTratamientosLayout.setHorizontalGroup(
-            jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTratamientosLayout.createSequentialGroup()
+        javax.swing.GroupLayout jEnfermedadesLayout = new javax.swing.GroupLayout(jEnfermedades);
+        jEnfermedades.setLayout(jEnfermedadesLayout);
+        jEnfermedadesLayout.setHorizontalGroup(
+            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addGroup(jEnfermedadesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                .addGroup(jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jTratamientosLayout.setVerticalGroup(
-            jTratamientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTratamientosLayout.createSequentialGroup()
+        jEnfermedadesLayout.setVerticalGroup(
+            jEnfermedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEnfermedadesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel8.add(jTratamientos);
+        jPanel8.add(jEnfermedades);
 
         jPanel10.setBackground(new java.awt.Color(41, 96, 143));
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jTableEstadosActivos.setBackground(new java.awt.Color(204, 255, 255));
         jTableEstadosActivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -425,6 +426,8 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableEstadosActivos);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Estados Activos ");
 
@@ -432,28 +435,28 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel8.add(jPanel10);
 
-        jPanel5.setBackground(new java.awt.Color(41, 96, 143));
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPProducciones.setBackground(new java.awt.Color(41, 96, 143));
+        jPProducciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jTableProducciones.setBackground(new java.awt.Color(204, 255, 255));
         jTableProducciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -467,21 +470,29 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTableProducciones);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Producciones");
+
+        javax.swing.GroupLayout jPProduccionesLayout = new javax.swing.GroupLayout(jPProducciones);
+        jPProducciones.setLayout(jPProduccionesLayout);
+        jPProduccionesLayout.setHorizontalGroup(
+            jPProduccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPProduccionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jPProduccionesLayout.setVerticalGroup(
+            jPProduccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPProduccionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -494,15 +505,15 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPProducciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpanelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -511,15 +522,15 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpanelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPProducciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpanelFoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -545,7 +556,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnArbolMouseClicked
 
     private void jPMadreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMadreMouseClicked
-        
+
         if (evt.getClickCount() >= 2 && !txtCaravanaMadre.getText().isEmpty()) {
             frmFichaBovino frm = new frmFichaBovino();
             frmBovino.caravana = txtCaravanaMadre.getText();
@@ -553,11 +564,12 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             frmInicio.jDkPEscritorio.add(frm);
             frm.setVisible(true);
             this.dispose();
+
         }
     }//GEN-LAST:event_jPMadreMouseClicked
 
     private void jPPadreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPPadreMouseClicked
-        
+
         if (evt.getClickCount() >= 2 && !txtCaravanaPadre.getText().isEmpty()) {
             frmFichaBovino frm = new frmFichaBovino();
             frmBovino.caravana = txtCaravanaPadre.getText();
@@ -565,6 +577,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             frmInicio.jDkPEscritorio.add(frm);
             frm.setVisible(true);
             this.dispose();
+
         }
     }//GEN-LAST:event_jPPadreMouseClicked
 
@@ -588,7 +601,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
     public void cargarDatos() {
 
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
+        //this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         lblTipoMachoText.setVisible(false);
         txtTipoMacho.setVisible(false);
 
@@ -625,6 +638,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableEstadosActivos.getTableHeader().setReorderingAllowed(false);
         jTableEstadosActivos.setModel(model);
         jTableEstadosActivos.setRowHeight(25);
 
@@ -661,10 +675,50 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         }
 
+        jTableContagiosActivos.getTableHeader().setReorderingAllowed(false);
         jTableContagiosActivos.setModel(model1);
         jTableContagiosActivos.setRowHeight(25);
 
+        DefaultTableModel modelT = new DefaultTableModel();
+
+        TableRowSorter<TableModel> elQueOrdenaT = new TableRowSorter<TableModel>(modelT);
+        jTableTratamientosActivos.setRowSorter(elQueOrdenaT);
+
+        ArrayList<Tratamiento> listaTratamientos = dControladora.listarTratamientosActivosBovino(bovino.getIdBovino());
+
+        modelT.addColumn("Caravana");
+        modelT.addColumn("Enfermedad");
+        modelT.addColumn("Fecha Inicio");
+        modelT.addColumn("Fecha Finalización");
+        modelT.addColumn("Detalle");
+
+        for (Tratamiento t : listaTratamientos) {
+
+            Enfermedad enfermedad = dControladora.buscarEnfermedad(t.getPadece().getIdEnfermedad());
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicioT = formato.format(t.getFechaInicio());
+
+            if (t.getFechaFinalizacion() == null) {
+
+                modelT.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaInicioT, t.getFechaFinalizacion(), t.getDetalle()});
+
+            } else {
+
+                SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFinalizacionT = formato1.format(t.getFechaFinalizacion());
+
+                modelT.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaInicioT, fechaFinalizacionT, t.getDetalle()});
+            }
+        }
+
+        jTableTratamientosActivos.getTableHeader().setReorderingAllowed(false);
+        jTableTratamientosActivos.setModel(modelT);
+        jTableTratamientosActivos.setRowHeight(25);
+
         if (frmBovino.sexo.equals("Macho")) {
+
+            jPProducciones.setVisible(false);
             Macho macho = dControladora.buscarMachoPorCaravanaCompleto(frmBovino.caravana);
 
             lblTipoMachoText.setVisible(true);
@@ -732,6 +786,32 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             txtRazaBovino.setText(hembra.getRaza().getTipo());
             txtSexoBovino.setText("Hembra");
 
+            DefaultTableModel modelP = new DefaultTableModel();
+
+            TableRowSorter<TableModel> elQueOrdenaP = new TableRowSorter<TableModel>(modelP);
+            jTableProducciones.setRowSorter(elQueOrdenaP);
+
+            ArrayList<Produccion> listaProduccion = dControladora.listarProduccionesHembra(hembra.getIdBovino());
+
+            modelP.addColumn("Fecha");
+            modelP.addColumn("Prn. Total");
+            modelP.addColumn("Proteínas");
+            modelP.addColumn("Grasas");
+            modelP.addColumn("Clas. Somáticas");
+
+            for (Produccion p : listaProduccion) {
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaProduccion = formato.format(p.getFecha());
+
+                modelP.addRow(new Object[]{fechaProduccion, p.getProduccionTotal(), p.getProteina(),
+                    p.getGrasa(), p.getCelulaSomatica()});
+            }
+
+            jTableProducciones.getTableHeader().setReorderingAllowed(false);
+            jTableProducciones.setModel(modelP);
+            jTableProducciones.setRowHeight(25);
+
             if (hembra.getFoto() != null) {
                 try {
                     byte[] bi = hembra.getFoto();
@@ -793,25 +873,25 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPMadre;
     private javax.swing.JPanel jPPadre;
+    private javax.swing.JPanel jPProducciones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableContagiosActivos;
-    private javax.swing.JTable jTableContagiosActivos1;
     private javax.swing.JTable jTableEstadosActivos;
     private javax.swing.JTable jTableProducciones;
-    private javax.swing.JPanel jTratamientos;
+    private javax.swing.JTable jTableTratamientosActivos;
     private javax.swing.JPanel jpanelFoto;
     public static volatile javax.swing.JLabel lblFotoBovino;
     private javax.swing.JLabel lblFotoMadre;

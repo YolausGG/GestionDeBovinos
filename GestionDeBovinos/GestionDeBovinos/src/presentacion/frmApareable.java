@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class frmApareable extends javax.swing.JInternalFrame {
 
@@ -49,7 +51,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblRCaravana.setForeground(new java.awt.Color(255, 255, 255));
+        lblRCaravana.setForeground(new java.awt.Color(255, 51, 51));
         lblRCaravana.setText("Requerido");
         jPanel2.add(lblRCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 110, 30));
 
@@ -86,6 +88,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
             public boolean isCellEditable(int row, int column){
                 return false;
             }};
+            jTableBovinos.setBackground(new java.awt.Color(204, 255, 255));
             jTableBovinos.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null, null},
@@ -97,7 +100,10 @@ public class frmApareable extends javax.swing.JInternalFrame {
                     "Title 1", "Title 2", "Title 3", "Title 4"
                 }
             ));
+            jTableBovinos.setCellSelectionEnabled(true);
             jTableBovinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jTableBovinos.setGridColor(new java.awt.Color(204, 255, 255));
+            jTableBovinos.setSelectionForeground(new java.awt.Color(204, 255, 255));
             jTableBovinos.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     jTableBovinosMouseClicked(evt);
@@ -161,14 +167,15 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jTableBovinos.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTableBovinos.setRowSorter(elQueOrdena);
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(txtCaravana.getText());
 
-        //ArrayList<Bovino> arbolGenealogico = dControladora.arbolGenealogico(0, bovino, new ArrayList<Bovino>());
+        
         ArrayList<Bovino> listaBovinos = dControladora.listarBovinos();
 
         ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, new ArrayList<Bovino>());
 
-        // ArrayList<Bovino> listaBovinosHijos = dControladora.parentescos_Hermanos_Sobrinos_SobrinoNieto(0, bovino, new ArrayList<Bovino>());
         ArrayList<Bovino> listaBovinosFiltroSexo = new ArrayList<>();
 
         for (Bovino listaBovino : listaBovinos) {
@@ -219,6 +226,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
             }
 
         }
+        jTableBovinos.getTableHeader().setReorderingAllowed(false);
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
     }

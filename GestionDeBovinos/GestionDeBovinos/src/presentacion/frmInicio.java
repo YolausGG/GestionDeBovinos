@@ -4,11 +4,13 @@
  */
 package presentacion;
 
-
 import dominio.dControladora;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 import javax.swing.JFrame;
 
@@ -29,18 +31,21 @@ public class frmInicio extends javax.swing.JFrame {
 
         //dControladora.cargarBovinos();
         dControladora.cargarEventosDeSanidad();
+        
         MenuSanidad.setVisible(false);
         MenuEnfermedad.setVisible(false);
         MenuEstadoBovino.setVisible(false);
 
-        frmAvisoDeEventoFuturo frmAvisoDeEventoFuturo = new frmAvisoDeEventoFuturo();
-        
-        jDkPEscritorio.removeAll();
-        jDkPEscritorio.add(frmAvisoDeEventoFuturo);
-        frmAvisoDeEventoFuturo.setVisible(true);
+        frmAvisoDeEventoFuturo frmAvisoDeEventoFuturo;
+        try {
+            frmAvisoDeEventoFuturo = new frmAvisoDeEventoFuturo();
+            jDkPEscritorio.removeAll();
+            jDkPEscritorio.add(frmAvisoDeEventoFuturo);
+            frmAvisoDeEventoFuturo.setVisible(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(frmInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        
-     
         colorInicio = new Color(54, 67, 114);
         colorSeleccionado = new Color(93, 109, 126);
 
@@ -1093,7 +1098,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblContagiosMousePressed
 
     private void lblBajasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBajasMousePressed
-        
+
         frmListaBajaBovinos form = new frmListaBajaBovinos();
         jDkPEscritorio.add(form);
         form.setVisible(true);
@@ -1106,7 +1111,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBovinosMousePressed
 
     private void lblEventosDeSanidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosDeSanidadMousePressed
-        
+
         frmListaEventosDeSanidad form = new frmListaEventosDeSanidad();
         jDkPEscritorio.add(form);
         form.setVisible(true);
@@ -1119,7 +1124,7 @@ public class frmInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblEstadosDelBovinoMousePressed
 
     private void lblProduccionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProduccionesMousePressed
-        
+
         frmListaProduccion form = new frmListaProduccion();
         jDkPEscritorio.add(form);
         form.setVisible(true);

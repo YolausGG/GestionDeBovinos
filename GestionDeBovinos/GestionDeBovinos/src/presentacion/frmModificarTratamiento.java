@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -94,24 +96,30 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
         txtFFPadece = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTablePadeceEnfermedadM = new javax.swing.JTable();
+        jTablePadeceEnfermedad = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
 
-        jPanel2.setBackground(new java.awt.Color(133, 146, 158));
+        jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha Comienzo de Tratamiento:");
 
         lblRFechaInicioT.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblRFechaInicioT.setForeground(new java.awt.Color(0, 0, 0));
+        lblRFechaInicioT.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaInicioT.setText("Requerido");
 
-        jLabel9.setText("Fecha Finalizacion de Tratamiento:");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Fecha Finalización de Tratamiento:");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Detalle:");
 
         jTextAreaDetalle.setColumns(20);
@@ -120,26 +128,31 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
         btnModificarTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Modificar16px.png"))); // NOI18N
         btnModificarTratamiento.setText("Modificar");
+        btnModificarTratamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificarTratamiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnModificarTratamientoMouseClicked(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Enfermedad:");
 
         txtNomEnfermedad.setEditable(false);
 
         txtCaravana.setEditable(false);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CARAVANA:");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha Inicio Enfermedad:");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Fecha Fin Enfermedad:");
 
         txtFIPadece.setEditable(false);
@@ -151,14 +164,16 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
         txtFFPadece.setEditable(false);
 
-        jPanel3.setBackground(new java.awt.Color(133, 146, 158));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enfermedades Activas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(54, 67, 114));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enfermedades Activas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jTablePadeceEnfermedad = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
             }};
-            jTablePadeceEnfermedadM.setModel(new javax.swing.table.DefaultTableModel(
+            jTablePadeceEnfermedad.setBackground(new java.awt.Color(204, 255, 255));
+            jTablePadeceEnfermedad.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null, null},
                     {null, null, null, null},
@@ -169,28 +184,23 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                     "Title 1", "Title 2", "Title 3", "Title 4"
                 }
             ));
-            jTablePadeceEnfermedadM.addMouseListener(new java.awt.event.MouseAdapter() {
+            jTablePadeceEnfermedad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jTablePadeceEnfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jTablePadeceEnfermedadMMouseClicked(evt);
+                    jTablePadeceEnfermedadMouseClicked(evt);
                 }
             });
-            jScrollPane3.setViewportView(jTablePadeceEnfermedadM);
+            jScrollPane3.setViewportView(jTablePadeceEnfermedad);
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
             );
 
             javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -208,10 +218,10 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(lblRFechaInicioT, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
                                 .addComponent(jDateFechaFinalizacionT, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(75, 75, 75)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -231,7 +241,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtFIPadece))
                                 .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap(39, Short.MAX_VALUE))
+                    .addContainerGap(51, Short.MAX_VALUE))
             );
             jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +280,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)))
@@ -282,10 +292,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,9 +329,11 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
 
     public void actualizarTablaContagiosActivos() {
 
-        jTablePadeceEnfermedadM.setDefaultRenderer(Object.class, new BotonesTabla());
+        jTablePadeceEnfermedad.setDefaultRenderer(Object.class, new BotonesTabla());
         DefaultTableModel model = new DefaultTableModel();
 
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
+        jTablePadeceEnfermedad.setRowSorter(elQueOrdena);
         ArrayList<Padece> listaPadeceEnfermedad = dControladora.listarContagiosActivos();
 
         model.addColumn("Caravana");
@@ -353,11 +362,13 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getIdEnfermedad(), enfermedad.getNombre(), fechaInicioE, fechaFinalizacionE});
             }
         }
-        jTablePadeceEnfermedadM.setModel(model);
-        jTablePadeceEnfermedadM.setRowHeight(25);
-        jTablePadeceEnfermedadM.getColumnModel().getColumn(1).setMaxWidth(0);
-        jTablePadeceEnfermedadM.getColumnModel().getColumn(1).setMinWidth(0);
-        jTablePadeceEnfermedadM.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        jTablePadeceEnfermedad.getTableHeader().setReorderingAllowed(false);
+        jTablePadeceEnfermedad.setModel(model);
+        jTablePadeceEnfermedad.setRowHeight(25);
+        jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMaxWidth(0);
+        jTablePadeceEnfermedad.getColumnModel().getColumn(1).setMinWidth(0);
+        jTablePadeceEnfermedad.getColumnModel().getColumn(1).setPreferredWidth(0);
     }
 
     private void btnModificarTratamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarTratamientoMouseClicked
@@ -447,7 +458,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFIPadeceActionPerformed
 
-    private void jTablePadeceEnfermedadMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMMouseClicked
+    private void jTablePadeceEnfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePadeceEnfermedadMouseClicked
 
         int fila = jTablePadeceEnfermedad.getSelectedRow();
 
@@ -472,7 +483,7 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error: No se selecciono el Bovino a modificar");
         }
-    }//GEN-LAST:event_jTablePadeceEnfermedadMMouseClicked
+    }//GEN-LAST:event_jTablePadeceEnfermedadMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -486,14 +497,11 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTablePadeceEnfermedad;
-    private javax.swing.JTable jTablePadeceEnfermedadM;
     private javax.swing.JTextArea jTextAreaDetalle;
     private javax.swing.JLabel lblRFechaInicioT;
     private javax.swing.JTextField txtCaravana;

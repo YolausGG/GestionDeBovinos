@@ -18,6 +18,7 @@ public class frmLogin extends javax.swing.JFrame {
     public frmLogin() {
         initComponents();
         this.setTitle("LOGIN");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,7 +45,7 @@ public class frmLogin extends javax.swing.JFrame {
         txtNombreUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtNombreUsuario.setBorder(null);
-        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 250, 40));
+        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 250, 40));
 
         txtPassword.setBackground(new java.awt.Color(204, 204, 204));
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -54,7 +55,7 @@ public class frmLogin extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 222, 250, 40));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 250, 40));
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btnLogin.png"))); // NOI18N
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -63,8 +64,9 @@ public class frmLogin extends javax.swing.JFrame {
                 btnLoginMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 140, 40));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 140, 40));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGIN.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 480));
 

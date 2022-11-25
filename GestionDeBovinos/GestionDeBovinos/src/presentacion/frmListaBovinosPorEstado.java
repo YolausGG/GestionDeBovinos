@@ -60,6 +60,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         btnExportar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBovinosPorEstado = new javax.swing.JTable();
 
@@ -67,14 +68,17 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
 
+        jPanel1.setBackground(new java.awt.Color(54, 67, 114));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtCaravanaBovino.setEditable(false);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Caravana Bovino");
 
         btnBuscarCaravana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
         btnBuscarCaravana.setText("Buscar Caravana");
+        btnBuscarCaravana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCaravana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarCaravanaMouseClicked(evt);
@@ -82,16 +86,20 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         });
 
         cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cboEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboEstadoActionPerformed(evt);
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Estado:");
 
         chkActivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkActivo.setForeground(new java.awt.Color(255, 255, 255));
         chkActivo.setText("Activo");
+        chkActivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkActivoActionPerformed(evt);
@@ -100,6 +108,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar16px.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimpiarMouseClicked(evt);
@@ -125,7 +134,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cboEstado, 0, 193, Short.MAX_VALUE))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,30 +155,35 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(54, 67, 114));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/impresora16px.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirMouseClicked(evt);
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Imprimir Lista");
 
         btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Excel16px.png"))); // NOI18N
         btnExportar.setText("Exportar");
+        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExportarMouseClicked(evt);
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Exportar");
 
@@ -182,12 +196,12 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -207,10 +221,14 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15))
         );
 
+        jPanel3.setBackground(new java.awt.Color(54, 67, 114));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jTableBovinosPorEstado = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
             }};
+            jTableBovinosPorEstado.setBackground(new java.awt.Color(204, 255, 255));
             jTableBovinosPorEstado.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null, null},
@@ -222,37 +240,37 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
                     "Title 1", "Title 2", "Title 3", "Title 4"
                 }
             ));
-            jTableBovinosPorEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jTableBovinosPorEstadoMouseClicked(evt);
-                }
-            });
             jScrollPane1.setViewportView(jTableBovinosPorEstado);
+
+            javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+            jPanel3.setLayout(jPanel3Layout);
+            jPanel3Layout.setHorizontalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            );
+            jPanel3Layout.setVerticalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+            );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE))
-                    .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             pack();
@@ -309,6 +327,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -352,6 +371,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -396,6 +416,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -440,6 +461,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -484,6 +506,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -528,6 +551,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -572,6 +596,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -616,6 +641,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             }
         }
 
+        jTableBovinosPorEstado.getTableHeader().setReorderingAllowed(false);
         jTableBovinosPorEstado.setModel(model);
         jTableBovinosPorEstado.setRowHeight(25);
     }
@@ -629,11 +655,6 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarCaravanaMouseClicked
-
-    private void jTableBovinosPorEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBovinosPorEstadoMouseClicked
-
-        
-    }//GEN-LAST:event_jTableBovinosPorEstadoMouseClicked
 
 
     private void chkActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkActivoActionPerformed
@@ -738,6 +759,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableBovinosPorEstado;
