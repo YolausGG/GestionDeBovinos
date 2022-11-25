@@ -66,7 +66,7 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         label2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 255, 255));
         label2.setText("Motivo de Baja");
-        jPanel2.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 90, 30));
+        jPanel2.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 100, 30));
 
         lblRMotivoBaja.setForeground(new java.awt.Color(255, 51, 51));
         lblRMotivoBaja.setText("Requerido");

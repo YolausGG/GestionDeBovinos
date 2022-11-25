@@ -10,12 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
-/**
- *
- * @author Godoy
- */
 public class pPedigree {
     
     private static final String INSERT_PEDIGREE = " INSERT INTO PEDIGREE ( IDBOVINO, NUMEROPEDIGREE ) " +

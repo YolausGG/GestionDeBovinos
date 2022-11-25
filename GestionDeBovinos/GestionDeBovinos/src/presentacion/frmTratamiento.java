@@ -89,7 +89,6 @@ public class frmTratamiento extends javax.swing.JInternalFrame {
             txtFIPadece.setText(fechaInicio);           
 
         }
-
         
     }
 

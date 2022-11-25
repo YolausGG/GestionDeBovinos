@@ -7,6 +7,7 @@ package presentacion;
 import clases.Bovino;
 import clases.ExportarExcel;
 import clases.Macho;
+import clases.Pedigree;
 import dominio.dControladora;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -229,23 +230,31 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
         model.addColumn("Sexo");
+        model.addColumn("Número Pedigree");
         model.addColumn("Tipo");
 
         for (Bovino b : listaBovinos) {
 
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
+            String numPedigre = "";
+
+            Pedigree pedigree = dControladora.buscarPedigreeIdBovino(b.getIdBovino());
+            if (pedigree != null) {
+                numPedigre = pedigree.getNumeroPedigree();
+            }
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaNacimiento = formato.format(b.getFechaNacimiento());
 
             if (tipo.equals("Macho")) {
                 Macho macho = (Macho) b;
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, macho.getTipo()});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, numPedigre, macho.getTipo()});
             } else {
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, ""});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, numPedigre, ""});
             }
         }
-        
+
         jTableBovinos.getTableHeader().setReorderingAllowed(false);
         jTableBovinos.setModel(model);
         jTableBovinos.setRowHeight(25);
@@ -279,20 +288,28 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Nacimiento");
         model.addColumn("Raza");
         model.addColumn("Sexo");
+        model.addColumn("Número Pedigree");
         model.addColumn("Tipo");
 
         for (Bovino b : listaBovinosFinal) {
 
             String tipo = b.getClass().getSimpleName().toString().equals("Macho") ? "Macho" : "Hembra";
 
+            String numPedigre = "";
+
+            Pedigree pedigree = dControladora.buscarPedigreeIdBovino(b.getIdBovino());
+            if (pedigree != null) {
+                numPedigre = pedigree.getNumeroPedigree();
+            }
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaNacimiento = formato.format(b.getFechaNacimiento());
 
             if (tipo.equals("Macho")) {
                 Macho macho = (Macho) b;
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, macho.getTipo()});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, numPedigre, macho.getTipo()});
             } else {
-                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, ""});
+                model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimiento, b.getRaza().getTipo(), tipo, numPedigre, ""});
             }
         }
 
@@ -333,7 +350,7 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCaravanaBovinoKeyReleased
 
     private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-        
+
         MessageFormat header = new MessageFormat("Reporte ");
         MessageFormat footer = new MessageFormat("Page {0, number, integer}");
 
@@ -345,7 +362,7 @@ public class frmListaBovinos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirMouseClicked
 
     private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
-         ExportarExcel obj;
+        ExportarExcel obj;
 
         try {
             obj = new ExportarExcel();

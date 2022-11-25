@@ -11,6 +11,7 @@ import clases.EstadoDelBovino;
 import clases.Hembra;
 import clases.Macho;
 import clases.Padece;
+import clases.Pedigree;
 import clases.Produccion;
 import clases.Tratamiento;
 import dominio.dControladora;
@@ -18,13 +19,10 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -32,10 +30,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author Godoy
- */
 public class frmFichaBovino extends javax.swing.JInternalFrame {
 
     public frmFichaBovino() {
@@ -71,6 +65,8 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         txtRazaBovino = new javax.swing.JTextField();
         txtSexoBovino = new javax.swing.JTextField();
         txtTipoMacho = new javax.swing.JTextField();
+        txtNumeroPedigree = new javax.swing.JTextField();
+        lblPredigree = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnArbol = new javax.swing.JButton();
         jpanelFoto = new javax.swing.JPanel();
@@ -230,6 +226,12 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         txtTipoMacho.setEditable(false);
 
+        txtNumeroPedigree.setEditable(false);
+
+        lblPredigree.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPredigree.setForeground(new java.awt.Color(255, 255, 255));
+        lblPredigree.setText("Número Predigree:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -237,6 +239,10 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblPredigree)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblTipoMachoText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,12 +263,12 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRazaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCaravanaBovino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -282,6 +288,10 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoMachoText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipoMacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPredigree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroPedigree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -601,7 +611,6 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
     public void cargarDatos() {
 
-        //this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         lblTipoMachoText.setVisible(false);
         txtTipoMacho.setVisible(false);
 
@@ -611,6 +620,16 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
 
         Bovino bovino = dControladora.buscarBovinoCaravana(frmBovino.caravana);
 
+        Pedigree pedigree = dControladora.buscarPedigreeIdBovino(bovino.getIdBovino());
+        
+        if(pedigree != null){  
+            txtNumeroPedigree.setText(pedigree.getNumeroPedigree());
+        }else{
+            lblPredigree.setVisible(false);
+            txtNumeroPedigree.setVisible(false);
+        }
+        
+        
         ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorBovino(bovino.getIdBovino());
 
         model.addColumn("Estado");
@@ -896,11 +915,13 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
     public static volatile javax.swing.JLabel lblFotoBovino;
     private javax.swing.JLabel lblFotoMadre;
     private javax.swing.JLabel lblFotoPadre;
+    private javax.swing.JLabel lblPredigree;
     private javax.swing.JLabel lblTipoMachoText;
     private javax.swing.JTextField txtCaravanaBovino;
     private javax.swing.JTextField txtCaravanaMadre;
     private javax.swing.JTextField txtCaravanaPadre;
     private javax.swing.JTextField txtFechaNacimiento;
+    private javax.swing.JTextField txtNumeroPedigree;
     private javax.swing.JTextField txtRazaBovino;
     private javax.swing.JTextField txtSexoBovino;
     private javax.swing.JTextField txtTipoMacho;
