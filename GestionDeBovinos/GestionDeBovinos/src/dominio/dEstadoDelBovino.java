@@ -3,7 +3,6 @@ package dominio;
 import clases.EstadoDelBovino;
 import persistencia.pEstadoDelBovino;
 
-
 import java.util.ArrayList;
 
 public class dEstadoDelBovino {
@@ -18,25 +17,24 @@ public class dEstadoDelBovino {
         return pEstadoDelBovino.bajaEstadoDelBovino(idEstadoDelBovino);
     }
 
-    public static boolean modificarEstadoDelBovino(int idEstadoDelBovino, EstadoDelBovino pEstadoDelBovino){
+    public static boolean modificarEstadoDelBovino(int idEstadoDelBovino, EstadoDelBovino pEstadoDelBovino) {
 
         return persistencia.pEstadoDelBovino.modificarEstadoDelBovino(idEstadoDelBovino, pEstadoDelBovino);
     }
 
-    public static EstadoDelBovino buscarEstadoDelBovino(int idEstadoDelBovino){
+    public static EstadoDelBovino buscarEstadoDelBovino(int idEstadoDelBovino) {
 
         return pEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
     }
-    
-    public static EstadoDelBovino buscarEstadoDelBovinoNombre(String estadoDelBovino){
+
+    public static EstadoDelBovino buscarEstadoDelBovinoNombre(String estadoDelBovino) {
 
         return pEstadoDelBovino.buscarEstadoDelBovinoNombre(estadoDelBovino);
     }
-    
-    public static ArrayList<EstadoDelBovino> listarEstadosDelBovino(){
+
+    public static ArrayList<EstadoDelBovino> listarEstadosDelBovino() {
 
         return pEstadoDelBovino.listarEstadosDelBovino();
     }
-    
-    
+
 }

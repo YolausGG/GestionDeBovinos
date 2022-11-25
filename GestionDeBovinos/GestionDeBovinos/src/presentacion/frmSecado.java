@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -260,7 +259,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
         jTableSecados.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableSecados.setRowSorter(elQueOrdena);
         ArrayList<Secado> listaSecados = dControladora.listarSecados();
@@ -293,7 +292,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableSecados.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Secado> listaSecados = dControladora.listarSecadosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Secado");

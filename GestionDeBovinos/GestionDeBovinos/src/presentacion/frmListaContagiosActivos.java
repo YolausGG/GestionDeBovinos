@@ -19,10 +19,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import persistencia.pEnfermedad;
 
-/**
- *
- * @author Godoy
- */
 public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
@@ -474,14 +470,14 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         for (Padece p : listaContagios) {
 
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
-            
+
             if (p.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaPInicio = formato.format(p.getFechaInicio());
 
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
-                
+
             } else {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -490,8 +486,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
             }
-            
-            
+
         }
 
         jTableContagios.getTableHeader().setReorderingAllowed(false);
@@ -518,14 +513,14 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         for (Padece p : listaContagios) {
 
             Bovino bovino = dControladora.buscarBovinoId(p.getIdBovino());
-            
+
             if (p.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaPInicio = formato.format(p.getFechaInicio());
 
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
-                
+
             } else {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -535,7 +530,6 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
                 model.addRow(new Object[]{bovino.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
             }
 
-            
         }
 
         jTableContagios.getTableHeader().setReorderingAllowed(false);
@@ -562,14 +556,14 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Finalización");
 
         for (Padece p : listaContagios) {
-            
+
             if (p.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaPInicio = formato.format(p.getFechaInicio());
 
                 model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
-                
+
             } else {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -577,7 +571,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
                 String fechaPFinalizacion = formato.format(p.getFechaFinalizacion());
 
                 model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
-            }           
+            }
         }
 
         jTableContagios.getTableHeader().setReorderingAllowed(false);
@@ -603,14 +597,14 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
         model.addColumn("Fecha Finalización");
 
         for (Padece p : listaContagios) {
-            
+
             if (p.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaPInicio = formato.format(p.getFechaInicio());
 
                 model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, p.getFechaFinalizacion()});
-                
+
             } else {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -619,7 +613,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
                 model.addRow(new Object[]{bovinoSeleccionado.getCaravanaBovino(), enfermedad.getNombre(), fechaPInicio, fechaPFinalizacion});
             }
-            
+
         }
 
         jTableContagios.getTableHeader().setReorderingAllowed(false);
@@ -650,7 +644,7 @@ public class frmListaContagiosActivos extends javax.swing.JInternalFrame {
 
     private void jTableContagiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableContagiosMouseClicked
 
-        
+
     }//GEN-LAST:event_jTableContagiosMouseClicked
 
     private void chkActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkActivoActionPerformed

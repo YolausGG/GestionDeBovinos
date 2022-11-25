@@ -6,13 +6,8 @@ package clases;
 
 import java.util.Date;
 
-
-/**
- *
- * @author nico_
- */
 public class EstadoBovino {
-    
+
     private int idEstadoDelBovino;
     private int idBovino;
     private Date fechaInicio;
@@ -50,30 +45,21 @@ public class EstadoBovino {
         this.fechaFinalizacion = fechaFinalizacion;
     }
 
-    @Override
-    public String toString() {
-        return "EstadoBovino{" +
-                "idEstadoDelBovino=" + idEstadoDelBovino +
-                ", idBovino=" + idBovino +
-                ", fechaInicio=" + fechaInicio + 
-                ", fechaFinalizacion=" + fechaFinalizacion + '}';
-    }
-
     public EstadoBovino(int idEstadoDelBovino, int idBovino, Date fechaInicio, Date fechaFinalizacion) {
         this.idEstadoDelBovino = idEstadoDelBovino;
         this.idBovino = idBovino;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
     }
-    
+
     public EstadoBovino(int idEstadoDelBovino, int idBovino, Date fechaInicio) {
         this.idEstadoDelBovino = idEstadoDelBovino;
         this.idBovino = idBovino;
-        this.fechaInicio = fechaInicio;        
+        this.fechaInicio = fechaInicio;
     }
-    
+
     public EstadoBovino() {
-               
+
     }
-        
+
 }

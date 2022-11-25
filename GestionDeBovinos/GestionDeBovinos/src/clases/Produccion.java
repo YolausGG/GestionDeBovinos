@@ -2,13 +2,12 @@ package clases;
 
 import java.util.Date;
 
-
 public class Produccion {
 
     private int idProduccion;
     private Double primeraProduccion;
     private Double segundaProduccion;
-    private Double produccionTotal ;
+    private Double produccionTotal;
     private Double proteina;
     private Double grasa;
     private int celulaSomatica;
@@ -18,6 +17,7 @@ public class Produccion {
     public int getIdProduccion() {
         return idProduccion;
     }
+
     public void setIdProduccion(int idProduccion) {
         this.idProduccion = idProduccion;
     }
@@ -25,6 +25,7 @@ public class Produccion {
     public Double getPrimeraProduccion() {
         return primeraProduccion;
     }
+
     public void setPrimeraProduccion(Double primeraProduccion) {
         this.primeraProduccion = primeraProduccion;
     }
@@ -32,6 +33,7 @@ public class Produccion {
     public Double getSegundaProduccion() {
         return segundaProduccion;
     }
+
     public void setSegundaProduccion(Double segundaProduccion) {
         this.segundaProduccion = segundaProduccion;
     }
@@ -43,6 +45,7 @@ public class Produccion {
     public Double getProteina() {
         return proteina;
     }
+
     public void setProteina(Double proteina) {
         this.proteina = proteina;
     }
@@ -50,6 +53,7 @@ public class Produccion {
     public Double getGrasa() {
         return grasa;
     }
+
     public void setGrasa(Double grasa) {
         this.grasa = grasa;
     }
@@ -57,6 +61,7 @@ public class Produccion {
     public int getCelulaSomatica() {
         return celulaSomatica;
     }
+
     public void setCelulaSomatica(int celulaSomatica) {
         this.celulaSomatica = celulaSomatica;
     }
@@ -64,6 +69,7 @@ public class Produccion {
     public Date getFecha() {
         return fecha;
     }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -71,27 +77,27 @@ public class Produccion {
     public Hembra getHembra() {
         return hembra;
     }
+
     public void setHembra(Hembra hembra) {
         this.hembra = hembra;
     }
 
     @Override
     public String toString() {
-        return "Produccion{" +
-                "idProduccion=" + idProduccion +
-                ", primeraProduccion=" + primeraProduccion +
-                ", segundaProduccion=" + segundaProduccion +
-                ", produccionTotal=" + produccionTotal +
-                ", proteina=" + proteina +
-                ", grasa=" + grasa +
-                ", celulaSomatica=" + celulaSomatica +
-                ", fecha=" + fecha +
-                ", hembra=" + hembra +
-                '}';
+        return "Produccion{"
+                + "idProduccion=" + idProduccion
+                + ", primeraProduccion=" + primeraProduccion
+                + ", segundaProduccion=" + segundaProduccion
+                + ", produccionTotal=" + produccionTotal
+                + ", proteina=" + proteina
+                + ", grasa=" + grasa
+                + ", celulaSomatica=" + celulaSomatica
+                + ", fecha=" + fecha
+                + ", hembra=" + hembra
+                + '}';
     }
 
-
-    public Produccion(int idProduccion, Double primeraProduccion, Double segundaProduccion,Double produccionTotal,  Double proteina, Double grasa, int celulaSomatica, Date fecha, Hembra hembra) {
+    public Produccion(int idProduccion, Double primeraProduccion, Double segundaProduccion, Double produccionTotal, Double proteina, Double grasa, int celulaSomatica, Date fecha, Hembra hembra) {
         this.idProduccion = idProduccion;
         this.primeraProduccion = primeraProduccion;
         this.segundaProduccion = segundaProduccion;
@@ -113,9 +119,8 @@ public class Produccion {
         this.hembra = hembra;
     }
 
-    public Double calcularProduccionTotal(){
-                return primeraProduccion + segundaProduccion;
+    public Double calcularProduccionTotal() {
+        return primeraProduccion + segundaProduccion;
     }
-    
-    
+
 }

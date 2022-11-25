@@ -15,37 +15,34 @@ import java.util.Date;
 public class frmModificarInseminacion extends javax.swing.JInternalFrame {
 
     public static String caravanaHembra, caravanaMacho;
-    
+
     public frmModificarInseminacion() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR INSEMINACIÓN");
-        
+
         lblRMacho.setVisible(false);
         lblRFechaInseminacion.setVisible(false);
         lblRHembra.setVisible(false);
-        
+
         Inseminacion Inseminacion = dControladora.buscarInseminacion(frmInseminacion.idInseminacion);
-        
+
         jDateFechaInseminacion.setDate(Inseminacion.getFecha());
         txaDetalle.setText(Inseminacion.getDetalle());
-        
-        if(this.caravanaHembra != null){
+
+        if (this.caravanaHembra != null) {
             txtCaravanaHembra.setText(this.caravanaHembra);
-        }
-        else{
+        } else {
             txtCaravanaHembra.setText(Inseminacion.getHembra().getCaravanaBovino());
         }
-        if(this.caravanaMacho != null){
+        if (this.caravanaMacho != null) {
             txtCaravanaMacho.setText(this.caravanaMacho);
-        }
-        else{
+        } else {
             txtCaravanaMacho.setText(Inseminacion.getMacho().getCaravanaBovino());
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,27 +161,41 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
         txtCaravanaMacho.setText(null);
         jDateFechaInseminacion.setDate(null);
         txaDetalle.setText(null);
-        
+
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().equals("")){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(txtCaravanaMacho.getText().isEmpty()){ lblRMacho.setVisible(true); contador++; }else { lblRMacho.setVisible(false);}
-        if(jDateFechaInseminacion.getDate() == null){ lblRFechaInseminacion.setVisible(true); contador++; }else { lblRFechaInseminacion.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().equals("")) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (txtCaravanaMacho.getText().isEmpty()) {
+            lblRMacho.setVisible(true);
+            contador++;
+        } else {
+            lblRMacho.setVisible(false);
+        }
+        if (jDateFechaInseminacion.getDate() == null) {
+            lblRFechaInseminacion.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaInseminacion.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     private void btnModificarInseminacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarInseminacionMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
@@ -201,12 +212,12 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
 
                     Macho macho = dControladora.buscarMachoPorCaravana(txtCaravanaMacho.getText());
 
-                    Inseminacion inseminacion = new Inseminacion(frmInseminacion.idInseminacion,fechaInseminacion, detalle, hembra, macho);
+                    Inseminacion inseminacion = new Inseminacion(frmInseminacion.idInseminacion, fechaInseminacion, detalle, hembra, macho);
 
-                    if(dControladora.modificarInseminacion(frmInseminacion.idInseminacion, inseminacion)){
+                    if (dControladora.modificarInseminacion(frmInseminacion.idInseminacion, inseminacion)) {
 
                         dControladora.modificarEventoDeSanidad(inseminacion);
-                        
+
                         JOptionPane.showMessageDialog(null, "Inseminación Modificada Correctamente");
                         this.caravanaHembra = null;
                         this.caravanaMacho = null;
@@ -214,8 +225,7 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
                         frmInseminacion formularioInseminacion = new frmInseminacion();
                         frmInicio.jDkPEscritorio.add(formularioInseminacion);
                         formularioInseminacion.setVisible(true);
-                    }
-                    else{
+                    } else {
                         this.caravanaHembra = null;
                         this.caravanaMacho = null;
                         JOptionPane.showMessageDialog(null, "Inseminación No Modificada Correctamente");
@@ -229,7 +239,7 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnModificarInseminacionMouseClicked

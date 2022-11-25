@@ -1,9 +1,7 @@
 package clases;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class Bovino {
 
@@ -13,14 +11,13 @@ public class Bovino {
     private Hembra madre;
     private Macho padre;
     private Raza raza;
-    private byte [] foto;
+    private byte[] foto;
     private ArrayList<EstadoDelBovino> estadosDelBovino;
 
-    
-    
     public int getIdBovino() {
         return idBovino;
     }
+
     public void setIdBovino(int idBovino) {
         this.idBovino = idBovino;
     }
@@ -28,6 +25,7 @@ public class Bovino {
     public String getCaravanaBovino() {
         return caravanaBovino;
     }
+
     public void setCaravanaBovino(String caravanaBovino) {
         this.caravanaBovino = caravanaBovino;
     }
@@ -35,6 +33,7 @@ public class Bovino {
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
+
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
@@ -42,6 +41,7 @@ public class Bovino {
     public Hembra getMadre() {
         return madre;
     }
+
     public void setMadre(Hembra madre) {
         this.madre = madre;
     }
@@ -49,6 +49,7 @@ public class Bovino {
     public Macho getPadre() {
         return padre;
     }
+
     public void setPadre(Macho padre) {
         this.padre = padre;
     }
@@ -56,6 +57,7 @@ public class Bovino {
     public Raza getRaza() {
         return raza;
     }
+
     public void setRaza(Raza raza) {
         this.raza = raza;
     }
@@ -63,22 +65,21 @@ public class Bovino {
     public byte[] getFoto() {
         return foto;
     }
+
     public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
-    
-    
     public ArrayList<EstadoDelBovino> getEstadosDelBovino() {
         return estadosDelBovino;
     }
+
     public void setEstadosDelBovino(ArrayList<EstadoDelBovino> estadosDelBovino) {
         this.estadosDelBovino = estadosDelBovino;
     }
 
-  
-    public String toString() {        
-        return   caravanaBovino ;
+    public String toString() {
+        return caravanaBovino;
     }
 
     public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza, ArrayList<EstadoDelBovino> estadosDelBovino) {
@@ -90,13 +91,15 @@ public class Bovino {
         this.raza = raza;
         this.estadosDelBovino = estadosDelBovino;
     }
+
     public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza) {
         this.idBovino = idBovino;
         this.caravanaBovino = caravanaBovino;
         this.fechaNacimiento = fechaNacimiento;
         this.raza = raza;
     }
-     public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza, Hembra madre, Macho padre) {
+
+    public Bovino(int idBovino, String caravanaBovino, Date fechaNacimiento, Raza raza, Hembra madre, Macho padre) {
         this.idBovino = idBovino;
         this.caravanaBovino = caravanaBovino;
         this.fechaNacimiento = fechaNacimiento;
@@ -113,7 +116,8 @@ public class Bovino {
         this.raza = raza;
         this.estadosDelBovino = estadosDelBovino;
     }
-    public Bovino(String caravanaBovino, Date fechaNacimiento,Hembra madre, Macho padre, Raza raza) {
+
+    public Bovino(String caravanaBovino, Date fechaNacimiento, Hembra madre, Macho padre, Raza raza) {
         this.caravanaBovino = caravanaBovino;
         this.fechaNacimiento = fechaNacimiento;
         this.madre = madre;
@@ -162,6 +166,4 @@ public class Bovino {
     public Bovino() {
     }
 
-    
-    
 }

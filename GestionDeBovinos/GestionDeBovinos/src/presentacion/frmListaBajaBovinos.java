@@ -80,27 +80,25 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableBajasLogicas.setRowSorter(elQueOrdena);
-        
-        
+
         ArrayList<BajaLogicaBovino> listaBajasFinal = new ArrayList<>();
 
         ArrayList<Bovino> listaBovinos = dControladora.buscarBovinoCaravanaLIKETodos(txtCaravanaHembra.getText());
 
         ArrayList<BajaLogicaBovino> lista = dControladora.listarBajasLogicaBovinos();
-        
-        
+
         for (BajaLogicaBovino bajaLogica : lista) {
-            
+
             for (Bovino bovino : listaBovinos) {
-                if(bajaLogica.getBovino().getIdBovino() == bovino.getIdBovino()){
+                if (bajaLogica.getBovino().getIdBovino() == bovino.getIdBovino()) {
                     listaBajasFinal.add(bajaLogica);
                     listaBovinos.remove(bovino);
                     break;
                 }
-                
+
             }
         }
-        
+
         model.addColumn("ID Baja Lógica");
         model.addColumn("Caravana");
         model.addColumn("Fecha");
@@ -391,7 +389,7 @@ public class frmListaBajaBovinos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExportarMouseClicked
 
     private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
-        
+
         this.listarBajasLogicasLIKE();
     }//GEN-LAST:event_txtCaravanaHembraKeyReleased
 

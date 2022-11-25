@@ -4,17 +4,12 @@
  */
 package dominio;
 
-
 import clases.Celo;
 import java.util.ArrayList;
 import persistencia.pCelo;
 
-/**
- *
- * @author Godoy
- */
 public class dCelo {
-    
+
     public static boolean altaCelo(Celo pCelo) {
 
         return persistencia.pCelo.altaCelo(pCelo);
@@ -25,25 +20,24 @@ public class dCelo {
         return pCelo.bajaCelo(idCelo);
     }
 
-    public static boolean modificarCelo(int idCelo, Celo pCelo){
+    public static boolean modificarCelo(int idCelo, Celo pCelo) {
 
         return persistencia.pCelo.modificarCelo(idCelo, pCelo);
     }
 
-    public static Celo buscarCelo(int idCelo){
+    public static Celo buscarCelo(int idCelo) {
 
         return pCelo.buscarCelo(idCelo);
     }
 
-    public static ArrayList<Celo> listarCelos(){
+    public static ArrayList<Celo> listarCelos() {
 
         return pCelo.listarCelos();
     }
-    
-    public static ArrayList<Celo> listarCelosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Celo> listarCelosPorCaravana(String pCaravanaHembra) {
 
         return pCelo.listarCelosPorCaravana(pCaravanaHembra);
     }
-    
-    
+
 }

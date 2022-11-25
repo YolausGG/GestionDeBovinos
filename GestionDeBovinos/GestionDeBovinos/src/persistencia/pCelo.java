@@ -12,27 +12,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-/**
- *
- * @author Godoy
- */
-
 public class pCelo {
-    
-    private static final String INSERT_CELO = " INSERT INTO CELO ( IDCELO, CAUSA ) " +
-            " VALUES ( ?, ? )";
+
+    private static final String INSERT_CELO = " INSERT INTO CELO ( IDCELO, CAUSA ) "
+            + " VALUES ( ?, ? )";
     private static final String DELETE_CELO = "DELETE FROM CELO WHERE IDCELO = ?";
     private static final String UPDATE_CELO = "UPDATE CELO SET CAUSA = ?  WHERE IDCELO = ?";
-    private static final String BUSCAR_CELO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"+
-            " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD WHERE C.IDCELO = ? ";
-    private static final String LISTAR_CELOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"+
-            " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD";
-    private static final String LISTAR_CELOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"+
-            " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD "+
-            " WHERE E.IDHEMBRA = ?";
-    
-    public static boolean altaCelo(Celo pCelo){
+    private static final String BUSCAR_CELO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"
+            + " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD WHERE C.IDCELO = ? ";
+    private static final String LISTAR_CELOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"
+            + " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD";
+    private static final String LISTAR_CELOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, C.CAUSA"
+            + " FROM CELO C INNER JOIN EVENTOSDESANIDAD E ON C.IDCELO = E.IDEVENTODESANIDAD "
+            + " WHERE E.IDHEMBRA = ?";
+
+    public static boolean altaCelo(Celo pCelo) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_CELO);
             statement.setInt(1, pCelo.getIdEventoDeSanidad());
@@ -40,7 +34,7 @@ public class pCelo {
 
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,17 +42,17 @@ public class pCelo {
         }
     }
 
-    public static boolean bajaCelo(int idCelo){
+    public static boolean bajaCelo(int idCelo) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_CELO);
             statement.setInt(1, idCelo);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.bajaEventoDeSanidad(idCelo); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.bajaEventoDeSanidad(idCelo);
             }
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +60,7 @@ public class pCelo {
         }
     }
 
-    public static boolean modificarCelo(int idCelo, Celo pCelo){
+    public static boolean modificarCelo(int idCelo, Celo pCelo) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_CELO);
@@ -75,12 +69,12 @@ public class pCelo {
             statement.setInt(2, idCelo);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.modificarEventoDeSanidad(idCelo, pCelo); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.modificarEventoDeSanidad(idCelo, pCelo);
             }
-                        
-            return retorno>0;
+
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +82,7 @@ public class pCelo {
         }
     }
 
-    public static Celo buscarCelo(int idCelo){
+    public static Celo buscarCelo(int idCelo) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_CELO);
@@ -96,7 +90,7 @@ public class pCelo {
 
             ResultSet resultado = statement.executeQuery();
             Celo celo = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 celo = getCeloFromResultSet(resultado);
             }
             return celo;
@@ -107,7 +101,7 @@ public class pCelo {
         }
     }
 
-    public static ArrayList<Celo> listarCelos(){
+    public static ArrayList<Celo> listarCelos() {
 
         ArrayList<Celo> listaCelos = new ArrayList<>();
         try {
@@ -121,21 +115,21 @@ public class pCelo {
             }
             return listaCelos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    public static ArrayList<Celo> listarCelosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Celo> listarCelosPorCaravana(String pCaravanaHembra) {
 
         ArrayList<Celo> listaCelos = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_CELOS_CARAVANA);
-           
+
             Hembra hembra = pHembra.buscarHembraPorCaravana(pCaravanaHembra);
             statement.setInt(1, hembra.getIdBovino());
-            
+
             ResultSet resultado = statement.executeQuery();
             Celo celo;
 
@@ -145,7 +139,7 @@ public class pCelo {
             }
             return listaCelos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -156,14 +150,13 @@ public class pCelo {
         int idEventoDeSanidad = resultado.getInt("IDEVENTODESANIDAD");
         Date fecha = resultado.getDate("FECHA");
         String descripcion = resultado.getString("DETALLE");
-        
+
         int idHembra = resultado.getInt("IDHEMBRA");
         Hembra hembra = pHembra.buscarHembraPorId(idHembra);
-        
-        String causa = resultado.getString("CAUSA");
-        
 
-        Celo celo = new Celo (idEventoDeSanidad, fecha, descripcion, hembra, causa);
+        String causa = resultado.getString("CAUSA");
+
+        Celo celo = new Celo(idEventoDeSanidad, fecha, descripcion, hembra, causa);
         return celo;
     }
 }

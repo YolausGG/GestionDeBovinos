@@ -4,19 +4,13 @@
  */
 package dominio;
 
-
 import clases.Inseminacion;
 import java.util.ArrayList;
 import persistencia.pInseminacion;
 
-
-/**
- *
- * @author Godoy
- */
 public class dInseminacion {
-    
-     public static boolean altaInseminacion(Inseminacion pInseminacion) {
+
+    public static boolean altaInseminacion(Inseminacion pInseminacion) {
 
         return persistencia.pInseminacion.altaInseminacion(pInseminacion);
     }
@@ -26,28 +20,28 @@ public class dInseminacion {
         return pInseminacion.bajaInseminacion(idInseminacion);
     }
 
-    public static boolean modificarInseminacion(int idInseminacion, Inseminacion pInseminacion){
+    public static boolean modificarInseminacion(int idInseminacion, Inseminacion pInseminacion) {
 
         return persistencia.pInseminacion.modificarInseminacion(idInseminacion, pInseminacion);
     }
 
-    public static Inseminacion buscarInseminacion(int idInseminacion){
+    public static Inseminacion buscarInseminacion(int idInseminacion) {
 
         return pInseminacion.buscarInseminacion(idInseminacion);
     }
 
-    public static ArrayList<Inseminacion> listarInseminaciones(){
+    public static ArrayList<Inseminacion> listarInseminaciones() {
 
         return pInseminacion.listarInseminaciones();
     }
-    
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravana){
+
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravana(String pCaravana) {
 
         return pInseminacion.listarInseminacionesPorCaravana(pCaravana);
     }
-    
-    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho){
-        
-        return pInseminacion.listarInseminacionesPorCaravanaHembraYMacho(pCaravanaHembra,pCaravanaMacho);
+
+    public static ArrayList<Inseminacion> listarInseminacionesPorCaravanaHembraYMacho(String pCaravanaHembra, String pCaravanaMacho) {
+
+        return pInseminacion.listarInseminacionesPorCaravanaHembraYMacho(pCaravanaHembra, pCaravanaMacho);
     }
 }

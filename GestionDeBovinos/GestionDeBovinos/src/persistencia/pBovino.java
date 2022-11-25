@@ -5,14 +5,11 @@ import clases.Hembra;
 import clases.Macho;
 import clases.Raza;
 
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class pBovino {
 
@@ -31,7 +28,7 @@ public class pBovino {
     private static final String BUSCAR_BOVINO_BAJA_LOGICA = "SELECT * FROM BOVINO WHERE BAJALOGICA = 1 AND CARAVANABOVINO = ?";
 
     public static boolean altaBovino(Bovino pBovino) {
-        
+
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_BOVINO);
             statement.setString(1, pBovino.getCaravanaBovino());
@@ -64,7 +61,7 @@ public class pBovino {
     }
 
     public static boolean altaBovinoFoto(Bovino pBovino) {
-        
+
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_BOVINO_FOTO);
             statement.setString(1, pBovino.getCaravanaBovino());
@@ -75,7 +72,7 @@ public class pBovino {
             statement.setInt(3, pBovino.getRaza().getIdRaza());
 
             statement.setBytes(4, pBovino.getFoto());
-            
+
             int retorno = statement.executeUpdate();
 
             if (retorno > 0) {
@@ -97,7 +94,7 @@ public class pBovino {
             return false;
         }
     }
-    
+
     public static boolean bajaBovino(int idBovino) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_BOVINO);
@@ -111,7 +108,7 @@ public class pBovino {
             return false;
         }
     }
-    
+
     public static boolean bajaRealBovino(int idBovino) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_BOVINO_REAL);
@@ -125,7 +122,7 @@ public class pBovino {
             return false;
         }
     }
-    
+
     public static boolean altaLogicaBovino(int idBovino) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_BOVINO_ALTA_LOGICA);
@@ -140,7 +137,7 @@ public class pBovino {
         }
     }
 
-    public static boolean modificarBovino( Bovino pBovino) {
+    public static boolean modificarBovino(Bovino pBovino) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_BOVINO);
@@ -152,7 +149,6 @@ public class pBovino {
             statement.setInt(4, pBovino.getIdBovino());
 
             int retorno = statement.executeUpdate();
-            
 
             return retorno > 0;
 
@@ -161,8 +157,8 @@ public class pBovino {
             return false;
         }
     }
-    
-    public static boolean modificarBovinoFoto( Bovino pBovino) {
+
+    public static boolean modificarBovinoFoto(Bovino pBovino) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_BOVINO_FOTO);
@@ -174,7 +170,6 @@ public class pBovino {
             statement.setBytes(4, pBovino.getFoto());
             statement.setInt(5, pBovino.getIdBovino());
             int retorno = statement.executeUpdate();
-            
 
             return retorno > 0;
 
@@ -202,7 +197,7 @@ public class pBovino {
             return null;
         }
     }
-    
+
     public static Bovino buscarBovinoBajaLogicaCaravana(String pCaravanaBovino) {
 
         try {
@@ -221,7 +216,7 @@ public class pBovino {
             return null;
         }
     }
-    
+
     public static Bovino buscarBovinoCaravanaCompleto(String pCaravanaBovino) {
 
         try {
@@ -240,8 +235,6 @@ public class pBovino {
             return null;
         }
     }
-    
-    
 
     public static Bovino buscarBovinoId(int idBovino) {
 
@@ -261,20 +254,20 @@ public class pBovino {
             return null;
         }
     }
-    
+
     public static ArrayList<Bovino> buscarBovinoCaravanaLIKE(String pCaravana) {
-        
+
         String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
-            + " FROM BOVINO B"
-            + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%' AND B.BAJALOGICA = 0 ";
-        
+                + " FROM BOVINO B"
+                + " WHERE CARAVANABOVINO LIKE '%" + pCaravana + "%' AND B.BAJALOGICA = 0 ";
+
         ArrayList<Bovino> listaBovinos = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(consulta);
-           
+
             ResultSet resultado = statement.executeQuery();
             Bovino bovino;
-            
+
             while (resultado.next()) {
                 bovino = getBovinoFromResultSet(resultado);
                 listaBovinos.add(bovino);
@@ -286,20 +279,20 @@ public class pBovino {
             return null;
         }
     }
-    
+
     public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana) {
-        
+
         String consulta = "SELECT B.IDBOVINO,B.CARAVANABOVINO,B.FECHANACIMIENTO,B.IDRAZA,B.FOTO"
-            + " FROM BOVINO B"
-            + " WHERE CARAVANABOVINO LIKE '%"+pCaravana+"%'";
-        
+                + " FROM BOVINO B"
+                + " WHERE CARAVANABOVINO LIKE '%" + pCaravana + "%'";
+
         ArrayList<Bovino> listaBovinos = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(consulta);
-           
+
             ResultSet resultado = statement.executeQuery();
             Bovino bovino;
-            
+
             while (resultado.next()) {
                 bovino = getBovinoFromResultSet(resultado);
                 listaBovinos.add(bovino);
@@ -345,7 +338,7 @@ public class pBovino {
 
         return bovino;
     }
-    
+
     private static Bovino getBovinoCompletoFromResultSet(ResultSet resultado) throws SQLException {
 
         int idBovino = resultado.getInt("IDBOVINO");
@@ -354,34 +347,31 @@ public class pBovino {
 
         int idRaza = resultado.getInt("IDRAZA");
         Raza raza = pRaza.buscarRaza(idRaza);
-        
+
         byte[] foto = resultado.getBytes("FOTO");
-        
+
         //if(resultado.getBytes("FOTO") != null){
         //    foto = resultado.getBytes("FOTO");
         //}
-        
         ArrayList<Bovino> padres = pParentesco.buscarPadres(idBovino);
-        
+
         Macho padre = null;
         Hembra madre = null;
-        
-        if(padres.size() > 0){
-            
+
+        if (padres.size() > 0) {
+
             for (Bovino p : padres) {
-                if(p.getClass().getSimpleName().toString().equals("Macho")){
-                    padre =(Macho) p;
-                }else{
+                if (p.getClass().getSimpleName().toString().equals("Macho")) {
+                    padre = (Macho) p;
+                } else {
                     madre = (Hembra) p;
                 }
             }
         }
-        
 
         Bovino bovino = new Bovino(idBovino, caravanaBovino, fechaNacimiento, madre, padre, raza, foto);
 
         return bovino;
     }
 
-    
 }

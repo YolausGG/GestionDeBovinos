@@ -8,14 +8,8 @@ import clases.Secado;
 import java.util.ArrayList;
 import persistencia.pSecado;
 
-
-
-/**
- *
- * @author Godoy
- */
 public class dSecado {
-    
+
     public static boolean altaSecado(Secado pSecado) {
 
         return persistencia.pSecado.altaSecado(pSecado);
@@ -26,25 +20,24 @@ public class dSecado {
         return pSecado.bajaSecado(idSecado);
     }
 
-    public static boolean modificarSecado(int idSecado, Secado pSecado){
+    public static boolean modificarSecado(int idSecado, Secado pSecado) {
 
         return persistencia.pSecado.modificarSecado(idSecado, pSecado);
     }
 
-    public static Secado buscarSecado(int idSecado){
+    public static Secado buscarSecado(int idSecado) {
 
         return pSecado.buscarSecado(idSecado);
     }
 
-    public static ArrayList<Secado> listarSecados(){
+    public static ArrayList<Secado> listarSecados() {
 
         return pSecado.listarSecados();
     }
-    
-    public static ArrayList<Secado> listarSecadosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Secado> listarSecadosPorCaravana(String pCaravanaHembra) {
 
         return pSecado.listarSecadosPorCaravana(pCaravanaHembra);
     }
-    
-       
+
 }

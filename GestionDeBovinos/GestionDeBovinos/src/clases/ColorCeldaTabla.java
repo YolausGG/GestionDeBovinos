@@ -14,10 +14,6 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author nico_
- */
 public class ColorCeldaTabla extends DefaultTableCellRenderer {
 
     private int columna;
@@ -34,26 +30,28 @@ public class ColorCeldaTabla extends DefaultTableCellRenderer {
         LocalDate fechaDelDia = LocalDate.now();
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date pFechaDia = Date.from(fechaDelDia.atStartOfDay(defaultZoneId).toInstant());
-        
-        Calendar calendar = Calendar.getInstance();        
+
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(pFechaDia);
-        calendar.add(Calendar.DAY_OF_YEAR, 3);        
+        calendar.add(Calendar.DAY_OF_YEAR, 14);
         Date fechaDif3 = calendar.getTime();
-        
-        
-        Calendar calendarDos = Calendar.getInstance();        
+
+        Calendar calendarDos = Calendar.getInstance();
         calendarDos.setTime(pFechaDia);
-        calendarDos.add(Calendar.DAY_OF_YEAR, 2);
+        calendarDos.add(Calendar.DAY_OF_YEAR, 3);
         Date fechaDif2 = calendarDos.getTime();
 
-        if (table.getValueAt(row, columna).equals(fechaDif3)) {
-            this.setBackground(Color.yellow);
-            this.setForeground(Color.black);
+        Date fecha = (Date) table.getValueAt(row, columna);
 
-        } else if(table.getValueAt(row, columna).equals(fechaDif2)) {
+        if (fecha.getTime() <= fechaDif2.getTime()) {
+
             this.setBackground(Color.red);
             this.setForeground(Color.white);
-        }else{
+
+        } else if (fecha.getTime() <= fechaDif3.getTime()) {
+            this.setBackground(Color.yellow);
+            this.setForeground(Color.black);
+        } else {
             this.setBackground(Color.white);
             this.setForeground(Color.black);
         }

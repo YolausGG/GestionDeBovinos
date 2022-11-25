@@ -7,58 +7,56 @@ package dominio;
 import clases.Tratamiento;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Godoy
- */
 public class dTratamiento {
-    
-    public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento){
-        
+
+    public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
+
         return persistencia.pTratamiento.altaTratamientoFechaInicio(pTratamiento);
     }
-    public static boolean altaTratamiento(Tratamiento pTratamiento){
-        
+
+    public static boolean altaTratamiento(Tratamiento pTratamiento) {
+
         return persistencia.pTratamiento.altaTratamiento(pTratamiento);
     }
 
-    public static boolean bajaTratamiento(int idTratamiento){
-        
+    public static boolean bajaTratamiento(int idTratamiento) {
+
         return persistencia.pTratamiento.bajaTratamiento(idTratamiento);
     }
-    
-    public static boolean modificarTratamiento(Tratamiento pTratamiento){
+
+    public static boolean modificarTratamiento(Tratamiento pTratamiento) {
 
         return persistencia.pTratamiento.modificarTratamiento(pTratamiento);
     }
 
-    public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento){
+    public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento) {
 
         return persistencia.pTratamiento.modificarTratamientoFechaFin(pTratamiento);
     }
-    
-    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento){
+
+    public static boolean modificarTratamientoFechaInicio(Tratamiento pTratamiento) {
 
         return persistencia.pTratamiento.modificarTratamientoFechaInicio(pTratamiento);
     }
 
-    public static Tratamiento buscarTratamiento(int idTratamiento){
+    public static Tratamiento buscarTratamiento(int idTratamiento) {
 
         return persistencia.pTratamiento.buscarTratamiento(idTratamiento);
     }
 
-    public static ArrayList<Tratamiento> listarTratamientos(){
+    public static ArrayList<Tratamiento> listarTratamientos() {
 
         return persistencia.pTratamiento.listarTratamientos();
     }
-    public static ArrayList<Tratamiento> listarTratamientosActivos(){
+
+    public static ArrayList<Tratamiento> listarTratamientosActivos() {
 
         return persistencia.pTratamiento.listarTratamientosActivos();
     }
-    public static ArrayList<Tratamiento> listarTratamientosActivosBovino(int idBovino){
+
+    public static ArrayList<Tratamiento> listarTratamientosActivosBovino(int idBovino) {
 
         return persistencia.pTratamiento.listarTratamientosActivosBovino(idBovino);
     }
-        
+
 }

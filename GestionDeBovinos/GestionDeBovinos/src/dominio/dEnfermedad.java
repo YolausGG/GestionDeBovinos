@@ -1,6 +1,5 @@
 package dominio;
 
-
 import clases.Enfermedad;
 import persistencia.pEnfermedad;
 
@@ -18,30 +17,29 @@ public class dEnfermedad {
         return pEnfermedad.bajaEnfermedad(idEnfermedad);
     }
 
-    public static boolean modificarEnfermedad(int idEnfermedad, Enfermedad pEnfermedad){
+    public static boolean modificarEnfermedad(int idEnfermedad, Enfermedad pEnfermedad) {
 
         return persistencia.pEnfermedad.modificarEnfermedad(idEnfermedad, pEnfermedad);
     }
 
-    public static Enfermedad buscarEnfermedad(int idEnfermedad){
+    public static Enfermedad buscarEnfermedad(int idEnfermedad) {
 
         return pEnfermedad.buscarEnfermedad(idEnfermedad);
     }
-    
-     public static Enfermedad buscarEnfermedadNombre(String pNombre){
+
+    public static Enfermedad buscarEnfermedadNombre(String pNombre) {
 
         return pEnfermedad.buscarEnfermedadNombre(pNombre);
     }
-    
-    public static Enfermedad buscarUltimaEnfermedad(){
+
+    public static Enfermedad buscarUltimaEnfermedad() {
 
         return pEnfermedad.buscarUltimaEnfermedad();
     }
 
-    public static ArrayList<Enfermedad> listarEnfermedades(){
+    public static ArrayList<Enfermedad> listarEnfermedades() {
 
         return pEnfermedad.listarEnfermedades();
     }
-    
-    
+
 }

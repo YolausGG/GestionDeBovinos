@@ -11,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author nico_
- */
 public class pEstadoBovino {
 
     private static final String INSERT_ESTADOBOVINO_FECHA_INICIO = " INSERT INTO ESTADOBOVINO (IDESTADODELBOVINO, IDBOVINO, FECHAINICIO ) "
@@ -54,7 +50,7 @@ public class pEstadoBovino {
     public static boolean altaEstadoBovinoFechaInicio(EstadoBovino pEstadoBovino) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_ESTADOBOVINO_FECHA_INICIO);
-            
+
             statement.setInt(1, pEstadoBovino.getIdEstadoDelBovino());
             statement.setInt(2, pEstadoBovino.getIdBovino());
             java.sql.Date sqlDate = new java.sql.Date(pEstadoBovino.getFechaInicio().getTime());

@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 

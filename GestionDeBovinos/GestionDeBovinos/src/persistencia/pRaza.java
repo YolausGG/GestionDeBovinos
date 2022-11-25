@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class pRaza {
 
     private static final String LISTAR_RAZAS = "SELECT * FROM RAZA";
@@ -31,7 +30,7 @@ public class pRaza {
         }
     }
 
-    public static ArrayList<Raza> buscarRazas(){
+    public static ArrayList<Raza> buscarRazas() {
 
         ArrayList<Raza> listaRazas = new ArrayList<>();
         try {
@@ -45,7 +44,7 @@ public class pRaza {
             }
             return listaRazas;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -56,8 +55,8 @@ public class pRaza {
         int idRaza = resultado.getInt("IDRAZA");
         String tipo = resultado.getString("TIPO");
 
-        Raza raza = new Raza (idRaza, tipo);
+        Raza raza = new Raza(idRaza, tipo);
         return raza;
-        
+
     }
 }

@@ -23,10 +23,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author Godoy
- */
 public class frmListaEventosDeSanidad extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones

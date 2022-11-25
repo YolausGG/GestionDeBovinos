@@ -12,17 +12,15 @@ import javax.swing.JOptionPane;
 
 public class frmBajaLogica extends javax.swing.JInternalFrame {
 
-    
     public frmBajaLogica() {
         initComponents();
-        
+
         this.setTitle("BAJA LÓGICA DE BOVINO");
         lblRFechaBaja.setVisible(false);
         lblRMotivoBaja.setVisible(false);
         txtCaravana.setText(frmBovino.caravana);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -114,24 +112,33 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean validarDatos(){
-        
+    private boolean validarDatos() {
+
         int contador = 0;
-        
-        if(jDateFechaBaja.getDate() == null){ lblRFechaBaja.setVisible(true); contador++; } else{ lblRFechaBaja.setVisible(false); }
-        if(cboMotivo.getSelectedIndex() < 1){ lblRMotivoBaja.setVisible(true); contador++; }else{ lblRMotivoBaja.setVisible(false); }
-    
-        if(contador < 1){
-            return true;
+
+        if (jDateFechaBaja.getDate() == null) {
+            lblRFechaBaja.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaBaja.setVisible(false);
         }
-        else{
+        if (cboMotivo.getSelectedIndex() < 1) {
+            lblRMotivoBaja.setVisible(true);
+            contador++;
+        } else {
+            lblRMotivoBaja.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
-        
+
     }
-    
+
     private void btnConfirmarBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarBajaMouseClicked
-        if(validarDatos()){
+        if (validarDatos()) {
 
             Date fechaBaja = jDateFechaBaja.getDate();
             String motivo = cboMotivo.getSelectedItem().toString();
@@ -140,14 +147,13 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
 
             BajaLogicaBovino bajaLogicaBovino = new BajaLogicaBovino(bovino, fechaBaja, motivo);
 
-            if(motivo.equals("Mal Ingresado")){
-                if(dControladora.bajaRealBovino(bovino.getIdBovino())){
+            if (motivo.equals("Mal Ingresado")) {
+                if (dControladora.bajaRealBovino(bovino.getIdBovino())) {
                     JOptionPane.showMessageDialog(null, "Eliminado Conrrectamente");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "No se realizó la Eliminación");
                 }
-            }
-            else if(dControladora.bajaBovino(bovino.getIdBovino()) && dControladora.altaBajaLogicaBovino(bajaLogicaBovino)){
+            } else if (dControladora.bajaBovino(bovino.getIdBovino()) && dControladora.altaBajaLogicaBovino(bajaLogicaBovino)) {
 
                 JOptionPane.showMessageDialog(null, "Baja Lógica Exitosa");
                 frmBovino.caravana = "";
@@ -159,8 +165,7 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
                 frmInicio.jDkPEscritorio.add(formularioBovino);
                 formularioBovino.setVisible(true);
                 this.dispose();
-            }
-            else{
+            } else {
 
                 JOptionPane.showMessageDialog(null, "No se realizó la Baja Lógica");
                 frmBovino.caravana = "";

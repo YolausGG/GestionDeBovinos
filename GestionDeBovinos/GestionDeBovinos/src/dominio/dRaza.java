@@ -6,10 +6,9 @@ import persistencia.pRaza;
 
 public class dRaza {
 
-    public static ArrayList<Raza> listarRazas(){
+    public static ArrayList<Raza> listarRazas() {
 
         return pRaza.buscarRazas();
     }
 
 }
-

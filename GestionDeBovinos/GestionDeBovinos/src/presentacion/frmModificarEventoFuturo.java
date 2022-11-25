@@ -17,7 +17,7 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
     public frmModificarEventoFuturo() {
         initComponents();
 
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR EVENTO FUTURO");
 
         lblRTipo.setVisible(false);

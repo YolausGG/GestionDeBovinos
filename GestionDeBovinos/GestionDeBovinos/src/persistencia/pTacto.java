@@ -12,56 +12,48 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-/**
- *
- * @author Godoy
- */
-
 public class pTacto {
-    
-    private static final String INSERT_TACTO = "INSERT INTO TACTO ( IDTACTO, RESULTADO, DIAGNOSTICO ) " +
-            " VALUES ( ?, ?, ? )";
+
+    private static final String INSERT_TACTO = "INSERT INTO TACTO ( IDTACTO, RESULTADO, DIAGNOSTICO ) "
+            + " VALUES ( ?, ?, ? )";
     private static final String DELETE_TACTO = "DELETE FROM TACTO WHERE IDTACTO = ?";
     private static final String UPDATE_TACTO = "UPDATE TACTO SET RESULTADO = ?, DIAGNOSTICO = ? WHERE IDTACTO = ?";
-    private static final String BUSCAR_TACTO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"+
-            " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD WHERE T.IDTACTO = ? ";
-    private static final String LISTAR_TACTOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"+
-            " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD";
-    private static final String LISTAR_TACTOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"+
-            " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD "+
-            " WHERE E.IDHEMBRA = ?";
-    
-    
-    public static boolean altaTacto(Tacto pTacto){
+    private static final String BUSCAR_TACTO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"
+            + " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD WHERE T.IDTACTO = ? ";
+    private static final String LISTAR_TACTOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"
+            + " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD";
+    private static final String LISTAR_TACTOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, T.RESULTADO, T.DIAGNOSTICO"
+            + " FROM TACTO T INNER JOIN EVENTOSDESANIDAD E ON T.IDTACTO = E.IDEVENTODESANIDAD "
+            + " WHERE E.IDHEMBRA = ?";
+
+    public static boolean altaTacto(Tacto pTacto) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_TACTO);
             statement.setInt(1, pTacto.getIdEventoDeSanidad());
             statement.setString(2, pTacto.getResultado());
             statement.setString(3, pTacto.getDiagnostico());
-            
+
             int retorno = statement.executeUpdate();
 
-            
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean bajaTacto(int idTacto){
+
+    public static boolean bajaTacto(int idTacto) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_TACTO);
             statement.setInt(1, idTacto);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.bajaEventoDeSanidad(idTacto); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.bajaEventoDeSanidad(idTacto);
             }
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +61,7 @@ public class pTacto {
         }
     }
 
-    public static boolean modificarTacto(int idTacto, Tacto pTacto){
+    public static boolean modificarTacto(int idTacto, Tacto pTacto) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_TACTO);
@@ -79,12 +71,12 @@ public class pTacto {
             statement.setInt(3, idTacto);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.modificarEventoDeSanidad(idTacto, pTacto); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.modificarEventoDeSanidad(idTacto, pTacto);
             }
-                        
-            return retorno>0;
+
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +84,7 @@ public class pTacto {
         }
     }
 
-    public static Tacto buscarTacto(int idTacto){
+    public static Tacto buscarTacto(int idTacto) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_TACTO);
@@ -100,7 +92,7 @@ public class pTacto {
 
             ResultSet resultado = statement.executeQuery();
             Tacto tacto = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 tacto = getTactoFromResultSet(resultado);
             }
             return tacto;
@@ -111,7 +103,7 @@ public class pTacto {
         }
     }
 
-    public static ArrayList<Tacto> listarTactos(){
+    public static ArrayList<Tacto> listarTactos() {
 
         ArrayList<Tacto> listaTactos = new ArrayList<>();
         try {
@@ -125,21 +117,21 @@ public class pTacto {
             }
             return listaTactos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    public static ArrayList<Tacto> listarTactosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Tacto> listarTactosPorCaravana(String pCaravanaHembra) {
 
         ArrayList<Tacto> listaTactos = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_TACTOS_CARAVANA);
-            
+
             Hembra hembra = pHembra.buscarHembraPorCaravana(pCaravanaHembra);
             statement.setInt(1, hembra.getIdBovino());
-            
+
             ResultSet resultado = statement.executeQuery();
             Tacto tacto;
 
@@ -149,7 +141,7 @@ public class pTacto {
             }
             return listaTactos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -160,15 +152,15 @@ public class pTacto {
         int idEventoDeSanidad = resultado.getInt("IDEVENTODESANIDAD");
         Date fecha = resultado.getDate("FECHA");
         String descripcion = resultado.getString("DETALLE");
-        
+
         int idHembra = resultado.getInt("IDHEMBRA");
         Hembra hembra = pHembra.buscarHembraPorId(idHembra);
-        
+
         String vResultado = resultado.getString("RESULTADO");
         String diagnostico = resultado.getString("DIAGNOSTICO");
 
-        Tacto tacto = new Tacto (idEventoDeSanidad, fecha, descripcion, hembra, vResultado, diagnostico);
+        Tacto tacto = new Tacto(idEventoDeSanidad, fecha, descripcion, hembra, vResultado, diagnostico);
         return tacto;
     }
-    
+
 }

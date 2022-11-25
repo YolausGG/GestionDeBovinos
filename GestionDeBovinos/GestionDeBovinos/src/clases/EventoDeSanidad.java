@@ -2,7 +2,6 @@ package clases;
 
 import java.util.Date;
 
-
 public class EventoDeSanidad {
 
     private int idEventoDeSanidad;
@@ -13,6 +12,7 @@ public class EventoDeSanidad {
     public int getIdEventoDeSanidad() {
         return idEventoDeSanidad;
     }
+
     public void setIdEventoDeSanidad(int idEventoDeSanidad) {
         this.idEventoDeSanidad = idEventoDeSanidad;
     }
@@ -20,6 +20,7 @@ public class EventoDeSanidad {
     public Date getFecha() {
         return fecha;
     }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -27,6 +28,7 @@ public class EventoDeSanidad {
     public String getDetalle() {
         return detalle;
     }
+
     public void setDetalle(String descripcion) {
         this.detalle = descripcion;
     }
@@ -34,18 +36,9 @@ public class EventoDeSanidad {
     public Hembra getHembra() {
         return hembra;
     }
+
     public void setHembra(Hembra hembra) {
         this.hembra = hembra;
-    }
-
-    @Override
-    public String toString() {
-        return "EventoDeSanidad{" +
-                "idEventoDeSanidad=" + idEventoDeSanidad +
-                ", fecha=" + fecha +
-                ", detalle='" + detalle + '\'' +
-                ", hembra=" + hembra +
-                '}';
     }
 
     public EventoDeSanidad(int idEventoDeSanidad, Date fecha, String descripcion, Hembra hembra) {
@@ -54,11 +47,11 @@ public class EventoDeSanidad {
         this.detalle = descripcion;
         this.hembra = hembra;
     }
+
     public EventoDeSanidad(Date fecha, String descripcion, Hembra hembra) {
         this.fecha = fecha;
         this.detalle = descripcion;
         this.hembra = hembra;
     }
-    
-    
+
 }

@@ -26,12 +26,9 @@ import java.util.ArrayList;
 
 public class dControladora {
 
-    
     private static ArrayList<EventoDeSanidad> listaEventosDeSanidad = new ArrayList<>();
 
     // <editor-fold defaultstate="collapsed" desc="Cargar Listas">
-    
-   
     public static void cargarEventosDeSanidad() {
 
         for (Celo celo : dCelo.listarCelos()) {
@@ -65,28 +62,26 @@ public class dControladora {
 
         listaEventosDeSanidad.add(pEventoDeSanidad);
     }
-    
+
     public static void modificarEventoDeSanidad(EventoDeSanidad pEventoDeSanidad) {
 
         for (EventoDeSanidad eventoDeSanidad : listaEventosDeSanidad) {
-            
-            if(eventoDeSanidad.getIdEventoDeSanidad() == pEventoDeSanidad.getIdEventoDeSanidad()){
+
+            if (eventoDeSanidad.getIdEventoDeSanidad() == pEventoDeSanidad.getIdEventoDeSanidad()) {
                 listaEventosDeSanidad.remove(eventoDeSanidad);
                 listaEventosDeSanidad.add(pEventoDeSanidad);
                 break;
             }
         }
-        
+
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Devolver Listas">
     public static ArrayList<EventoDeSanidad> listarEventosDeSanidad() {
 
         return listaEventosDeSanidad;
     }
-
 
     public static ArrayList<Bovino> listarBovinos() {
 
@@ -243,7 +238,7 @@ public class dControladora {
 
         return dEstadoDelBovino.buscarEstadoDelBovino(idEstadoDelBovino);
     }
-    
+
     public static EstadoDelBovino buscarEstadoDelBovinoNombre(String pEstadoDelBovino) {
 
         return dEstadoDelBovino.buscarEstadoDelBovinoNombre(pEstadoDelBovino);
@@ -255,7 +250,6 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Aborto">
     public static boolean altaAborto(Aborto pAborto) {
 
@@ -571,7 +565,7 @@ public class dControladora {
 
         return dEstadoBovino.buscarUltimoEstadoBovinoNombre(pEstadoBovino);
     }
-    
+
     public static ArrayList<EstadoBovino> listarEstadosBovino() {
 
         return dEstadoBovino.listarEstadosBovino();
@@ -727,12 +721,12 @@ public class dControladora {
         return dBovino.buscarBovinoCaravanaLIKE(pCaravana);
     }
 
-    public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana){
+    public static ArrayList<Bovino> buscarBovinoCaravanaLIKETodos(String pCaravana) {
 
         return dBovino.buscarBovinoCaravanaLIKETodos(pCaravana);
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Macho">
     public static boolean altaMacho(Macho pMacho) {
 
@@ -790,10 +784,7 @@ public class dControladora {
 
         return dHembra.bajaHembra(idHembra);
     }
-    //public static boolean modificarHembra(Hembra pHembra){
 
-    //    return dHembra.modificarHembra(pHembra);
-    //}
     public static Hembra buscarHembraPorId(int idHembra) {
 
         return dHembra.buscarHembraPorId(idHembra);
@@ -922,7 +913,6 @@ public class dControladora {
     }
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Tratamiento">
     public static boolean altaTratamientoFechaInicio(Tratamiento pTratamiento) {
 
@@ -974,7 +964,6 @@ public class dControladora {
     }
     // </editor-fold>
 
-    
     // <editor-fold defaultstate="collapsed" desc="Consanguinidad">
     public static ArrayList<Bovino> parentescos_Hermanos_Sobrinos_SobrinoNieto(int contador, Bovino bovino, ArrayList<Bovino> hijos) {
 
@@ -1025,28 +1014,25 @@ public class dControladora {
 
     public static ArrayList<Bovino> arbolGenealogicoNull(int contador, Bovino bovino, ArrayList<Bovino> arbolGenealogico) {
 
-        
         ArrayList<Bovino> bovinosFinal = new ArrayList();
 
-        if(bovino != null){
+        if (bovino != null) {
             arbolGenealogico.add(bovino);
         }
-        if (contador >= 3 ) {
+        if (contador >= 3) {
             return arbolGenealogico;
         } else {
             if (bovino.getPadre() != null && contador <= 3) {
                 Macho padre = buscarMachoPorCaravanaCompleto(bovino.getPadre().getCaravanaBovino());
                 bovinosFinal = arbolGenealogicoNull(contador + 1, padre, arbolGenealogico);
-            }
-            else{
+            } else {
                 bovinosFinal = arbolGenealogicoNull(contador + 1, new Bovino(), arbolGenealogico);
             }
 
             if (bovino.getMadre() != null && contador <= 3) {
                 Hembra madre = buscarHembraPorCaravanaCompleta(bovino.getMadre().getCaravanaBovino());
                 bovinosFinal = arbolGenealogicoNull(contador + 1, madre, arbolGenealogico);
-            }
-            else{
+            } else {
                 bovinosFinal = arbolGenealogicoNull(contador + 1, new Bovino(), arbolGenealogico);
             }
         }

@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package clases;
 
 import java.util.Date;
 
-
-/**
- *
- * @author nico_
- */
 public class Padece {
-    
+
     private int idEnfermedad;
     private int idBovino;
     private Date fechaInicio;
@@ -56,11 +47,11 @@ public class Padece {
 
     @Override
     public String toString() {
-        return "Padece{" + 
-                "idEnfermedad=" + idEnfermedad +
-                ", idBovino=" + idBovino + 
-                ", fechaInicio=" + fechaInicio +
-                ", fechaFinalizacion=" + fechaFinalizacion + '}';
+        return "Padece{"
+                + "idEnfermedad=" + idEnfermedad
+                + ", idBovino=" + idBovino
+                + ", fechaInicio=" + fechaInicio
+                + ", fechaFinalizacion=" + fechaFinalizacion + '}';
     }
 
     public Padece(int idEnfermedad, int idBovino, Date fechaInicio, Date fechaFinalizacion) {
@@ -69,13 +60,15 @@ public class Padece {
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
     }
-     public Padece(int idEnfermedad, int idBovino, Date fechaInicio) {
+
+    public Padece(int idEnfermedad, int idBovino, Date fechaInicio) {
         this.idEnfermedad = idEnfermedad;
         this.idBovino = idBovino;
         this.fechaInicio = fechaInicio;
-        
+
     }
-     public Padece() {      
-        
+
+    public Padece() {
+
     }
 }

@@ -8,13 +8,8 @@ import clases.Parto;
 import java.util.ArrayList;
 import persistencia.pParto;
 
-
-/**
- *
- * @author Godoy
- */
 public class dParto {
-    
+
     public static boolean altaParto(Parto pParto) {
 
         return persistencia.pParto.altaParto(pParto);
@@ -25,24 +20,24 @@ public class dParto {
         return pParto.bajaParto(idParto);
     }
 
-    public static boolean modificarParto(int idParto, Parto pParto){
+    public static boolean modificarParto(int idParto, Parto pParto) {
 
         return persistencia.pParto.modificarParto(idParto, pParto);
     }
 
-    public static Parto buscarParto(int idParto){
+    public static Parto buscarParto(int idParto) {
 
         return pParto.buscarParto(idParto);
     }
 
-    public static ArrayList<Parto> listarPartos(){
+    public static ArrayList<Parto> listarPartos() {
 
         return pParto.listarPartos();
     }
-    
-    public static ArrayList<Parto> listarPartosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Parto> listarPartosPorCaravana(String pCaravanaHembra) {
 
         return pParto.listarPartosPorCaravana(pCaravanaHembra);
     }
-        
+
 }

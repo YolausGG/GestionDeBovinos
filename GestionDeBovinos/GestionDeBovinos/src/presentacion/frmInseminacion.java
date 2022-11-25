@@ -286,7 +286,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
         jTableInseminaciones.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableInseminaciones.setRowSorter(elQueOrdena);
         ArrayList<Inseminacion> listaInseminaciones = dControladora.listarInseminaciones();
@@ -319,7 +319,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableInseminaciones.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Inseminacion> listaInseminaciones = dControladora.listarInseminacionesPorCaravana(pCaravana);
 
         model.addColumn("id Inseminacion");
@@ -334,8 +334,8 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaInseminacion = formato.format(i.getFecha());
-            
-            model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(),fechaInseminacion, i.getDetalle(), modificar, eliminar});
+
+            model.addRow(new Object[]{i.getIdEventoDeSanidad(), i.getHembra().getCaravanaBovino(), i.getMacho().getCaravanaBovino(), fechaInseminacion, i.getDetalle(), modificar, eliminar});
         }
 
         jTableInseminaciones.getTableHeader().setReorderingAllowed(false);
@@ -369,7 +369,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
                     if (dControladora.altaInseminacion(inseminacion)) {
                         dControladora.agregarEventoDeSanidad(inseminacion);
-                        
+
                         EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Inseminada");
 
                         EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), inseminacion.getHembra().getIdBovino(), inseminacion.getFecha());

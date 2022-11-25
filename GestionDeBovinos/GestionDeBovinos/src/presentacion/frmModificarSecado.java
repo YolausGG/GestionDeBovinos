@@ -200,7 +200,7 @@ public class frmModificarSecado extends javax.swing.JInternalFrame {
 
                     String causa = cboCausa.getSelectedItem().toString();
 
-                    Secado secado = new Secado(frmSecado.idSecado,fechaSecado, detalle, hembra, causa);
+                    Secado secado = new Secado(frmSecado.idSecado, fechaSecado, detalle, hembra, causa);
 
                     if (dControladora.modificarSecado(frmSecado.idSecado, secado)) {
 

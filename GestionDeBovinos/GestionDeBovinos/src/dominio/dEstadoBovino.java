@@ -7,10 +7,6 @@ package dominio;
 import clases.EstadoBovino;
 import java.util.ArrayList;
 
-/**
- *
- * @author Godoy
- */
 public class dEstadoBovino {
 
     public static boolean altaEstadoBovinoFechaInicio(EstadoBovino pEstadoBovino) {
@@ -47,7 +43,7 @@ public class dEstadoBovino {
 
         return persistencia.pEstadoBovino.buscarEstadoBovino(pEstadoBovino);
     }
-    
+
     public static EstadoBovino buscarUltimoEstadoBovinoNombre(EstadoBovino pEstadoBovino) {
 
         return persistencia.pEstadoBovino.buscarUltimoEstadoBovinoNombre(pEstadoBovino);

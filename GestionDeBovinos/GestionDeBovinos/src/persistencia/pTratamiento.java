@@ -1,7 +1,5 @@
 package persistencia;
 
-import clases.Bovino;
-import clases.Enfermedad;
 import clases.Padece;
 import clases.Tratamiento;
 import dominio.dControladora;
@@ -10,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 
 public class pTratamiento {
 
@@ -94,7 +91,7 @@ public class pTratamiento {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_TRATAMIENTO);
-            
+
             statement.setInt(1, pTratamiento.getPadece().getIdBovino());
             statement.setInt(2, pTratamiento.getPadece().getIdEnfermedad());
             java.sql.Date sqlDate = new java.sql.Date(pTratamiento.getPadece().getFechaInicio().getTime());
@@ -114,7 +111,7 @@ public class pTratamiento {
             return false;
         }
     }
-    
+
     public static boolean modificarTratamientoFechaFin(Tratamiento pTratamiento) {
 
         try {

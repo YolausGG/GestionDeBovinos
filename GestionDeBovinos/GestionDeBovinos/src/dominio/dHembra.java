@@ -8,56 +8,46 @@ import clases.Hembra;
 import java.util.ArrayList;
 import persistencia.pHembra;
 
-
-/**
- *
- * @author Godoy
- */
 public class dHembra {
-    
+
     public static boolean altaHembra(Hembra pHembra) {
 
         return persistencia.pHembra.altaHembra(pHembra);
     }
 
-     public static boolean bajaHembra(int idHembra) {
+    public static boolean bajaHembra(int idHembra) {
 
-       return pHembra.bajaHembra(idHembra);
-      }
+        return pHembra.bajaHembra(idHembra);
+    }
 
-    //public static boolean modificarHembra(Hembra pHembra){
-
-    //    return persistencia.pHembra.modificarHembra(pHembra);
-    //}
-
-    public static Hembra buscarHembraPorId(int idHembra){
+    public static Hembra buscarHembraPorId(int idHembra) {
 
         return pHembra.buscarHembraPorId(idHembra);
     }
-    
-    public static Hembra buscarHembraPorCaravana(String pCaravanaHembra){
+
+    public static Hembra buscarHembraPorCaravana(String pCaravanaHembra) {
 
         return pHembra.buscarHembraPorCaravana(pCaravanaHembra);
     }
-    
-    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra){
+
+    public static Hembra buscarHembraPorCaravanaCompleta(String pCaravanaHembra) {
 
         return pHembra.buscarHembraPorCaravanaCompleta(pCaravanaHembra);
     }
-    
-    public static Hembra buscarUltimaHembra(){
-        
+
+    public static Hembra buscarUltimaHembra() {
+
         return pHembra.buscarUltimaHembra();
     }
-    
-    public static ArrayList<Hembra> buscarHembrasCaravanaLIKE(String pCaravana){
+
+    public static ArrayList<Hembra> buscarHembrasCaravanaLIKE(String pCaravana) {
 
         return pHembra.buscarHembrasCaravanaLIKE(pCaravana);
     }
 
-    public static ArrayList<Hembra> listarHembras(){
+    public static ArrayList<Hembra> listarHembras() {
 
         return pHembra.listarHembras();
     }
-        
+
 }

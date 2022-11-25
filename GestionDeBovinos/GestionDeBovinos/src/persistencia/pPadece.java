@@ -22,23 +22,21 @@ public class pPadece {
     private static final String UPDATE_PADECE = "UPDATE PADECE SET IDENFERMEDAD = ?, IDBOVINO = ?, FECHAINICIO = ?, FECHAFINALIZACION = ? "
             + " WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
     private static final String BUSCAR_PADECE = "SELECT * FROM PADECE WHERE IDENFERMEDAD = ? AND IDBOVINO = ? AND FECHAINICIO = ?";
-    
+
     private static final String LISTAR_CONTAGIOS = "SELECT * FROM PADECE";
     private static final String LISTAR_CONTAGIOS_ACTIVOS = "SELECT * FROM PADECE "
             + " WHERE FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
-    
+
     private static final String LISTAR_CONTAGIOS_BOVINO = "SELECT * FROM PADECE "
             + " WHERE IDBOVINO = ?";
     private static final String LISTAR_CONTAGIOS_ACTIVOS_BOVINO = "SELECT * FROM PADECE "
             + " WHERE IDBOVINO = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
-    
+
     private static final String LISTAR_CONTAGIOS_ENFERMEDAD = "SELECT * FROM PADECE "
             + " WHERE IDENFERMEDAD = ?";
     private static final String LISTAR_CONTAGIOS_ACTIVOS_ENFERMEDAD = "SELECT * FROM PADECE "
             + " WHERE IDENFERMEDAD = ? AND FECHAINICIO <= CURDATE() AND (FECHAFINALIZACION >= CURDATE() OR FECHAFINALIZACION IS NULL)";
-    
-    
-    
+
     private static final String LISTAR_CONTAGIOS_BOVINO_ENFERMEDAD = "SELECT * FROM PADECE "
             + " WHERE IDBOVINO = ? AND IDENFERMEDAD = ? ";
     private static final String LISTAR_CONTAGIOS_ACTIVOS_BOVINO_ENFERMEDAD = "SELECT * FROM PADECE "
@@ -86,7 +84,7 @@ public class pPadece {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_PADECE);
             statement.setInt(1, pPadece.getIdEnfermedad());
             statement.setInt(2, pPadece.getIdBovino());
-             java.sql.Date sqlDate = new java.sql.Date(pPadece.getFechaInicio().getTime());
+            java.sql.Date sqlDate = new java.sql.Date(pPadece.getFechaInicio().getTime());
             statement.setDate(3, sqlDate);
 
             int retorno = statement.executeUpdate();

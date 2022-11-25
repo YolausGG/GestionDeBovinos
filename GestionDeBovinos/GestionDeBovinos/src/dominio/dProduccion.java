@@ -7,56 +7,51 @@ package dominio;
 import clases.Produccion;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Godoy
- */
 public class dProduccion {
-    
-    public static boolean altaProduccion(Produccion pProduccion){
-        
+
+    public static boolean altaProduccion(Produccion pProduccion) {
+
         return persistencia.pProduccion.altaProduccion(pProduccion);
     }
 
-    public static boolean bajaProduccion(int idProduccion){
-        
+    public static boolean bajaProduccion(int idProduccion) {
+
         return persistencia.pProduccion.bajaProduccion(idProduccion);
     }
 
-    public static boolean modificarProduccion(Produccion pProduccion){
+    public static boolean modificarProduccion(Produccion pProduccion) {
 
         return persistencia.pProduccion.modificarProduccion(pProduccion);
     }
 
-    public static Produccion buscarProduccion(int idProduccion){
+    public static Produccion buscarProduccion(int idProduccion) {
 
         return persistencia.pProduccion.buscarProduccion(idProduccion);
     }
-    
-    public static Produccion buscarProduccionHembra(int idHembra){
+
+    public static Produccion buscarProduccionHembra(int idHembra) {
 
         return persistencia.pProduccion.buscarProduccionHembra(idHembra);
     }
-    
-    public static Produccion buscarUltimaProduccionHembra(int idHembra){
-        
+
+    public static Produccion buscarUltimaProduccionHembra(int idHembra) {
+
         return persistencia.pProduccion.buscarUltimaProduccionHembra(idHembra);
     }
 
-    public static ArrayList<Produccion> listarProducciones(){
+    public static ArrayList<Produccion> listarProducciones() {
 
         return persistencia.pProduccion.listarProducciones();
     }
-    
-    public static ArrayList<Produccion> listarProduccionesHembra(int idHembra){
+
+    public static ArrayList<Produccion> listarProduccionesHembra(int idHembra) {
 
         return persistencia.pProduccion.listarProduccionesHembra(idHembra);
     }
-    
-    public static ArrayList<Produccion> listarUltimasProducciones(){
-        
+
+    public static ArrayList<Produccion> listarUltimasProducciones() {
+
         return persistencia.pProduccion.listarUltimasProducciones();
     }
-        
+
 }

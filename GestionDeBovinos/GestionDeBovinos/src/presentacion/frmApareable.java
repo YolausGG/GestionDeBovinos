@@ -171,7 +171,6 @@ public class frmApareable extends javax.swing.JInternalFrame {
         jTableBovinos.setRowSorter(elQueOrdena);
         Bovino bovino = dControladora.buscarBovinoCaravanaCompleto(txtCaravana.getText());
 
-        
         ArrayList<Bovino> listaBovinos = dControladora.listarBovinos();
 
         ArrayList<Bovino> noApareables = dControladora.noApareables(0, bovino, new ArrayList<Bovino>());
@@ -205,7 +204,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimientoM = formato.format(b.getFechaNacimiento());
-                
+
                 model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimientoM, b.getRaza().getTipo(), "Hembra"});
 
             }
@@ -221,7 +220,7 @@ public class frmApareable extends javax.swing.JInternalFrame {
                 Macho macho = (Macho) b;
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimientoM = formato.format(b.getFechaNacimiento());
-                
+
                 model.addRow(new Object[]{b.getCaravanaBovino(), fechaNacimientoM, b.getRaza().getTipo(), "Macho", macho.getTipo()});
             }
 

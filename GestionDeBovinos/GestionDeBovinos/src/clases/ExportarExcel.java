@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
-
 
 import java.awt.Desktop;
 import java.io.File;
@@ -19,10 +13,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-/**
- *
- * @author AdminOmarGuevara
- */
 public class ExportarExcel {
 
     public void exportarExcel(JTable t) throws IOException {

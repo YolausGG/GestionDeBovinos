@@ -4,23 +4,19 @@
  */
 package clases;
 
-
 import java.util.Date;
 
-/**
- *
- * @author Godoy
- */
 public class EventoFuturo {
-    
+
     private int idEventoFuturo;
     private Hembra hembra;
-    private String tipo;    
+    private String tipo;
     private Date fechaPrevista;
 
     public int getIdEventoFuturo() {
         return idEventoFuturo;
     }
+
     public void setIdEventoFuturo(int idEventoFuturo) {
         this.idEventoFuturo = idEventoFuturo;
     }
@@ -28,13 +24,15 @@ public class EventoFuturo {
     public Hembra getHembra() {
         return hembra;
     }
+
     public void setHembra(Hembra hembra) {
         this.hembra = hembra;
     }
-    
+
     public String getTipo() {
         return tipo;
     }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -42,13 +40,9 @@ public class EventoFuturo {
     public Date getFechaPrevista() {
         return fechaPrevista;
     }
+
     public void setFechaPrevista(Date fechaPrevista) {
         this.fechaPrevista = fechaPrevista;
-    }
-
-    @Override
-    public String toString() {
-        return "EventoFuturo{" + "idEventoFuturo=" + idEventoFuturo + ", hembra=" + hembra + ", tipo=" + tipo + ", fechaPrevista=" + fechaPrevista + '}';
     }
 
     public EventoFuturo(int idEventoFuturo, Hembra hembra, String tipo, Date fechaPrevista) {
@@ -57,11 +51,11 @@ public class EventoFuturo {
         this.tipo = tipo;
         this.fechaPrevista = fechaPrevista;
     }
-    
+
     public EventoFuturo(Hembra hembra, String tipo, Date fechaPrevista) {
         this.hembra = hembra;
         this.tipo = tipo;
         this.fechaPrevista = fechaPrevista;
     }
-       
+
 }

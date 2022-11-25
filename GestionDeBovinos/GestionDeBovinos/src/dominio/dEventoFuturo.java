@@ -7,42 +7,36 @@ package dominio;
 import clases.EventoFuturo;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Godoy
- */
 public class dEventoFuturo {
-    
-    public static boolean altaEventoFuturo(EventoFuturo pEventoFuturo){
-        
+
+    public static boolean altaEventoFuturo(EventoFuturo pEventoFuturo) {
+
         return persistencia.pEventoFuturo.altaEventoFuturo(pEventoFuturo);
     }
-    
-    public static boolean bajaEventoFuturo(int idEventoFuturo){
-        
+
+    public static boolean bajaEventoFuturo(int idEventoFuturo) {
+
         return persistencia.pEventoFuturo.bajaEventoFuturo(idEventoFuturo);
     }
 
-    public static boolean modificarEventoFuturo(int idEventoFuturo, EventoFuturo pEventoFuturo){
+    public static boolean modificarEventoFuturo(int idEventoFuturo, EventoFuturo pEventoFuturo) {
 
-        return persistencia.pEventoFuturo.modificarEventoFuturo(idEventoFuturo,pEventoFuturo);
+        return persistencia.pEventoFuturo.modificarEventoFuturo(idEventoFuturo, pEventoFuturo);
     }
 
-    public static EventoFuturo buscarEventoFuturo(int idEventoFuturo){
+    public static EventoFuturo buscarEventoFuturo(int idEventoFuturo) {
 
         return persistencia.pEventoFuturo.buscarEventoFuturo(idEventoFuturo);
     }
 
-    public static ArrayList<EventoFuturo> listarEventosFuturos(){
+    public static ArrayList<EventoFuturo> listarEventosFuturos() {
 
         return persistencia.pEventoFuturo.listarEventosFuturos();
     }
-    
-    public static ArrayList<EventoFuturo> listarEventosFuturosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<EventoFuturo> listarEventosFuturosPorCaravana(String pCaravanaHembra) {
 
         return persistencia.pEventoFuturo.listarEventosFuturosPorCaravana(pCaravanaHembra);
     }
 
-    
 }

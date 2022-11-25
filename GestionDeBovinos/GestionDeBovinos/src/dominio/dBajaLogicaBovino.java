@@ -7,27 +7,21 @@ package dominio;
 import clases.BajaLogicaBovino;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Godoy
- */
 public class dBajaLogicaBovino {
-    
-    public static boolean altaBajaLogicaBovino(BajaLogicaBovino pBajaLogicaBovino){
-        
+
+    public static boolean altaBajaLogicaBovino(BajaLogicaBovino pBajaLogicaBovino) {
+
         return persistencia.pBajaLogicaBovino.altaBajaLogicaBovino(pBajaLogicaBovino);
     }
 
-    public static BajaLogicaBovino buscarBajaLogicaBovino(int idBajaLogicaBovino){
+    public static BajaLogicaBovino buscarBajaLogicaBovino(int idBajaLogicaBovino) {
 
         return persistencia.pBajaLogicaBovino.buscarBajaLogicaBovino(idBajaLogicaBovino);
     }
 
-    public static ArrayList<BajaLogicaBovino> listarBajasLogicaBovinos(){
+    public static ArrayList<BajaLogicaBovino> listarBajasLogicaBovinos() {
 
         return persistencia.pBajaLogicaBovino.listarBajasLogicaBovinos();
     }
-   
-    
+
 }

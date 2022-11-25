@@ -12,27 +12,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-/**
- *
- * @author Godoy
- */
-
 public class pParto {
-    
-    private static final String INSERT_PARTO = "INSERT INTO PARTO ( IDPARTO, TIPO ) " +
-            " VALUES ( ?, ? )";
+
+    private static final String INSERT_PARTO = "INSERT INTO PARTO ( IDPARTO, TIPO ) "
+            + " VALUES ( ?, ? )";
     private static final String DELETE_PARTO = "DELETE FROM PARTO WHERE IDPARTO = ?";
     private static final String UPDATE_PARTO = "UPDATE PARTO SET TIPO = ? WHERE IDPARTO = ?";
-    private static final String BUSCAR_PARTO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"+
-            " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD WHERE P.IDPARTO = ? ";
-    private static final String LISTAR_PARTOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"+
-            " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD";
-    private static final String LISTAR_PARTOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"+
-            " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD "+
-            " WHERE E.IDHEMBRA = ?";
-    
-    public static boolean altaParto(Parto pParto){
+    private static final String BUSCAR_PARTO = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"
+            + " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD WHERE P.IDPARTO = ? ";
+    private static final String LISTAR_PARTOS = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"
+            + " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD";
+    private static final String LISTAR_PARTOS_CARAVANA = "SELECT E.IDEVENTODESANIDAD, E.FECHA, E.DETALLE, E.IDHEMBRA, P.TIPO"
+            + " FROM PARTO P INNER JOIN EVENTOSDESANIDAD E ON P.IDPARTO = E.IDEVENTODESANIDAD "
+            + " WHERE E.IDHEMBRA = ?";
+
+    public static boolean altaParto(Parto pParto) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_PARTO);
             statement.setInt(1, pParto.getIdEventoDeSanidad());
@@ -40,25 +34,25 @@ public class pParto {
 
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean bajaParto(int idParto){
+
+    public static boolean bajaParto(int idParto) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_PARTO);
             statement.setInt(1, idParto);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.bajaEventoDeSanidad(idParto); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.bajaEventoDeSanidad(idParto);
             }
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +60,7 @@ public class pParto {
         }
     }
 
-    public static boolean modificarParto(int idParto, Parto pParto){
+    public static boolean modificarParto(int idParto, Parto pParto) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_PARTO);
@@ -75,12 +69,12 @@ public class pParto {
             statement.setInt(2, idParto);
 
             int retorno = statement.executeUpdate();
-            
-            if(retorno>0){
-                return pEventoDeSanidad.modificarEventoDeSanidad(idParto, pParto); 
+
+            if (retorno > 0) {
+                return pEventoDeSanidad.modificarEventoDeSanidad(idParto, pParto);
             }
-                        
-            return retorno>0;
+
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +82,7 @@ public class pParto {
         }
     }
 
-    public static Parto buscarParto(int idParto){
+    public static Parto buscarParto(int idParto) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PARTO);
@@ -96,7 +90,7 @@ public class pParto {
 
             ResultSet resultado = statement.executeQuery();
             Parto parto = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 parto = getPartoFromResultSet(resultado);
             }
             return parto;
@@ -107,7 +101,7 @@ public class pParto {
         }
     }
 
-    public static ArrayList<Parto> listarPartos(){
+    public static ArrayList<Parto> listarPartos() {
 
         ArrayList<Parto> listaPartos = new ArrayList<>();
         try {
@@ -121,21 +115,21 @@ public class pParto {
             }
             return listaPartos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    public static ArrayList<Parto> listarPartosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Parto> listarPartosPorCaravana(String pCaravanaHembra) {
 
         ArrayList<Parto> listaPartos = new ArrayList<>();
         try {
             PreparedStatement statement = Conexion.getConnection().prepareCall(LISTAR_PARTOS_CARAVANA);
-            
+
             Hembra hembra = pHembra.buscarHembraPorCaravana(pCaravanaHembra);
             statement.setInt(1, hembra.getIdBovino());
-            
+
             ResultSet resultado = statement.executeQuery();
             Parto parto;
 
@@ -145,7 +139,7 @@ public class pParto {
             }
             return listaPartos;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -156,14 +150,14 @@ public class pParto {
         int idEventoDeSanidad = resultado.getInt("IDEVENTODESANIDAD");
         Date fecha = resultado.getDate("FECHA");
         String descripcion = resultado.getString("DETALLE");
-        
+
         int idHembra = resultado.getInt("IDHEMBRA");
         Hembra hembra = pHembra.buscarHembraPorId(idHembra);
-        
+
         String tipo = resultado.getString("TIPO");
 
-        Parto parto = new Parto (idEventoDeSanidad, fecha, descripcion, hembra, tipo);
+        Parto parto = new Parto(idEventoDeSanidad, fecha, descripcion, hembra, tipo);
         return parto;
     }
-    
+
 }

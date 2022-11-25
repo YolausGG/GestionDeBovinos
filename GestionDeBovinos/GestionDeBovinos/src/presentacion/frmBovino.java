@@ -27,10 +27,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import persistencia.pRaza;
 
-/**
- *
- * @author nico_
- */
 public class frmBovino extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
@@ -48,9 +44,6 @@ public class frmBovino extends javax.swing.JInternalFrame {
 
     }
 
-    /**
-     * Creates new form frmBovino1
-     */
     public frmBovino() {
         initComponents();
 
@@ -761,21 +754,20 @@ public class frmBovino extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnBuscarFotoMouseClicked
 
-    private byte[] getImagen(String pRuta){
-        
+    private byte[] getImagen(String pRuta) {
+
         File imagen = new File(pRuta);
         try {
             byte[] icono = new byte[(int) imagen.length()];
             InputStream input = new FileInputStream(imagen);
             input.read(icono);
             return icono;
-            
+
         } catch (Exception e) {
             return null;
         }
     }
-            
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

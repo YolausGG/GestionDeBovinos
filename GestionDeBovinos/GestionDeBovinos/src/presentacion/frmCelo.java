@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -23,7 +22,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
     JButton eliminar = new JButton("Eliminar");
-    
+
     public static int idCelo = 0;
     public static int columna, row; // Metodo para cuando hacemos click en los botones    
 
@@ -32,10 +31,10 @@ public class frmCelo extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmCelo() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("CELO");
         modificar.setBorder(null);
@@ -44,15 +43,14 @@ public class frmCelo extends javax.swing.JInternalFrame {
         insertarIconos(eliminar, "/Imagenes/Eliminar16px.png");
         txtCaravanaHembra.setText(frmBuscarHembra.caravana);
         modificar.setName("btnModificar");
-        eliminar.setName("btnEliminar");      
+        eliminar.setName("btnEliminar");
         lblRCausa.setVisible(false);
         lblRFechaCelo.setVisible(false);
         lblRHembra.setVisible(false);
-        
-        if(txtCaravanaHembra.getText().isEmpty()){
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
             actualizarTabla();
-        }
-        else{
+        } else {
             actualizarTablaHembra();
         }
     }
@@ -220,29 +218,43 @@ public class frmCelo extends javax.swing.JInternalFrame {
         txtCaravanaHembra.setText(null);
         cboCausa.setSelectedIndex(0);
         jDateFechaCelo.setDate(null);
-        txaDetalle.setText(null);  
+        txaDetalle.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().equals("")){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboCausa.getSelectedIndex() < 1){ lblRCausa.setVisible(true); contador++; }else { lblRCausa.setVisible(false);}
-        if(jDateFechaCelo.getDate() == null){ lblRFechaCelo.setVisible(true); contador++; }else { lblRFechaCelo.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().equals("")) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboCausa.getSelectedIndex() < 1) {
+            lblRCausa.setVisible(true);
+            contador++;
+        } else {
+            lblRCausa.setVisible(false);
+        }
+        if (jDateFechaCelo.getDate() == null) {
+            lblRFechaCelo.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaCelo.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     public void actualizarTabla() {
         jTableCelos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableCelos.setRowSorter(elQueOrdena);
         ArrayList<Celo> listaCelos = dControladora.listarCelos();
@@ -254,28 +266,28 @@ public class frmCelo extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Celo c : listaCelos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaCelo = formato.format(c.getFecha());
-            
-            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),fechaCelo,c.getDetalle(), c.getCausa(), modificar, eliminar});
+
+            model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa(), modificar, eliminar});
         }
 
         jTableCelos.getTableHeader().setReorderingAllowed(false);
         jTableCelos.setModel(model);
         jTableCelos.setRowHeight(35);
     }
-    
+
     public void actualizarTablaHembra() {
         jTableCelos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableCelos.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Celo> listaCelos = dControladora.listarCelosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Celo");
@@ -285,23 +297,23 @@ public class frmCelo extends javax.swing.JInternalFrame {
         model.addColumn("Causa");
         model.addColumn("Modificar ");
         model.addColumn("Eliminar ");
-        
+
         for (Celo c : listaCelos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaCelo = formato.format(c.getFecha());
-            
-            model.addRow(new Object[]{c.getIdEventoDeSanidad(),c.getHembra().getCaravanaBovino(),fechaCelo,c.getDetalle(), c.getCausa(), modificar, eliminar});
+
+            model.addRow(new Object[]{c.getIdEventoDeSanidad(), c.getHembra().getCaravanaBovino(), fechaCelo, c.getDetalle(), c.getCausa(), modificar, eliminar});
         }
 
         jTableCelos.getTableHeader().setReorderingAllowed(false);
         jTableCelos.setModel(model);
         jTableCelos.setRowHeight(35);
     }
-    
+
     private void btnAltaCeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaCeloMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
@@ -322,13 +334,12 @@ public class frmCelo extends javax.swing.JInternalFrame {
 
                     Celo celo = new Celo(eventoDeSanidad.getIdEventoDeSanidad(), fechaCelo, detalle, hembra, causa);
 
-                    if(dControladora.altaCelo(celo)){
+                    if (dControladora.altaCelo(celo)) {
                         dControladora.agregarEventoDeSanidad(celo);
                         JOptionPane.showMessageDialog(null, "Celo Ingresado Correctamente");
                         actualizarTabla();
                         limpiarCajas(); // Limpiamos Caja de Texto
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Celo No Ingresado Correctamente");
                         limpiarCajas(); // Limpiamos Caja de Texto
                     }
@@ -339,7 +350,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnAltaCeloMouseClicked

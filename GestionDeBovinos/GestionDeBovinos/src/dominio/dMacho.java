@@ -8,13 +8,8 @@ import clases.Macho;
 import java.util.ArrayList;
 import persistencia.pMacho;
 
-
-/**
- *
- * @author Godoy
- */
 public class dMacho {
-    
+
     public static boolean altaMacho(Macho pMacho) {
 
         return persistencia.pMacho.altaMacho(pMacho);
@@ -23,41 +18,41 @@ public class dMacho {
     public static boolean bajaMacho(int idMacho) {
 
         return pMacho.bajaMacho(idMacho);
-   }
+    }
 
-    public static boolean modificarMacho(Macho pMacho){
+    public static boolean modificarMacho(Macho pMacho) {
 
         return persistencia.pMacho.modificarMacho(pMacho);
     }
 
-    public static Macho buscarMachoPorId(int idMacho){
+    public static Macho buscarMachoPorId(int idMacho) {
 
         return pMacho.buscarMachoPorId(idMacho);
     }
-    
-    public static Macho buscarMachoPorCaravana(String pCaravanaMacho){
+
+    public static Macho buscarMachoPorCaravana(String pCaravanaMacho) {
 
         return pMacho.buscarMachoPorCaravana(pCaravanaMacho);
     }
-    
-    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho){
+
+    public static Macho buscarMachoPorCaravanaCompleto(String pCaravanaMacho) {
 
         return pMacho.buscarMachoPorCaravanaCompleto(pCaravanaMacho);
     }
-    
-    public static Macho buscarUltimoMacho(){
-        
+
+    public static Macho buscarUltimoMacho() {
+
         return pMacho.buscarUltimoMacho();
     }
-    
-    public static ArrayList<Macho> buscarMachosCaravanaLIKE(String pCaravana){
+
+    public static ArrayList<Macho> buscarMachosCaravanaLIKE(String pCaravana) {
 
         return pMacho.buscarMachosCaravanaLIKE(pCaravana);
     }
 
-    public static ArrayList<Macho> listarMachos(){
+    public static ArrayList<Macho> listarMachos() {
 
         return pMacho.listarMachos();
     }
-        
+
 }

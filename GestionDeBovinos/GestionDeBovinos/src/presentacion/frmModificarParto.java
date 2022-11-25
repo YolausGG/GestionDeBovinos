@@ -199,7 +199,7 @@ public class frmModificarParto extends javax.swing.JInternalFrame {
 
                     String tipo = cboTipo.getSelectedItem().toString();
 
-                    Parto parto = new Parto(frmParto.idParto,fechaParto, detalle, hembra, tipo);
+                    Parto parto = new Parto(frmParto.idParto, fechaParto, detalle, hembra, tipo);
 
                     if (dControladora.modificarParto(frmParto.idParto, parto)) {
 

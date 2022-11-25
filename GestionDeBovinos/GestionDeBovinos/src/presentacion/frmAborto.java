@@ -9,21 +9,15 @@ import clases.BotonesTabla;
 import clases.EventoDeSanidad;
 import clases.Hembra;
 import dominio.dControladora;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author Godoy
- */
 public class frmAborto extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
@@ -295,7 +289,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableAborto.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Aborto> listaAbortos = dControladora.listarAbortosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Aborto");

@@ -17,18 +17,16 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 public class frmAvisoDeEventoFuturo extends javax.swing.JInternalFrame {
-    
+
     public frmAvisoDeEventoFuturo() throws PropertyVetoException {
         initComponents();
-        
-        //this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
-        
+
         this.setTitle("AVISO DE EVENTOS FUTUROS");
         this.setMaximum(true);
         actualizarTabla();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,7 +86,6 @@ public class frmAvisoDeEventoFuturo extends javax.swing.JInternalFrame {
                 return false;
             }
         };
-        jTableEventosFuturos.setBackground(new java.awt.Color(204, 255, 255));
         jTableEventosFuturos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -103,10 +100,10 @@ public class frmAvisoDeEventoFuturo extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableEventosFuturos);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Faltan 2 días para el Evento");
+        jLabel4.setText("Faltan menos de 3 días para el Evento");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Faltan 3 días para el Evento");
+        jLabel3.setText("Faltan menos de 14 días para el Evento");
 
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
 
@@ -187,54 +184,45 @@ public class frmAvisoDeEventoFuturo extends javax.swing.JInternalFrame {
 
     public void actualizarTabla() {
         jTableEventosFuturos.setDefaultRenderer(Object.class, new BotonesTabla());
-        
+
         DefaultTableModel model = new DefaultTableModel();
         ArrayList<EventoFuturo> listaEventosFuturos = dControladora.listarEventosFuturos();
-        
+
         model.addColumn("id Evento Futuro");
         model.addColumn("Caravana Hembra");
         model.addColumn("AÑO/MES/DIA");
         model.addColumn("Tipo");
-        
+
         for (EventoFuturo EF : listaEventosFuturos) {
-            
+
             model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), EF.getFechaPrevista(), EF.getTipo()});
         }
-        
+
         LocalDate fechaDelDia = LocalDate.now();
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Date fechaDia = Date.from(fechaDelDia.atStartOfDay(defaultZoneId).toInstant());
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaDia);
-        calendar.add(Calendar.DAY_OF_YEAR, 3);
+        calendar.add(Calendar.DAY_OF_YEAR, 14);
         Date fechaDif3 = calendar.getTime();
-        
-        Calendar calendarDos = Calendar.getInstance();        
-        calendarDos.setTime(fechaDia);
-        calendarDos.add(Calendar.DAY_OF_YEAR, 2);
-        Date fechaDif2 = calendarDos.getTime();
-        
+
+
         for (int i = 0; i < listaEventosFuturos.size(); i++) {
-            
-            if (listaEventosFuturos.get(i).getFechaPrevista().equals(fechaDif3)) {
-                
+
+            if (listaEventosFuturos.get(i).getFechaPrevista().getTime() <= fechaDif3.getTime()) {
+
                 ColorCeldaTabla CC = new ColorCeldaTabla(2);
-                jTableEventosFuturos.setDefaultRenderer(Object.class, CC);                
-                
-            } else if (listaEventosFuturos.get(i).getFechaPrevista().equals(fechaDif2)) {
-                
-                ColorCeldaTabla CC1 = new ColorCeldaTabla(2);
-                jTableEventosFuturos.setDefaultRenderer(Object.class, CC1);
+                jTableEventosFuturos.setDefaultRenderer(Object.class, CC);
+
             }
         }
-        
+
         jTableEventosFuturos.getTableHeader().setReorderingAllowed(false);
         jTableEventosFuturos.setModel(model);
         jTableEventosFuturos.setRowHeight(30);
-        
+
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

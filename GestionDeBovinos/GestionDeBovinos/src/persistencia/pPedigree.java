@@ -12,47 +12,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class pPedigree {
-    
-    private static final String INSERT_PEDIGREE = " INSERT INTO PEDIGREE ( IDBOVINO, NUMEROPEDIGREE ) " +
-            " VALUES ( ?, ? )";
+
+    private static final String INSERT_PEDIGREE = " INSERT INTO PEDIGREE ( IDBOVINO, NUMEROPEDIGREE ) "
+            + " VALUES ( ?, ? )";
     private static final String DELETE_PEDIGREE = "DELETE FROM PEDIGREE WHERE IDBOVINO = ?";
     private static final String UPDATE_PEDIGREE = "UPDATE PEDIGREE SET NUMEROPEDIGREE = ? WHERE IDBOVINO = ?";
     private static final String BUSCAR_PEDIGREE_IDBOVINO = "SELECT * FROM PEDIGREE WHERE IDBOVINO = ? ";
     private static final String BUSCAR_PEDIGREE_NUMEROPEDIGREE = "SELECT * FROM PEDIGREE WHERE NUMEROPEDIGREE = ? ";
-    
+
     private static final String LISTAR_PEDIGREES = "SELECT * FROM PEDIGREE";
 
-    public static boolean altaPedigree(Pedigree pPedigree){
+    public static boolean altaPedigree(Pedigree pPedigree) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(INSERT_PEDIGREE);
-            statement.setInt(1, pPedigree.getBovino().getIdBovino());            
+            statement.setInt(1, pPedigree.getBovino().getIdBovino());
             statement.setString(2, pPedigree.getNumeroPedigree());
-           
+
             int retorno = statement.executeUpdate();
 
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean bajaPedigree(int idBovino){
+
+    public static boolean bajaPedigree(int idBovino) {
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(DELETE_PEDIGREE);
             statement.setInt(1, idBovino);
 
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    public static boolean modificarPedigree(Pedigree pPedigree){
+
+    public static boolean modificarPedigree(Pedigree pPedigree) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(UPDATE_PEDIGREE);
@@ -60,7 +60,7 @@ public class pPedigree {
             statement.setString(1, pPedigree.getNumeroPedigree());
             statement.setInt(2, pPedigree.getBovino().getIdBovino());
             int retorno = statement.executeUpdate();
-            return retorno>0;
+            return retorno > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,7 +68,7 @@ public class pPedigree {
         }
     }
 
-    public static Pedigree buscarPedigreeIdBovino(int idBovino){
+    public static Pedigree buscarPedigreeIdBovino(int idBovino) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PEDIGREE_IDBOVINO);
@@ -76,7 +76,7 @@ public class pPedigree {
 
             ResultSet resultado = statement.executeQuery();
             Pedigree pedigree = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 pedigree = getPedigreeFromResultSet(resultado);
             }
             return pedigree;
@@ -86,8 +86,8 @@ public class pPedigree {
             return null;
         }
     }
-    
-    public static Pedigree buscarPedigreeNumeroPedigree(String numeroPedigree){
+
+    public static Pedigree buscarPedigreeNumeroPedigree(String numeroPedigree) {
 
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(BUSCAR_PEDIGREE_NUMEROPEDIGREE);
@@ -95,7 +95,7 @@ public class pPedigree {
 
             ResultSet resultado = statement.executeQuery();
             Pedigree pedigree = null;
-            if(resultado.next()){
+            if (resultado.next()) {
                 pedigree = getPedigreeFromResultSet(resultado);
             }
             return pedigree;
@@ -106,7 +106,7 @@ public class pPedigree {
         }
     }
 
-    public static ArrayList<Pedigree> listarPedigrees(){
+    public static ArrayList<Pedigree> listarPedigrees() {
 
         ArrayList<Pedigree> listaPedigrees = new ArrayList<>();
         try {
@@ -120,7 +120,7 @@ public class pPedigree {
             }
             return listaPedigrees;
 
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -130,11 +130,11 @@ public class pPedigree {
 
         int idBovino = resultado.getInt("IDBOVINO");
         Bovino bovino = pBovino.buscarBovinoId(idBovino);
-        
+
         String numeroPedigree = resultado.getString("NUMEROPEDIGREE");
 
-        Pedigree pedigree = new Pedigree (bovino, numeroPedigree);
+        Pedigree pedigree = new Pedigree(bovino, numeroPedigree);
         return pedigree;
     }
-    
+
 }

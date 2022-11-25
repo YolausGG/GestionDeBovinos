@@ -621,15 +621,14 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         Bovino bovino = dControladora.buscarBovinoCaravana(frmBovino.caravana);
 
         Pedigree pedigree = dControladora.buscarPedigreeIdBovino(bovino.getIdBovino());
-        
-        if(pedigree != null){  
+
+        if (pedigree != null) {
             txtNumeroPedigree.setText(pedigree.getNumeroPedigree());
-        }else{
+        } else {
             lblPredigree.setVisible(false);
             txtNumeroPedigree.setVisible(false);
         }
-        
-        
+
         ArrayList<EstadoBovino> listaEstadosBovino = dControladora.listarEstadosBovinoActivosPorBovino(bovino.getIdBovino());
 
         model.addColumn("Estado");

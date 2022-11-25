@@ -14,32 +14,30 @@ import java.util.Date;
 public class frmModificarTacto extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
-    
+
     public frmModificarTacto() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR TACTO");
-        
+
         lblRResultado.setVisible(false);
         lblRFechaTacto.setVisible(false);
         lblRHembra.setVisible(false);
-        
+
         Tacto tacto = dControladora.buscarTacto(frmTacto.idTacto);
-        
+
         jDateFechaTacto.setDate(tacto.getFecha());
         txaDetalle.setText(tacto.getDetalle());
         cboResultado.setSelectedItem(tacto.getResultado());
         txaDiagnostico.setText(tacto.getDiagnostico());
-        if(this.caravana != null){
+        if (this.caravana != null) {
             txtCaravanaHembra.setText(this.caravana);
-        }
-        else{
+        } else {
             txtCaravanaHembra.setText(tacto.getHembra().getCaravanaBovino());
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -166,25 +164,39 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
         txaDetalle.setText(null);
         txaDiagnostico.setText(null);
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().isEmpty()){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboResultado.getSelectedIndex() < 1){ lblRResultado.setVisible(true); contador++; }else { lblRResultado.setVisible(false);}
-        if(jDateFechaTacto.getDate() == null){ lblRFechaTacto.setVisible(true); contador++; }else { lblRFechaTacto.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().isEmpty()) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboResultado.getSelectedIndex() < 1) {
+            lblRResultado.setVisible(true);
+            contador++;
+        } else {
+            lblRResultado.setVisible(false);
+        }
+        if (jDateFechaTacto.getDate() == null) {
+            lblRFechaTacto.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaTacto.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     private void btnModificarCeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCeloMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
@@ -202,9 +214,9 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
                     String resultado = cboResultado.getSelectedItem().toString();
                     String diagnostico = txaDiagnostico.getText();
 
-                    Tacto tacto = new Tacto(frmTacto.idTacto,fechaTacto, detalle, hembra, resultado, diagnostico);
+                    Tacto tacto = new Tacto(frmTacto.idTacto, fechaTacto, detalle, hembra, resultado, diagnostico);
 
-                    if(dControladora.modificarTacto(frmTacto.idTacto, tacto)){
+                    if (dControladora.modificarTacto(frmTacto.idTacto, tacto)) {
 
                         dControladora.modificarEventoDeSanidad(tacto);
                         JOptionPane.showMessageDialog(null, "Tacto Modificado Correctamente");
@@ -213,8 +225,7 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
                         frmTacto formularioTacto = new frmTacto();
                         frmInicio.jDkPEscritorio.add(formularioTacto);
                         formularioTacto.setVisible(true);
-                    }
-                    else{
+                    } else {
                         this.caravana = null;
                         JOptionPane.showMessageDialog(null, "Tacto No Modificado Correctamente");
                     }
@@ -226,7 +237,7 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 throw e;
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnModificarCeloMouseClicked

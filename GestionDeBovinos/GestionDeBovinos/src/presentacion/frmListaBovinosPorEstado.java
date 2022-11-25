@@ -353,7 +353,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-             if (eb.getFechaFinalizacion() == null) {
+            if (eb.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
@@ -398,7 +398,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
 
-             if (eb.getFechaFinalizacion() == null) {
+            if (eb.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
@@ -443,7 +443,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(eb.getIdEstadoDelBovino());
 
-             if (eb.getFechaFinalizacion() == null) {
+            if (eb.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
@@ -488,7 +488,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
             Bovino bovino = dControladora.buscarBovinoId(eb.getIdBovino());
 
-             if (eb.getFechaFinalizacion() == null) {
+            if (eb.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
@@ -578,7 +578,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
 
         for (EstadoBovino eb : listaEstadosBovino) {
 
-             if (eb.getFechaFinalizacion() == null) {
+            if (eb.getFechaFinalizacion() == null) {
 
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaNacimiento = formato.format(bovino.getFechaNacimiento());
@@ -734,7 +734,7 @@ public class frmListaBovinosPorEstado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnImprimirMouseClicked
 
     private void btnExportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportarMouseClicked
-      
+
         ExportarExcel obj;
 
         try {

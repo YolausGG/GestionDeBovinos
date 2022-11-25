@@ -5,13 +5,9 @@
 package clases;
 
 import java.util.Date;
-/**
- *
- * @author Godoy
- */
+
 public class BajaLogicaBovino {
-    
-    
+
     private int idBajaBovino;
     private Bovino bovino;
     private Date fechaBaja;
@@ -20,13 +16,15 @@ public class BajaLogicaBovino {
     public int getIdBajaBovino() {
         return idBajaBovino;
     }
+
     public void setIdBajaBovino(int idBajaBovino) {
         this.idBajaBovino = idBajaBovino;
     }
-    
+
     public Bovino getBovino() {
         return bovino;
     }
+
     public void setBovino(Bovino bovino) {
         this.bovino = bovino;
     }
@@ -34,6 +32,7 @@ public class BajaLogicaBovino {
     public Date getFechaBaja() {
         return fechaBaja;
     }
+
     public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
@@ -41,16 +40,11 @@ public class BajaLogicaBovino {
     public String getMotivo() {
         return motivo;
     }
+
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
 
-    @Override
-    public String toString() {
-        return "BajaLogicaBovino{" + "idBajaBovino=" + idBajaBovino + ", bovino=" + bovino + ", fechaBaja=" + fechaBaja + ", motivo=" + motivo + '}';
-    }
-    
-    
     public BajaLogicaBovino(Bovino bovino, Date fechaBaja, String motivo) {
         this.bovino = bovino;
         this.fechaBaja = fechaBaja;
@@ -63,5 +57,5 @@ public class BajaLogicaBovino {
         this.fechaBaja = fechaBaja;
         this.motivo = motivo;
     }
-    
+
 }

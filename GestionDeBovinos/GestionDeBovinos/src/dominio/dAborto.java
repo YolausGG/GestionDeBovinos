@@ -8,13 +8,9 @@ import clases.Aborto;
 import java.util.ArrayList;
 import persistencia.pAborto;
 
-/**
- *
- * @author Godoy
- */
 public class dAborto {
-    
-     public static boolean altaAborto(Aborto pAborto) {
+
+    public static boolean altaAborto(Aborto pAborto) {
 
         return persistencia.pAborto.altaAborto(pAborto);
     }
@@ -24,24 +20,24 @@ public class dAborto {
         return pAborto.bajaAborto(idAborto);
     }
 
-    public static boolean modificarAborto(int idAborto, Aborto pAborto){
+    public static boolean modificarAborto(int idAborto, Aborto pAborto) {
 
         return persistencia.pAborto.modificarAborto(idAborto, pAborto);
     }
 
-    public static Aborto buscarAborto(int idAborto){
+    public static Aborto buscarAborto(int idAborto) {
 
         return pAborto.buscarAborto(idAborto);
     }
 
-    public static ArrayList<Aborto> listarAbortos(){
+    public static ArrayList<Aborto> listarAbortos() {
 
         return pAborto.listarAbortos();
     }
-    
-    public static ArrayList<Aborto> listarAbortosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Aborto> listarAbortosPorCaravana(String pCaravanaHembra) {
 
         return pAborto.listarAbortosPorCaravana(pCaravanaHembra);
     }
-        
+
 }

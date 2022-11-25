@@ -8,13 +8,8 @@ import clases.Tacto;
 import java.util.ArrayList;
 import persistencia.pTacto;
 
-
-/**
- *
- * @author Godoy
- */
 public class dTacto {
-    
+
     public static boolean altaTacto(Tacto pTacto) {
 
         return persistencia.pTacto.altaTacto(pTacto);
@@ -25,25 +20,24 @@ public class dTacto {
         return pTacto.bajaTacto(idTacto);
     }
 
-    public static boolean modificarTacto(int idTacto, Tacto pTacto){
+    public static boolean modificarTacto(int idTacto, Tacto pTacto) {
 
         return persistencia.pTacto.modificarTacto(idTacto, pTacto);
     }
 
-    public static Tacto buscarTacto(int idTacto){
+    public static Tacto buscarTacto(int idTacto) {
 
         return pTacto.buscarTacto(idTacto);
     }
 
-    public static ArrayList<Tacto> listarTactos(){
+    public static ArrayList<Tacto> listarTactos() {
 
         return pTacto.listarTactos();
     }
-    
-    public static ArrayList<Tacto> listarTactosPorCaravana(String pCaravanaHembra){
+
+    public static ArrayList<Tacto> listarTactosPorCaravana(String pCaravanaHembra) {
 
         return pTacto.listarTactosPorCaravana(pCaravanaHembra);
     }
-    
-    
+
 }

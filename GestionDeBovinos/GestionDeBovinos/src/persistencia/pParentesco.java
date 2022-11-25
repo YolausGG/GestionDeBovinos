@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class pParentesco {
 
     private static final String INSERT_PARENTESCO = "INSERT INTO PARENTESCO (IDBOVINO, IDBOVINOPADRE, TIPOPARENTESCO ) "

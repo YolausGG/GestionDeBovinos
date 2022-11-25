@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -255,7 +254,7 @@ public class frmParto extends javax.swing.JInternalFrame {
         jTablePartos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTablePartos.setRowSorter(elQueOrdena);
         ArrayList<Parto> listaPartos = dControladora.listarPartos();
@@ -288,7 +287,7 @@ public class frmParto extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTablePartos.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Parto> listaPartos = dControladora.listarPartosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Parto");

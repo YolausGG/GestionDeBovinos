@@ -126,7 +126,7 @@ public class pProduccion {
             return null;
         }
     }
-    
+
     public static Produccion buscarUltimaProduccionHembra(int idHembra) {
 
         try {
@@ -165,7 +165,7 @@ public class pProduccion {
             return null;
         }
     }
-    
+
     public static ArrayList<Produccion> listarUltimasProducciones() {
 
         ArrayList<Produccion> listaProducciones = new ArrayList<>();
@@ -206,8 +206,6 @@ public class pProduccion {
             return null;
         }
     }
-    
-    
 
     private static Produccion getProduccionFromResultSet(ResultSet resultado) throws SQLException {
 
