@@ -188,40 +188,44 @@ public class frmModificarSecado extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaSecado = jDateFechaCelo.getDate();
+            if (hembra != null) {
+                Date fechaSecado = jDateFechaCelo.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaSecado, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaSecado, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.modificarEventoDeSanidad(frmSecado.idSecado, eventoDeSanidad)) {
+                    if (dControladora.modificarEventoDeSanidad(frmSecado.idSecado, eventoDeSanidad)) {
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    Secado secado = new Secado(frmSecado.idSecado, fechaSecado, detalle, hembra, causa);
+                        Secado secado = new Secado(frmSecado.idSecado, fechaSecado, detalle, hembra, causa);
 
-                    if (dControladora.modificarSecado(frmSecado.idSecado, secado)) {
+                        if (dControladora.modificarSecado(frmSecado.idSecado, secado)) {
 
-                        dControladora.modificarEventoDeSanidad(secado);
-                        JOptionPane.showMessageDialog(null, "Secado Modificado Correctamente");
-                        this.caravana = null;
-                        this.dispose();
-                        frmSecado formularioSecado = new frmSecado();
-                        frmInicio.jDkPEscritorio.add(formularioSecado);
-                        formularioSecado.setVisible(true);
+                            dControladora.modificarEventoDeSanidad(secado);
+                            JOptionPane.showMessageDialog(null, "Secado Modificado Correctamente");
+                            this.caravana = null;
+                            this.dispose();
+                            frmSecado formularioSecado = new frmSecado();
+                            frmInicio.jDkPEscritorio.add(formularioSecado);
+                            formularioSecado.setVisible(true);
+                        } else {
+                            this.caravana = null;
+                            JOptionPane.showMessageDialog(null, "Secado No Modificado Correctamente");
+                        }
                     } else {
                         this.caravana = null;
-                        JOptionPane.showMessageDialog(null, "Secado No Modificado Correctamente");
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

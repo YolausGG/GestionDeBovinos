@@ -432,7 +432,7 @@ public class frmProduccion extends javax.swing.JInternalFrame {
                     try {
 
                         //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                        int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar la Producción de esta Hembra?", "Eliminar Producción ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar la Producción de esta Hembra?", "Eliminar Producción ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                         if (opcion == 0) {
 
@@ -472,25 +472,28 @@ public class frmProduccion extends javax.swing.JInternalFrame {
             int celulaSomaticas = Integer.parseInt(txtCelulasSomaticas.getText());
 
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
+            if (hembra != null) {
+                Produccion produccion = new Produccion(primeraProduccion, segundaProduccion, proteinas, grasas, celulaSomaticas, fechaProduccion, hembra);
 
-            Produccion produccion = new Produccion(primeraProduccion, segundaProduccion, proteinas, grasas, celulaSomaticas, fechaProduccion, hembra);
+                try {
 
-            try {
+                    boolean resultado = dominio.dProduccion.altaProduccion(produccion);
 
-                boolean resultado = dominio.dProduccion.altaProduccion(produccion);
+                    if (resultado) {
 
-                if (resultado) {
+                        JOptionPane.showMessageDialog(null, "Producción Ingresada Correctamente");
+                        actualizarTabla();
+                        limpiarCajas(); // Limpiamos Caja de Texto
 
-                    JOptionPane.showMessageDialog(null, "Producción Ingresada Correctamente");
-                    actualizarTabla();
-                    limpiarCajas(); // Limpiamos Caja de Texto
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Producción");
+                    }
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar la Producción");
+                } catch (Exception e) {
+                    throw e;
                 }
-
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

@@ -223,7 +223,7 @@ public class frmEnfermedad extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar la Enfermedad?", "Eliminar Enfermedad ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar la Enfermedad?", "Eliminar Enfermedad ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

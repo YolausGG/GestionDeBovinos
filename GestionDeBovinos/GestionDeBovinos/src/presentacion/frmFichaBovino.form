@@ -503,7 +503,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnArbol">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver Arbol Geneal&#xf3;gico"/>
+                <Property name="text" type="java.lang.String" value="Ver &#xc1;rbol Geneal&#xf3;gico"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnArbolMouseClicked"/>

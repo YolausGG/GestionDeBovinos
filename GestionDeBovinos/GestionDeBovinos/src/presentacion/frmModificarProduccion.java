@@ -265,33 +265,38 @@ public class frmModificarProduccion extends javax.swing.JInternalFrame {
 
             String carvana = txtModificarCaravanaH.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(carvana);
-            Date fecha = jDateModificarFechaP.getDate();
-            Double primeraP = Double.parseDouble(txtModificarPrimeraP.getText());
-            Double segundaP = Double.parseDouble(txtModificarSegundaP.getText());
-            Double proteinas = Double.parseDouble(txtModificarProteinas.getText());
-            Double grasas = Double.parseDouble(txtModificarGrasas.getText());
-            int celulasSomaticas = Integer.parseInt(txtModificarCS.getText());
 
-            Produccion produccionNueva = new Produccion(produccion.getIdProduccion(), primeraP, segundaP, produccion.getProduccionTotal(), proteinas, grasas, celulasSomaticas, fecha, hembra);
+            if (hembra != null) {
+                Date fecha = jDateModificarFechaP.getDate();
+                Double primeraP = Double.parseDouble(txtModificarPrimeraP.getText());
+                Double segundaP = Double.parseDouble(txtModificarSegundaP.getText());
+                Double proteinas = Double.parseDouble(txtModificarProteinas.getText());
+                Double grasas = Double.parseDouble(txtModificarGrasas.getText());
+                int celulasSomaticas = Integer.parseInt(txtModificarCS.getText());
 
-            try {
+                Produccion produccionNueva = new Produccion(produccion.getIdProduccion(), primeraP, segundaP, produccion.getProduccionTotal(), proteinas, grasas, celulasSomaticas, fecha, hembra);
 
-                if (dControladora.modificarProduccion(produccionNueva)) {
+                try {
 
-                    JOptionPane.showMessageDialog(null, "Producción Modificada Correctamente");
-                    caravana = null;
-                    limpiarCajas(); // Limpiamos Caja de Texto
+                    if (dControladora.modificarProduccion(produccionNueva)) {
 
-                    this.dispose();
-                    frmProduccion nuevoFormulario = new frmProduccion();
-                    frmInicio.jDkPEscritorio.add(nuevoFormulario);
-                    nuevoFormulario.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Producción Modificada Correctamente");
+                        caravana = null;
+                        limpiarCajas(); // Limpiamos Caja de Texto
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar la Producción");
+                        this.dispose();
+                        frmProduccion nuevoFormulario = new frmProduccion();
+                        frmInicio.jDkPEscritorio.add(nuevoFormulario);
+                        nuevoFormulario.setVisible(true);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar la Producción");
+                    }
+                } catch (Exception e) {
+                    throw e;
                 }
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

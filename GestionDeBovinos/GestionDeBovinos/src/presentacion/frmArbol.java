@@ -472,6 +472,7 @@ public class frmArbol extends javax.swing.JFrame {
         txtTM14 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Árbol Genealógico");
         setBackground(new java.awt.Color(0, 51, 102));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));

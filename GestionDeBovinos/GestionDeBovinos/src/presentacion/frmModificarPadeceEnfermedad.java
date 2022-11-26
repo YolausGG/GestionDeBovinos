@@ -35,9 +35,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
         }
 
         jDateModificarFechaIE.setDate(frmPadeceEnfermedad.padece.getFechaInicio());
-        Date fechaIE = jDateModificarFechaIE.getDate();
         jDateModificarFechaFE.setDate(frmPadeceEnfermedad.padece.getFechaFinalizacion());
-        Date fechaFE = jDateModificarFechaFE.getDate();
         int idEnfermedad = frmPadeceEnfermedad.padece.getIdEnfermedad();
         Enfermedad enfermedad = dControladora.buscarEnfermedad(idEnfermedad);
 
@@ -206,6 +204,7 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
     private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
 
         if (validarCampos()) {
+
             String caravanaVieja = frmPadeceEnfermedad.caravana;
             Bovino bovinoViejo = dControladora.buscarBovinoCaravana(caravanaVieja);
             Date fechaIEVieja = frmPadeceEnfermedad.padece.getFechaInicio();
@@ -214,55 +213,60 @@ public class frmModificarPadeceEnfermedad extends javax.swing.JInternalFrame {
 
             String caravana = txtModificarCaravanaBovino.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
-            Date fechaIE = jDateModificarFechaIE.getDate();
-            Date fechaFE = jDateModificarFechaFE.getDate();
-            Enfermedad enfermedad = (Enfermedad) cboModificarEnfermedad.getSelectedItem();
 
-            Padece padeceViejo = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja);
-            Padece padeceFechaInicio = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE);
+            if (bovino != null) {
+                Date fechaIE = jDateModificarFechaIE.getDate();
+                Date fechaFE = jDateModificarFechaFE.getDate();
+                Enfermedad enfermedad = (Enfermedad) cboModificarEnfermedad.getSelectedItem();
 
-            Padece padeceCompleta = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE, fechaFE);
-            Padece padeceViejoFF = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
+                Padece padeceViejo = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja);
+                Padece padeceFechaInicio = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE);
 
-            try {
-                if (jDateModificarFechaFE.getDate() == null) {
-                    boolean resultado = dControladora.modificarPadeceFechaInicio(padeceFechaInicio, padeceViejo);
-                    if (resultado) {
+                Padece padeceCompleta = new Padece(enfermedad.getIdEnfermedad(), bovino.getIdBovino(), fechaIE, fechaFE);
+                Padece padeceViejoFF = new Padece(enfermedadVieja.getIdEnfermedad(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
 
-                        JOptionPane.showMessageDialog(null, "Bovino Enfermo Modificado Correctamente");
-                        caravana = null;
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                try {
+                    if (jDateModificarFechaFE.getDate() == null) {
+                        boolean resultado = dControladora.modificarPadeceFechaInicio(padeceFechaInicio, padeceViejo);
+                        if (resultado) {
 
-                        this.dispose();
-                        frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
-                        frmInicio.jDkPEscritorio.add(padeceEnfermedad);
-                        padeceEnfermedad.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Bovino Enfermo Modificado Correctamente");
+                            caravana = null;
+                            limpiarCajas(); // Limpiamos Caja de Texto
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Bovino Enfermo");
-                    }
-                } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
+                            this.dispose();
+                            frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
+                            frmInicio.jDkPEscritorio.add(padeceEnfermedad);
+                            padeceEnfermedad.setVisible(true);
 
-                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Bovino Enfermo");
+                        }
+                    } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
 
-                } else {
-                    if (dControladora.modificarPadece(padeceCompleta, padeceViejoFF)) {
-
-                        JOptionPane.showMessageDialog(null, "Bovino Enfermo Modificado Correctamente");
-                        caravana = null;
-                        limpiarCajas(); // Limpiamos Caja de Texto
-
-                        this.dispose();
-                        frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
-                        frmInicio.jDkPEscritorio.add(padeceEnfermedad);
-                        padeceEnfermedad.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Bovino Enfermo");
+                        if (dControladora.modificarPadece(padeceCompleta, padeceViejoFF)) {
+
+                            JOptionPane.showMessageDialog(null, "Bovino Enfermo Modificado Correctamente");
+                            caravana = null;
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                            this.dispose();
+                            frmPadeceEnfermedad padeceEnfermedad = new frmPadeceEnfermedad();
+                            frmInicio.jDkPEscritorio.add(padeceEnfermedad);
+                            padeceEnfermedad.setVisible(true);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Bovino Enfermo");
+                        }
                     }
+                } catch (Exception e) {
+                    throw e;
                 }
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

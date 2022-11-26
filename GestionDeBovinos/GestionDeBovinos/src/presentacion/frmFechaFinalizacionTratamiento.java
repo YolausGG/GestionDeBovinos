@@ -103,6 +103,12 @@ public class frmFechaFinalizacionTratamiento extends javax.swing.JInternalFrame 
         lblRFechaFT.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaFT.setText("Requerido");
 
+        txtCaravana.setEditable(false);
+
+        txtEnfermedad.setEditable(false);
+
+        txtFechaInicio.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(

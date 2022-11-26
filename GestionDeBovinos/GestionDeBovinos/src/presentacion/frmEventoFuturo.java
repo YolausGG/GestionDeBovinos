@@ -17,7 +17,6 @@ import java.util.Date;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
 public class frmEventoFuturo extends javax.swing.JInternalFrame {
 
     JButton modificar = new JButton("Modificar"); // Creamos los botones para la tabla
@@ -31,11 +30,11 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
 
     }
-    
+
     public frmEventoFuturo() {
         initComponents();
-        
-        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight()); 
+
+        this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("EVENTO FUTURO");
         insertarIconos(modificar, "/Imagenes/btnModificarChico.png");
         insertarIconos(eliminar, "/Imagenes/btnEliminarChico.png");
@@ -290,7 +289,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         jTableEventosFuturos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableEventosFuturos.setRowSorter(elQueOrdena);
         ArrayList<EventoFuturo> listaEventosFuturos = dControladora.listarEventosFuturos();
@@ -303,10 +302,10 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (EventoFuturo EF : listaEventosFuturos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaEventoF = formato.format(EF.getFechaPrevista());
-            
+
             model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), fechaEventoF, EF.getTipo(), modificar, eliminar});
         }
 
@@ -322,7 +321,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableEventosFuturos.setRowSorter(elQueOrdena);
-        
+
         ArrayList<EventoFuturo> listaEventosFuturos = dControladora.listarEventosFuturosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Evento Futuro");
@@ -333,10 +332,10 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (EventoFuturo EF : listaEventosFuturos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaEventoF = formato.format(EF.getFechaPrevista());
-            
+
             model.addRow(new Object[]{EF.getIdEventoFuturo(), EF.getHembra().getCaravanaBovino(), fechaEventoF, EF.getTipo(), modificar, eliminar});
         }
 
@@ -345,7 +344,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
         jTableEventosFuturos.setRowHeight(30);
 
     }
-    
+
     private void btnAltaEventoFuturoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaEventoFuturoMouseClicked
 
         if (validarCampos()) {
@@ -353,23 +352,27 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaEventoFuturo = jDateFechaEventoFuturo.getDate();
+            if (hembra != null) {
+                Date fechaEventoFuturo = jDateFechaEventoFuturo.getDate();
 
-            String tipo = cboTipo.getSelectedItem().toString();
+                String tipo = cboTipo.getSelectedItem().toString();
 
-            EventoFuturo eventoFuturo = new EventoFuturo(hembra, tipo, fechaEventoFuturo);
-            try {
+                EventoFuturo eventoFuturo = new EventoFuturo(hembra, tipo, fechaEventoFuturo);
+                try {
 
-                if (dControladora.altaEventoFuturo(eventoFuturo)) {
-                    JOptionPane.showMessageDialog(null, "Evento Futuro Ingresado Correctamente");
-                    actualizarTabla();
-                    limpiarCajas(); // Limpiamos Caja de Texto
-                } else {
-                    JOptionPane.showMessageDialog(null, "Evento Futuro No Ingresado Correctamente");
-                    limpiarCajas(); // Limpiamos Caja de Texto
+                    if (dControladora.altaEventoFuturo(eventoFuturo)) {
+                        JOptionPane.showMessageDialog(null, "Evento Futuro Ingresado Correctamente");
+                        actualizarTabla();
+                        limpiarCajas(); // Limpiamos Caja de Texto
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Evento Futuro No Ingresado Correctamente");
+                        limpiarCajas(); // Limpiamos Caja de Texto
+                    }
+                } catch (Exception e) {
+                    throw e;
                 }
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
@@ -427,7 +430,7 @@ public class frmEventoFuturo extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Evento Futuro?", "Eliminar Evento Futuro ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Evento Futuro?", "Eliminar Evento Futuro ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

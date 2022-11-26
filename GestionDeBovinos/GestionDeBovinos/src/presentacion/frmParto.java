@@ -319,37 +319,41 @@ public class frmParto extends javax.swing.JInternalFrame {
 
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaParto = jDateFechaParto.getDate();
+            if (hembra != null) {
+                Date fechaParto = jDateFechaParto.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaParto, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaParto, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    String tipo = cboTipo.getSelectedItem().toString();
+                        String tipo = cboTipo.getSelectedItem().toString();
 
-                    Parto parto = new Parto(eventoDeSanidad.getIdEventoDeSanidad(), fechaParto, detalle, hembra, tipo);
+                        Parto parto = new Parto(eventoDeSanidad.getIdEventoDeSanidad(), fechaParto, detalle, hembra, tipo);
 
-                    if (dControladora.altaParto(parto)) {
-                        dControladora.agregarEventoDeSanidad(parto);
-                        JOptionPane.showMessageDialog(null, "Parto Ingresado Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        if (dControladora.altaParto(parto)) {
+                            dControladora.agregarEventoDeSanidad(parto);
+                            JOptionPane.showMessageDialog(null, "Parto Ingresado Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Parto No Ingresado Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Parto No Ingresado Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
@@ -408,7 +412,7 @@ public class frmParto extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Parto?", "Eliminar Parto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Parto?", "Eliminar Parto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

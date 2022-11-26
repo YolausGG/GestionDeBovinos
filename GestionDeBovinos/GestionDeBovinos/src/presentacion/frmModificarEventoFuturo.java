@@ -170,30 +170,34 @@ public class frmModificarEventoFuturo extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaEventoFuturo = jDateFechaEventoFuturo.getDate();
+            if (hembra != null) {
+                Date fechaEventoFuturo = jDateFechaEventoFuturo.getDate();
 
-            String tipo = cboTipo.getSelectedItem().toString();
+                String tipo = cboTipo.getSelectedItem().toString();
 
-            EventoFuturo eventoFuturo = new EventoFuturo(hembra, tipo, fechaEventoFuturo);
+                EventoFuturo eventoFuturo = new EventoFuturo(hembra, tipo, fechaEventoFuturo);
 
-            try {
+                try {
 
-                if (dControladora.modificarEventoFuturo(frmEventoFuturo.idEventoFuturo, eventoFuturo)) {
+                    if (dControladora.modificarEventoFuturo(frmEventoFuturo.idEventoFuturo, eventoFuturo)) {
 
-                    JOptionPane.showMessageDialog(null, "Evento Futuro Modificado Correctamente");
-                    this.caravana = null;
-                    this.dispose();
-                    frmEventoFuturo formularioEventoFuturo = new frmEventoFuturo();
-                    frmInicio.jDkPEscritorio.add(formularioEventoFuturo);
-                    formularioEventoFuturo.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Evento Futuro Modificado Correctamente");
+                        this.caravana = null;
+                        this.dispose();
+                        frmEventoFuturo formularioEventoFuturo = new frmEventoFuturo();
+                        frmInicio.jDkPEscritorio.add(formularioEventoFuturo);
+                        formularioEventoFuturo.setVisible(true);
 
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Evento Futuro No Modificado Correctamente");
+                    } else {
+                        this.caravana = null;
+                        JOptionPane.showMessageDialog(null, "Evento Futuro No Modificado Correctamente");
+                    }
+
+                } catch (Exception e) {
+                    throw e;
                 }
-
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

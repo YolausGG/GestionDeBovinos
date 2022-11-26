@@ -318,37 +318,41 @@ public class frmCelo extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaCelo = jDateFechaCelo.getDate();
+            if (hembra != null) {
+                Date fechaCelo = jDateFechaCelo.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaCelo, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaCelo, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    Celo celo = new Celo(eventoDeSanidad.getIdEventoDeSanidad(), fechaCelo, detalle, hembra, causa);
+                        Celo celo = new Celo(eventoDeSanidad.getIdEventoDeSanidad(), fechaCelo, detalle, hembra, causa);
 
-                    if (dControladora.altaCelo(celo)) {
-                        dControladora.agregarEventoDeSanidad(celo);
-                        JOptionPane.showMessageDialog(null, "Celo Ingresado Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        if (dControladora.altaCelo(celo)) {
+                            dControladora.agregarEventoDeSanidad(celo);
+                            JOptionPane.showMessageDialog(null, "Celo Ingresado Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Celo No Ingresado Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Celo No Ingresado Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
@@ -406,7 +410,7 @@ public class frmCelo extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Celo?", "Eliminar Celo ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Celo?", "Eliminar Celo ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

@@ -319,41 +319,47 @@ public class frmAborto extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaAborto = jDateFechaAborto.getDate();
+            if (hembra != null) {
 
-            String detalle = txaDetalle.getText();
+                Date fechaAborto = jDateFechaAborto.getDate();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaAborto, detalle, hembra);
+                String detalle = txaDetalle.getText();
 
-            try {
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaAborto, detalle, hembra);
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                try {
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    Aborto aborto = new Aborto(eventoDeSanidad.getIdEventoDeSanidad(), fechaAborto, detalle, hembra, causa);
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    if (dControladora.altaAborto(aborto)) {
-                        dControladora.agregarEventoDeSanidad(aborto);
-                        JOptionPane.showMessageDialog(null, "Aborto Ingresado Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        Aborto aborto = new Aborto(eventoDeSanidad.getIdEventoDeSanidad(), fechaAborto, detalle, hembra, causa);
+
+                        if (dControladora.altaAborto(aborto)) {
+                            dControladora.agregarEventoDeSanidad(aborto);
+                            JOptionPane.showMessageDialog(null, "Aborto Ingresado Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Aborto No Ingresado Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Aborto No Ingresado Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
+
     }//GEN-LAST:event_btnAltaAbortoMouseClicked
 
     private void txtCaravanaHembraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaravanaHembraKeyReleased
@@ -407,7 +413,7 @@ public class frmAborto extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Aborto?", "Eliminar Aborto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Aborto?", "Eliminar Aborto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

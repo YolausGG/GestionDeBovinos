@@ -186,41 +186,45 @@ public class frmModificarParto extends javax.swing.JInternalFrame {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
+            
+            if (hembra != null) {
+                Date fechaParto = jDateFechaParto.getDate();
 
-            Date fechaParto = jDateFechaParto.getDate();
+                String detalle = txaDetalle.getText();
 
-            String detalle = txaDetalle.getText();
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaParto, detalle, hembra);
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaParto, detalle, hembra);
+                try {
 
-            try {
+                    if (dControladora.modificarEventoDeSanidad(frmParto.idParto, eventoDeSanidad)) {
 
-                if (dControladora.modificarEventoDeSanidad(frmParto.idParto, eventoDeSanidad)) {
+                        String tipo = cboTipo.getSelectedItem().toString();
 
-                    String tipo = cboTipo.getSelectedItem().toString();
+                        Parto parto = new Parto(frmParto.idParto, fechaParto, detalle, hembra, tipo);
 
-                    Parto parto = new Parto(frmParto.idParto, fechaParto, detalle, hembra, tipo);
+                        if (dControladora.modificarParto(frmParto.idParto, parto)) {
 
-                    if (dControladora.modificarParto(frmParto.idParto, parto)) {
-
-                        dControladora.modificarEventoDeSanidad(parto);
-                        JOptionPane.showMessageDialog(null, "Parto Modificado Correctamente");
-                        this.caravana = null;
-                        this.dispose();
-                        frmParto formularioParto = new frmParto();
-                        frmInicio.jDkPEscritorio.add(formularioParto);
-                        formularioParto.setVisible(true);
+                            dControladora.modificarEventoDeSanidad(parto);
+                            JOptionPane.showMessageDialog(null, "Parto Modificado Correctamente");
+                            this.caravana = null;
+                            this.dispose();
+                            frmParto formularioParto = new frmParto();
+                            frmInicio.jDkPEscritorio.add(formularioParto);
+                            formularioParto.setVisible(true);
+                        } else {
+                            this.caravana = null;
+                            JOptionPane.showMessageDialog(null, "Parto No Modificado Correctamente");
+                        }
                     } else {
                         this.caravana = null;
-                        JOptionPane.showMessageDialog(null, "Parto No Modificado Correctamente");
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

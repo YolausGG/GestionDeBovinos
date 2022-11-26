@@ -298,7 +298,7 @@ public class frmFichaBovino extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(41, 96, 143));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnArbol.setText("Ver Arbol Genealógico");
+        btnArbol.setText("Ver Árbol Genealógico");
         btnArbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnArbolMouseClicked(evt);

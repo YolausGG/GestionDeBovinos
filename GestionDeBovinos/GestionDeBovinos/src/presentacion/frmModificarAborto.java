@@ -187,40 +187,44 @@ public class frmModificarAborto extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaAborto = jDateFechaAborto.getDate();
+            if (hembra != null) {
+                Date fechaAborto = jDateFechaAborto.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaAborto, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaAborto, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.modificarEventoDeSanidad(frmAborto.idAborto, eventoDeSanidad)) {
+                    if (dControladora.modificarEventoDeSanidad(frmAborto.idAborto, eventoDeSanidad)) {
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    Aborto aborto = new Aborto(frmAborto.idAborto, fechaAborto, detalle, hembra, causa);
+                        Aborto aborto = new Aborto(frmAborto.idAborto, fechaAborto, detalle, hembra, causa);
 
-                    if (dControladora.modificarAborto(frmAborto.idAborto, aborto)) {
+                        if (dControladora.modificarAborto(frmAborto.idAborto, aborto)) {
 
-                        dControladora.modificarEventoDeSanidad(aborto);
-                        JOptionPane.showMessageDialog(null, "Aborto Modificado Correctamente");
-                        this.caravana = null;
-                        this.dispose();
-                        frmAborto formularioAborto = new frmAborto();
-                        frmInicio.jDkPEscritorio.add(formularioAborto);
-                        formularioAborto.setVisible(true);
+                            dControladora.modificarEventoDeSanidad(aborto);
+                            JOptionPane.showMessageDialog(null, "Aborto Modificado Correctamente");
+                            this.caravana = null;
+                            this.dispose();
+                            frmAborto formularioAborto = new frmAborto();
+                            frmInicio.jDkPEscritorio.add(formularioAborto);
+                            formularioAborto.setVisible(true);
+                        } else {
+                            this.caravana = null;
+                            JOptionPane.showMessageDialog(null, "Aborto No Modificado Correctamente");
+                        }
                     } else {
                         this.caravana = null;
-                        JOptionPane.showMessageDialog(null, "Aborto No Modificado Correctamente");
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

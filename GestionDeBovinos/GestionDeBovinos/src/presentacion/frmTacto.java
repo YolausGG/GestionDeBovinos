@@ -273,7 +273,7 @@ public class frmTacto extends javax.swing.JInternalFrame {
         jTableTactos.setDefaultRenderer(Object.class, new BotonesTabla());
 
         DefaultTableModel model = new DefaultTableModel();
-        
+
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableTactos.setRowSorter(elQueOrdena);
         ArrayList<Tacto> listaTactos = dControladora.listarTactos();
@@ -288,10 +288,10 @@ public class frmTacto extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Tacto t : listaTactos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaTacto = formato.format(t.getFecha());
-            
+
             model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
         }
 
@@ -307,7 +307,7 @@ public class frmTacto extends javax.swing.JInternalFrame {
 
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(model);
         jTableTactos.setRowSorter(elQueOrdena);
-        
+
         ArrayList<Tacto> listaTactos = dControladora.listarTactosPorCaravana(txtCaravanaHembra.getText());
 
         model.addColumn("id Tacto");
@@ -320,10 +320,10 @@ public class frmTacto extends javax.swing.JInternalFrame {
         model.addColumn("Eliminar ");
 
         for (Tacto t : listaTactos) {
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String fechaTacto = formato.format(t.getFecha());
-            
+
             model.addRow(new Object[]{t.getIdEventoDeSanidad(), t.getHembra().getCaravanaBovino(), fechaTacto, t.getDetalle(), t.getResultado(), t.getDiagnostico(), modificar, eliminar});
         }
 
@@ -368,7 +368,7 @@ public class frmTacto extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Tacto?", "Eliminar Tacto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Tacto?", "Eliminar Tacto ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 
@@ -402,77 +402,80 @@ public class frmTacto extends javax.swing.JInternalFrame {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
+            if (hembra != null) {
+                Date fechaTacto = jDateFechaTacto.getDate();
 
-            Date fechaTacto = jDateFechaTacto.getDate();
+                String detalle = txaDetalle.getText();
 
-            String detalle = txaDetalle.getText();
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaTacto, detalle, hembra);
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaTacto, detalle, hembra);
+                try {
 
-            try {
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                        String resultado = cboResultado.getSelectedItem().toString();
+                        String diagnostico = txaDiagnostico.getText();
 
-                    String resultado = cboResultado.getSelectedItem().toString();
-                    String diagnostico = txaDiagnostico.getText();
+                        Tacto tacto = new Tacto(eventoDeSanidad.getIdEventoDeSanidad(), fechaTacto, detalle, hembra, resultado, diagnostico);
 
-                    Tacto tacto = new Tacto(eventoDeSanidad.getIdEventoDeSanidad(), fechaTacto, detalle, hembra, resultado, diagnostico);
+                        if (dControladora.altaTacto(tacto)) {
+                            dControladora.agregarEventoDeSanidad(tacto);
+                            JOptionPane.showMessageDialog(null, "Tacto Ingresado Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de
 
-                    if (dControladora.altaTacto(tacto)) {
-                        dControladora.agregarEventoDeSanidad(tacto);
-                        JOptionPane.showMessageDialog(null, "Tacto Ingresado Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de
+                            if (resultado.equals("Preñez")) {
 
-                        if (resultado.equals("Preñez")) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTime(fechaTacto);
+                                calendar.add(Calendar.DAY_OF_YEAR, -90);
 
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.setTime(fechaTacto);
-                            calendar.add(Calendar.DAY_OF_YEAR, -90);
-                            
-                            EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Preñez");
-                            
-                            EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), tacto.getHembra().getIdBovino(), fechaTacto);
+                                EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Preñez");
 
-                            dControladora.altaEstadoBovinoFechaInicio(EB);
-                            
-                            calendar.add(Calendar.DAY_OF_YEAR, 283);
+                                EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), tacto.getHembra().getIdBovino(), fechaTacto);
 
-                            Date fechaPrevista = calendar.getTime();
-                            EventoFuturo eventoFuturoParto = new EventoFuturo(hembra, "Parto", fechaPrevista);
+                                dControladora.altaEstadoBovinoFechaInicio(EB);
 
-                            if (dControladora.altaEventoFuturo(eventoFuturoParto)) {
-                                JOptionPane.showMessageDialog(null, "Parto Previsto Agregado como Evento Futuro en 6 Meses y 10 Días");
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Parto Previsto No Agregado");
+                                calendar.add(Calendar.DAY_OF_YEAR, 283);
+
+                                Date fechaPrevista = calendar.getTime();
+                                EventoFuturo eventoFuturoParto = new EventoFuturo(hembra, "Parto", fechaPrevista);
+
+                                if (dControladora.altaEventoFuturo(eventoFuturoParto)) {
+                                    JOptionPane.showMessageDialog(null, "Parto Previsto Agregado como Evento Futuro en 6 Meses y 10 Días");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Parto Previsto No Agregado");
+                                }
+
+                                calendar.add(Calendar.DAY_OF_YEAR, -45);
+
+                                fechaPrevista = calendar.getTime();
+
+                                EventoFuturo eventoFuturoSecado = new EventoFuturo(hembra, "Secado", fechaPrevista);
+
+                                if (dControladora.altaEventoFuturo(eventoFuturoSecado)) {
+                                    JOptionPane.showMessageDialog(null, "Secado Previsto Agregado como Evento Futuro 45 Días antes del Parto");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Secado Previsto No Agregado");
+                                }
+
                             }
 
-                            calendar.add(Calendar.DAY_OF_YEAR, -45);
-
-                            fechaPrevista = calendar.getTime();
-
-                            EventoFuturo eventoFuturoSecado = new EventoFuturo(hembra, "Secado", fechaPrevista);
-
-                            if (dControladora.altaEventoFuturo(eventoFuturoSecado)) {
-                                JOptionPane.showMessageDialog(null, "Secado Previsto Agregado como Evento Futuro 45 Días antes del Parto");
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Secado Previsto No Agregado");
-                            }
-
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Tacto No Ingresado Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
                         }
-
                     } else {
-                        JOptionPane.showMessageDialog(null, "Tacto No Ingresado Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

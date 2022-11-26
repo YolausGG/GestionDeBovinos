@@ -349,59 +349,63 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
 
             String caravanaHembra = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravanaHembra);
+            String caravanaMacho = txtCaravanaMacho.getText();
+            Macho macho = dControladora.buscarMachoPorCaravana(caravanaMacho);
+            
+            if (hembra != null && macho != null) {
 
-            Date fechaInseminacion = jDateFechaInseminacion.getDate();
+                Date fechaInseminacion = jDateFechaInseminacion.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaInseminacion, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaInseminacion, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    String caravanaMacho = txtCaravanaMacho.getText();
-                    Macho macho = dControladora.buscarMachoPorCaravana(caravanaMacho);
+                        Inseminacion inseminacion = new Inseminacion(eventoDeSanidad.getIdEventoDeSanidad(), fechaInseminacion, detalle, hembra, macho);
 
-                    Inseminacion inseminacion = new Inseminacion(eventoDeSanidad.getIdEventoDeSanidad(), fechaInseminacion, detalle, hembra, macho);
+                        if (dControladora.altaInseminacion(inseminacion)) {
+                            dControladora.agregarEventoDeSanidad(inseminacion);
 
-                    if (dControladora.altaInseminacion(inseminacion)) {
-                        dControladora.agregarEventoDeSanidad(inseminacion);
+                            EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Inseminada");
 
-                        EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Inseminada");
+                            EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), inseminacion.getHembra().getIdBovino(), inseminacion.getFecha());
 
-                        EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), inseminacion.getHembra().getIdBovino(), inseminacion.getFecha());
+                            dControladora.altaEstadoBovinoFechaInicio(EB);
+                            JOptionPane.showMessageDialog(null, "Inseminación Ingresada Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
 
-                        dControladora.altaEstadoBovinoFechaInicio(EB);
-                        JOptionPane.showMessageDialog(null, "Inseminación Ingresada Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTime(fechaInseminacion);
 
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(fechaInseminacion);
+                            calendar.add(Calendar.DAY_OF_YEAR, 90);
 
-                        calendar.add(Calendar.DAY_OF_YEAR, 90);
+                            Date fechaPrevista = calendar.getTime();
+                            EventoFuturo eventoFuturo = new EventoFuturo(hembra, "Tacto", fechaPrevista);
 
-                        Date fechaPrevista = calendar.getTime();
-                        EventoFuturo eventoFuturo = new EventoFuturo(hembra, "Tacto", fechaPrevista);
-
-                        if (dControladora.altaEventoFuturo(eventoFuturo)) {
-                            JOptionPane.showMessageDialog(null, "Tacto Previsto Agregado como Evento Futuro en 3 Meses");
+                            if (dControladora.altaEventoFuturo(eventoFuturo)) {
+                                JOptionPane.showMessageDialog(null, "Tacto Previsto Agregado como Evento Futuro en 3 Meses");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Tacto Previsto No Agregado");
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Tacto Previsto No Agregado");
+                            JOptionPane.showMessageDialog(null, "Inseminación No Ingresada Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Inseminación No Ingresada Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Hay Caravanas desconocidas");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
@@ -473,7 +477,7 @@ public class frmInseminacion extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar la Inseminación?", "Eliminar Inseminación ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar la Inseminación?", "Eliminar Inseminación ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

@@ -488,7 +488,7 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
                     try {
 
                         //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                        int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Bovino Enfermo?", "Eliminar Bovino Enfermo ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Bovino Enfermo?", "Eliminar Bovino Enfermo ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                         if (opcion == 0) {
 
@@ -568,51 +568,55 @@ public class frmPadeceEnfermedad extends javax.swing.JInternalFrame {
 
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
-            Padece padece = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE);
+            if (bovino != null) {
+                Padece padece = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE);
 
-            Padece padeceFechaF = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
+                Padece padeceFechaF = new Padece(enfermedad1.getIdEnfermedad(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
 
-            try {
-                if (jDateFechaFinalizacionE.getDate() == null) {
+                try {
+                    if (jDateFechaFinalizacionE.getDate() == null) {
 
-                    boolean resultado = dControladora.altaPadeceFechaInicio(padece);
+                        boolean resultado = dControladora.altaPadeceFechaInicio(padece);
 
-                    if (resultado) {
+                        if (resultado) {
 
-                        EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Enfermo");
+                            EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Enfermo");
 
-                        EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), padece.getIdBovino(), padece.getFechaInicio());
+                            EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), padece.getIdBovino(), padece.getFechaInicio());
 
-                        dControladora.altaEstadoBovinoFechaInicio(EB);
+                            dControladora.altaEstadoBovinoFechaInicio(EB);
 
-                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Bovino Enfermo");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                            JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Bovino Enfermo");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Bovino Enfermo");
-                    }
-                } else if (jDateFechaFinalizacionE.getDate().before(fechaInicioE)) {
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Bovino Enfermo");
+                        }
+                    } else if (jDateFechaFinalizacionE.getDate().before(fechaInicioE)) {
 
-                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
-
-                } else {
-                    boolean resultado = dControladora.altaPadece(padeceFechaF);
-
-                    if (resultado) {
-
-                        JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Bovino Enfermo");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Bovino Enfermo");
+                        boolean resultado = dControladora.altaPadece(padeceFechaF);
+
+                        if (resultado) {
+
+                            JOptionPane.showMessageDialog(null, "Se Ingreso Correctamente el Bovino Enfermo");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo ingresar el Bovino Enfermo");
+                        }
+
                     }
 
+                } catch (Exception e) {
+                    throw e;
                 }
-
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

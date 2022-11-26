@@ -368,75 +368,78 @@ public class frmModificarTratamiento extends javax.swing.JInternalFrame {
             String caravana = txtCaravana.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
-            Enfermedad enfermedad = dControladora.buscarEnfermedadNombre(txtNomEnfermedad.getText());
-            int idEnfermedad = enfermedad.getIdEnfermedad();
+            if (bovino != null) {
+                Enfermedad enfermedad = dControladora.buscarEnfermedadNombre(txtNomEnfermedad.getText());
+                int idEnfermedad = enfermedad.getIdEnfermedad();
 
-            String fecha = txtFIPadece.getText();
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            Date fechaPadece = null;
+                String fecha = txtFIPadece.getText();
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                Date fechaPadece = null;
 
-            try {
-                fechaPadece = formato.parse(fecha);
-            } catch (ParseException ex) {
-                Logger.getLogger(frmModificarTratamiento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaPadece);
-
-            String detalle = jTextAreaDetalle.getText();
-            Date fechaInicioT = jDateFechaInicioT.getDate();
-            Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
-
-            int idTratamiento = frmTratamiento.idTratamiento;
-            Tratamiento tratamiento = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT);
-            Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT, fechaFinalizacionT);
-
-            try {
-
-                if (jDateFechaFinalizacionT.getDate() == null) {
-                    boolean resultado = dControladora.modificarTratamientoFechaInicio(tratamiento);
-
-                    if (resultado) {
-
-                        JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
-
-                        limpiarCajas(); // Limpiamos Caja de Texto
-
-                        this.dispose();
-                        frmTratamiento tratamiento1 = new frmTratamiento();
-                        frmInicio.jDkPEscritorio.add(tratamiento1);
-                        tratamiento1.setVisible(true);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Tratamiento al Bovino Enfermo");
-                    }
-                } else if (jDateFechaFinalizacionT.getDate().before(fechaInicioT)) {
-
-                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
-
-                } else {
-                    boolean resultado = dominio.dTratamiento.modificarTratamiento(tratamientoFechaF);
-
-                    if (resultado) {
-
-                        JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
-
-                        limpiarCajas(); // Limpiamos Caja de Texto
-
-                        this.dispose();
-                        frmTratamiento tratamiento1 = new frmTratamiento();
-                        frmInicio.jDkPEscritorio.add(tratamiento1);
-                        tratamiento1.setVisible(true);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: 111No se pudo Modificar el Tratamiento al Bovino Enfermo");
-                    }
+                try {
+                    fechaPadece = formato.parse(fecha);
+                } catch (ParseException ex) {
+                    Logger.getLogger(frmModificarTratamiento.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } catch (Exception e) {
-                throw e;
-            }
+                Padece padece = new Padece(idEnfermedad, bovino.getIdBovino(), fechaPadece);
 
+                String detalle = jTextAreaDetalle.getText();
+                Date fechaInicioT = jDateFechaInicioT.getDate();
+                Date fechaFinalizacionT = jDateFechaFinalizacionT.getDate();
+
+                int idTratamiento = frmTratamiento.idTratamiento;
+                Tratamiento tratamiento = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT);
+                Tratamiento tratamientoFechaF = new Tratamiento(idTratamiento, padece, detalle, fechaInicioT, fechaFinalizacionT);
+
+                try {
+
+                    if (jDateFechaFinalizacionT.getDate() == null) {
+                        boolean resultado = dControladora.modificarTratamientoFechaInicio(tratamiento);
+
+                        if (resultado) {
+
+                            JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
+
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                            this.dispose();
+                            frmTratamiento tratamiento1 = new frmTratamiento();
+                            frmInicio.jDkPEscritorio.add(tratamiento1);
+                            tratamiento1.setVisible(true);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Tratamiento al Bovino Enfermo");
+                        }
+                    } else if (jDateFechaFinalizacionT.getDate().before(fechaInicioT)) {
+
+                        JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+
+                    } else {
+                        boolean resultado = dominio.dTratamiento.modificarTratamiento(tratamientoFechaF);
+
+                        if (resultado) {
+
+                            JOptionPane.showMessageDialog(null, "Se Modificó Correctamente el Tratamiento al Bovino Enfermo");
+
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                            this.dispose();
+                            frmTratamiento tratamiento1 = new frmTratamiento();
+                            frmInicio.jDkPEscritorio.add(tratamiento1);
+                            tratamiento1.setVisible(true);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: 111No se pudo Modificar el Tratamiento al Bovino Enfermo");
+                        }
+                    }
+
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }

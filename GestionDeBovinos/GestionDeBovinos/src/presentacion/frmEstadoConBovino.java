@@ -34,6 +34,8 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
 
     public static int columna, row; // Metodo para cuando hacemos click en los botones
 
+    public static String sexo = "";
+
     public void insertarIconos(JButton btn, String ruta) { // Insertar Iconos en Botones Tabla
 
         btn.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
@@ -418,11 +420,20 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
 
         ArrayList<EstadoDelBovino> listaEstados = pEstadoDelBovino.listarEstadosDelBovino();
 
-        for (EstadoDelBovino estado : listaEstados) {
+        if (this.sexo.equals("Macho")) {
+            for (EstadoDelBovino estado : listaEstados) {
+                if (!estado.getEstado().equals("Preñez") && !estado.getEstado().equals("Secada") && !estado.getEstado().equals("Inseminada") && !estado.getEstado().equals("Produccion")) {
+                    cboEstado.addItem(estado);
+                }
 
-            cboEstado.addItem(estado);
+            }
+        } else {
+
+            for (EstadoDelBovino estado : listaEstados) {
+
+                cboEstado.addItem(estado);
+            }
         }
-
     }
 
     public static String caravana = "";
@@ -580,45 +591,53 @@ public class frmEstadoConBovino extends javax.swing.JInternalFrame {
 
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
 
-            EstadoBovino estadoBovino = new EstadoBovino(estado.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaInicioE);
+            if (bovino != null) {
 
-            EstadoBovino estadoBovinoFechaF = new EstadoBovino(estado.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
+                EstadoBovino estadoBovino = new EstadoBovino(estado.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaInicioE);
 
-            try {
-                if (jDateFechaFinalizacionE.getDate() == null) {
+                EstadoBovino estadoBovinoFechaF = new EstadoBovino(estado.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaInicioE, fechaFinalizacionE);
 
-                    boolean resultado = dControladora.altaEstadoBovinoFechaInicio(estadoBovino);
+                try {
+                    if (jDateFechaFinalizacionE.getDate() == null) {
 
-                    if (resultado) {
+                        boolean resultado = dControladora.altaEstadoBovinoFechaInicio(estadoBovino);
 
-                        JOptionPane.showMessageDialog(null, "Se Asigno Correctamente el Estado al Bovino");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        if (resultado) {
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Asignar el Estado al Bovino");
-                    }
-                } else if (jDateFechaFinalizacionE.getDate().before(fechaInicioE)) {
+                            JOptionPane.showMessageDialog(null, "Se Asigno Correctamente el Estado al Bovino");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                            sexo = "";
+                            cboEstado.removeAllItems();
+                            cboEstado.insertItemAt("Seleccionar", 0);
+                            llenarComboEstado();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Asignar el Estado al Bovino");
+                        }
+                    } else if (jDateFechaFinalizacionE.getDate().before(fechaInicioE)) {
 
-                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
-
-                } else {
-                    boolean resultado = dControladora.altaEstadoBovino(estadoBovinoFechaF);
-
-                    if (resultado) {
-
-                        JOptionPane.showMessageDialog(null, "Se Asigno Correctamente el Estado al Bovino");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Asignar el Estado al Bovino");
+                        boolean resultado = dControladora.altaEstadoBovino(estadoBovinoFechaF);
+
+                        if (resultado) {
+
+                            JOptionPane.showMessageDialog(null, "Se Asigno Correctamente el Estado al Bovino");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Asignar el Estado al Bovino");
+                        }
+
                     }
 
+                } catch (Exception e) {
+                    throw e;
                 }
-
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

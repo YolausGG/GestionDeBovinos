@@ -302,15 +302,31 @@ public class frmBuscarBovino extends javax.swing.JInternalFrame {
                         formularioModificarPadeceEnfermedad.setVisible(true);
                         break;
                     case "frmEstadoConBovino":
+
+                        if (chkHembra.isSelected()) {
+                            frmEstadoConBovino.sexo = "Hembra";
+                        } else {
+                            frmEstadoConBovino.sexo = "Macho";
+                        }
                         frmEstadoConBovino formularioEstadoConBovino = new frmEstadoConBovino();
+
                         frmInicio.jDkPEscritorio.add(formularioEstadoConBovino);
                         formularioEstadoConBovino.setVisible(true);
+
                         break;
                     case "frmModificarEstadoConBovino":
+
+                        if (chkHembra.isSelected()) {
+                            frmModificarEstadoConBovino.sexo = "Hembra";
+                        } else {
+                            frmModificarEstadoConBovino.sexo = "Macho";
+                        }
                         frmModificarEstadoConBovino.caravana = caravana;
                         frmModificarEstadoConBovino formularioModificarEstadoConBovino = new frmModificarEstadoConBovino();
+
                         frmInicio.jDkPEscritorio.add(formularioModificarEstadoConBovino);
                         formularioModificarEstadoConBovino.setVisible(true);
+
                         break;
                     case "frmApareable":
 

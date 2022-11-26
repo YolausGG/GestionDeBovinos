@@ -323,51 +323,55 @@ public class frmSecado extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaSecado = jDateFechaSecado.getDate();
+            if (hembra != null) {
+                Date fechaSecado = jDateFechaSecado.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaSecado, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaSecado, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
+                    if (dControladora.altaEventoDeSanidad(eventoDeSanidad)) {
 
-                    eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
+                        eventoDeSanidad = dControladora.buscarEventoDeSanidadUltimo();
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    Secado secado = new Secado(eventoDeSanidad.getIdEventoDeSanidad(), fechaSecado, detalle, hembra, causa);
+                        Secado secado = new Secado(eventoDeSanidad.getIdEventoDeSanidad(), fechaSecado, detalle, hembra, causa);
 
-                    if (dControladora.altaSecado(secado)) {
-                        dControladora.agregarEventoDeSanidad(secado);
+                        if (dControladora.altaSecado(secado)) {
+                            dControladora.agregarEventoDeSanidad(secado);
 
-                        EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Secada");
-                        EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), secado.getHembra().getIdBovino(), secado.getFecha());
-                        dControladora.altaEstadoBovinoFechaInicio(EB);
+                            EstadoDelBovino estado = dControladora.buscarEstadoDelBovinoNombre("Secada");
+                            EstadoBovino EB = new EstadoBovino(estado.getIdEstadoDelBovino(), secado.getHembra().getIdBovino(), secado.getFecha());
+                            dControladora.altaEstadoBovinoFechaInicio(EB);
 
-                        EstadoDelBovino estadoProduccion = dControladora.buscarEstadoDelBovinoNombre("Produccion");
-                        EstadoBovino eBProduccion = new EstadoBovino();
-                        eBProduccion.setIdEstadoDelBovino(estadoProduccion.getIdEstadoDelBovino());
-                        eBProduccion.setIdBovino(hembra.getIdBovino());
+                            EstadoDelBovino estadoProduccion = dControladora.buscarEstadoDelBovinoNombre("Produccion");
+                            EstadoBovino eBProduccion = new EstadoBovino();
+                            eBProduccion.setIdEstadoDelBovino(estadoProduccion.getIdEstadoDelBovino());
+                            eBProduccion.setIdBovino(hembra.getIdBovino());
 
-                        eBProduccion = dControladora.buscarUltimoEstadoBovinoNombre(eBProduccion);
-                        eBProduccion.setFechaFinalizacion(fechaSecado);
-                        dControladora.bajaEstadoBovino(eBProduccion);
+                            eBProduccion = dControladora.buscarUltimoEstadoBovinoNombre(eBProduccion);
+                            eBProduccion.setFechaFinalizacion(fechaSecado);
+                            dControladora.bajaEstadoBovino(eBProduccion);
 
-                        JOptionPane.showMessageDialog(null, "Secado Ingresado Correctamente");
-                        actualizarTabla();
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                            JOptionPane.showMessageDialog(null, "Secado Ingresado Correctamente");
+                            actualizarTabla();
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Secado No Ingresado Correctamente");
+                            limpiarCajas(); // Limpiamos Caja de Texto
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Secado No Ingresado Correctamente");
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo agregar el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
@@ -425,7 +429,7 @@ public class frmSecado extends javax.swing.JInternalFrame {
                         try {
 
                             //La primera opcion seleccionada (SI) devuelve cero y la segunda (NO) devuelve uno
-                            int opcion = JOptionPane.showConfirmDialog(null, "Desea Eliminar el Secado?", "Eliminar Secado ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar el Secado?", "Eliminar Secado ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                             if (opcion == 0) {
 

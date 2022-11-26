@@ -200,44 +200,48 @@ public class frmModificarInseminacion extends javax.swing.JInternalFrame {
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaInseminacion = jDateFechaInseminacion.getDate();
+            Macho macho = dControladora.buscarMachoPorCaravana(txtCaravanaMacho.getText());
+            
+            if (hembra != null && macho != null) {
+                Date fechaInseminacion = jDateFechaInseminacion.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaInseminacion, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaInseminacion, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.modificarEventoDeSanidad(frmInseminacion.idInseminacion, eventoDeSanidad)) {
+                    if (dControladora.modificarEventoDeSanidad(frmInseminacion.idInseminacion, eventoDeSanidad)) {
 
-                    Macho macho = dControladora.buscarMachoPorCaravana(txtCaravanaMacho.getText());
+                        Inseminacion inseminacion = new Inseminacion(frmInseminacion.idInseminacion, fechaInseminacion, detalle, hembra, macho);
 
-                    Inseminacion inseminacion = new Inseminacion(frmInseminacion.idInseminacion, fechaInseminacion, detalle, hembra, macho);
+                        if (dControladora.modificarInseminacion(frmInseminacion.idInseminacion, inseminacion)) {
 
-                    if (dControladora.modificarInseminacion(frmInseminacion.idInseminacion, inseminacion)) {
+                            dControladora.modificarEventoDeSanidad(inseminacion);
 
-                        dControladora.modificarEventoDeSanidad(inseminacion);
-
-                        JOptionPane.showMessageDialog(null, "Inseminación Modificada Correctamente");
-                        this.caravanaHembra = null;
-                        this.caravanaMacho = null;
-                        this.dispose();
-                        frmInseminacion formularioInseminacion = new frmInseminacion();
-                        frmInicio.jDkPEscritorio.add(formularioInseminacion);
-                        formularioInseminacion.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Inseminación Modificada Correctamente");
+                            this.caravanaHembra = null;
+                            this.caravanaMacho = null;
+                            this.dispose();
+                            frmInseminacion formularioInseminacion = new frmInseminacion();
+                            frmInicio.jDkPEscritorio.add(formularioInseminacion);
+                            formularioInseminacion.setVisible(true);
+                        } else {
+                            this.caravanaHembra = null;
+                            this.caravanaMacho = null;
+                            JOptionPane.showMessageDialog(null, "Inseminación No Modificada Correctamente");
+                        }
                     } else {
                         this.caravanaHembra = null;
                         this.caravanaMacho = null;
-                        JOptionPane.showMessageDialog(null, "Inseminación No Modificada Correctamente");
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                } else {
-                    this.caravanaHembra = null;
-                    this.caravanaMacho = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Hay Caravanas desconocidas");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

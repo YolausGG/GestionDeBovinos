@@ -200,42 +200,46 @@ public class frmModificarTacto extends javax.swing.JInternalFrame {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
+            
+            if (hembra != null) {
+                Date fechaTacto = jDateFechaTacto.getDate();
 
-            Date fechaTacto = jDateFechaTacto.getDate();
+                String detalle = txaDetalle.getText();
 
-            String detalle = txaDetalle.getText();
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaTacto, detalle, hembra);
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaTacto, detalle, hembra);
+                try {
 
-            try {
+                    if (dControladora.modificarEventoDeSanidad(frmTacto.idTacto, eventoDeSanidad)) {
 
-                if (dControladora.modificarEventoDeSanidad(frmTacto.idTacto, eventoDeSanidad)) {
+                        String resultado = cboResultado.getSelectedItem().toString();
+                        String diagnostico = txaDiagnostico.getText();
 
-                    String resultado = cboResultado.getSelectedItem().toString();
-                    String diagnostico = txaDiagnostico.getText();
+                        Tacto tacto = new Tacto(frmTacto.idTacto, fechaTacto, detalle, hembra, resultado, diagnostico);
 
-                    Tacto tacto = new Tacto(frmTacto.idTacto, fechaTacto, detalle, hembra, resultado, diagnostico);
+                        if (dControladora.modificarTacto(frmTacto.idTacto, tacto)) {
 
-                    if (dControladora.modificarTacto(frmTacto.idTacto, tacto)) {
-
-                        dControladora.modificarEventoDeSanidad(tacto);
-                        JOptionPane.showMessageDialog(null, "Tacto Modificado Correctamente");
-                        this.caravana = null;
-                        this.dispose();
-                        frmTacto formularioTacto = new frmTacto();
-                        frmInicio.jDkPEscritorio.add(formularioTacto);
-                        formularioTacto.setVisible(true);
+                            dControladora.modificarEventoDeSanidad(tacto);
+                            JOptionPane.showMessageDialog(null, "Tacto Modificado Correctamente");
+                            this.caravana = null;
+                            this.dispose();
+                            frmTacto formularioTacto = new frmTacto();
+                            frmInicio.jDkPEscritorio.add(formularioTacto);
+                            formularioTacto.setVisible(true);
+                        } else {
+                            this.caravana = null;
+                            JOptionPane.showMessageDialog(null, "Tacto No Modificado Correctamente");
+                        }
                     } else {
                         this.caravana = null;
-                        JOptionPane.showMessageDialog(null, "Tacto No Modificado Correctamente");
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
-                }
 
-            } catch (Exception e) {
-                throw e;
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

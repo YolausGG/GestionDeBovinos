@@ -10,36 +10,34 @@ import clases.Hembra;
 import dominio.dControladora;
 import javax.swing.JOptionPane;
 import java.util.Date;
-        
+
 public class frmModificarCelo extends javax.swing.JInternalFrame {
 
     public static String caravana = null;
-    
+
     public frmModificarCelo() {
         initComponents();
-        
+
         this.setSize(frmInicio.jDkPEscritorio.getWidth(), frmInicio.jDkPEscritorio.getHeight());
         this.setTitle("MODIFICAR CELO");
-        
+
         lblRCausa.setVisible(false);
         lblRFechaCelo.setVisible(false);
         lblRHembra.setVisible(false);
-        
+
         Celo celo = dControladora.buscarCelo(frmCelo.idCelo);
-        
+
         jDateFechaCelo.setDate(celo.getFecha());
         txaDetalle.setText(celo.getDetalle());
         cboCausa.setSelectedItem(celo.getCausa());
-        
-        if(this.caravana != null){
+
+        if (this.caravana != null) {
             txtCaravanaHembra.setText(this.caravana);
-        }
-        else{
+        } else {
             txtCaravanaHembra.setText(celo.getHembra().getCaravanaBovino());
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -152,68 +150,85 @@ public class frmModificarCelo extends javax.swing.JInternalFrame {
         cboCausa.setSelectedIndex(0);
         jDateFechaCelo.setDate(null);
         txaDetalle.setText(null);
-        
+
     }
-    
-    private boolean validarCampos(){
+
+    private boolean validarCampos() {
         int contador = 0;
-        
-        if(txtCaravanaHembra.getText().equals("")){ lblRHembra.setVisible(true); contador++; }else { lblRHembra.setVisible(false);}
-        if(cboCausa.getSelectedIndex() < 1){ lblRCausa.setVisible(true); contador++; }else { lblRCausa.setVisible(false);}
-        if(jDateFechaCelo.getDate() == null){ lblRFechaCelo.setVisible(true); contador++; }else { lblRFechaCelo.setVisible(false);}
-        
-        if(contador < 1){
-            return true;
+
+        if (txtCaravanaHembra.getText().equals("")) {
+            lblRHembra.setVisible(true);
+            contador++;
+        } else {
+            lblRHembra.setVisible(false);
         }
-        else{
+        if (cboCausa.getSelectedIndex() < 1) {
+            lblRCausa.setVisible(true);
+            contador++;
+        } else {
+            lblRCausa.setVisible(false);
+        }
+        if (jDateFechaCelo.getDate() == null) {
+            lblRFechaCelo.setVisible(true);
+            contador++;
+        } else {
+            lblRFechaCelo.setVisible(false);
+        }
+
+        if (contador < 1) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
     private void btnModificarCeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarCeloMouseClicked
 
-        if(validarCampos()){
+        if (validarCampos()) {
 
             String caravana = txtCaravanaHembra.getText();
             Hembra hembra = dControladora.buscarHembraPorCaravana(caravana);
 
-            Date fechaCelo = jDateFechaCelo.getDate();
+            if (hembra != null) {
+                Date fechaCelo = jDateFechaCelo.getDate();
 
-            String detalle = txaDetalle.getText();
+                String detalle = txaDetalle.getText();
 
-            EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaCelo, detalle, hembra);
+                EventoDeSanidad eventoDeSanidad = new EventoDeSanidad(fechaCelo, detalle, hembra);
 
-            try {
+                try {
 
-                if (dControladora.modificarEventoDeSanidad(frmCelo.idCelo, eventoDeSanidad)) {
+                    if (dControladora.modificarEventoDeSanidad(frmCelo.idCelo, eventoDeSanidad)) {
 
-                    String causa = cboCausa.getSelectedItem().toString();
+                        String causa = cboCausa.getSelectedItem().toString();
 
-                    Celo celo = new Celo(frmCelo.idCelo,fechaCelo, detalle, hembra, causa);
+                        Celo celo = new Celo(frmCelo.idCelo, fechaCelo, detalle, hembra, causa);
 
-                    if(dControladora.modificarCelo(frmCelo.idCelo, celo)){
+                        if (dControladora.modificarCelo(frmCelo.idCelo, celo)) {
 
-                        dControladora.modificarEventoDeSanidad(celo);
-                        JOptionPane.showMessageDialog(null, "Celo Modificado Correctamente");
+                            dControladora.modificarEventoDeSanidad(celo);
+                            JOptionPane.showMessageDialog(null, "Celo Modificado Correctamente");
+                            this.caravana = null;
+                            this.dispose();
+                            frmCelo formularioCelo = new frmCelo();
+                            frmInicio.jDkPEscritorio.add(formularioCelo);
+                            formularioCelo.setVisible(true);
+                        } else {
+                            this.caravana = null;
+                            JOptionPane.showMessageDialog(null, "Celo No Modificado Correctamente");
+                        }
+                    } else {
                         this.caravana = null;
-                        this.dispose();
-                        frmCelo formularioCelo = new frmCelo();
-                        frmInicio.jDkPEscritorio.add(formularioCelo);
-                        formularioCelo.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
                     }
-                    else{
-                        this.caravana = null;
-                        JOptionPane.showMessageDialog(null, "Celo No Modificado Correctamente");
-                    }
-                } else {
-                    this.caravana = null;
-                    JOptionPane.showMessageDialog(null, "Error: No se pudo Modificado el Evento de Sanidad");
+
+                } catch (Exception e) {
+                    throw e;
                 }
-
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");
         }
     }//GEN-LAST:event_btnModificarCeloMouseClicked

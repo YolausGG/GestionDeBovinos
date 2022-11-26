@@ -16,8 +16,9 @@ import static presentacion.frmModificarEstadoConBovino.caravana;
 
 public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
 
-    public static String caravana = null;
+    public static String caravana ;
 
+    public static String sexo = "Hembra";
     public frmModificarEstadoConBovino() {
         initComponents();
 
@@ -37,9 +38,7 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
         EstadoBovino estadoBovino = frmEstadoConBovino.estadoBovino;
 
         jDateModificarFechaIE.setDate(estadoBovino.getFechaInicio());
-        Date fechaIE = jDateModificarFechaIE.getDate();
         jDateModificarFechaFE.setDate(estadoBovino.getFechaFinalizacion());
-        Date fechaFE = jDateModificarFechaFE.getDate();
         int idEstado = estadoBovino.getIdEstadoDelBovino();
         EstadoDelBovino estadoDelBovino = dControladora.buscarEstadoDelBovino(idEstado);
 
@@ -81,12 +80,6 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 170, 30));
         jPanel2.add(jDateModificarFechaIE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 170, 30));
         jPanel2.add(jDateModificarFechaFE, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 180, 30));
-
-        txtModificarCaravanaBovino.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtModificarCaravanaBovinoKeyReleased(evt);
-            }
-        });
         jPanel2.add(txtModificarCaravanaBovino, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 140, 30));
 
         btnBuscarBovino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar16px.png"))); // NOI18N
@@ -199,16 +192,22 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
 
         ArrayList<EstadoDelBovino> listaEstados = pEstadoDelBovino.listarEstadosDelBovino();
 
-        for (EstadoDelBovino estado : listaEstados) {
+        if (this.sexo.equals("Macho")) {
+            for (EstadoDelBovino estado : listaEstados) {
+                if (estado.getEstado().equals("Preñez") || estado.getEstado().equals("Secada") || estado.getEstado().equals("Inseminada") || estado.getEstado().equals("Produccion")) {
+                    cboModificarEstado.addItem(estado);
+                }
 
-            cboModificarEstado.addItem(estado);
+            }
+        } else {
+
+            for (EstadoDelBovino estado : listaEstados) {
+
+                cboModificarEstado.addItem(estado);
+            }
         }
 
     }
-
-    private void txtModificarCaravanaBovinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModificarCaravanaBovinoKeyReleased
-
-    }//GEN-LAST:event_txtModificarCaravanaBovinoKeyReleased
 
     private void btnBuscarBovinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarBovinoMouseClicked
         frmBuscarBovino buscarBovino = new frmBuscarBovino();
@@ -232,55 +231,60 @@ public class frmModificarEstadoConBovino extends javax.swing.JInternalFrame {
 
             String caravana = txtModificarCaravanaBovino.getText();
             Bovino bovino = dControladora.buscarBovinoCaravana(caravana);
-            Date fechaIE = jDateModificarFechaIE.getDate();
-            Date fechaFE = jDateModificarFechaFE.getDate();
-            EstadoDelBovino estadoNuevo = (EstadoDelBovino) cboModificarEstado.getSelectedItem();
 
-            EstadoBovino estadoBovinoViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja);
-            EstadoBovino estadoFechaInicio = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE);
+            if (bovino != null) {
+                Date fechaIE = jDateModificarFechaIE.getDate();
+                Date fechaFE = jDateModificarFechaFE.getDate();
+                EstadoDelBovino estadoNuevo = (EstadoDelBovino) cboModificarEstado.getSelectedItem();
 
-            EstadoBovino estadoBViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
-            EstadoBovino estadoBovinoCompleto = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE, fechaFE);
+                EstadoBovino estadoBovinoViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja);
+                EstadoBovino estadoFechaInicio = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE);
 
-            try {
-                if (jDateModificarFechaFE.getDate() == null) {
-                    boolean resultado = dControladora.modificarEstadoBovinoFechaInicio(estadoFechaInicio, estadoBovinoViejo);
-                    if (resultado) {
+                EstadoBovino estadoBViejo = new EstadoBovino(estadoViejo.getIdEstadoDelBovino(), bovinoViejo.getIdBovino(), fechaIEVieja, fechaFEVieja);
+                EstadoBovino estadoBovinoCompleto = new EstadoBovino(estadoNuevo.getIdEstadoDelBovino(), bovino.getIdBovino(), fechaIE, fechaFE);
 
-                        JOptionPane.showMessageDialog(null, "Estado Asignado al Bovino Modificado Correctamente");
-                        caravana = null;
-                        limpiarCajas(); // Limpiamos Caja de Texto
+                try {
+                    if (jDateModificarFechaFE.getDate() == null) {
+                        boolean resultado = dControladora.modificarEstadoBovinoFechaInicio(estadoFechaInicio, estadoBovinoViejo);
+                        if (resultado) {
 
-                        this.dispose();
-                        frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
-                        frmInicio.jDkPEscritorio.add(estadoConBovino);
-                        estadoConBovino.setVisible(true);
+                            JOptionPane.showMessageDialog(null, "Estado Asignado al Bovino Modificado Correctamente");
+                            caravana = null;
+                            limpiarCajas(); // Limpiamos Caja de Texto
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Estado del Bovino");
-                    }
-                } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
+                            this.dispose();
+                            frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
+                            frmInicio.jDkPEscritorio.add(estadoConBovino);
+                            estadoConBovino.setVisible(true);
 
-                    JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Estado del Bovino");
+                        }
+                    } else if (jDateModificarFechaFE.getDate().before(fechaIE)) {
 
-                } else {
-                    if (dControladora.modificarEstadoBovino(estadoBovinoCompleto, estadoBViejo)) {
-
-                        JOptionPane.showMessageDialog(null, "Estado Asignado al Bovino Modificado Correctamente");
-                        caravana = null;
-                        limpiarCajas(); // Limpiamos Caja de Texto
-
-                        this.dispose();
-                        frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
-                        frmInicio.jDkPEscritorio.add(estadoConBovino);
-                        estadoConBovino.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "La Fecha de Finalización debe ser Mayor o Igual a la de Inicio");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Estado del Bovino");
+                        if (dControladora.modificarEstadoBovino(estadoBovinoCompleto, estadoBViejo)) {
+
+                            JOptionPane.showMessageDialog(null, "Estado Asignado al Bovino Modificado Correctamente");
+                            caravana = null;
+                            limpiarCajas(); // Limpiamos Caja de Texto
+
+                            this.dispose();
+                            frmEstadoConBovino estadoConBovino = new frmEstadoConBovino();
+                            frmInicio.jDkPEscritorio.add(estadoConBovino);
+                            estadoConBovino.setVisible(true);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error: No se pudo Modificar el Estado del Bovino");
+                        }
                     }
+                } catch (Exception e) {
+                    throw e;
                 }
-            } catch (Exception e) {
-                throw e;
+            } else {
+                JOptionPane.showMessageDialog(this, "Caravana desconocida");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos faltantes");

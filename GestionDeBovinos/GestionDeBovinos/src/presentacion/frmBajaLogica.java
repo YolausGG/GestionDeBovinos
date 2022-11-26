@@ -7,13 +7,20 @@ package presentacion;
 import clases.BajaLogicaBovino;
 import clases.Bovino;
 import dominio.dControladora;
+import java.awt.Dimension;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import static presentacion.frmInicio.jDkPEscritorio;
 
 public class frmBajaLogica extends javax.swing.JInternalFrame {
 
     public frmBajaLogica() {
         initComponents();
+        
+        Dimension desktopSize = jDkPEscritorio.getSize();
+        Dimension dimensionFormulario = this.getSize();
+        this.setLocation((desktopSize.width - dimensionFormulario.width) / 2,
+                (desktopSize.height - dimensionFormulario.height) / 2);
 
         this.setTitle("BAJA LÓGICA DE BOVINO");
         lblRFechaBaja.setVisible(false);
@@ -26,16 +33,16 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
         lblRFechaBaja = new java.awt.Label();
         jDateFechaBaja = new com.toedter.calendar.JDateChooser();
-        label3 = new java.awt.Label();
-        label2 = new java.awt.Label();
         lblRMotivoBaja = new java.awt.Label();
         cboMotivo = new javax.swing.JComboBox<>();
         btnConfirmarBaja = new javax.swing.JButton();
         btnCancelarBaja = new javax.swing.JButton();
         txtCaravana = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(54, 67, 114));
         setClosable(true);
@@ -43,38 +50,25 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         setMaximizable(true);
 
         jPanel2.setBackground(new java.awt.Color(54, 67, 114));
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        label1.setForeground(new java.awt.Color(255, 255, 255));
-        label1.setText("¿Está seguro que quiere dar de Baja el Bovino?");
-        jPanel2.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 310, 40));
 
         lblRFechaBaja.setForeground(new java.awt.Color(255, 51, 51));
         lblRFechaBaja.setText("Requerido");
         jPanel2.add(lblRFechaBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 90, 30));
         jPanel2.add(jDateFechaBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 210, 30));
 
-        label3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("Fecha");
-        jPanel2.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 70, 30));
-
-        label2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("Motivo de Baja");
-        jPanel2.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 100, 30));
-
         lblRMotivoBaja.setForeground(new java.awt.Color(255, 51, 51));
         lblRMotivoBaja.setText("Requerido");
         jPanel2.add(lblRMotivoBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 90, 30));
 
         cboMotivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Muerte", "Vendido", "Mal Ingresado" }));
+        cboMotivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(cboMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 210, 30));
 
         btnConfirmarBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar 16px.png"))); // NOI18N
         btnConfirmarBaja.setText("Confirmar");
+        btnConfirmarBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConfirmarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnConfirmarBajaMouseClicked(evt);
@@ -84,6 +78,7 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
 
         btnCancelarBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar16px.png"))); // NOI18N
         btnCancelarBaja.setText("Cancelar");
+        btnCancelarBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCancelarBajaMouseClicked(evt);
@@ -91,12 +86,28 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnCancelarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 120, 30));
 
+        txtCaravana.setEditable(false);
         txtCaravana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCaravanaActionPerformed(evt);
             }
         });
         jPanel2.add(txtCaravana, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 120, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("¿Está seguro que quiere dar de Baja el Bovino?");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 290, 40));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Fecha:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Motivo Baja:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,10 +206,10 @@ public class frmBajaLogica extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnConfirmarBaja;
     private javax.swing.JComboBox<String> cboMotivo;
     private com.toedter.calendar.JDateChooser jDateFechaBaja;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
     private java.awt.Label lblRFechaBaja;
     private java.awt.Label lblRMotivoBaja;
     private javax.swing.JTextField txtCaravana;
